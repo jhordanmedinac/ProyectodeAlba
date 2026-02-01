@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal CGPVP - Noticias</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="accesibilidad.js" defer></script> 
+    <script type="module" src="./headBot.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-navbar">
+        <div class="nav-content">
+            <div class="brand">
+                <div class="logo-container">
+                    <img src="IMAGENES/LOGO.png" alt="Logo CGPVP">
+                </div>
+                <div class="brand-titles">
+                    <span>Cuerpo General de</span>
+                    <span>Paramédicos Voluntarios</span>
+                    <span>del Perú</span>
+                </div>
+            </div>
+
+            <nav class="nav-links">
+                <a href="#">Inicio</a>
+                <a href="#">Nosotros</a>                
+                <a href="#">Únete</a>
+                <a href="#">Instructores</a>
+                <a href="#">Cursos</a>
+                <a href="not/noticias.html" class="active">Noticias</a>
+                <a href="#"><i class="fas fa-search"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-container">
+        
+        <section class="filter-container">
+            <div class="filter-row">
+                <button class="filter-btn active">TODAS</button>
+                <button class="filter-btn">OPERACIONES</button>
+                <button class="filter-btn">CAPACITACIÓN</button>
+                <button class="filter-btn">INSTITUCIONAL</button>
+                <button class="filter-btn">INTERNACIONAL</button>
+                <button class="filter-btn">RECONOCIMIENTOS</button>
+            </div>
+            
+            <div class="news-search-group">
+                <input type="text" placeholder="Buscar Noticias...">
+                <button class="btn-search-action">BUSCAR</button>
+            </div>
+        </section>
+
+        <section class="hero-grid">
+            <article class="main-news-card">
+                <img src="https://via.placeholder.com/800x500" alt="Homenaje" class="main-img">
+            </article>
+
+            <article class="side-news-card">
+                <div class="side-img-container">
+                    <img src="https://via.placeholder.com/400x300" alt="Saludo">
+                </div>
+                <div class="side-text">
+                    <time><i class="far fa-calendar"></i> 29 de enero del 2026</time>
+                    <h4>SALUDO INSTITUCIONAL – HOMENAJE DE HONOR</h4>
+                    <p>La corporación de Oficiales, instructores, BIRED, alumnos y aspirantes del CGPVP expresa un afectuoso saludo.</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- Sección de noticias detalladas -->
+        <section class="detailed-news-section">
+            <article class="detailed-news-card">
+                <div class="news-image-gallery">
+                    <img src="https://via.placeholder.com/400x300" alt="Brigada BIRED" class="news-main-img">
+                    <div class="image-counter">+2</div>
+                </div>
+                <div class="news-content">
+                    <time class="news-date"><i class="far fa-calendar"></i> 29 de enero del 2026</time>
+                    <h3 class="news-title">Brigada de Intervención Rápida en Emergencias y Desastres</h3>
+                    <p class="news-excerpt">
+                        La Brigada de Intervención Rápida en Emergencias y Desastres del Cuerpo General de Paramédicos Voluntarios del Perú (CGPVP) está conformada por Paramédicos altamente calificados y comprometidos hacia las...
+                    </p>
+                    <div class="news-footer">
+                        <button class="btn-read-more-full">LEER MÁS <i class="fas fa-arrow-right"></i></button>
+                        <div class="news-stats">
+                            <span><i class="far fa-eye"></i> 5.1k</span>
+                            <span><i class="far fa-heart"></i> 45</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="detailed-news-card">
+                <div class="news-image-gallery">
+                    <img src="https://via.placeholder.com/400x300" alt="Resultados Admisión" class="news-main-img">
+                </div>
+                <div class="news-content">
+                    <time class="news-date"><i class="far fa-calendar"></i> 29 de enero del 2026</time>
+                    <h3 class="news-title">RESULTADOS PROCESO DE ADMISIÓN 2026 – I</h3>
+                    <p class="news-excerpt">
+                        El Cuerpo General de Paramédicos Voluntarios del Perú (CGPVP) felicita a los postulantes y recomienda ampliamente a los postulantes que no alcanzaron el objetivo inscribirse al proceso de admisión...
+                    </p>
+                    <div class="news-footer">
+                        <button class="btn-read-more-full">LEER MÁS <i class="fas fa-arrow-right"></i></button>
+                        <div class="news-stats">
+                            <span><i class="far fa-eye"></i> 2.3k</span>
+                            <span><i class="far fa-heart"></i> 45</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="detailed-news-card">
+                <div class="news-image-gallery">
+                    <img src="https://via.placeholder.com/400x300" alt="Convocatoria" class="news-main-img">
+                </div>
+                <div class="news-content">
+                    <time class="news-date"><i class="far fa-calendar"></i> 29 de enero del 2026</time>
+                    <h3 class="news-title">COMUNICADO OFICIAL – CONVOCATORIA CERRADA</h3>
+                    <p class="news-excerpt">
+                        El Cuerpo General de Paramédicos Voluntarios del Perú (CGPVP), informa que la CONVOCATORIA 2024/4 está en Curso el Formateo de Brigadas Comunitarias para...
+                    </p>
+                    <div class="news-footer">
+                        <button class="btn-read-more-full">LEER MÁS <i class="fas fa-arrow-right"></i></button>
+                        <div class="news-stats">
+                            <span><i class="far fa-eye"></i> 2.2k</span>
+                            <span><i class="far fa-heart"></i> 44</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- Sección de Testimonios -->
+        <section class="testimonials-section">
+            <h2 class="section-title">Opinión de nuestros estudiantes</h2>
+            
+            <div class="testimonials-carousel">
+                <button class="carousel-arrow carousel-prev" onclick="moveTestimonial(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="testimonial-container">
+                    <div class="testimonial-slide active">
+                        <div class="quote-icon quote-left">"</div>
+                        <img src="https://via.placeholder.com/100" alt="Estudiante 1" class="testimonial-avatar">
+                        <p class="testimonial-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget risus porta, tincidunt turpis at, interdum tortor. Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce ante tellus, convallis non consectetur sed, pharetra nec ex.
+                        </p>
+                        <h4 class="testimonial-author">María González</h4>
+                        <div class="quote-icon quote-right">"</div>
+                    </div>
+
+                    <div class="testimonial-slide">
+                        <div class="quote-icon quote-left">"</div>
+                        <img src="https://via.placeholder.com/100" alt="Estudiante 2" class="testimonial-avatar">
+                        <p class="testimonial-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget risus porta, tincidunt turpis at, interdum tortor. Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce ante tellus, convallis non consectetur sed, pharetra nec ex.
+                        </p>
+                        <h4 class="testimonial-author">Carlos Ramírez</h4>
+                        <div class="quote-icon quote-right">"</div>
+                    </div>
+
+                    <div class="testimonial-slide">
+                        <div class="quote-icon quote-left">"</div>
+                        <img src="https://via.placeholder.com/100" alt="Estudiante 3" class="testimonial-avatar">
+                        <p class="testimonial-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget risus porta, tincidunt turpis at, interdum tortor. Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce ante tellus, convallis non consectetur sed, pharetra nec ex.
+                        </p>
+                        <h4 class="testimonial-author">Ana Pérez</h4>
+                        <div class="quote-icon quote-right">"</div>
+                    </div>
+
+                    <div class="testimonial-slide">
+                        <div class="quote-icon quote-left">"</div>
+                        <img src="https://via.placeholder.com/100" alt="Estudiante 4" class="testimonial-avatar">
+                        <p class="testimonial-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget risus porta, tincidunt turpis at, interdum tortor. Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce ante tellus, convallis non consectetur sed, pharetra nec ex.
+                        </p>
+                        <h4 class="testimonial-author">Jorge Silva</h4>
+                        <div class="quote-icon quote-right">"</div>
+                    </div>
+                </div>
+
+                <button class="carousel-arrow carousel-next" onclick="moveTestimonial(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentTestimonial(0)"></span>
+                <span class="dot" onclick="currentTestimonial(1)"></span>
+                <span class="dot" onclick="currentTestimonial(2)"></span>
+                <span class="dot" onclick="currentTestimonial(3)"></span>
+            </div>
+        </section>
+
+        <!-- NUEVA SECCIÓN: Beneficios de la Capacitación -->
+        <section class="benefits-section">
+            <h2 class="section-title">Beneficios de nuestra capacitación</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h3>Capacitación para Paramédicos, por Paramédicos</h3>
+                    <p>Formación especializada diseñada e impartida por profesionales con experiencia en el campo</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-laptop-house"></i>
+                    </div>
+                    <h3>Aprendizaje remoto para la mayoría de las clases</h3>
+                    <p>Flexibilidad de horarios con clases en línea de alta calidad desde cualquier lugar</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Clases aprobadas y acreditadas</h3>
+                    <p>Certificaciones reconocidas que cumplen con los más altos estándares nacionales</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>Precios accesibles</h3>
+                    <p>Inversión justa en tu formación profesional con opciones de pago flexibles</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Transfiere créditos hacia tu título</h3>
+                    <p>Aprovecha tu formación previa y avanza más rápido en tu carrera profesional</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NUEVA SECCIÓN: Formación Especializada -->
+        <section class="training-features-section">
+            <div class="training-image">
+                <img src="https://via.placeholder.com/600x400" alt="Formación CGPVP">
+            </div>
+            <div class="training-content">
+                <div class="training-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Formación Especializada y Actualizada</h3>
+                        <p>Ofrecemos capacitaciones diseñadas para responder a las últimas normativas y procedimientos en emergencias, asegurando que el equipo esté preparado para actuar con seguridad y eficiencia en situaciones críticas.</p>
+                    </div>
+                </div>
+
+                <div class="training-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Instructores Altamente Calificados</h3>
+                        <p>Nuestro equipo de profesionales cuenta con experiencia en el campo y habilidades de enseñanza prácticas, permitiendo una comprensión clara y aplicable de cada técnica y protocolo.</p>
+                    </div>
+                </div>
+
+                <div class="training-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Aprendizaje Práctico en Simulaciones Reales</h3>
+                        <p>Las capacitaciones incluyen simulaciones en escenarios controlados que imitan condiciones de emergencia reales, proporcionando una experiencia inmersiva y efectiva que facilita la aplicación de lo aprendido.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>  
+
+    <!-- FOOTER MEJORADO -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section footer-about">
+                <div class="footer-logo">
+                    <img src="IMAGENES/LOGO.png" alt="Logo CGPVP">
+                </div>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="footer-copyright">
+                    Cuerpo General de Paramédicos Voluntarios del Perú © 2025.<br>
+                    Todos los derechos reservados
+                </p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Nosotros</h4>
+                <ul>
+                    <li><a href="#">Cuerpo General de Paramédicos Voluntarios</a></li>
+                    <li><a href="#">Av. Principal 123, Lima, Perú</a></li>
+                    <li><a href="tel:+51987654321">Teléfono: +51 (1) 987-654-321</a></li>
+                    <li><a href="mailto:contacto@cgpvp.org">Email: contacto@cgpvp.org</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="#">Bienvenidos</a></li>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Misión</a></li>
+                    <li><a href="#">Visión</a></li>
+                    <li><a href="#">Organización</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Soporte</h4>
+                <ul>
+                    <li><a href="#">Documentación</a></li>
+                    <li><a href="#">Foros</a></li>
+                    <li><a href="#">Abrir un Ticket</a></li>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section footer-academy">
+                <div class="academy-badge">
+                    <img src="https://via.placeholder.com/120x120" alt="Academy Badge">
+                </div>
+            </div>
+        </div>
+    </footer>   
+
+    <script>
+        // Chat Toggle
+        function toggleChat() {
+            const chat = document.getElementById('bullChat');
+            const isVisible = (chat.style.display === 'flex');
+            chat.style.display = isVisible ? 'none' : 'flex';
+            if (!isVisible) {
+                const badge = document.querySelector('.notification-badge');
+                if(badge) badge.style.display = 'none';
+            }
+        }
+
+        function toggleAccessibility() {
+            const menu = document.getElementById('accessibilityMenu');
+            menu.classList.toggle('active');
+            console.log("Accionando menú de accesibilidad...");
+        }
+
+        // Testimonials Carousel
+        let currentSlide = 0;
+
+        function showTestimonial(n) {
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const dots = document.querySelectorAll('.carousel-dots .dot');
+            
+            if (n >= slides.length) { currentSlide = 0; }
+            if (n < 0) { currentSlide = slides.length - 1; }
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function moveTestimonial(direction) {
+            currentSlide += direction;
+            showTestimonial(currentSlide);
+        }
+
+        function currentTestimonial(n) {
+            currentSlide = n;
+            showTestimonial(currentSlide);
+        }
+
+        // Auto-advance carousel every 5 seconds
+        setInterval(() => {
+            moveTestimonial(1);
+        }, 5000);
+    </script>
+</body>
+</html>
