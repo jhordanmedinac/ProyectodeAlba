@@ -157,3 +157,170 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+// ========== DATOS DE PRUEBA - BASE DE DATOS DE PERSONAL ==========
+const personalDatabase = [
+    {
+        legajo: "12345",
+        nombres: "JUAN CARLOS",
+        apellidos: "GARCÍA RODRÍGUEZ",
+        dni: "72345678",
+        rango: "TÉCNICO PARAMÉDICO",
+        jefatura: "BRIGADA DE EMERGENCIAS - LIMA",
+        estado: "ACTIVO",
+        fechaActualizacion: "15/01/2026",
+        foto: "https://via.placeholder.com/150x180/00093C/FFFFFF?text=FOTO",
+        certificaciones: [
+            { nombre: "SISTEMA COMANDO DE INCIDENTES", icono: "🎖️" },
+            { nombre: "UNIDAD DE BÚSQUEDA Y RESCATE", icono: "🏅" },
+            { nombre: "SOPORTE VITAL AVANZADO", icono: "🥇" }
+        ]
+    },
+    {
+        legajo: "12346",
+        nombres: "MARÍA ELENA",
+        apellidos: "LÓPEZ SÁNCHEZ",
+        dni: "71234567",
+        rango: "PARAMÉDICO SENIOR",
+        jefatura: "UNIDAD MÉDICA - CALLAO",
+        estado: "ACTIVO",
+        fechaActualizacion: "20/01/2026",
+        foto: "https://via.placeholder.com/150x180/00093C/FFFFFF?text=FOTO",
+        certificaciones: [
+            { nombre: "TRIAJE EN EMERGENCIAS", icono: "🎖️" },
+            { nombre: "ATENCIÓN PREHOSPITALARIA", icono: "🏅" }
+        ]
+    },
+    {
+        legajo: "12347",
+        nombres: "CARLOS ALBERTO",
+        apellidos: "RAMÍREZ TORRES",
+        dni: "70987654",
+        rango: "INSTRUCTOR JEFE",
+        jefatura: "DEPARTAMENTO DE CAPACITACIÓN",
+        estado: "ACTIVO",
+        fechaActualizacion: "10/01/2026",
+        foto: "https://via.placeholder.com/150x180/00093C/FFFFFF?text=FOTO",
+        certificaciones: [
+            { nombre: "INSTRUCTOR CERTIFICADO", icono: "🎖️" },
+            { nombre: "GESTIÓN DE CRISIS", icono: "🏅" },
+            { nombre: "LIDERAZGO OPERATIVO", icono: "🥇" }
+        ]
+    }
+];
+
+// ========== BÚSQUEDA DE PERSONAL ==========
+const searchInput = document.getElementById('searchPersonal');
+const searchResults = document.getElementById('searchResults');
+
+// Event listener para búsqueda en tiempo real
+if (searchInput) {
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.trim().toLowerCase();
+        
+        if (searchTerm.length < 2) {
+            searchResults.classList.remove('show');
+            searchResults.innerHTML = '';
+            return;
+        }
+        
+        // Buscar coincidencias
+        const results = personalDatabase.filter(person => {
+            const fullName = `${person.apellidos} ${person.nombres}`.toLowerCase();
+            const legajo = person.legajo.toLowerCase();
+            const dni = person.dni.toLowerCase();
+            
+            return fullName.includes(searchTerm) || 
+                   legajo.includes(searchTerm) || 
+                   dni.includes(searchTerm);
+        });
+        
+        // Mostrar resultados
+        if (results.length > 0) {
+            searchResults.innerHTML = results.map(person => `
+                <div class="search-result-item" onclick="showPersonalInfo('${person.legajo}')">
+                    <div class="search-result-name">${person.apellidos}, ${person.nombres}</div>
+                    <div class="search-result-details">Legajo: ${person.legajo} | DNI: ${person.dni}</div>
+                </div>
+            `).join('');
+            searchResults.classList.add('show');
+        } else {
+            searchResults.innerHTML = '<div class="no-results">No se encontraron resultados</div>';
+            searchResults.classList.add('show');
+        }
+    });
+    
+    // Cerrar resultados al hacer clic fuera
+    document.addEventListener('click', function(e) {
+        if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+            searchResults.classList.remove('show');
+        }
+    });
+}
+
+// ========== MOSTRAR INFORMACIÓN DE PERSONAL ==========
+function showPersonalInfo(legajo) {
+    const person = personalDatabase.find(p => p.legajo === legajo);
+    
+    if (!person) return;
+    
+    // Actualizar datos en el modal
+    document.getElementById('personalFullName').textContent = `${person.apellidos}, ${person.nombres}`;
+    document.getElementById('personalLegajo').textContent = person.legajo;
+    document.getElementById('personalDNI').textContent = person.dni;
+    document.getElementById('personalRango').textContent = person.rango;
+    document.getElementById('personalJefatura').textContent = person.jefatura;
+    document.getElementById('personalPhoto').src = person.foto;
+    
+    // Actualizar estado
+    const statusBadge = document.querySelector('.status-badge');
+    statusBadge.className = `status-badge ${person.estado.toLowerCase()}`;
+    statusBadge.innerHTML = `<strong>ESTADO:</strong> ${person.estado}`;
+    if (person.estado === "BAJA") {
+        statusBadge.innerHTML += ` (${person.fechaActualizacion})`;
+    }
+    
+    // Actualizar QR
+    document.querySelector('.qr-code').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=LEGAJO${person.legajo}`;
+    
+    // Actualizar certificaciones
+    const certList = document.querySelector('.certification-list');
+    certList.innerHTML = person.certificaciones.map(cert => `
+        <div class="certification-item">
+            <span class="cert-icon">${cert.icono}</span>
+            <span class="cert-name">${cert.nombre}</span>
+        </div>
+    `).join('');
+    
+    // Mostrar modal
+    document.getElementById('personalModal').classList.add('show');
+    searchResults.classList.remove('show');
+    searchInput.value = '';
+}
+
+// ========== CERRAR MODAL ==========
+function closePersonalModal() {
+    document.getElementById('personalModal').classList.remove('show');
+}
+
+// Cerrar modal al hacer clic fuera de él
+window.onclick = function(event) {
+    const modal = document.getElementById('personalModal');
+    if (event.target === modal) {
+        closePersonalModal();
+    }
+}
+
+// Cerrar modal con tecla ESC
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closePersonalModal();
+    }
+});
+
+// ========== FUNCIÓN DE BÚSQUEDA (botón) ==========
+function searchPersonal() {
+    const searchTerm = searchInput.value.trim();
+    if (searchTerm.length >= 2) {
+        searchInput.dispatchEvent(new Event('input'));
+    }
+}
