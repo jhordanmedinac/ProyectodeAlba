@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Únete - CGPVP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="unete-style.css">
+    <script type="module" src="./headBot.js"></script>
+    <script src="accesibilidad.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-navbar">
+        <div class="nav-content">
+            <div class="brand">
+                <div class="logo-container">
+                    <img src="IMAGENES/LOGO.png" alt="Logo CGPVP">
+                </div>
+                <div class="brand-titles">
+                    <span>Cuerpo General de</span>
+                    <span>Paramédicos Voluntarios</span>
+                    <span>del Perú</span>
+                </div>
+            </div>
+
+            <nav class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="nosotros.html">Nosotros</a>                
+                <a href="unete.html" class="active">Únete</a>
+                <a href="#">Instructores</a>
+                <a href="#">Cursos</a>
+                <a href="not/noticias.html">Noticias</a>
+                <a href="#"><i class="fas fa-search"></i></a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Modal de Bienvenida -->
+    <div id="welcomeModal" class="modal-overlay active">
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h2>¿Estás listo para unirte a nosotros?</h2>
+            </div>
+            <div class="modal-body">
+                <p class="modal-message">
+                    Recuerda que se postula una vez cada año.
+                </p>
+                <p class="modal-message-highlight">
+                    ¡Suerte! Te avisaremos sobre tu postulación.
+                </p>
+                <div class="modal-illustration">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-accept" onclick="acceptModal()">
+                    <i class="fas fa-check-circle"></i> Aceptar y Continuar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <main class="unete-container">
+        
+        <!-- Hero Section -->
+        <section class="unete-hero">
+            <div class="hero-overlay">
+                <h1 class="hero-title">Únete a Nosotros</h1>
+                <p class="hero-subtitle">Forma parte del equipo de paramédicos más profesional del Perú</p>
+            </div>
+        </section>
+
+        <!-- Formulario de Registro -->
+        <section class="registro-section">
+            <div class="registro-container">
+                
+                <div class="registro-header">
+                    <div class="header-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h2>Formulario de Registro</h2>
+                    <p>Completa todos los campos para iniciar tu proceso de postulación</p>
+                </div>
+
+                <form id="registroForm" class="registro-form">
+                    
+                    <!-- Información Personal -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">
+                            <i class="fas fa-id-card"></i> Información Personal
+                        </h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nombre">
+                                    <i class="fas fa-user"></i> Nombre(s) <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="nombre" 
+                                    name="nombre" 
+                                    placeholder="Ingresa tu(s) nombre(s)"
+                                    required
+                                >
+                                <span class="form-error" id="error-nombre"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="apellido">
+                                    <i class="fas fa-user"></i> Apellidos <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="apellido" 
+                                    name="apellido" 
+                                    placeholder="Ingresa tus apellidos"
+                                    required
+                                >
+                                <span class="form-error" id="error-apellido"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="dni">
+                                    <i class="fas fa-id-card-alt"></i> DNI <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="dni" 
+                                    name="dni" 
+                                    placeholder="12345678"
+                                    maxlength="8"
+                                    pattern="[0-9]{8}"
+                                    required
+                                >
+                                <span class="form-error" id="error-dni"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="edad">
+                                    <i class="fas fa-calendar-alt"></i> Edad <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="number" 
+                                    id="edad" 
+                                    name="edad" 
+                                    placeholder="18"
+                                    min="18"
+                                    max="65"
+                                    required
+                                >
+                                <span class="form-error" id="error-edad"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="genero">
+                                    <i class="fas fa-venus-mars"></i> Género <span class="required">*</span>
+                                </label>
+                                <select id="genero" name="genero" required>
+                                    <option value="">Selecciona</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="femenino">Femenino</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                                <span class="form-error" id="error-genero"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Información de Contacto -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">
+                            <i class="fas fa-envelope"></i> Información de Contacto
+                        </h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">
+                                    <i class="fas fa-at"></i> Correo Electrónico <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    placeholder="tu.correo@ejemplo.com"
+                                    required
+                                >
+                                <span class="form-error" id="error-email"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="telefono">
+                                    <i class="fas fa-phone"></i> Teléfono <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="tel" 
+                                    id="telefono" 
+                                    name="telefono" 
+                                    placeholder="987654321"
+                                    maxlength="9"
+                                    pattern="[0-9]{9}"
+                                    required
+                                >
+                                <span class="form-error" id="error-telefono"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="direccion">
+                                <i class="fas fa-map-marker-alt"></i> Dirección <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="direccion" 
+                                name="direccion" 
+                                placeholder="Av. Principal 123, Distrito, Provincia"
+                                required
+                            >
+                            <span class="form-error" id="error-direccion"></span>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="departamento">
+                                    <i class="fas fa-map"></i> Departamento <span class="required">*</span>
+                                </label>
+                                <select id="departamento" name="departamento" required>
+                                    <option value="">Selecciona</option>
+                                    <option value="lima">Lima</option>
+                                    <option value="arequipa">Arequipa</option>
+                                    <option value="cusco">Cusco</option>
+                                    <option value="trujillo">La Libertad</option>
+                                    <option value="piura">Piura</option>
+                                    <option value="otros">Otros</option>
+                                </select>
+                                <span class="form-error" id="error-departamento"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="distrito">
+                                    <i class="fas fa-building"></i> Distrito <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="distrito" 
+                                    name="distrito" 
+                                    placeholder="Nombre del distrito"
+                                    required
+                                >
+                                <span class="form-error" id="error-distrito"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Información Académica -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">
+                            <i class="fas fa-graduation-cap"></i> Información Académica
+                        </h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nivel-educativo">
+                                    <i class="fas fa-book"></i> Nivel Educativo <span class="required">*</span>
+                                </label>
+                                <select id="nivel-educativo" name="nivel-educativo" required>
+                                    <option value="">Selecciona</option>
+                                    <option value="secundaria">Secundaria Completa</option>
+                                    <option value="tecnico">Técnico</option>
+                                    <option value="universitario">Universitario</option>
+                                    <option value="postgrado">Postgrado</option>
+                                </select>
+                                <span class="form-error" id="error-nivel-educativo"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="profesion">
+                                    <i class="fas fa-briefcase"></i> Profesión u Ocupación <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="profesion" 
+                                    name="profesion" 
+                                    placeholder="Ingeniero, Estudiante, etc."
+                                    required
+                                >
+                                <span class="form-error" id="error-profesion"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Motivación -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">
+                            <i class="fas fa-heart"></i> Motivación
+                        </h3>
+
+                        <div class="form-group">
+                            <label for="motivacion">
+                                <i class="fas fa-comment-dots"></i> ¿Por qué quieres unirte al CGPVP? <span class="required">*</span>
+                            </label>
+                            <textarea 
+                                id="motivacion" 
+                                name="motivacion" 
+                                rows="5" 
+                                placeholder="Cuéntanos tu motivación para formar parte de nuestro equipo..."
+                                maxlength="500"
+                                required
+                            ></textarea>
+                            <span class="char-counter">0/500 caracteres</span>
+                            <span class="form-error" id="error-motivacion"></span>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="experiencia" name="experiencia">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">Tengo experiencia previa en atención de emergencias o voluntariado</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Términos y Condiciones -->
+                    <div class="form-section">
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="terminos" name="terminos" required>
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">
+                                    Acepto los <a href="#" class="link-terminos">términos y condiciones</a> y la <a href="#" class="link-terminos">política de privacidad</a> <span class="required">*</span>
+                                </span>
+                            </label>
+                            <span class="form-error" id="error-terminos"></span>
+                        </div>
+                    </div>
+
+                    <!-- Botones de Acción -->
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancelar" onclick="cancelarRegistro()">
+                            <i class="fas fa-times-circle"></i> Cancelar
+                        </button>
+                        <button type="submit" class="btn-registrar">
+                            <i class="fas fa-paper-plane"></i> Registrarse
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </section>
+
+        <!-- Información Adicional -->
+        <section class="info-adicional-section">
+            <div class="section-container">
+                <h2 class="section-title">Proceso de Selección</h2>
+                
+                <div class="proceso-grid">
+                    <div class="proceso-card">
+                        <div class="proceso-number">1</div>
+                        <div class="proceso-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <h4>Registro</h4>
+                        <p>Completa el formulario de postulación con toda tu información</p>
+                    </div>
+
+                    <div class="proceso-card">
+                        <div class="proceso-number">2</div>
+                        <div class="proceso-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h4>Evaluación</h4>
+                        <p>Revisaremos tu perfil y experiencia cuidadosamente</p>
+                    </div>
+
+                    <div class="proceso-card">
+                        <div class="proceso-number">3</div>
+                        <div class="proceso-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <h4>Entrevista</h4>
+                        <p>Los seleccionados serán contactados para una entrevista personal</p>
+                    </div>
+
+                    <div class="proceso-card">
+                        <div class="proceso-number">4</div>
+                        <div class="proceso-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4>Capacitación</h4>
+                        <p>Iniciarás tu formación como paramédico profesional</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section footer-about">
+                <div class="footer-logo">
+                    <img src="IMAGENES/LOGO.png" alt="Logo CGPVP">
+                </div>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="footer-copyright">
+                    Cuerpo General de Paramédicos Voluntarios del Perú © 2025.<br>
+                    Todos los derechos reservados                                                           
+                </p>                
+            </div>
+
+            <div class="footer-section">
+                <h4>Nosotros</h4>
+                <ul>
+                    <li><a href="#">Cuerpo General de Paramédicos Voluntarios</a></li>
+                    <li><a href="#">Av. Principal 123, Lima, Perú</a></li>
+                    <li><a href="tel:+51987654321">Teléfono: +51 (1) 987-654-321</a></li>
+                    <li><a href="mailto:contacto@cgpvp.org">Email: contacto@cgpvp.org</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="index.html">Bienvenidos</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="#">Misión</a></li>
+                    <li><a href="#">Visión</a></li>
+                    <li><a href="#">Organización</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Soporte</h4>
+                <ul>
+                    <li><a href="#">Documentación</a></li>
+                    <li><a href="#">Foros</a></li>
+                    <li><a href="#">Abrir un Ticket</a></li>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section footer-academy">
+                <div class="academy-badge">
+                    <img src="https://via.placeholder.com/120x120" alt="Academy Badge">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Confirmación -->
+    <div id="confirmModal" class="modal-overlay">
+        <div class="modal-container success-modal">
+            <div class="modal-header">
+                <div class="modal-icon success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>¡Registro Exitoso!</h2>
+            </div>
+            <div class="modal-body">
+                <p class="modal-message">
+                    Tu solicitud ha sido enviada correctamente.
+                </p>
+                <p class="modal-message-highlight">
+                    Nos pondremos en contacto contigo pronto. ¡Gracias por tu interés!
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-accept" onclick="closeConfirmModal()">
+                    <i class="fas fa-home"></i> Volver al Inicio
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal de Bienvenida
+        function acceptModal() {
+            document.getElementById('welcomeModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Prevenir cierre del modal inicial
+        window.addEventListener('load', () => {
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Validación DNI
+        document.getElementById('dni').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        // Validación Teléfono
+        document.getElementById('telefono').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        // Contador de caracteres
+        document.getElementById('motivacion').addEventListener('input', function() {
+            const counter = this.parentElement.querySelector('.char-counter');
+            counter.textContent = `${this.value.length}/500 caracteres`;
+        });
+
+        // Validación del Formulario
+        document.getElementById('registroForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Limpiar errores previos
+            document.querySelectorAll('.form-error').forEach(error => {
+                error.textContent = '';
+            });
+            document.querySelectorAll('.form-group').forEach(group => {
+                group.classList.remove('error');
+            });
+
+            let isValid = true;
+
+            // Validar nombre
+            const nombre = document.getElementById('nombre');
+            if (nombre.value.trim().length < 2) {
+                showError('nombre', 'El nombre debe tener al menos 2 caracteres');
+                isValid = false;
+            }
+
+            // Validar apellido
+            const apellido = document.getElementById('apellido');
+            if (apellido.value.trim().length < 2) {
+                showError('apellido', 'El apellido debe tener al menos 2 caracteres');
+                isValid = false;
+            }
+
+            // Validar DNI
+            const dni = document.getElementById('dni');
+            if (!/^[0-9]{8}$/.test(dni.value)) {
+                showError('dni', 'El DNI debe tener 8 dígitos');
+                isValid = false;
+            }
+
+            // Validar edad
+            const edad = document.getElementById('edad');
+            if (edad.value < 18 || edad.value > 65) {
+                showError('edad', 'La edad debe estar entre 18 y 65 años');
+                isValid = false;
+            }
+
+            // Validar email
+            const email = document.getElementById('email');
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+                showError('email', 'Ingresa un correo electrónico válido');
+                isValid = false;
+            }
+
+            // Validar teléfono
+            const telefono = document.getElementById('telefono');
+            if (!/^[0-9]{9}$/.test(telefono.value)) {
+                showError('telefono', 'El teléfono debe tener 9 dígitos');
+                isValid = false;
+            }
+
+            // Validar términos
+            const terminos = document.getElementById('terminos');
+            if (!terminos.checked) {
+                showError('terminos', 'Debes aceptar los términos y condiciones');
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Mostrar modal de confirmación
+                document.getElementById('confirmModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Resetear formulario
+                this.reset();
+                document.querySelector('.char-counter').textContent = '0/500 caracteres';
+            } else {
+                // Scroll al primer error
+                const firstError = document.querySelector('.form-group.error');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        });
+
+        function showError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            const error = document.getElementById(`error-${fieldId}`);
+            const formGroup = field.closest('.form-group');
+            
+            if (error) {
+                error.textContent = message;
+            }
+            if (formGroup) {
+                formGroup.classList.add('error');
+            }
+        }
+
+        function cancelarRegistro() {
+            if (confirm('¿Estás seguro de que deseas cancelar el registro? Se perderán todos los datos ingresados.')) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            window.location.href = 'index.html';
+        }
+
+        // Prevenir cierre de modales al hacer click fuera
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this && this.id !== 'welcomeModal') {
+                    // Solo permitir cerrar el modal de confirmación
+                    if (this.id === 'confirmModal') {
+                        closeConfirmModal();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
