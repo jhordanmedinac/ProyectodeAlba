@@ -14,27 +14,29 @@
             <div class="logo-section">
                 <img src="icons/Insignia.png" alt="Insignia Paramédicos Voluntarios del Perú">
                 <div class="logo-text">
-                    Cuerpo General de<br>
-                    Paramédicos Voluntarios<br>
-                    del Perú
+                    CUERPO GENERAL DE PARAMÉDICOS VOLUNTARIOS DEL PERÚ
                 </div>
             </div>
 
             <div class="search-bar-container">
-                <input type="text" placeholder="Buscar Personal...">
-                <button type="submit">
+                <input type="text" id="searchPersonal" placeholder="Buscar Personal..." autocomplete="off">
+                <button type="button" onclick="searchPersonal()">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="m21 21-4.35-4.35"></path>
                     </svg>
                 </button>
+                <!-- Resultados de búsqueda (autocompletado) -->
+                <div id="searchResults" class="search-results"></div>
             </div>
             
             <nav>
                 <ul>
+                    <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#nosotros">Nosotros</a></li>
                     <li><a href="#unete">Únete</a></li>
                     <li><a href="#instructores">Instructores</a></li>
+                    <li><a href="#cursos">Cursos</a></li>
                     <li><a href="#noticias" class="active">Noticias</a></li>
                 </ul>
             </nav>
@@ -73,17 +75,17 @@
                 <div class="featured-image" style="background-image: url('https://images.unsplash.com/photo-1584515933487-779824d29309?w=800');"></div>
                 <div class="featured-content">
                     <span class="featured-badge">
-                        <svg class="badge-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        <svg class="badge-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="4" fill="currentColor"/>
+                            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                         </svg>
                         DESTACADO
                     </span>
-                    <h2 class="featured-title">Nueva Flota de Ambulancias para Atención de Emergencias</h2>
+                    <h2 class="featured-title">Ejército Peruano Moderniza su Flota de Helicópteros</h2>
                     <p class="featured-description">
-                        El Cuerpo General de Paramédicos Voluntarios del Perú incorpora equipamiento médico de última 
-                        generación fortaleciendo la capacidad de respuesta ante emergencias en todo el territorio nacional.
+                        Nueva adquisición de equipamiento aéreo de última generación fortalece las capacidades operativas de nuestras fuerzas armadas en todo el territorio nacional.
                     </p>
-                    <button class="featured-btn">Leer más →</button>
+                    <button class="featured-btn">LEER MÁS →</button>
                 </div>
             </article>
 
@@ -105,7 +107,7 @@
                         de 5 personas afectadas por derrumbe en zona de difícil acceso.
                     </p>
                     <div class="card-footer">
-                        <button class="read-more-btn">Leer más →</button>
+                        <button class="read-more-btn">LEER MÁS →</button>
                         <div class="card-stats">
                             <span class="stat-item">
                                 <svg class="stat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -143,7 +145,7 @@
                         reanimación cardiopulmonar y atención de emergencias prehospitalarias.
                     </p>
                     <div class="card-footer">
-                        <button class="read-more-btn">Leer más →</button>
+                        <button class="read-more-btn">LEER MÁS →</button>
                         <div class="card-stats">
                             <span class="stat-item">
                                 <svg class="stat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -181,7 +183,7 @@
                         Cuerpo General de Paramédicos Voluntarios del Perú.
                     </p>
                     <div class="card-footer">
-                        <button class="read-more-btn">Leer más →</button>
+                        <button class="read-more-btn">LEER MÁS →</button>
                         <div class="card-stats">
                             <span class="stat-item">
                                 <svg class="stat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -219,7 +221,7 @@
                         comunidades alejadas de Loreto y Ucayali.
                     </p>
                     <div class="card-footer">
-                        <button class="read-more-btn">Leer más →</button>
+                        <button class="read-more-btn">LEER MÁS →</button>
                         <div class="card-stats">
                             <span class="stat-item">
                                 <svg class="stat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -257,7 +259,7 @@
                         y profesionalismo en situaciones de emergencia durante 2025.
                     </p>
                     <div class="card-footer">
-                        <button class="read-more-btn">Leer más →</button>
+                        <button class="read-more-btn">LEER MÁS →</button>
                         <div class="card-stats">
                             <span class="stat-item">
                                 <svg class="stat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -295,7 +297,7 @@
                         durante las intensas lluvias en Lima Metropolitana.
                     </p>
                     <div class="card-footer">
-                        <button class="read-more-btn">Leer más →</button>
+                        <button class="read-more-btn">LEER MÁS →</button>
                         <div class="card-stats">
                             <span class="stat-item">
                                 <svg class="stat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -328,6 +330,80 @@
         </div>
     </main>
 
+
+    <!-- MODAL DE INFORMACIÓN DE PERSONAL -->
+    <div id="personalModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closePersonalModal()">&times;</span>
+            <div class="personal-card">
+                <!-- Código QR en la parte superior -->
+                <div class="qr-section">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=LEGAJO12345" alt="QR Code" class="qr-code">
+                </div>
+                
+                <div class="personal-info">
+                    <div class="status-badge active">
+                        <strong>ESTADO:</strong> ACTIVO
+                    </div>
+                    
+                    <div class="info-row">
+                        <div class="info-left">
+                            <div class="info-item">
+                                <strong>APELLIDOS Y NOMBRES:</strong>
+                                <p id="personalFullName">GARCÍA RODRÍGUEZ, JUAN CARLOS</p>
+                            </div>
+                            
+                            <div class="info-item">
+                                <strong>LEGAJO:</strong>
+                                <p id="personalLegajo">12345</p>
+                            </div>
+                            
+                            <div class="info-item">
+                                <strong>DNI:</strong>
+                                <p id="personalDNI">72345678</p>
+                            </div>
+                            
+                            <div class="info-item">
+                                <strong>RANGO:</strong>
+                                <p id="personalRango">TÉCNICO PARAMÉDICO</p>
+                            </div>
+                            
+                            <div class="info-item">
+                                <strong>JEFATURA:</strong>
+                                <p id="personalJefatura">BRIGADA DE EMERGENCIAS - LIMA</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-right">
+                            <div class="personal-photo">
+                                <img id="personalPhoto" src="https://via.placeholder.com/150x180/00093C/FFFFFF?text=FOTO" alt="Foto Personal">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="certifications-section">
+                        <h3>CURSOS/CERTIFICACIONES:</h3>
+                        <div class="certification-list">
+                            <div class="certification-item">
+                                <span class="cert-icon">🎖️</span>
+                                <span class="cert-name">SISTEMA COMANDO DE INCIDENTES</span>
+                            </div>
+                            <div class="certification-item">
+                                <span class="cert-icon">🏅</span>
+                                <span class="cert-name">UNIDAD DE BÚSQUEDA Y RESCATE</span>
+                            </div>
+                            <div class="certification-item">
+                                <span class="cert-icon">🥇</span>
+                                <span class="cert-name">SOPORTE VITAL AVANZADO</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="script.js"></script>
     <script type="module" src="./headBot.js"></script>
 </body>
