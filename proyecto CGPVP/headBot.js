@@ -32325,15 +32325,30 @@ class HeadBot extends HTMLElement {
     const canvas = document.createElement("canvas");
     canvas.style.position = "fixed";
     canvas.style.bottom = "-100px";
-    canvas.style.right = "0px";
+    canvas.style.right = "-60px";
     canvas.style.width = "300px";
     canvas.style.height = "300px";
-    canvas.style.pointerEvents = "auto";
+    canvas.style.pointerEvents = "none"; // Cambio: el canvas ya no recibe clicks
     canvas.style.zIndex = "9999";
     canvas.style.background = "transparent";
     this.appendChild(canvas);
+    
+    // Área circular de click sobre el canvas
+    const clickArea = document.createElement("div");
+    clickArea.style.position = "fixed";
+    clickArea.style.bottom = "40px";
+    clickArea.style.right = "70px";
+    clickArea.style.width = "80px";
+    clickArea.style.height = "80px";
+    clickArea.style.borderRadius = "50%";
+    clickArea.style.cursor = "pointer";
+    clickArea.style.zIndex = "10000";
+    clickArea.style.border = "none"; 
+    clickArea.style.pointerEvents = "auto";
+    this.appendChild(clickArea);
+    
     // ===== NUEVO: Evento de clic =====
-    canvas.addEventListener('click', () => {
+    clickArea.addEventListener('click', () => {
       this.dispatchEvent(new CustomEvent('headbot-click', { bubbles: true }));
     });
     const scene = new Scene();
@@ -32404,19 +32419,19 @@ document.body.appendChild(bot);
     const styles = `
         .cgpvp-chatbot-container {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 0;
+            right: 0;
             z-index: 9998;
             font-family: 'Poppins', sans-serif;
         }
 
         /* Ventana del chat */
         .cgpvp-chat-window {
-            position: absolute;
-            bottom: 20px;
-            right: 0;
-            width: 380px;
-            height: 550px;
+            position: fixed;
+            bottom: 130px;
+            right: 70px;
+            width: min(380px, calc(100vw - 40px));
+            height: min(550px, calc(100vh - 180px));
             background: white;
             border-radius: 15px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
@@ -32828,7 +32843,7 @@ document.body.appendChild(bot);
             .cgpvp-chatbot-container {
                 right: 50%;
                 transform: translateX(50%);
-                bottom: 10px;
+                bottom: -1000px;
             }
 
             .cgpvp-chat-window {
