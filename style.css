@@ -1,0 +1,1238 @@
+/* ============================================
+   VARIABLES CSS
+   ============================================ */
+:root {
+    --navy: #00093C;
+    --gold: #c5a059;
+    --white: #ffffff;
+    --gray-bg: #f4f7f6;
+    --bot-msg-bg: #ffffff;
+    --user-msg-bg: #00093C;
+    --text-dark: #333;
+    --border-light: #eee;
+    --red-accent: #b23939;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+body { 
+    font-family: 'Inter', sans-serif; 
+    margin: 0; 
+    background-color: var(--white); 
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6,
+p, span, a, button, input, textarea, select,
+div, section, article, header, footer, nav {
+    font-family: 'Inter', sans-serif;
+}
+
+/* ============================================
+   HEADER & NAVBAR
+   ============================================ */
+.main-navbar { 
+    background-color: var(--navy); 
+    color: var(--white); 
+    padding: 15px 5% 15px 1%; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-content { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    max-width: 1400px; 
+    margin: 0 auto; 
+}
+
+.brand { 
+    display: flex; 
+    align-items: center; 
+    gap: 18px;
+    margin-right: auto;
+}
+
+.logo-container { 
+    width: 75px; 
+}
+
+.logo-container img { 
+    width: 100%; 
+    display: block; 
+    border-radius: 4px; 
+}
+
+.brand-titles span { 
+    display: block;
+    font-size: 14px; 
+    color: var(--gold); 
+    font-weight: 700; 
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.nav-links { 
+    display: flex; 
+    align-items: center; 
+    gap: 25px; 
+}
+
+.nav-links a { 
+    color: white; 
+    text-decoration: none; 
+    font-weight: 500; 
+    transition: 0.3s; 
+}
+
+.nav-links a.active { 
+    border-bottom: 2px solid var(--gold); 
+    padding-bottom: 5px; 
+}
+
+/* ============================================
+   LAYOUT & CONTAINERS
+   ============================================ */
+.page-container { 
+    max-width: 1200px; 
+    margin: 40px auto; 
+    padding: 0 20px; 
+}
+
+/* ============================================
+   FILTERS SECTION
+   ============================================ */
+.filter-row { 
+    display: flex; 
+    justify-content: space-between;
+    margin-bottom: 15px; 
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    min-width: 165px;
+    padding: 10px 5px;
+    border: 1px solid var(--navy);
+    background: white;
+    color: var(--navy);
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 12px;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.filter-btn.active, 
+.filter-btn:hover { 
+    background: var(--navy); 
+    color: white; 
+}
+
+/* ============================================
+   SEARCH BAR
+   ============================================ */
+.news-search-group { 
+    display: flex; 
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.news-search-group input { 
+    flex: 1; 
+    padding: 12px 15px; 
+    border: none; 
+    outline: none; 
+}
+
+.btn-search-action { 
+    background: var(--navy); 
+    color: white; 
+    border: none; 
+    padding: 0 40px; 
+    font-weight: bold; 
+    cursor: pointer; 
+}
+
+/* ============================================
+   NEWS HERO GRID
+   ============================================ */
+.hero-grid { 
+    display: grid; 
+    grid-template-columns: 1.6fr 1fr; 
+    gap: 25px; 
+    margin-bottom: 30px; 
+}
+
+.main-news-card { 
+    border-radius: 12px; 
+    overflow: hidden; 
+    height: 450px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+}
+
+.main-img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+.side-news-card { 
+    border-radius: 12px; 
+    overflow: hidden; 
+    background: white; 
+    border: 1px solid var(--border-light); 
+}
+
+.side-img-container img { 
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover; 
+}
+
+.side-text { 
+    padding: 20px; 
+}
+
+.side-text h4 { 
+    color: var(--navy); 
+    margin: 10px 0; 
+}
+
+/* ============================================
+   DETAILED NEWS SECTION
+   ============================================ */
+.detailed-news-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 60px;
+}
+
+.detailed-news-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.detailed-news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.news-image-gallery {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.news-main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.detailed-news-card:hover .news-main-img {
+    transform: scale(1.05);
+}
+
+.image-counter {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 8, 49, 0.85);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.news-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.news-date {
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.news-date i {
+    margin-right: 5px;
+}
+
+.news-title {
+    color: var(--navy);
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    line-height: 1.4;
+    min-height: 44px;
+}
+
+.news-excerpt {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.news-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-light);
+}
+
+.btn-read-more-full {
+    background: var(--navy);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-read-more-full:hover {
+    background: var(--gold);
+    color: var(--navy);
+}
+
+.btn-read-more-full i {
+    font-size: 11px;
+}
+
+.news-stats {
+    display: flex;
+    gap: 15px;
+    color: #888;
+    font-size: 13px;
+}
+
+.news-stats span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.news-stats i {
+    font-size: 14px;
+}
+
+/* ============================================
+   TESTIMONIALS SECTION
+   ============================================ */
+.testimonials-section {
+    background: var(--gray-bg);
+    padding: 60px 40px;
+    margin: 60px -20px 40px -20px;
+    border-radius: 16px;
+}
+
+.section-title {
+    text-align: center;
+    color: var(--navy);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+
+.testimonials-carousel {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.testimonial-container {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    min-height: 350px;
+}
+
+.testimonial-slide {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 30px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    position: relative;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.testimonial-slide.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.testimonial-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid var(--gold);
+    margin-bottom: 25px;
+    object-fit: cover;
+}
+
+.quote-icon {
+    font-size: 60px;
+    color: var(--gold);
+    font-weight: 700;
+    line-height: 1;
+    opacity: 0.3;
+}
+
+.quote-left {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.quote-right {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.testimonial-text {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.8;
+    font-style: italic;
+    margin: 20px 0 25px 0;
+    max-width: 700px;
+}
+
+.testimonial-author {
+    color: var(--navy);
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.carousel-arrow {
+    background: var(--navy);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.carousel-arrow:hover {
+    background: var(--gold);
+    color: var(--navy);
+    transform: scale(1.1);
+}
+
+.carousel-arrow:active {
+    transform: scale(0.95);
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background: var(--gold);
+    width: 30px;
+    border-radius: 6px;
+}
+
+.dot:hover {
+    background: var(--navy);
+}
+
+/* ============================================
+   BENEFITS SECTION
+   ============================================ */
+.benefits-section {
+    padding: 60px 0;
+    background: var(--red-accent);
+    margin: 60px -20px;
+    border-radius: 16px;
+}
+
+.benefits-section .section-title {
+    color: white;
+    margin-bottom: 50px;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.benefit-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 35px 25px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.benefit-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.benefit-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--navy);
+    border-radius: 50%;
+    color: white;
+}
+
+.benefit-icon i {
+    font-size: 36px;
+}
+
+.benefit-card h3 {
+    color: var(--navy);
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    line-height: 1.4;
+}
+
+.benefit-card p {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ============================================
+   TRAINING FEATURES SECTION
+   ============================================ */
+.training-features-section {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 50px;
+    align-items: center;
+    padding: 60px 0;
+    margin-bottom: 60px;
+}
+
+.training-image {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.training-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.training-content {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.training-feature {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--navy);
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 8, 49, 0.2);
+}
+
+.feature-icon i {
+    font-size: 26px;
+}
+
+.feature-text h3 {
+    color: var(--navy);
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+}
+
+.feature-text p {
+    color: #555;
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.main-footer {
+    background: linear-gradient(135deg, #2a2566 0%, #000831 100%);
+    color: white;
+    padding: 60px 5% 30px;
+    margin-top: 80px;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 0.8fr;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-section h4 {
+    color: var(--gold);
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 12px;
+}
+
+.footer-section ul li a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+    display: block;
+}
+
+.footer-section ul li a:hover {
+    color: var(--gold);
+}
+
+.footer-about {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-logo {
+    width: 80px;
+}
+
+.footer-logo img {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social a {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    transition: all 0.3s;
+}
+
+.footer-social a:hover {
+    background: var(--gold);
+    color: var(--navy);
+    transform: translateY(-3px);
+}
+
+.footer-copyright {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.footer-academy {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.academy-badge {
+    width: 120px;
+}
+
+.academy-badge img {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+}
+
+/* ============================================
+   ACCESSIBILITY BUTTON (LEFT)
+   ============================================ */
+.accessibility-wrapper { 
+    position: fixed; 
+    bottom: 30px; 
+    left: 30px; 
+    z-index: 2000; 
+}
+
+.accessibility-trigger {
+    width: 70px; 
+    height: 70px; 
+    border-radius: 50%;
+    background: var(--navy); 
+    color: white; 
+    border: 3px solid white;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3); 
+    cursor: pointer;
+    transition: 0.3s; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    padding: 0;
+    overflow: hidden;
+}
+
+.accessibility-trigger:hover { 
+    transform: scale(1.1); 
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+
+.accessibility-menu { 
+    position: absolute; 
+    bottom: 85px; 
+    left: 0; 
+    width: 250px; 
+    background: white; 
+    border-radius: 12px; 
+    display: none; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+    padding: 20px;
+}
+
+.accessibility-menu.active { 
+    display: block; 
+}
+
+.accessibility-menu h4 {
+    color: var(--navy);
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+}
+
+.accessibility-option {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    background: var(--gray-bg);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+    color: var(--text-dark);
+}
+
+.accessibility-option:hover {
+    background: var(--navy);
+    color: white;
+}
+
+.accessibility-option:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - TABLETS
+   ============================================ */
+@media (max-width: 1024px) {
+    .training-features-section {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .training-image {
+        max-height: 400px;
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-academy {
+        grid-column: span 2;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 900px) {
+    .filter-row { 
+        justify-content: center; 
+        gap: 10px; 
+    }
+    
+    .filter-btn {
+        min-width: 140px;
+        font-size: 11px;
+    }
+    
+    .hero-grid { 
+        grid-template-columns: 1fr; 
+    }
+    
+    .main-news-card {
+        height: 350px;
+    }
+    
+    .detailed-news-section { 
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .testimonials-section {
+        padding: 40px 20px;
+    }
+
+    .section-title {
+        font-size: 26px;
+        margin-bottom: 35px;
+    }
+
+    .testimonials-carousel {
+        gap: 15px;
+    }
+
+    .carousel-arrow {
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+    }
+
+    .testimonial-text {
+        font-size: 15px;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 30px;
+    }
+    
+    .benefits-section {
+        padding: 50px 0;
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - MOBILE
+   ============================================ */
+@media (max-width: 768px) {
+    .page-container {
+        padding: 0 15px;
+        margin: 20px auto;
+    }
+    
+    .main-navbar {
+        padding: 12px 15px;
+    }
+    
+    .nav-content { 
+        flex-direction: column; 
+        gap: 15px; 
+    }
+    
+    .brand {
+        gap: 12px;
+    }
+    
+    .logo-container {
+        width: 65px;
+    }
+    
+    .brand-titles span {
+        font-size: 12px;
+        letter-spacing: 0.3px;
+    }
+    
+    .nav-links {
+        gap: 15px;
+        font-size: 14px;
+    }
+    
+    .filter-row {
+        gap: 8px;
+    }
+    
+    .filter-btn {
+        min-width: 110px;
+        padding: 8px 5px;
+        font-size: 10px;
+    }
+    
+    .news-search-group input {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    
+    .btn-search-action {
+        padding: 0 25px;
+        font-size: 13px;
+    }
+    
+    .main-news-card {
+        height: 250px;
+    }
+    
+    .side-img-container img {
+        height: 180px;
+    }
+    
+    .side-text {
+        padding: 15px;
+    }
+    
+    .side-text h4 {
+        font-size: 16px;
+    }
+    
+    .side-text p {
+        font-size: 14px;
+    }
+    
+    .detailed-news-section {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .news-title {
+        min-height: auto;
+        font-size: 15px;
+    }
+    
+    .news-image-gallery {
+        height: 200px;
+    }
+    
+    .news-content {
+        padding: 15px;
+    }
+    
+    .news-excerpt {
+        font-size: 13px;
+    }
+    
+    .btn-read-more-full {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+    
+    .news-stats {
+        font-size: 12px;
+    }
+
+    .testimonials-section {
+        margin: 40px -15px 30px -15px;
+        padding: 30px 15px;
+    }
+
+    .section-title {
+        font-size: 22px;
+        margin-bottom: 30px;
+    }
+
+    .testimonials-carousel {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .carousel-arrow {
+        display: none;
+    }
+
+    .testimonial-container {
+        min-height: auto;
+    }
+
+    .testimonial-slide {
+        padding: 30px 20px;
+    }
+
+    .testimonial-avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .quote-icon {
+        font-size: 40px;
+    }
+
+    .testimonial-text {
+        font-size: 14px;
+        margin: 15px 0 20px 0;
+    }
+
+    .testimonial-author {
+        font-size: 16px;
+    }
+
+    .carousel-dots {
+        margin-top: 20px;
+        gap: 10px;
+    }
+    
+    .benefits-section {
+        margin: 40px -15px;
+        padding: 40px 0;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+        gap: 20px;
+    }
+    
+    .benefit-icon {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .benefit-icon i {
+        font-size: 32px;
+    }
+    
+    .benefit-card h3 {
+        font-size: 17px;
+    }
+    
+    .training-features-section {
+        padding: 40px 0;
+        margin-bottom: 40px;
+    }
+    
+    .training-content {
+        gap: 25px;
+    }
+    
+    .training-feature {
+        gap: 15px;
+    }
+    
+    .feature-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .feature-icon i {
+        font-size: 22px;
+    }
+    
+    .feature-text h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+    
+    .feature-text p {
+        font-size: 14px;
+    }
+    
+    .main-footer {
+        padding: 40px 15px 20px;
+        margin-top: 50px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .footer-section h4 {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+    
+    .footer-academy {
+        grid-column: 1;
+    }
+    
+    .accessibility-wrapper {
+        bottom: 20px;
+        left: 20px;
+    }
+    
+    .accessibility-trigger {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - SMALL MOBILE
+   ============================================ */
+@media (max-width: 480px) {
+    .brand-titles span {
+        font-size: 10px;
+        letter-spacing: 0.2px;
+    }
+    
+    .logo-container {
+        width: 55px;
+    }
+    
+    .nav-links {
+        gap: 12px;
+        font-size: 13px;
+    }
+    
+    .filter-row {
+        justify-content: center;
+    }
+    
+    .filter-btn {
+        min-width: 100px;
+        padding: 7px 4px;
+        font-size: 9px;
+    }
+    
+    .main-news-card {
+        height: 200px;
+    }
+    
+    .news-image-gallery {
+        height: 180px;
+    }
+    
+    .news-title {
+        font-size: 14px;
+    }
+    
+    .news-excerpt {
+        font-size: 12px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+
+    .testimonial-text {
+        font-size: 13px;
+    }
+    
+    .benefit-card {
+        padding: 25px 20px;
+    }
+    
+    .benefit-card h3 {
+        font-size: 16px;
+    }
+    
+    .benefit-card p {
+        font-size: 13px;
+    }
+    
+    .feature-text h3 {
+        font-size: 16px;
+    }
+    
+    .feature-text p {
+        font-size: 13px;
+    }
+    
+    .accessibility-wrapper {
+        bottom: 15px;
+        left: 15px;
+    }
+    
+    .accessibility-trigger {
+        width: 55px;
+        height: 55px;
+    }
+}

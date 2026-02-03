@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias - Cuerpo General de Paramédicos Voluntarios del Perú</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="footernoticias-styles.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="main-navbar">
+        <div class="nav-content">
+            <div class="brand">
+                <div class="logo-container">
+                    <img src="../IMAGENES/LOGO.png" alt="Logo CGPVP">
+                </div>
+                <div class="brand-titles">
+                    <span>Cuerpo General de</span>
+                    <span>Paramédicos Voluntarios</span>
+                    <span>del Perú</span>
+                </div>
+            </div>
+
+            <nav class="nav-links">
+                <a href="../index.html">Inicio</a>
+                <a href="../Nosotros.html">Nosotros</a>                
+                <a href="../Unete.html">Únete</a>
+                <a href="#">Instructores</a>
+                <a href="#">Cursos</a>
+                <a href="noticias.html" class="active">Noticias</a>
+                
+                <!-- CONTENEDOR DE BÚSQUEDA EN NAVBAR -->
+                <div class="navbar-search-container">
+                    <button class="navbar-search-btn" onclick="toggleNavbarSearch()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div class="navbar-search-box" id="navbarSearchBox">
+                        <input type="text" 
+                               id="navbarSearchInput" 
+                               placeholder="Buscar personal por nombre, legajo o DNI..." 
+                               autocomplete="off">
+                        <button class="navbar-search-close" onclick="toggleNavbarSearch()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <div class="navbar-search-results" id="navbarSearchResults"></div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="noticias-hero">
+        <div class="hero-overlay">
+            <h1 class="hero-title">Noticias</h1>
+            <p class="hero-subtitle">Mantente informado sobre nuestras actividades y logros</p>
+        </div>
+    </section>
+
+    <!-- FILTROS Y BÚSQUEDA -->
+    <section class="filters-section">
+        <div class="filters-container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterNews('todas')">Todas</button>
+                <button class="filter-btn" onclick="filterNews('operaciones')">Operaciones</button>
+                <button class="filter-btn" onclick="filterNews('capacitacion')">Capacitación</button>
+                <button class="filter-btn" onclick="filterNews('institucional')">Institucional</button>
+                <button class="filter-btn" onclick="filterNews('voluntariado')">Voluntariado</button>
+                <button class="filter-btn" onclick="filterNews('reconocimientos')">Reconocimientos</button>
+            </div>
+            <div class="search-bar-news">
+                <input type="text" class="search-input-news" placeholder="Buscar noticias..." id="searchInput">
+                <button class="search-btn-news" onclick="searchNews()">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                        <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Buscar
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="main-container">
+        <div class="news-grid" id="newsGrid">
+            <!-- NOTICIA DESTACADA -->
+            <article class="news-card featured-card">
+                <div class="featured-image" style="background-image: url('https://images.unsplash.com/photo-1584515933487-779824d29309?w=800');"></div>
+                <div class="featured-content">
+                    <span class="featured-badge">
+                        <svg class="badge-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="4" fill="currentColor"/>
+                            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        DESTACADO
+                    </span>
+                    <h2 class="featured-title">Ejército Peruano Moderniza su Flota de Helicópteros</h2>
+                    <p class="featured-description">
+                        Nueva adquisición de equipamiento aéreo de última generación fortalece las capacidades operativas de nuestras fuerzas armadas en todo el territorio nacional.
+                    </p>
+                    <button class="featured-btn">LEER MÁS →</button>
+                </div>
+            </article>
+
+            <!-- NOTICIA 1 -->
+            <article class="news-card" data-category="operaciones">
+                <span class="card-badge">Operaciones</span>
+                <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=600" alt="Operación de rescate" class="card-image">
+                <div class="card-content">
+                    <div class="card-date">
+                        <svg class="date-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        30 de Enero, 2026
+                    </div>
+                    <h3 class="card-title">Rescate Exitoso en Zona Rural de Huancavelica</h3>
+                    <p class="card-description">
+                        Brigada de paramédicos voluntarios realizó un operativo de rescate salvando la vida 
+                        de 5 personas afectadas por derrumbe en zona de difícil acceso.
+                    </p>
+                    <div class="card-footer">
+                        <button class="read-more-btn">LEER MÁS →</button>
+                        <div class="card-stats">
+                            <span class="stat-item">
+                                <svg class="stat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                1.2K
+                            </span>
+                            <span class="stat-item">
+                                <svg class="stat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                45
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- NOTICIA 2 -->
+            <article class="news-card" data-category="capacitacion">
+                <span class="card-badge">Capacitación</span>
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600" alt="Capacitación médica" class="card-image">
+                <div class="card-content">
+                    <div class="card-date">
+                        <svg class="date-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        28 de Enero, 2026
+                    </div>
+                    <h3 class="card-title">Curso Avanzado de Primeros Auxilios y RCP</h3>
+                    <p class="card-description">
+                        Se graduaron 120 nuevos paramédicos capacitados en técnicas avanzadas de 
+                        soporte vital y atención prehospitalaria de emergencias.
+                    </p>
+                    <div class="card-footer">
+                        <button class="read-more-btn">LEER MÁS →</button>
+                        <div class="card-stats">
+                            <span class="stat-item">
+                                <svg class="stat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                2.1K
+                            </span>
+                            <span class="stat-item">
+                                <svg class="stat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                67
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- NOTICIA 3 -->
+            <article class="news-card" data-category="institucional">
+                <span class="card-badge">Institucional</span>
+                <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600" alt="Reunión institucional" class="card-image">
+                <div class="card-content">
+                    <div class="card-date">
+                        <svg class="date-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        25 de Enero, 2026
+                    </div>
+                    <h3 class="card-title">Firma de Convenio Interinstitucional con Defensa Civil</h3>
+                    <p class="card-description">
+                        Importante alianza estratégica fortalecerá las respuestas ante emergencias 
+                        y desastres naturales a nivel nacional.
+                    </p>
+                    <div class="card-footer">
+                        <button class="read-more-btn">LEER MÁS →</button>
+                        <div class="card-stats">
+                            <span class="stat-item">
+                                <svg class="stat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                890
+                            </span>
+                            <span class="stat-item">
+                                <svg class="stat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                32
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- NOTICIA 4 -->
+            <article class="news-card" data-category="voluntariado">
+                <span class="card-badge">Voluntariado</span>
+                <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600" alt="Voluntarios" class="card-image">
+                <div class="card-content">
+                    <div class="card-date">
+                        <svg class="date-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        22 de Enero, 2026
+                    </div>
+                    <h3 class="card-title">Convocatoria Abierta para Nuevos Voluntarios 2026</h3>
+                    <p class="card-description">
+                        Se abren las inscripciones para formar parte del cuerpo de paramédicos 
+                        voluntarios. Únete y sirve a tu comunidad.
+                    </p>
+                    <div class="card-footer">
+                        <button class="read-more-btn">LEER MÁS →</button>
+                        <div class="card-stats">
+                            <span class="stat-item">
+                                <svg class="stat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                3.4K
+                            </span>
+                            <span class="stat-item">
+                                <svg class="stat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                156
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- NOTICIA 5 -->
+            <article class="news-card" data-category="reconocimientos">
+                <span class="card-badge">Reconocimientos</span>
+                <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600" alt="Ceremonia de reconocimiento" class="card-image">
+                <div class="card-content">
+                    <div class="card-date">
+                        <svg class="date-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        20 de Enero, 2026
+                    </div>
+                    <h3 class="card-title">Paramédicos Reciben Condecoración al Mérito</h3>
+                    <p class="card-description">
+                        Ceremonia especial reconoce la labor extraordinaria de 15 paramédicos 
+                        por su destacada actuación durante el 2025.
+                    </p>
+                    <div class="card-footer">
+                        <button class="read-more-btn">LEER MÁS →</button>
+                        <div class="card-stats">
+                            <span class="stat-item">
+                                <svg class="stat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                1.8K
+                            </span>
+                            <span class="stat-item">
+                                <svg class="stat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                98
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- PAGINACIÓN -->
+        <div class="pagination">
+            <button class="page-btn" onclick="changePage(-1)" id="prevBtn">← Anterior</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <button class="page-btn">5</button>
+            <button class="page-btn" onclick="changePage(1)" id="nextBtn">Siguiente →</button>
+        </div>
+    </main>
+
+
+    <!-- MODAL DE INFORMACIÓN DE PERSONAL -->
+    <div id="personalModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closePersonalModal()">&times;</span>
+            <div class="personal-card">
+                <!-- Código QR en la parte superior -->
+                <div class="qr-section">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=LEGAJO12345" alt="QR Code" class="qr-code">
+                </div>
+                
+                <div class="personal-info">
+                    <div class="status-badge active">
+                        <strong>ESTADO:</strong> ACTIVO
+                    </div>
+                    
+                    <div class="info-row">
+                        <div class="info-left">
+                            <div class="info-item">
+                                <strong>APELLIDOS Y NOMBRES:</strong>
+                                <p id="personalFullName">GARCÍA RODRÍGUEZ, JUAN CARLOS</p>
+                            </div>
+                            
+                            <div class="info-item">
+                                <strong>LEGAJO:</strong>
+                                <p id="personalLegajo">12345</p>
+                            </div>
+                            
+                            <div class="info-item">
+                                <strong>DNI:</strong>
+                                <p id="personalDNI">72345678</p>
+                            </div>
+                            
+                            <div class="info-item">
+                                <strong>RANGO:</strong>
+                                <p id="personalRango">TÉCNICO PARAMÉDICO</p>
+                            </div>
+                            
+                            <div class="info-item">
+                                <strong>JEFATURA:</strong>
+                                <p id="personalJefatura">BRIGADA DE EMERGENCIAS - LIMA</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-right">
+                            <div class="personal-photo">
+                                <img id="personalPhoto" src="https://via.placeholder.com/150x180/00093C/FFFFFF?text=FOTO" alt="Foto Personal">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="certifications-section">
+                        <h3>CURSOS/CERTIFICACIONES:</h3>
+                        <div class="certification-list">
+                            <div class="certification-item">
+                                <span class="cert-icon">🎖️</span>
+                                <span class="cert-name">SISTEMA COMANDO DE INCIDENTES</span>
+                            </div>
+                            <div class="certification-item">
+                                <span class="cert-icon">🏅</span>
+                                <span class="cert-name">UNIDAD DE BÚSQUEDA Y RESCATE</span>
+                            </div>
+                            <div class="certification-item">
+                                <span class="cert-icon">🥇</span>
+                                <span class="cert-name">SOPORTE VITAL AVANZADO</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section footer-about">
+                <div class="footer-logo">
+                    <img src="../IMAGENES/LOGO.png" alt="Logo CGPVP">
+                </div>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="footer-copyright">
+                    Cuerpo General de Paramédicos Voluntarios del Perú © 2025.<br>
+                    Todos los derechos reservados                                                           
+                </p>                
+            </div>
+
+            <div class="footer-section">
+                <h4>Nosotros</h4>
+                <ul>
+                    <li><a href="#">Cuerpo General de Paramédicos Voluntarios</a></li>
+                    <li><a href="#">Av. Principal 123, Lima, Perú</a></li>
+                    <li><a href="tel:+51987654321">Teléfono: +51 (1) 987-654-321</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#4920272f26092a2e393f3967392c">Email: <span class="__cf_email__" data-cfemail="cda4a3aba28daeaabdbbbde3bda8">[email&#160;protected]</span></a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="#">Bienvenidos</a></li>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Misión</a></li>
+                    <li><a href="#">Visión</a></li>
+                    <li><a href="#">Organización</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Soporte</h4>
+                <ul>
+                    <li><a href="#">Documentación</a></li>
+                    <li><a href="#">Foros</a></li>
+                    <li><a href="#">Abrir un Ticket</a></li>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section footer-academy">
+                <div class="academy-badge">
+                    <img src="https://via.placeholder.com/120x120" alt="Academy Badge">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
