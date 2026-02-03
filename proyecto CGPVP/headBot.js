@@ -32323,6 +32323,7 @@ class RGBELoader extends HDRLoader {
 class HeadBot extends HTMLElement {
   connectedCallback() {
     const canvas = document.createElement("canvas");
+    canvas.id = "headbot-canvas";
     canvas.style.position = "fixed";
     canvas.style.bottom = "-100px";
     canvas.style.right = "-60px";
@@ -32335,15 +32336,16 @@ class HeadBot extends HTMLElement {
     
     // Área circular de click sobre el canvas
     const clickArea = document.createElement("div");
+    clickArea.id = "headbot-clickarea";
     clickArea.style.position = "fixed";
     clickArea.style.bottom = "40px";
-    clickArea.style.right = "70px";
-    clickArea.style.width = "80px";
-    clickArea.style.height = "80px";
+    clickArea.style.right = "50px";
+    clickArea.style.width = "70px";
+    clickArea.style.height = "70px";
     clickArea.style.borderRadius = "50%";
     clickArea.style.cursor = "pointer";
     clickArea.style.zIndex = "10000";
-    clickArea.style.border = "none"; 
+    clickArea.style.border = "none";
     clickArea.style.pointerEvents = "auto";
     this.appendChild(clickArea);
     
@@ -32672,6 +32674,22 @@ document.body.appendChild(bot);
             fill: white;
         }
 
+        /* Powered by Alba */
+        .cgpvp-powered-by {
+            text-align: center;
+            padding: 8px;
+            font-size: 11px;
+            color: #999;
+            font-family: 'Poppins', sans-serif;
+            background: #f9f9f9;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .cgpvp-powered-by strong {
+            color: #C9A227;
+            font-weight: 600;
+        }
+
         /* Indicador de escritura */
         .cgpvp-typing-indicator {
             display: none;
@@ -32843,7 +32861,7 @@ document.body.appendChild(bot);
             .cgpvp-chatbot-container {
                 right: 50%;
                 transform: translateX(50%);
-                bottom: -1000px;
+                bottom: 10px;
             }
 
             .cgpvp-chat-window {
@@ -33154,6 +33172,9 @@ document.body.appendChild(bot);
                         </svg>
                     </button>
                 </div>
+                <div class="cgpvp-powered-by">
+                    Powered by <strong>Alba</strong>
+                </div>
             </div>
         </div>
     `;
@@ -33196,6 +33217,11 @@ document.body.appendChild(bot);
             chatWindow.classList.toggle('open');
             if (chatWindow.classList.contains('open')) {
                 inputField.focus();
+                // Ocultar cabeza y círculo en desktop con zoom alto (175%+)
+                hideHeadBotOnZoom();
+            } else {
+                // Mostrar cabeza y círculo cuando se cierra el chat
+                showHeadBot();
             }
         });
 
@@ -33203,7 +33229,36 @@ document.body.appendChild(bot);
         closeButton.addEventListener('click', function(e) {
             e.stopPropagation();
             chatWindow.classList.remove('open');
+            // Mostrar cabeza y círculo cuando se cierra el chat
+            showHeadBot();
         });
+
+        // Función para ocultar headbot en zoom alto
+        function hideHeadBotOnZoom() {
+            const canvas = document.getElementById('headbot-canvas');
+            const clickArea = document.getElementById('headbot-clickarea');
+            
+            // Detectar si estamos en desktop con zoom alto
+            const viewportWidth = window.innerWidth;
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const isDesktopZoom = viewportWidth <= 1024 && viewportWidth > 768 && !isMobile;
+            
+            if (isDesktopZoom && canvas && clickArea) {
+                canvas.style.visibility = 'hidden';
+                clickArea.style.visibility = 'hidden';
+            }
+        }
+
+        // Función para mostrar headbot
+        function showHeadBot() {
+            const canvas = document.getElementById('headbot-canvas');
+            const clickArea = document.getElementById('headbot-clickarea');
+            
+            if (canvas && clickArea) {
+                canvas.style.visibility = 'visible';
+                clickArea.style.visibility = 'visible';
+            }
+        }
 
         // Función para agregar mensaje
         function addMessage(message, isUser = false) {
@@ -33295,5 +33350,231 @@ document.body.appendChild(bot);
                 sendMessage();
             }
         });
+    }
+})();
+
+// ========== BURBUJA DE AYUDA ==========
+(function() {
+    'use strict';
+
+    // Estilos para la burbuja de ayuda
+    const bubbleStyles = `
+        /* Burbuja de ayuda - Posicionada al lado izquierdo del círculo del bot */
+        .cgpvp-help-bubble {
+            position: fixed;
+            bottom: 50px;  /* Alineada verticalmente con el círculo (40px + 10px de centrado) */
+            right: 150px;  /* A la izquierda del círculo (50px del círculo + 100px de separación) */
+            background: linear-gradient(135deg, #C9A227 0%, #e6b82e 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(201, 162, 39, 0.4);
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            z-index: 9999;
+            animation: bubbleBounce 2s ease-in-out infinite;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        /* Flecha apuntando hacia el círculo del bot */
+        .cgpvp-help-bubble::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid #e6b82e;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        .cgpvp-help-bubble:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(201, 162, 39, 0.6);
+        }
+
+        .cgpvp-help-bubble.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.8);
+        }
+
+        @keyframes bubbleBounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Responsive - Ajustes para tablet */
+        @media (max-width: 768px) {
+            .cgpvp-help-bubble {
+                bottom: 45px;
+                right: 140px;
+                font-size: 12px;
+                padding: 10px 16px;
+            }
+            
+            /* Ajustar AMBOS objetos del bot en tablet */
+            #headbot-canvas {
+                bottom: -115px !important;
+                right: -60px !important;
+            }
+            
+            #headbot-clickarea {
+                bottom: 30px !important;
+                right: 50px !important;
+            }
+        }
+
+        /* Responsive - Ajustes para móvil (OCULTAR BURBUJA) */
+        @media (max-width: 480px) {
+            /* OCULTAR la burbuja completamente en móvil */
+            .cgpvp-help-bubble {
+                display: none !important;
+            }
+            
+            /* Ajustar CANVAS (cabeza 3D) - SIN CAMBIOS */
+            #headbot-canvas {
+                bottom: -105px !important;
+                right: -55px !important;
+                width: 235px !important;
+                height: 235px !important;
+            }
+            
+            /* Ajustar CÍRCULO CLICABLE - posición base (100% zoom) */
+            #headbot-clickarea {
+                bottom: 30px !important;
+                right: 38px !important;
+                width: 56px !important;
+                height: 56px !important;
+            }
+        }
+        
+        /* Zoom 110% - el viewport se reduce a ~436px */
+        @media (max-width: 436px) {
+            #headbot-clickarea {
+                bottom: 10px !important;
+                right: 28px !important;
+            }
+        }
+        
+        /* Zoom 125% - el viewport se reduce a ~384px */
+        @media (max-width: 384px) {
+            #headbot-clickarea {
+                bottom: 15px !important;
+                right: 28px !important;
+            }
+        }
+        
+        /* Zoom 150% - el viewport se reduce a ~320px */
+        @media (max-width: 320px) {
+            #headbot-clickarea {
+                bottom: 10px !important;
+                right: 24px !important;
+            }
+        }
+        
+        /* Zoom 175% - el viewport se reduce a ~274px */
+        @media (max-width: 274px) {
+            #headbot-clickarea {
+                bottom: 5px !important;
+                right: 20px !important;
+            }
+        }
+        
+        /* Ajuste adicional para pantallas pequeñas (≤400px) */
+        @media (max-width: 400px) {
+            #headbot-canvas {
+                bottom: -100px !important;
+                right: -50px !important;
+                width: 225px !important;
+                height: 225px !important;
+            }
+        }
+        
+        /* Ajuste para pantallas MUY pequeñas (≤360px) */
+        @media (max-width: 360px) {
+            #headbot-canvas {
+                bottom: -95px !important;
+                right: -45px !important;
+                width: 215px !important;
+                height: 215px !important;
+            }
+        }
+    `;
+
+    // Insertar estilos de la burbuja
+    const bubbleStyleSheet = document.createElement('style');
+    bubbleStyleSheet.textContent = bubbleStyles;
+    document.head.appendChild(bubbleStyleSheet);
+
+    // HTML de la burbuja de ayuda
+    const bubbleHTML = `
+        <div class="cgpvp-help-bubble" id="cgpvpHelpBubble">
+            ¿Necesitas ayuda? 💬
+        </div>
+    `;
+
+    // Insertar burbuja en el DOM cuando esté listo
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initBubble);
+    } else {
+        initBubble();
+    }
+
+    function initBubble() {
+        const bubbleContainer = document.createElement('div');
+        bubbleContainer.innerHTML = bubbleHTML;
+        document.body.appendChild(bubbleContainer);
+
+        const helpBubble = document.getElementById('cgpvpHelpBubble');
+
+        // Click en la burbuja para abrir el chat
+        helpBubble.addEventListener('click', function() {
+            // Disparar el evento para abrir el chat (el headbot ya tiene este listener)
+            const event = new CustomEvent('headbot-click');
+            document.dispatchEvent(event);
+            
+            // Ocultar la burbuja cuando se abre el chat
+            helpBubble.classList.add('hidden');
+        });
+
+        // Escuchar cuando se cierra el chat para mostrar la burbuja nuevamente
+        document.addEventListener('click', function(e) {
+            if (e.target && e.target.id === 'cgpvpCloseChat') {
+                setTimeout(() => {
+                    helpBubble.classList.remove('hidden');
+                }, 300);
+            }
+        });
+
+        // También mostrar la burbuja si el chat se cierra de otra manera
+        const chatWindow = document.getElementById('cgpvpChatWindow');
+        if (chatWindow) {
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.attributeName === 'class') {
+                        const isOpen = chatWindow.classList.contains('open');
+                        if (isOpen) {
+                            helpBubble.classList.add('hidden');
+                        } else {
+                            setTimeout(() => {
+                                helpBubble.classList.remove('hidden');
+                            }, 300);
+                        }
+                    }
+                });
+            });
+
+            observer.observe(chatWindow, { attributes: true });
+        }
     }
 })();
