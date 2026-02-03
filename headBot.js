@@ -33143,7 +33143,7 @@ document.body.appendChild(bot);
         <div class="cgpvp-chatbot-container">
             <div class="cgpvp-chat-window" id="cgpvpChatWindow">
                 <div class="cgpvp-chat-header">
-                    <img src="icons/Insignia.png" alt="CGPVP" class="cgpvp-chat-header-avatar">
+                    <img src="IMAGENES/LOGO.png" alt="CGPVP" class="cgpvp-chat-header-avatar">
                     <div class="cgpvp-chat-header-info">
                         <div class="cgpvp-chat-header-title">Asistente CGPVP</div>
                         <div class="cgpvp-chat-header-status">En línea</div>
@@ -33152,7 +33152,7 @@ document.body.appendChild(bot);
                 </div>
                 <div class="cgpvp-chat-messages" id="cgpvpChatMessages">
                     <div class="cgpvp-message cgpvp-message-bot">
-                        <img src="icons/Insignia.png" alt="Bot" class="cgpvp-message-bot-avatar">
+                        <img src="IMAGENES/LOGO.png" alt="Bot" class="cgpvp-message-bot-avatar">
                         <div class="cgpvp-message-bot-content">
                             <p>¡Hola! 👋 Soy tu asistente virtual. ¿En qué puedo orientarte hoy sobre nuestras operaciones o capacitaciones?</p>
                         </div>
@@ -33273,7 +33273,7 @@ document.body.appendChild(bot);
                 `;
             } else {
                 messageDiv.innerHTML = `
-                    <img src="icons/Insignia.png" alt="Bot" class="cgpvp-message-bot-avatar">
+                    <img src="IMAGENES/LOGO.png" alt="Bot" class="cgpvp-message-bot-avatar">
                     <div class="cgpvp-message-bot-content">
                         <p>${message}</p>
                     </div>
@@ -33290,7 +33290,7 @@ document.body.appendChild(bot);
             typingDiv.className = 'cgpvp-message cgpvp-message-bot';
             typingDiv.id = 'typingIndicator';
             typingDiv.innerHTML = `
-                <img src="icons/Insignia.png" alt="Bot" class="cgpvp-message-bot-avatar">
+                <img src="IMAGENES/LOGO.png" alt="Bot" class="cgpvp-message-bot-avatar">
                 <div class="cgpvp-typing-indicator show">
                     <div class="cgpvp-typing-dot"></div>
                     <div class="cgpvp-typing-dot"></div>
