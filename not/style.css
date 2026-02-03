@@ -5,10 +5,7 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f5f5f5;
-}
+
 
 /* ========== HEADER STYLES ========== */
 header {
@@ -1576,3 +1573,4 @@ body {
 .navbar-search-results {
     scrollbar-color: var(--gold) #e0e0e0;
 }
+
