@@ -295,7 +295,7 @@ body {
 /* ========== CONTENEDOR PRINCIPAL ========== */
 .main-container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 60px auto 0 auto;
     padding: 20px;
 }
 
@@ -1294,4 +1294,285 @@ body {
     .noticias-hero .hero-subtitle {
         font-size: 16px;
     }
+}
+
+/* ========== MEJORAS RESPONSIVE ADICIONALES ========== */
+
+/* Tablets y móviles grandes (768px) */
+@media (max-width: 768px) {
+    /* Main container con padding ajustado */
+    .main-container {
+        margin: 40px auto 0 auto;
+        padding: 15px;
+    }
+    
+    /* Grid de noticias - 1 columna */
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    /* Card destacada */
+    .featured-card {
+        grid-column: span 1;
+    }
+    
+    /* Cards normales */
+    .news-card {
+        margin-bottom: 20px;
+    }
+    
+    .card-image {
+        height: 220px;
+    }
+    
+    .card-title {
+        font-size: 1.3em;
+    }
+    
+    .card-description {
+        font-size: 0.95em;
+    }
+    
+    /* Featured card responsive */
+    .featured-image {
+        min-height: 250px;
+        height: 250px;
+    }
+    
+    .featured-title {
+        font-size: 1.8em;
+    }
+    
+    .featured-description {
+        font-size: 0.95em;
+    }
+    
+    /* Paginación */
+    .pagination {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 30px 10px;
+    }
+    
+    .page-btn {
+        padding: 10px 15px;
+        font-size: 14px;
+        min-width: 40px;
+    }
+    
+    /* Hero con padding para móvil */
+    .noticias-hero .hero-overlay {
+        padding: 0 20px;
+    }
+}
+
+/* Móviles pequeños (480px) */
+@media (max-width: 480px) {
+    /* Main container más compacto */
+    .main-container {
+        margin: 30px auto 0 auto;
+        padding: 10px;
+    }
+    
+    /* Grid con menos gap */
+    .news-grid {
+        gap: 15px;
+    }
+    
+    /* Cards más compactas */
+    .card-content {
+        padding: 15px;
+    }
+    
+    .card-image {
+        height: 200px;
+    }
+    
+    .card-title {
+        font-size: 1.1em;
+        margin-bottom: 8px;
+    }
+    
+    .card-description {
+        font-size: 0.9em;
+        line-height: 1.5;
+    }
+    
+    .card-date {
+        font-size: 0.75em;
+        margin-bottom: 10px;
+    }
+    
+    .card-badge {
+        font-size: 0.7em;
+        padding: 4px 10px;
+    }
+    
+    /* Featured card compacta */
+    .featured-card {
+        margin-bottom: 15px;
+    }
+    
+    .featured-image {
+        min-height: 200px;
+        height: 200px;
+    }
+    
+    .featured-content {
+        padding: 20px;
+    }
+    
+    .featured-title {
+        font-size: 1.4em;
+        margin-bottom: 12px;
+    }
+    
+    .featured-description {
+        font-size: 0.9em;
+        line-height: 1.5;
+        margin-bottom: 15px;
+    }
+    
+    .featured-badge {
+        font-size: 0.7em;
+        padding: 6px 12px;
+    }
+    
+    .featured-btn {
+        padding: 10px 20px;
+        font-size: 0.85em;
+    }
+    
+    /* Botones de card footer */
+    .read-more-btn {
+        font-size: 0.8em;
+        padding: 8px 16px;
+    }
+    
+    .card-stats {
+        font-size: 0.8em;
+    }
+    
+    /* Paginación compacta */
+    .pagination {
+        padding: 20px 5px;
+        gap: 5px;
+    }
+    
+    .page-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+        min-width: 35px;
+    }
+    
+    /* Ocultar algunos botones de página en móvil muy pequeño */
+    .page-btn:nth-child(n+6):nth-last-child(n+3) {
+        display: none;
+    }
+    
+    /* Hero más compacto */
+    .noticias-hero .hero-overlay {
+        padding: 0 15px;
+    }
+    
+    .noticias-hero .hero-title {
+        font-size: 28px;
+        margin-bottom: 12px;
+    }
+    
+    .noticias-hero .hero-subtitle {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+}
+
+/* Móviles muy pequeños (360px) */
+@media (max-width: 360px) {
+    .main-container {
+        padding: 8px;
+    }
+    
+    .card-content {
+        padding: 12px;
+    }
+    
+    .card-title {
+        font-size: 1em;
+    }
+    
+    .card-description {
+        font-size: 0.85em;
+    }
+    
+    .featured-content {
+        padding: 15px;
+    }
+    
+    .featured-title {
+        font-size: 1.2em;
+    }
+    
+    .noticias-hero {
+        height: 200px;
+    }
+    
+    .noticias-hero .hero-title {
+        font-size: 24px;
+    }
+    
+    .noticias-hero .hero-subtitle {
+        font-size: 13px;
+    }
+}
+
+/* ========== SCROLLBAR PERSONALIZADO ========== */
+
+/* Para navegadores WebKit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--navy), #001159);
+    border-radius: 10px;
+    border: 2px solid #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #001159, var(--gold));
+}
+
+/* Scrollbar para elementos específicos con fondo oscuro */
+.modal-content::-webkit-scrollbar-track,
+.navbar-search-results::-webkit-scrollbar-track {
+    background: #e0e0e0;
+}
+
+.modal-content::-webkit-scrollbar-thumb,
+.navbar-search-results::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border: 2px solid #e0e0e0;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover,
+.navbar-search-results::-webkit-scrollbar-thumb:hover {
+    background: var(--navy);
+}
+
+/* Para Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--navy) #f1f1f1;
+}
+
+.modal-content,
+.navbar-search-results {
+    scrollbar-color: var(--gold) #e0e0e0;
 }
