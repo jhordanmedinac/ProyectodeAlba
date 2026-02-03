@@ -308,6 +308,8 @@
     border-radius: 6px;
     font-size: 14px;
     font-family: 'Inter', sans-serif;
+    color: #333;
+    background: white;
     outline: none;
     transition: border-color 0.3s;
 }
@@ -419,4 +421,163 @@
     .navbar-search-box {
         min-width: 300px;
     }
+}
+/* ========== MEJORAS RESPONSIVE PARA NAVBAR SEARCH ========== */
+
+/* Mantener input visible pero minimizado cuando hay resultados */
+.navbar-search-box.active.has-results input {
+    padding: 8px 35px 8px 12px;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+/* Ajustar posición del botón cerrar cuando hay resultados */
+.navbar-search-box.active.has-results .navbar-search-close {
+    top: 18px;
+    right: 18px;
+}
+
+/* Tablets (768px) */
+@media (max-width: 768px) {
+    .navbar-search-box {
+        min-width: 320px;
+        right: -20px;
+        padding: 12px;
+    }
+    
+    .navbar-search-box input {
+        padding: 10px 35px 10px 12px;
+        font-size: 13px;
+    }
+    
+    .navbar-search-close {
+        right: 22px;
+        top: 22px;
+        font-size: 16px;
+    }
+    
+    .navbar-search-results {
+        max-height: 250px;
+    }
+    
+    .navbar-search-result-item {
+        padding: 10px 12px;
+    }
+    
+    .navbar-search-result-name {
+        font-size: 13px;
+    }
+    
+    .navbar-search-result-details {
+        font-size: 11px;
+    }
+}
+
+/* Móviles (480px) */
+@media (max-width: 480px) {
+    .navbar-search-container {
+        position: static;
+    }
+    
+    .navbar-search-box {
+        position: fixed;
+        top: 80px;
+        left: 10px;
+        right: 10px;
+        min-width: auto;
+        width: calc(100% - 20px);
+        max-width: none;
+        padding: 15px;
+        border-radius: 12px;
+    }
+    
+    .navbar-search-box input {
+        padding: 12px 40px 12px 15px;
+        font-size: 14px;
+    }
+    
+    .navbar-search-close {
+        right: 25px;
+        top: 25px;
+        font-size: 20px;
+        padding: 8px;
+    }
+    
+    .navbar-search-results {
+        max-height: 60vh;
+        border-radius: 8px;
+        margin-top: 8px;
+    }
+    
+    .navbar-search-result-item {
+        padding: 12px 15px;
+    }
+    
+    .navbar-search-result-name {
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+    
+    .navbar-search-result-details {
+        font-size: 12px;
+    }
+    
+    .navbar-no-results {
+        padding: 20px 15px;
+        font-size: 14px;
+    }
+}
+
+/* Móviles muy pequeños (360px) */
+@media (max-width: 360px) {
+    .navbar-search-box {
+        top: 70px;
+        padding: 12px;
+    }
+    
+    .navbar-search-box input {
+        padding: 10px 35px 10px 12px;
+        font-size: 13px;
+    }
+    
+    .navbar-search-close {
+        right: 20px;
+        top: 20px;
+        font-size: 18px;
+    }
+    
+    .navbar-search-result-name {
+        font-size: 13px;
+    }
+    
+    .navbar-search-result-details {
+        font-size: 11px;
+    }
+}
+
+/* ========== SCROLLBAR PERSONALIZADO PARA FOOTER Y NAVBAR ========== */
+
+/* Scrollbar para resultados de búsqueda del navbar */
+.navbar-search-results::-webkit-scrollbar {
+    width: 6px;
+}
+
+.navbar-search-results::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 3px;
+}
+
+.navbar-search-results::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 3px;
+}
+
+.navbar-search-results::-webkit-scrollbar-thumb:hover {
+    background: var(--navy);
+}
+
+/* Para Firefox */
+.navbar-search-results {
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold) #f0f0f0;
 }
