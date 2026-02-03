@@ -16,6 +16,7 @@ function toggleNavbarSearch() {
         searchInput.value = '';
         searchResults.classList.remove('show');
         searchResults.innerHTML = '';
+        searchBox.classList.remove('has-results');
     }
 }
 
@@ -27,6 +28,7 @@ document.addEventListener('click', function(e) {
     
     if (searchBox && !searchContainer.contains(e.target)) {
         searchBox.classList.remove('active');
+        searchBox.classList.remove('has-results');
         const searchInput = document.getElementById('navbarSearchInput');
         const searchResults = document.getElementById('navbarSearchResults');
         if (searchInput) searchInput.value = '';
@@ -43,10 +45,12 @@ if (navbarSearchInput) {
     navbarSearchInput.addEventListener('input', function() {
         const searchTerm = this.value.trim().toLowerCase();
         const searchResults = document.getElementById('navbarSearchResults');
+        const searchBox = document.getElementById('navbarSearchBox');
         
         if (searchTerm.length < 2) {
             searchResults.classList.remove('show');
             searchResults.innerHTML = '';
+            searchBox.classList.remove('has-results');
             return;
         }
         
@@ -64,15 +68,17 @@ if (navbarSearchInput) {
         // Mostrar resultados
         if (results.length > 0) {
             searchResults.innerHTML = results.map(person => `
-                <div class="navbar-search-result-item" onclick="showPersonalInfo('${person.legajo}'); toggleNavbarSearch();">
+                <div class="navbar-search-result-item" onclick="showPersonalInfo('${person.legajo}');">
                     <div class="navbar-search-result-name">${person.apellidos}, ${person.nombres}</div>
                     <div class="navbar-search-result-details">Legajo: ${person.legajo} | DNI: ${person.dni}</div>
                 </div>
             `).join('');
             searchResults.classList.add('show');
+            searchBox.classList.add('has-results');
         } else {
             searchResults.innerHTML = '<div class="navbar-no-results">No se encontraron resultados</div>';
             searchResults.classList.add('show');
+            searchBox.classList.add('has-results');
         }
     });
     
@@ -361,6 +367,23 @@ function showPersonalInfo(legajo) {
     
     if (!person) return;
     
+    // Cerrar el navbar search box completamente
+    const navbarSearchBox = document.getElementById('navbarSearchBox');
+    const navbarSearchInput = document.getElementById('navbarSearchInput');
+    const navbarSearchResults = document.getElementById('navbarSearchResults');
+    
+    if (navbarSearchBox) {
+        navbarSearchBox.classList.remove('active');
+        navbarSearchBox.classList.remove('has-results');
+    }
+    if (navbarSearchInput) {
+        navbarSearchInput.value = '';
+    }
+    if (navbarSearchResults) {
+        navbarSearchResults.classList.remove('show');
+        navbarSearchResults.innerHTML = '';
+    }
+    
     // Actualizar datos en el modal
     document.getElementById('personalFullName').textContent = `${person.apellidos}, ${person.nombres}`;
     document.getElementById('personalLegajo').textContent = person.legajo;
@@ -391,8 +414,12 @@ function showPersonalInfo(legajo) {
     
     // Mostrar modal
     document.getElementById('personalModal').classList.add('show');
-    searchResults.classList.remove('show');
-    searchInput.value = '';
+    
+    // Limpiar el buscador antiguo si existe
+    const searchResults = document.getElementById('searchResults');
+    const searchInput = document.getElementById('searchPersonal');
+    if (searchResults) searchResults.classList.remove('show');
+    if (searchInput) searchInput.value = '';
 }
 
 // ========== CERRAR MODAL ==========
