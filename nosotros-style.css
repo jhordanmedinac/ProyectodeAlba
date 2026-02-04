@@ -2,6 +2,11 @@
    NOSOTROS - ESTILOS ESPECÍFICOS
    ============================================ */
 
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
 /* Hero Section */
 .nosotros-hero {
     height: 400px;
@@ -84,6 +89,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 50px;
     align-items: center;
+    margin-bottom: 40px;
 }
 
 .content-text {
@@ -109,34 +115,202 @@
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .content-image img {
     width: 100%;
-    height: 400px;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     display: block;
 }
 
-.image-badge {
+/* ============================================
+   ARTICULACIÓN Y ALIANZAS NACIONALES
+   ============================================ */
+
+.articulation-section {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    margin: 3rem 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-left: 5px solid var(--gold);
+}
+
+.articulation-section h3 {
+    color: var(--navy);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.articulation-section > p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.articulation-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.articulation-list li {
+    padding: 1rem 0 1rem 2.5rem;
+    position: relative;
+    color: #555;
+    line-height: 1.7;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.articulation-list li:last-child {
+    border-bottom: none;
+}
+
+.articulation-list li:before {
+    content: "✓";
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    background: rgba(197, 160, 89, 0.95);
+    left: 0;
+    top: 1rem;
+    width: 30px;
+    height: 30px;
+    background: var(--gold);
     color: white;
-    padding: 12px 20px;
-    border-radius: 8px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.articulation-conclusion {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 8px;
+    font-size: 1.1rem;
     font-weight: 600;
+    color: var(--navy);
+    line-height: 1.7;
+    font-style: italic;
 }
 
-.image-badge i {
-    font-size: 20px;
+/* ============================================
+   RECONOCIMIENTO INTERNACIONAL
+   ============================================ */
+
+.international-recognition {
+    background: linear-gradient(135deg, var(--navy) 0%, #001159 100%);
+    color: white;
+    padding: 3rem 2.5rem;
+    border-radius: 12px;
+    margin: 3rem 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
-/* Misión y Visión */
+.international-recognition:before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+}
+
+.international-recognition h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    z-index: 1;
+    font-weight: 700;
+}
+
+.international-recognition i {
+    font-size: 2.5rem;
+    color: var(--gold);
+}
+
+.international-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+    color: rgba(255,255,255,0.95);
+}
+
+/* ============================================
+   DECLARACIÓN FINAL
+   ============================================ */
+
+.closing-statement {
+    background: #212529;
+    color: white;
+    padding: 3rem 2.5rem;
+    border-radius: 12px;
+    margin: 3rem 0;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.closing-statement:before,
+.closing-statement:after {
+    content: '"';
+    font-size: 6rem;
+    position: absolute;
+    opacity: 0.1;
+    font-family: Georgia, serif;
+    color: var(--gold);
+}
+
+.closing-statement:before {
+    top: 1rem;
+    left: 2rem;
+}
+
+.closing-statement:after {
+    bottom: 1rem;
+    right: 2rem;
+}
+
+.closing-main {
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    color: rgba(255,255,255,0.95);
+}
+
+.closing-highlight {
+    margin-top: 2rem;
+    font-size: 1.4rem;
+    color: var(--gold);
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+    font-style: normal;
+}
+
+/* ============================================
+   MISIÓN Y VISIÓN
+   ============================================ */
+
 .mision-vision-section {
     padding: 80px 0;
 }
@@ -200,7 +374,10 @@
     margin: 0;
 }
 
-/* Valores Section */
+/* ============================================
+   VALORES SECTION
+   ============================================ */
+
 .valores-section {
     background: var(--gray-bg);
     margin: 0 -20px;
@@ -304,7 +481,10 @@
     font-weight: 500;
 }
 
-/* Historia - Timeline */
+/* ============================================
+   HISTORIA - TIMELINE
+   ============================================ */
+
 .historia-section {
     padding: 80px 0;
 }
@@ -395,7 +575,10 @@
     margin: 0;
 }
 
-/* Organigrama */
+/* ============================================
+   ORGANIGRAMA
+   ============================================ */
+
 .organigrama-section {
     background: var(--gray-bg);
     margin: 0 -20px;
@@ -489,7 +672,10 @@
     margin: 0;
 }
 
-/* Nuestro Equipo */
+/* ============================================
+   NUESTRO EQUIPO
+   ============================================ */
+
 .equipo-section {
     padding: 80px 0;
 }
@@ -599,7 +785,10 @@
     margin: 0;
 }
 
-/* Estadísticas */
+/* ============================================
+   ESTADÍSTICAS
+   ============================================ */
+
 .estadisticas-section {
     background: linear-gradient(135deg, var(--navy), #001159);
     margin: 60px -20px 0;
@@ -721,6 +910,41 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;
     }
+
+    .articulation-section {
+        padding: 2rem 1.5rem;
+    }
+
+    .articulation-section h3 {
+        font-size: 1.5rem;
+    }
+
+    .international-recognition {
+        padding: 2rem 1.5rem;
+    }
+
+    .international-recognition h3 {
+        font-size: 1.5rem;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .closing-statement {
+        padding: 2rem 1.5rem;
+    }
+
+    .closing-statement:before,
+    .closing-statement:after {
+        font-size: 4rem;
+    }
+
+    .closing-main {
+        font-size: 1.1rem;
+    }
+
+    .closing-highlight {
+        font-size: 1.2rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -742,5 +966,249 @@
 
     .stat-number {
         font-size: 40px;
+    }
+
+    .articulation-section {
+        padding: 1.5rem 1rem;
+    }
+
+    .articulation-section h3 {
+        font-size: 1.3rem;
+    }
+
+    .articulation-list li {
+        padding-left: 2rem;
+        font-size: 0.95rem;
+    }
+
+    .articulation-list li:before {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+    }
+
+    .international-recognition {
+        padding: 1.5rem 1rem;
+    }
+
+    .international-recognition h3 {
+        font-size: 1.3rem;
+    }
+
+    .international-text {
+        font-size: 1rem;
+    }
+
+    .closing-statement {
+        padding: 2rem 1rem;
+    }
+
+    .valores-quote {
+        padding: 30px 25px;
+    }
+
+    .quote-text {
+        font-size: 16px;
+    }
+}
+
+/* ============================================
+   MODAL STYLES
+   ============================================ */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: white;
+    margin: auto;
+    padding: 0;
+    border-radius: 12px;
+    width: 85%;
+    max-width: 600px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: slideDown 0.3s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes slideDown {
+    from {
+        top: 45%;
+        opacity: 0;
+    }
+    to {
+        top: 50%;
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    background: linear-gradient(135deg, var(--navy), #001159);
+    color: white;
+    padding: 1.5rem 2rem;
+    border-radius: 12px 12px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.modal-header i {
+    color: var(--gold);
+    font-size: 1.6rem;
+}
+
+.modal-close {
+    color: white;
+    font-size: 2rem;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.3s;
+    line-height: 1;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.modal-close:hover {
+    background: rgba(255,255,255,0.2);
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 2rem;
+    max-height: 55vh;
+    overflow-y: auto;
+}
+
+.modal-body p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 1.2rem;
+}
+
+.modal-body p:last-child {
+    margin-bottom: 0;
+}
+
+/* Scrollbar personalizado para el modal */
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: var(--navy);
+}
+
+/* Botón Ver Más */
+.btn-ver-mas {
+    background: linear-gradient(135deg, var(--navy), #001159);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 9, 60, 0.2);
+}
+
+.btn-ver-mas:hover {
+    background: linear-gradient(135deg, #001159, var(--navy));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 9, 60, 0.3);
+}
+
+.btn-ver-mas i {
+    transition: transform 0.3s ease;
+}
+
+.btn-ver-mas:hover i {
+    transform: translateX(5px);
+}
+
+/* Responsive Modal */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+
+    .modal-header {
+        padding: 1.5rem;
+    }
+
+    .modal-header h2 {
+        font-size: 1.4rem;
+    }
+
+    .modal-header i {
+        font-size: 1.5rem;
+    }
+
+    .modal-close {
+        font-size: 2rem;
+        width: 35px;
+        height: 35px;
+    }
+
+    .modal-body {
+        padding: 1.5rem;
+        max-height: 50vh;
+    }
+
+    .modal-body p {
+        font-size: 1rem;
+    }
+
+    .btn-ver-mas {
+        width: 100%;
+        justify-content: center;
     }
 }

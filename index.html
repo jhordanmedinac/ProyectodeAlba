@@ -26,118 +26,37 @@
             </div>
 
             <nav class="nav-links">
-                <a href="index.html" class="active">Inicio</a>
-                <a href="Nosotros.html">Nosotros</a>               
-                <a href="Unete.html">Únete</a>
+                <a href="#">Inicio</a>
+                <a href="nosotros.html">Nosotros</a>               
+                <a href="unete.html">Únete</a>
                 <a href="#">Instructores</a>
                 <a href="Cursos.html">Cursos</a>
-                <a href="not/noticias.html">Noticias</a>
+                <a href="not/noticias.html" class="active">Noticias</a>
                 <a href="#"><i class="fas fa-search"></i></a>
             </nav>
         </div>
     </header>
 
-    <main class="page-container">
-        
-        <section class="filter-container">
-            <div class="filter-row">
-                <button class="filter-btn active">TODAS</button>
-                <button class="filter-btn">OPERACIONES</button>
-                <button class="filter-btn">CAPACITACIÓN</button>
-                <button class="filter-btn">INSTITUCIONAL</button>
-                <button class="filter-btn">INTERNACIONAL</button>
-                <button class="filter-btn">RECONOCIMIENTOS</button>
-            </div>
-            
-            <div class="news-search-group">
-                <input type="text" placeholder="Buscar Noticias...">
-                <button class="btn-search-action">BUSCAR</button>
-            </div>
-        </section>
+    <!-- Hero Banner Section - FUERA del main-container -->
+    <section class="hero-banner">
+        <div class="hero-overlay">
+            <h1 class="hero-title">
+                <span class="hero-subtitle">Cuerpo General de
+                 Paramédicos</span>
+                <span class="hero-main">Voluntarios
+                 del Perú</span>
+            </h1>
+            <button class="hero-cta" onclick="scrollToContent()">
+                <i class="fas fa-chevron-down"></i>
+                Ver más
+            </button>
+        </div>
+    </section>
 
-        <section class="hero-grid">
-            <article class="main-news-card">
-                <img src="https://via.placeholder.com/800x500" alt="Homenaje" class="main-img">
-            </article>
-
-            <article class="side-news-card">
-                <div class="side-img-container">
-                    <img src="https://via.placeholder.com/400x300" alt="Saludo">
-                </div>
-                <div class="side-text">
-                    <time><i class="far fa-calendar"></i> 29 de enero del 2026</time>
-                    <h4>SALUDO INSTITUCIONAL – HOMENAJE DE HONOR</h4>
-                    <p>La corporación de Oficiales, instructores, BIRED, alumnos y aspirantes del CGPVP expresa un afectuoso saludo.</p>
-                </div>
-            </article>
-        </section>
-
-        <!-- Sección de noticias detalladas -->
-        <section class="detailed-news-section">
-            <article class="detailed-news-card">
-                <div class="news-image-gallery">
-                    <img src="https://via.placeholder.com/400x300" alt="Brigada BIRED" class="news-main-img">
-                    <div class="image-counter">+2</div>
-                </div>
-                <div class="news-content">
-                    <time class="news-date"><i class="far fa-calendar"></i> 29 de enero del 2026</time>
-                    <h3 class="news-title">Brigada de Intervención Rápida en Emergencias y Desastres</h3>
-                    <p class="news-excerpt">
-                        La Brigada de Intervención Rápida en Emergencias y Desastres del Cuerpo General de Paramédicos Voluntarios del Perú (CGPVP) está conformada por Paramédicos altamente calificados y comprometidos hacia las...
-                    </p>
-                    <div class="news-footer">
-                        <button class="btn-read-more-full">LEER MÁS <i class="fas fa-arrow-right"></i></button>
-                        <div class="news-stats">
-                            <span><i class="far fa-eye"></i> 5.1k</span>
-                            <span><i class="far fa-heart"></i> 45</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="detailed-news-card">
-                <div class="news-image-gallery">
-                    <img src="https://via.placeholder.com/400x300" alt="Resultados Admisión" class="news-main-img">
-                </div>
-                <div class="news-content">
-                    <time class="news-date"><i class="far fa-calendar"></i> 29 de enero del 2026</time>
-                    <h3 class="news-title">RESULTADOS PROCESO DE ADMISIÓN 2026 – I</h3>
-                    <p class="news-excerpt">
-                        El Cuerpo General de Paramédicos Voluntarios del Perú (CGPVP) felicita a los postulantes y recomienda ampliamente a los postulantes que no alcanzaron el objetivo inscribirse al proceso de admisión...
-                    </p>
-                    <div class="news-footer">
-                        <button class="btn-read-more-full">LEER MÁS <i class="fas fa-arrow-right"></i></button>
-                        <div class="news-stats">
-                            <span><i class="far fa-eye"></i> 2.3k</span>
-                            <span><i class="far fa-heart"></i> 45</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="detailed-news-card">
-                <div class="news-image-gallery">
-                    <img src="https://via.placeholder.com/400x300" alt="Convocatoria" class="news-main-img">
-                </div>
-                <div class="news-content">
-                    <time class="news-date"><i class="far fa-calendar"></i> 29 de enero del 2026</time>
-                    <h3 class="news-title">COMUNICADO OFICIAL – CONVOCATORIA CERRADA</h3>
-                    <p class="news-excerpt">
-                        El Cuerpo General de Paramédicos Voluntarios del Perú (CGPVP), informa que la CONVOCATORIA 2024/4 está en Curso el Formateo de Brigadas Comunitarias para...
-                    </p>
-                    <div class="news-footer">
-                        <button class="btn-read-more-full">LEER MÁS <i class="fas fa-arrow-right"></i></button>
-                        <div class="news-stats">
-                            <span><i class="far fa-eye"></i> 2.2k</span>
-                            <span><i class="far fa-heart"></i> 44</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </section>
+    <main class="page-container" id="mainContent">
 
         <!-- Sección de Testimonios -->
-        <section class="testimonials-section">
+        <section class="testimonials-section fade-in-section">
             <h2 class="section-title">Opinión de nuestros estudiantes</h2>
             
             <div class="testimonials-carousel">
@@ -201,7 +120,7 @@
         </section>
 
         <!-- NUEVA SECCIÓN: Beneficios de la Capacitación -->
-        <section class="benefits-section">
+        <section class="benefits-section fade-in-section">
             <h2 class="section-title">Beneficios de nuestra capacitación</h2>
             <div class="benefits-grid">
                 <div class="benefit-card">
@@ -247,9 +166,9 @@
         </section>
 
         <!-- NUEVA SECCIÓN: Formación Especializada -->
-        <section class="training-features-section">
+        <section class="training-features-section fade-in-section">
             <div class="training-image">
-                <img src="https://via.placeholder.com/600x400" alt="Formación CGPVP">
+                <img src="IMAGENES/Inicio.jpg" alt="Formación CGPVP">
             </div>
             <div class="training-content">
                 <div class="training-feature">
@@ -280,6 +199,26 @@
                         <h3>Aprendizaje Práctico en Simulaciones Reales</h3>
                         <p>Las capacitaciones incluyen simulaciones en escenarios controlados que imitan condiciones de emergencia reales, proporcionando una experiencia inmersiva y efectiva que facilita la aplicación de lo aprendido.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NUEVA SECCIÓN: Call to Action -->
+        <section class="cta-section fade-in-section">
+            <div class="cta-content">
+                <div class="cta-text">
+                    <h2>Conoce más sobre nuestra institución</h2>
+                    <p>Descubre nuestra historia, misión y valores. Somos una organización comprometida con la formación de paramédicos profesionales que marcan la diferencia en situaciones de emergencia.</p>
+                </div>
+                <div class="cta-buttons">
+                    <a href="nosotros.html" class="btn-cta-primary">
+                        <i class="fas fa-users"></i>
+                        Sobre Nosotros
+                    </a>
+                    <a href="Cursos.html" class="btn-cta-secondary">
+                        <i class="fas fa-graduation-cap"></i>
+                        Ver Cursos
+                    </a>
                 </div>
             </div>
         </section>
@@ -345,6 +284,61 @@
     </footer>   
 
     <script>
+        // Scroll suave al contenido
+        function scrollToContent() {
+            const mainContent = document.getElementById('mainContent');
+            mainContent.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Animación de números para estadísticas
+        function animateNumber(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString() + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString();
+                }
+            }, 16);
+        }
+
+        // Animación de aparición al hacer scroll
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    
+                    // Animar números de estadísticas cuando aparecen
+                    if (entry.target.classList.contains('stats-section')) {
+                        const statNumbers = entry.target.querySelectorAll('.stat-number');
+                        statNumbers.forEach((num, index) => {
+                            setTimeout(() => animateNumber(num), index * 200);
+                        });
+                    }
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Observar todas las secciones con fade-in
+        document.addEventListener('DOMContentLoaded', () => {
+            const fadeInSections = document.querySelectorAll('.fade-in-section');
+            fadeInSections.forEach(section => {
+                fadeInObserver.observe(section);
+            });
+        });
+
         // Chat Toggle
         function toggleChat() {
             const chat = document.getElementById('bullChat');
@@ -395,6 +389,4 @@
         }, 5000);
     </script>
 </body>
-
 </html>
-
