@@ -2,6 +2,29 @@
    NOSOTROS - ESTILOS ESPECÍFICOS
    ============================================ */
 
+/* Animaciones para Hero */
+@keyframes slideDownTitle {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDownSubtitle {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Smooth Scroll */
 html {
     scroll-behavior: smooth;
@@ -16,6 +39,9 @@ html {
     align-items: center;
     justify-content: center;
     margin-bottom: 60px;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    width: 100vw;
     position: relative;
 }
 
@@ -31,6 +57,8 @@ html {
     margin: 0 0 20px 0;
     text-transform: uppercase;
     letter-spacing: 2px;
+    animation: slideDownTitle 0.8s ease-out;
+    animation-fill-mode: both;
 }
 
 .hero-subtitle {
@@ -38,6 +66,9 @@ html {
     font-weight: 400;
     margin: 0;
     opacity: 0.95;
+    animation: slideDownSubtitle 0.8s ease-out;
+    animation-delay: 0.3s;
+    animation-fill-mode: both;
 }
 
 /* Container General */
