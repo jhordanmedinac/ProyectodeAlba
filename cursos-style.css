@@ -5,6 +5,29 @@
     padding: 0 20px;
 }
 
+/* Animaciones para Hero */
+@keyframes slideDownTitle {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDownSubtitle {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* ============================================
    HERO SECTION CON GRADIENTE
    ============================================ */
@@ -13,6 +36,9 @@
     padding: 80px 20px;
     text-align: center;
     margin-bottom: 50px;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    width: 100vw;
 }
 
 .hero-content {
@@ -26,6 +52,8 @@
     color: white;
     margin: 0 0 15px 0;
     line-height: 1.2;
+    animation: slideDownTitle 0.8s ease-out;
+    animation-fill-mode: both;
 }
 
 .hero-subtitle {
@@ -33,6 +61,9 @@
     color: var(--gold);
     margin: 0;
     font-weight: 400;
+    animation: slideDownSubtitle 0.8s ease-out;
+    animation-delay: 0.3s;
+    animation-fill-mode: both;
 }
 
 /* ============================================
