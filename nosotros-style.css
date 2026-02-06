@@ -108,6 +108,14 @@ html {
     margin: 0;
 }
 
+.section-lema {
+    font-size: 16px;
+    color: var(--navy);
+    margin: 15px 0 0 0;
+    font-style: italic;
+    font-weight: 500;
+}
+
 /* Quiénes Somos Section */
 .quienes-somos-section {
     background: var(--gray-bg);
@@ -607,7 +615,7 @@ html {
 }
 
 /* ============================================
-   ORGANIGRAMA
+   ORGANIGRAMA ACTUALIZADO
    ============================================ */
 
 .organigrama-section {
@@ -617,47 +625,155 @@ html {
 }
 
 .organigrama-container {
-    max-width: 1000px;
+    max-width: 1400px;
     margin: 0 auto;
+    position: relative;
 }
 
+/* Estilos generales para niveles */
 .org-level {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     gap: 30px;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     flex-wrap: wrap;
+    position: relative;
 }
 
+/* Líneas conectoras verticales entre niveles */
+.org-level::after {
+    content: '';
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 25px;
+    background: var(--navy);
+    opacity: 0.3;
+}
+
+.org-level:last-child::after {
+    display: none;
+}
+
+/* Nivel 1: Punto Focal */
+.level-1 {
+    margin-bottom: 40px;
+}
+
+.punto-focal {
+    background: linear-gradient(135deg, #0a5a8a 0%, #064570 100%);
+    color: white;
+    min-width: 280px;
+    border: none;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.punto-focal h4 {
+    color: white;
+}
+
+/* Nivel 2: Columnas laterales */
+.level-2 {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+}
+
+.org-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+}
+
+/* Nivel 3: Dirección Ejecutiva */
+.level-3 {
+    margin: 40px 0;
+}
+
+.director {
+    background: linear-gradient(135deg, var(--navy), #001159);
+    color: white;
+    min-width: 300px;
+    border-top: 4px solid var(--gold);
+    box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+}
+
+.director h4 {
+    color: white;
+}
+
+.director p {
+    color: rgba(255,255,255,0.9);
+}
+
+.director .org-icon {
+    background: white;
+    color: var(--navy);
+}
+
+/* Nivel 4: Direcciones Generales con Subdirecciones */
+.level-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.org-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.direccion-general {
+    background: linear-gradient(135deg, #1a5f8a 0%, #0d4870 100%);
+    color: white;
+    min-width: 100%;
+    border-top: 4px solid var(--gold);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.direccion-general h4 {
+    color: white;
+    font-size: 16px;
+}
+
+.direccion-general .org-icon {
+    background: rgba(255,255,255,0.2);
+    color: white;
+}
+
+.org-subgroup {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 20px;
+    border-left: 3px solid var(--gold);
+}
+
+/* Cajas básicas del organigrama */
 .org-box {
     background: white;
     border-radius: 12px;
-    padding: 25px 30px;
+    padding: 25px;
     text-align: center;
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     transition: all 0.3s;
     min-width: 200px;
     border-top: 4px solid var(--gold);
+    position: relative;
 }
 
 .org-box:hover {
-    transform: translateY(-8px);
+    transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-.org-box.director {
-    background: linear-gradient(135deg, var(--navy), #001159);
-    color: white;
-    min-width: 280px;
-    border-top-color: var(--gold);
-}
-
-.org-box.director h4 {
-    color: white;
-}
-
-.org-box.director p {
-    color: rgba(255,255,255,0.9);
 }
 
 .org-icon {
@@ -673,34 +789,39 @@ html {
     margin: 0 auto 15px;
 }
 
-.org-box.director .org-icon {
-    background: white;
-    color: var(--navy);
-}
-
 .org-box h4 {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     color: var(--navy);
     margin: 0 0 8px 0;
+    line-height: 1.3;
 }
 
 .org-box p {
-    font-size: 14px;
+    font-size: 13px;
     color: #666;
     margin: 0;
 }
 
+/* Cajas pequeñas (subdirecciones) */
 .org-box.small {
-    min-width: 150px;
-    padding: 20px;
+    min-width: 100%;
+    padding: 18px 20px;
+    background: #f8f9fa;
+    border-top: 3px solid var(--navy);
 }
 
 .org-box.small h5 {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     color: var(--navy);
     margin: 0;
+    line-height: 1.4;
+}
+
+.org-box.small:hover {
+    background: white;
+    border-top-color: var(--gold);
 }
 
 /* ============================================
@@ -874,6 +995,13 @@ html {
    RESPONSIVE DESIGN
    ============================================ */
 
+@media (max-width: 1200px) {
+    .level-4 {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+    }
+}
+
 @media (max-width: 1024px) {
     .content-grid-2col {
         grid-template-columns: 1fr;
@@ -886,6 +1014,16 @@ html {
 
     .valores-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .level-2 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .org-column {
+        width: 100%;
+        max-width: 400px;
     }
 }
 
@@ -931,6 +1069,10 @@ html {
     .org-level {
         flex-direction: column;
         align-items: center;
+    }
+
+    .level-4 {
+        grid-template-columns: 1fr;
     }
 
     .equipo-grid {
@@ -1040,6 +1182,19 @@ html {
 
     .quote-text {
         font-size: 16px;
+    }
+
+    .org-box {
+        padding: 20px;
+        min-width: 100%;
+    }
+
+    .org-box h4 {
+        font-size: 14px;
+    }
+
+    .direccion-general h4 {
+        font-size: 14px;
     }
 }
 
