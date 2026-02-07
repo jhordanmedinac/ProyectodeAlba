@@ -37,7 +37,7 @@
         </div>
     </header>
 
-    <!-- Hero Banner Section - FUERA del main-container -->
+    <!-- Hero Banner Section - CON IMAGEN HORIZONTAL EN LUGAR DEL BOTÓN -->
     <section class="hero-banner">
         <div class="hero-overlay">
             <h1 class="hero-title">
@@ -46,10 +46,11 @@
                 <span class="hero-main">Voluntarios
                  del Perú</span>
             </h1>
-            <button class="hero-cta" onclick="scrollToContent()">
-                <i class="fas fa-chevron-down"></i>
-                Ver más
-            </button>
+            
+            <!-- IMAGEN HORIZONTAL EN LUGAR DEL BOTÓN "VER MÁS" -->
+            <div class="hero-image-banner">
+                <img src="IMAGENES/asociados.png" alt="Banner CGPVP">
+            </div>
         </div>
     </section>
 
@@ -274,7 +275,7 @@
         <div class="footer-content">
             <div class="footer-section footer-about">
                 <div class="footer-logo">
-                    <img src="IMAGENES/LOGO.png" alt="Logo CGPVP">
+                    <img src="IMAGENES/Insignia.png" alt="Logo CGPVP">
                 </div>
                 <div class="footer-social">
                 <a href="https://www.facebook.com/paramedicos.pe" target="_blank" aria-label="Facebook">
@@ -283,12 +284,9 @@
                  <a href="https://www.linkedin.com/in/param%C3%A9dicos-del-per%C3%BA-324795203/" target="_blank" aria-label="LinkedIn">
                    <i class="fab fa-linkedin-in"></i>
                    </a>
-                     <a href="#" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
+                     <a href="https://www.tiktok.com/@paramedicos.pe/video/7371679537878404358" target="_blank" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
                </a>
-                    <a href="#" aria-label="YouTube">
-              <i class="fab fa-youtube"></i>
-            </a>
           </div>
 
                 <p class="footer-copyright">
@@ -310,11 +308,11 @@
             <div class="footer-section">
                 <h4>Navegación</h4>
                 <ul>
-                    <li><a href="#">Bienvenidos</a></li>
-                    <li><a href="#">Nosotros</a></li>
-                    <li><a href="#">Misión</a></li>
-                    <li><a href="#">Visión</a></li>
-                    <li><a href="#">Organización</a></li>
+                    <li><a href="index.html">Bienvenidos</a></li>
+                    <li><a href="Nosotros.html">Nosotros</a></li>
+                    <li><a href="Nosotros.html#mision">Misión</a></li>
+                    <li><a href="Nosotros.html#vision">Visión</a></li>
+                    <li><a href="Nosotros.html#organigrama">Organización</a></li>
                 </ul>
             </div>
 
@@ -330,22 +328,13 @@
 
             <div class="footer-section footer-academy">
                 <div class="academy-badge">
-                    <img src="https://via.placeholder.com/120x120" alt="Academy Badge">
+                    <img src="IMAGENES/LOGO.png" alt="Academy Badge">
                 </div>
             </div>
         </div>
     </footer>   
 
     <script>
-        // Scroll suave al contenido
-        function scrollToContent() {
-            const mainContent = document.getElementById('mainContent');
-            mainContent.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-
         // Animación de números para estadísticas
         function animateNumber(element) {
             const target = parseInt(element.getAttribute('data-target'));

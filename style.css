@@ -167,37 +167,25 @@ div, section, article, header, footer, nav {
     animation: fadeInUp 1s ease-out 0.3s both;
 }
 
-.hero-cta {
-    margin-top: 250px;
-    background: var(--gold);
-    border: 2px solid var(--gold);
-    color: var(--navy);
-    padding: 15px 40px;
-    font-size: 1rem;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+/* ============================================
+   IMAGEN BANNER HORIZONTAL EN HERO
+   ============================================ */
+.hero-image-banner {
+    margin-top: 220px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 700px;
+    width: 75%;
     position: relative;
     z-index: 2;
-    font-weight: 600;
-    box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4);
-    animation: bounce 2s infinite;
+    animation: fadeInUp 1s ease-out 0.6s both;
+    overflow: hidden;
 }
 
-.hero-cta:hover {
-    background: white;
-    border-color: white;
-    color: var(--navy);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
-}
-
-.hero-cta i {
-    font-size: 0.8rem;
-    animation: bounceArrow 1.5s infinite;
+.hero-image-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 @keyframes fadeInDown {
@@ -219,27 +207,6 @@ div, section, article, header, footer, nav {
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-10px);
-    }
-    60% {
-        transform: translateY(-5px);
-    }
-}
-
-@keyframes bounceArrow {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(5px);
     }
 }
 
@@ -2088,6 +2055,11 @@ div, section, article, header, footer, nav {
         font-size: 3rem;
     }
     
+    .hero-image-banner {
+        margin-top: 170px;
+        max-width: 600px;
+    }
+    
     .training-features-section {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -2172,6 +2144,12 @@ div, section, article, header, footer, nav {
         font-size: 2.6rem;
     }
     
+    .hero-image-banner {
+        margin-top: 150px;
+        max-width: 550px;
+        width: 75%;
+    }
+    
     .filter-row { 
         justify-content: center; 
         gap: 10px; 
@@ -2249,14 +2227,10 @@ div, section, article, header, footer, nav {
         font-size: 2rem;
     }
 
-    .hero-cta {
-        padding: 12px 30px;
-        font-size: 0.9rem;
-        margin-top: 180px;
-    }
-
-    .hero-cta i {
-        font-size: 0.75rem;
+    .hero-image-banner {
+        margin-top: 130px;
+        max-width: 500px;
+        width: 80%;
     }
     
     .page-container {
@@ -2818,14 +2792,10 @@ div, section, article, header, footer, nav {
         font-size: 1.7rem;
     }
 
-    .hero-cta {
-        padding: 10px 25px;
-        font-size: 0.85rem;
-        margin-top: 150px;
-    }
-
-    .hero-cta i {
-        font-size: 0.7rem;
+    .hero-image-banner {
+        margin-top: 110px;
+        max-width: 100%;
+        width: 85%;
     }
     
     .brand {
@@ -3264,10 +3234,9 @@ div, section, article, header, footer, nav {
         font-size: 1.4rem;
     }
     
-    .hero-cta {
+    .hero-image-banner {
         margin-top: 100px;
-        padding: 8px 20px;
-        font-size: 0.8rem;
+        width: 85%;
     }
     
     .section-title {

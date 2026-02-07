@@ -45,51 +45,109 @@
             <div class="hero-overlay">
                 <h1 class="hero-title">Nosotros</h1>
                 <p class="hero-subtitle">Comprometidos con salvar vidas desde hace más de una década</p>
+                
+                <button class="btn-ver-mas-hero" onclick="scrollToContent()">
+                    <i class="fas fa-chevron-down"></i> Ver más
+                </button>
             </div>
         </section>
 
-        <!-- Quiénes Somos - SECCIÓN MEJORADA -->
-        <section id="nosotros" class="quienes-somos-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <h2 class="section-main-title">¿Quiénes Somos?</h2>
-                    <div class="title-underline"></div>
+        <!-- CUADRO 1: Quiénes Somos -->
+        <section id="nosotros" class="cuadro-azul-section">
+            <div class="contenedor-cuadro-completo">
+                <div class="section-header-white">
+                    <h2 class="section-title-white">¿Quiénes Somos?</h2>
                 </div>
                 
-                <div class="content-grid-2col">
-                    <div class="content-text">
-                        <p class="intro-text">
-                            El <strong>Cuerpo General de Paramédicos Voluntarios del Perú (CGPVP)</strong> es una organización voluntaria sin fines de lucro, creada en marzo del año 2020, en el contexto de la emergencia sanitaria por la COVID-19, como respuesta organizada desde la sociedad civil ante el colapso de los sistemas de atención y la necesidad urgente de una primera respuesta técnica, humana y disciplinada.
-                        </p>
-                        <p>
-                            Nacimos del dolor y desde la realidad operativa, evolucionamos de brigadas comunitarias a un cuerpo estructurado una institución legalmente constituida, con doctrina, orden, procesos formativos y capacidad operativa, orientada a la participación comunitaria en atención de emergencias, desastres, búsqueda y rescate, en apoyo y complemento de las instituciones del Estado.
-                        </p>
-                        <p>
-                            Hoy, el CGPVP se consolida como una capacidad estratégica comunitaria, integrada al <strong>Sistema Nacional para la Gestión del Riesgo de Desastres (SINAGERD)</strong> dentro del marco normativo que faculta a las empresas privadas é organizaciones sin fines de Lucro, contribuyendo al fortalecimiento de la primera respuesta ciudadana, la reducción del riesgo y la protección de la vida, bajo principios de disciplina, ética del servicio y preparación permanente.
-                        </p>
+                <div class="grid-quienes-somos">
+                    <!-- Columna izquierda: 2 bloques de texto -->
+                    <div class="columna-textos">
+                        <!-- Bloque 1 -->
+                        <div class="caja-texto-individual">
+                            <p>
+                                El <strong>Cuerpo General de Paramédicos Voluntarios del Perú (CGPVP)</strong> es una organización voluntaria sin fines de lucro, creada en marzo del año 2020, en el contexto de la emergencia sanitaria por la COVID-19, como respuesta organizada desde la sociedad civil ante el colapso de los sistemas de atención y la necesidad urgente de una primera respuesta técnica, humana y disciplinada.
+                            </p>
+                        </div>
+
+                        <!-- Bloque 2 -->
+                        <div class="caja-texto-individual">
+                            <p>
+                                Nacimos del dolor y desde la realidad operativa, evolucionamos de brigadas comunitarias a un cuerpo estructurado una institución legalmente constituida, con doctrina, orden, procesos formativos y capacidad operativa, orientada a la participación comunitaria en atención de emergencias, desastres, búsqueda y rescate, en apoyo y complemento de las instituciones del Estado.
+                            </p>
+                        </div>
                     </div>
-                    <div class="content-image">
-                        <img src="IMAGENES/LOGO.png" alt="CGPVP en acción">
+
+                    <!-- Columna derecha: Imagen -->
+                    <div class="columna-imagen">
+                        <div class="caja-imagen-grande">
+                            <!-- COLOCA AQUÍ TU IMAGEN 1 -->
+                            <img src="IMAGENES/quienes-somos-1.jpg" alt="CGPVP en acción">
+                        </div>
                     </div>
                 </div>
 
-                <!-- Articulación y alianzas nacionales -->
-                <div class="articulation-section">
-                    <h3>Articulación y alianzas nacionales</h3>
+                <!-- Bloque 3: Texto completo abajo -->
+                <div class="caja-texto-individual caja-completa">
                     <p>
-                        El Cuerpo mantiene una articulación activa y cooperación institucional con entidades del Estado y del sistema de defensa, destacando:
+                        Hoy, el CGPVP se consolida como una capacidad estratégica comunitaria, integrada al <strong>Sistema Nacional para la Gestión del Riesgo de Desastres (SINAGERD)</strong> dentro del marco normativo que faculta a las empresas privadas é organizaciones sin fines de Lucro, contribuyendo al fortalecimiento de la primera respuesta ciudadana, la reducción del riesgo y la protección de la vida, bajo principios de disciplina, ética del servicio y preparación permanente.
                     </p>
-                    <ul class="articulation-list">
-                        <li>Coordinación y convenios con el Comando Conjunto de las Fuerzas Armadas, en procesos de formación y fortalecimiento de brigadas comunitarias para la respuesta a emergencias y desastres.</li>
-                        <li>Trabajo conjunto con unidades y centros de formación del Ejército del Perú, Comando de Educación y Doctrina del Ejército, Escuela de Comandos del Ejército.</li>
+                </div>
+            </div>
+        </section>
+
+        <!-- CUADRO 2: Articulación y Alianzas -->
+        <section class="cuadro-azul-section">
+            <div class="contenedor-cuadro-completo">
+                <div class="section-header-white">
+                    <h2 class="section-title-white">Articulación y alianzas nacionales</h2>
+                </div>
+
+                <!-- Grid: 2 bloques izquierda + imagen derecha -->
+                <div class="grid-articulacion">
+                    <!-- Columna izquierda: 2 bloques de texto separados -->
+                    <div class="columna-textos">
+                        <!-- Bloque 1 -->
+                        <div class="caja-texto-individual">
+                            <p class="texto-intro">
+                                El Cuerpo mantiene una articulación activa y cooperación institucional con entidades del Estado y del sistema de defensa, destacando:
+                            </p>
+                            <ul class="lista-puntos">
+                                <li>Coordinación y convenios con el Comando Conjunto de las Fuerzas Armadas, en procesos de formación y fortalecimiento de brigadas comunitarias para la respuesta a emergencias y desastres.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Bloque 2 -->
+                        <div class="caja-texto-individual">
+                            <ul class="lista-puntos">
+                                <li>Trabajo conjunto con unidades y centros de formación del Ejército del Perú, Comando de Educación y Doctrina del Ejército, Escuela de Comandos del Ejército.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Columna derecha: Imagen grande -->
+                    <div class="columna-imagen">
+                        <div class="caja-imagen-grande">
+                            <!-- COLOCA AQUÍ TU IMAGEN 2 -->
+                            <img src="IMAGENES/alianzas-1.jpg" alt="Alianzas CGPVP">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bloque 3: Texto completo abajo -->
+                <div class="caja-texto-individual caja-completa">
+                    <ul class="lista-puntos">
                         <li>Cooperación con entidades públicas, Ministerio Público, gobiernos locales y organismos del sistema de gestión del riesgo, en capacitación, organización comunitaria y apoyo en escenarios de emergencia.</li>
                     </ul>
-                    <p class="articulation-conclusion">
+                    <p class="texto-conclusion">
                         Estas alianzas permiten que nuestra labor complemente, fortalezca e integre las capacidades del Estado, sin sustituir sus funciones.
                     </p>
                 </div>
+            </div>
+        </section>
 
-                <!-- Reconocimiento y respaldo internacional -->
+        <!-- Reconocimiento y respaldo internacional -->
+        <section class="otras-secciones">
+            <div class="section-container">
                 <div class="international-recognition">
                     <h3><i class="fas fa-globe-americas"></i> Reconocimiento y respaldo internacional</h3>
                     <p class="international-text">
@@ -107,7 +165,6 @@
                         que se prepara con disciplina y que permanece firme cuando el país más lo necesite.
                     </p>
                 </div>
-
             </div>
         </section>
 
@@ -288,8 +345,8 @@
             </div>
         </section>
 
-        <!-- Organigrama ACTUALIZADO -->
-        <section class="organigrama-section">
+        <!-- Organigrama -->
+        <section id="organigrama" class="organigrama-section">
             <div class="section-container">
                 <div class="section-header">
                     <h2 class="section-main-title">Organigrama</h2>
@@ -420,87 +477,6 @@
             </div>
         </section>
 
-        <!-- Nuestro Equipo -->
-        <section class="equipo-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <h2 class="section-main-title">Nuestro Equipo</h2>
-                    <div class="title-underline"></div>
-                    <p class="section-subtitle">Profesionales comprometidos con salvar vidas</p>
-                </div>
-
-                <div class="equipo-grid">
-                    <div class="team-card">
-                        <div class="team-photo">
-                            <img src="https://via.placeholder.com/300x300" alt="Comandante General">
-                            <div class="team-overlay">
-                                <div class="team-social">
-                                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                                    <a href="#"><i class="fas fa-envelope"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-info">
-                            <h4>Nombre Apellido</h4>
-                            <p class="team-role">Comandante General</p>
-                            <p class="team-description">Más de 16 años de experiencia en atención prehospitalaria y gestión de emergencias.</p>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <div class="team-photo">
-                            <img src="https://via.placeholder.com/300x300" alt="Director Académico">
-                            <div class="team-overlay">
-                                <div class="team-social">
-                                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                                    <a href="#"><i class="fas fa-envelope"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-info">
-                            <h4>Nombre Apellido</h4>
-                            <p class="team-role">Director Académico</p>
-                            <p class="team-description">Especialista en formación de paramédicos con certificación internacional.</p>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <div class="team-photo">
-                            <img src="https://via.placeholder.com/300x300" alt="Director Operativo">
-                            <div class="team-overlay">
-                                <div class="team-social">
-                                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                                    <a href="#"><i class="fas fa-envelope"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-info">
-                            <h4>Nombre Apellido</h4>
-                            <p class="team-role">Director Operativo</p>
-                            <p class="team-description">Coordinador de operaciones de emergencia y líder de BIRED.</p>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <div class="team-photo">
-                            <img src="https://via.placeholder.com/300x300" alt="Jefe de Instructores">
-                            <div class="team-overlay">
-                                <div class="team-social">
-                                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                                    <a href="#"><i class="fas fa-envelope"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-info">
-                            <h4>Nombre Apellido</h4>
-                            <p class="team-role">Jefe de Instructores</p>
-                            <p class="team-description">Instructor certificado con amplia experiencia en formación técnica.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Estadísticas -->
         <section class="estadisticas-section">
             <div class="section-container">
@@ -550,10 +526,15 @@
                     <img src="IMAGENES/LOGO.png" alt="Logo CGPVP">
                 </div>
                 <div class="footer-social">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/paramedicos.pe" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/param%C3%A9dicos-del-per%C3%BA-324795203/" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" target="_blank" aria-label="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
                 </div>
                 <p class="footer-copyright">
                     Cuerpo General de Paramédicos Voluntarios del Perú © 2025.<br>
@@ -565,8 +546,8 @@
                 <h4>Nosotros</h4>
                 <ul>
                     <li><a href="#">Cuerpo General de Paramédicos Voluntarios</a></li>
-                    <li><a href="#">Av. Principal 123, Lima, Perú</a></li>
-                    <li><a href="tel:+51987654321">Teléfono: +51 (1) 987-654-321</a></li>
+                    <li><a href="#">Independencia 102, Barranco, Lima, Perú</a></li>
+                    <li><a href="tel:+51953958371">Teléfono: +51 953 958 371</a></li>
                     <li><a href="mailto:contacto@cgpvp.org">Email: contacto@cgpvp.org</a></li>
                 </ul>
             </div>
@@ -574,11 +555,11 @@
             <div class="footer-section">
                 <h4>Navegación</h4>
                 <ul>
-                    <li><a href="#">Bienvenidos</a></li>
+                    <li><a href="index.html">Bienvenidos</a></li>
                     <li><a href="#nosotros">Nosotros</a></li>
                     <li><a href="#mision">Misión</a></li>
                     <li><a href="#vision">Visión</a></li>
-                    <li><a href="#">Organización</a></li>
+                    <li><a href="#organigrama">Organización</a></li>
                 </ul>
             </div>
 
@@ -643,6 +624,15 @@
     </div>
 
     <script>
+        // Función para scroll suave al contenido
+        function scrollToContent() {
+            const nosotrosSection = document.getElementById('nosotros');
+            nosotrosSection.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
         // Modal functions
         function openModal(modalId) {
             document.getElementById(modalId).style.display = 'block';
