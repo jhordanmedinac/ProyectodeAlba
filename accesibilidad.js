@@ -6,7 +6,7 @@
   const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
   const css=`
   :root{--acc-primary-100:#e8dcc5;--acc-primary-500:#c5a059;--acc-primary-600:#00093C;--acc-neutral-100:#f5f5f4;--acc-neutral-200:#e5e5e4;--acc-neutral-900:#1c1917}
-  #accFab{position:fixed;bottom:20px;left:20px;width:56px;height:56px;border-radius:999px;background:#00093C;color:#fff;display:flex;align-items:center;justify-content:center;border:none;box-shadow:0 10px 25px rgba(0,0,0,.1),0 4px 10px rgba(0,0,0,.08);z-index:10050;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+  #accFab{position:fixed;bottom:20px;left:10px;width:56px;height:56px;border-radius:999px;background:#00093C;color:#fff;display:flex;align-items:center;justify-content:center;border:none;box-shadow:0 10px 25px rgba(0,0,0,.1),0 4px 10px rgba(0,0,0,.08);z-index:10050;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
   #accFab:hover{transform:scale(1.08);box-shadow:0 12px 30px rgba(0,0,0,.15),0 6px 12px rgba(0,0,0,.1)}
   #accFab.hidden{display:none}
   #accFab.right{right:20px;left:auto}

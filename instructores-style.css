@@ -333,6 +333,7 @@
     box-shadow: 0 8px 25px rgba(0, 9, 60, 0.4);
 }
 
+
 /* ============================================
    GRID DE INSTRUCTORES
    ============================================ */
@@ -941,6 +942,86 @@
     .navbar-search input:focus {
         width: 220px;
     }
+}
+/* ============================================
+   LOGOS CIRCULARES EN EL FOOTER
+   ============================================ */
+.footer-partners-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+    grid-column: 1 / -1;
+}
+
+.partner-logo {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.partner-logo:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+
+.partner-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Responsive para los logos */
+@media (max-width: 768px) {
+    .footer-partners-logos {
+        gap: 20px;
+        padding: 0;
+    }
+    
+    .partner-logo {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-partners-logos {
+        gap: 15px;
+        padding: 0;
+    }
+    
+    .partner-logo {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+/* Ajustar espaciado del footer para que todo suba MUCHO */
+.main-footer .footer-content {
+    padding-top: 15px !important;
+    padding-bottom: 0px !important;
+    gap: 40px !important;
+    margin-top: -60px !important;
+}
+
+.main-footer .footer-section {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.main-footer .footer-section h4 {
+    margin-top: 0 !important;
+    margin-bottom: 10px !important;
+}
+
+.main-footer .footer-about {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
 }
 
 /* ============================================
