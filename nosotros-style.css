@@ -21,7 +21,7 @@
     margin-left: -50vw;
     margin-right: -50vw;
     padding: 80px 0;
-    margin-top: 80px;
+    margin-top: 100px;
     margin-bottom: 80px;
 }
 
@@ -43,7 +43,9 @@
 
 .section-title-white {
     font-size: 48px;
-    font-weight: 700;
+    font-weight: 800;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    letter-spacing: -0.5px;
     color: white;
     margin: 0;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
@@ -68,13 +70,19 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
-    align-items: start;
+    align-items: stretch;
 }
 
+/* Columna de textos */
 .columna-textos {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+/* Agregar espacio al segundo cuadro */
+.columna-textos .caja-texto-individual:nth-child(2) {
+    margin-top: 30px;
 }
 
 .caja-texto-individual {
@@ -83,6 +91,8 @@
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1;
+    border: 3px solid var(--gold);
 }
 
 .caja-texto-individual:hover {
@@ -91,43 +101,45 @@
 }
 
 .caja-texto-individual p {
-    font-size: 14px;
-    line-height: 1.8;
-    color: #333;
+    font-size: 16px;
+    line-height: 1.9;
+    color: #1a1a1a;
     margin: 0;
     text-align: justify;
+    font-weight: 700;
 }
 
 .caja-texto-individual p strong {
     color: var(--navy);
-    font-weight: 700;
+    font-weight: 800;
 }
 
 /* Caja completa (ocupa todo el ancho) */
 .caja-texto-individual.caja-completa {
     grid-column: 1 / -1;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .columna-imagen {
-    position: sticky;
-    top: 100px;
+    display: flex;
 }
 
 .caja-imagen-grande {
-    background: #1a1a2e;
+    background: transparent;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-    height: 100%;
-    min-height: 500px;
+    width: 100%;
+    height: auto;
+    display: flex;
 }
 
 .caja-imagen-grande img {
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: cover;
     transition: transform 0.4s ease;
+    display: block;
 }
 
 .caja-imagen-grande:hover img {
@@ -152,11 +164,13 @@
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #2a2a3e 0%, #1a1a2e 100%);
+    position: relative;
+    min-height: 400px;
 }
 
 /* Texto intro */
 .texto-intro {
-    font-weight: 600;
+    font-weight: 700;
     color: var(--navy);
     margin-bottom: 15px !important;
 }
@@ -175,6 +189,7 @@
     line-height: 1.8;
     margin-bottom: 10px;
     font-size: 14px;
+    font-weight: 700;
 }
 
 .lista-puntos li:before {
@@ -249,6 +264,37 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(5px); }
 }
+
+/* Animación de aparición al hacer scroll */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Clase para elementos que aparecen al hacer scroll */
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-element.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Delays para animaciones escalonadas */
+.fade-delay-1 { transition-delay: 0.1s; }
+.fade-delay-2 { transition-delay: 0.2s; }
+.fade-delay-3 { transition-delay: 0.3s; }
+.fade-delay-4 { transition-delay: 0.4s; }
+.fade-delay-5 { transition-delay: 0.5s; }
 
 /* Smooth Scroll */
 html {
@@ -364,7 +410,7 @@ html {
    ============================================ */
 
 .cuadro-azul-section {
-    background: linear-gradient(135deg, #00093C 0%, #001159 100%);
+    background: #00093C;
     width: 100vw;
     position: relative;
     left: 50%;
@@ -374,6 +420,21 @@ html {
     padding: 80px 0;
     margin-top: 60px;
     margin-bottom: 60px;
+}
+
+.cuadro-azul-section:first-of-type {
+    margin-top: 0;
+}
+
+/* Quitar fondo azul SOLO de Articulación (segundo cuadro) */
+.cuadro-azul-section + .cuadro-azul-section {
+    background: transparent;
+}
+
+/* Cambiar color de títulos a azul oscuro en el segundo cuadro */
+.cuadro-azul-section + .cuadro-azul-section .section-title-white {
+    color: var(--navy);
+    text-shadow: none;
 }
 
 .contenedor-cuadro-completo {
@@ -390,7 +451,9 @@ html {
 
 .section-title-white {
     font-size: 48px;
-    font-weight: 700;
+    font-weight: 800;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    letter-spacing: -0.5px;
     color: white;
     margin: 0;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
@@ -404,6 +467,86 @@ html {
     background: linear-gradient(90deg, var(--gold), white);
     margin: 20px auto 0;
     border-radius: 10px;
+}
+/* ============================================
+   BARRA DE BÚSQUEDA EN NAVBAR
+   ============================================ */
+
+.navbar-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 0 15px;
+}
+
+.navbar-search input {
+    width: 200px;
+    padding: 8px 40px 8px 15px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.navbar-search input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.navbar-search input:focus {
+    outline: none;
+    width: 280px;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(197, 160, 89, 0.8);
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.2);
+}
+
+.navbar-search .search-btn {
+    position: absolute;
+    right: 5px;
+    background: transparent;
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.navbar-search .search-btn:hover {
+    background: rgba(197, 160, 89, 0.8);
+    color: #00093C;
+    transform: scale(1.1);
+}
+
+.navbar-search .search-btn i {
+    pointer-events: none;
+}
+
+/* Responsive - Navbar Search */
+@media (max-width: 1024px) {
+    .navbar-search {
+        display: none;
+    }
+}
+
+/* Opcional: Mostrar en tablet pero más pequeño */
+@media (max-width: 1200px) and (min-width: 1025px) {
+    .navbar-search input {
+        width: 150px;
+    }
+    
+    .navbar-search input:focus {
+        width: 220px;
+    }
 }
 
 /* ============================================
@@ -448,29 +591,36 @@ html {
 
 .caja-texto-individual p strong {
     color: var(--navy);
-    font-weight: 700;
+    font-weight: 800;
 }
 
 /* Columna de imagen */
 .columna-imagen {
-    position: sticky;
-    top: 100px;
+    display: flex;
+    align-items: stretch;
 }
 
 .caja-imagen-grande {
-    background: #1a1a2e;
+    background: transparent;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
     height: 100%;
-    min-height: 500px;
+    min-height: 520px;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
 }
 
 .caja-imagen-grande img {
     width: 100%;
     height: 100%;
+    min-height: 530px;
     object-fit: cover;
+    object-position: center;
     transition: transform 0.4s ease;
+    display: block;
+    flex: 1;
 }
 
 .caja-imagen-grande:hover img {
@@ -495,6 +645,7 @@ html {
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #2a2a3e 0%, #1a1a2e 100%);
+    min-height: 500px;
 }
 
 /* Bloques horizontales */
@@ -542,7 +693,7 @@ html {
 
 /* Texto intro */
 .texto-intro {
-    font-weight: 600;
+    font-weight: 700;
     color: var(--navy);
     margin-bottom: 20px !important;
 }
@@ -561,6 +712,7 @@ html {
     line-height: 1.8;
     margin-bottom: 10px;
     font-size: 15px;
+    font-weight: 700;
 }
 
 .lista-puntos li:before {
@@ -841,8 +993,12 @@ html {
 }
 
 .mv-card:hover {
-    transform: translateY(-15px);
+    transform: translateY(0) translateY(-15px);
     box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+}
+
+.mv-card.fade-in-element.visible:hover {
+    transform: translateY(0) translateY(-15px);
 }
 
 .mv-icon {
@@ -1176,8 +1332,12 @@ html {
 }
 
 .timeline-content:hover {
-    transform: scale(1.08);
+    transform: translateY(0) scale(1.08);
     box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+}
+
+.timeline-item.fade-in-element.visible .timeline-content:hover {
+    transform: translateY(0) scale(1.08);
 }
 
 .timeline-year {
@@ -1207,7 +1367,7 @@ html {
 }
 
 /* ============================================
-   ORGANIGRAMA
+   ORGANIGRAMA - CUADROS MÁS PEQUEÑOS
    ============================================ */
 
 .organigrama-section {
@@ -1247,47 +1407,35 @@ html {
 }
 
 .organigrama-container {
-    max-width: 1400px;
+    max-width: 100%;
     margin: 0 auto;
     position: relative;
+    background: #00093C;
+    padding: 60px 40px 80px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 9, 60, 0.4);
 }
 
 .org-level {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 35px;
-    margin-bottom: 60px;
+    gap: 20px;
+    margin-bottom: 30px;
     flex-wrap: wrap;
     position: relative;
 }
 
-.org-level::after {
-    content: '';
-    position: absolute;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 3px;
-    height: 30px;
-    background: linear-gradient(to bottom, var(--navy), transparent);
-    opacity: 0.4;
-}
-
-.org-level:last-child::after {
-    display: none;
-}
-
 .level-1 {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .punto-focal {
     background: linear-gradient(135deg, #0a5a8a 0%, #064570 100%);
     color: white;
-    min-width: 320px;
+    min-width: 260px;
     border: none;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     position: relative;
     overflow: hidden;
 }
@@ -1312,28 +1460,28 @@ html {
 .level-2 {
     display: flex;
     justify-content: space-between;
-    gap: 60px;
-    max-width: 1200px;
-    margin: 0 auto 50px;
+    gap: 30px;
+    max-width: 100%;
+    margin: 0 auto 30px;
 }
 
 .org-column {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 15px;
     flex: 1;
 }
 
 .level-3 {
-    margin: 50px 0;
+    margin: 30px 0;
 }
 
 .director {
     background: linear-gradient(135deg, var(--navy), #001159);
     color: white;
-    min-width: 350px;
-    border-top: 6px solid var(--gold);
-    box-shadow: 0 18px 50px rgba(0,0,0,0.3);
+    min-width: 280px;
+    border-top: 4px solid var(--gold);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
     position: relative;
     overflow: hidden;
 }
@@ -1358,29 +1506,29 @@ html {
 .director .org-icon {
     background: white;
     color: var(--navy);
-    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.3);
 }
 
 .level-4 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-    gap: 45px;
-    max-width: 1400px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    max-width: 100%;
     margin: 0 auto;
 }
 
 .org-group {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 15px;
 }
 
 .direccion-general {
     background: linear-gradient(135deg, #1a5f8a 0%, #0d4870 100%);
     color: white;
     min-width: 100%;
-    border-top: 6px solid var(--gold);
-    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+    border-top: 4px solid var(--gold);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
     position: relative;
     overflow: hidden;
 }
@@ -1398,7 +1546,7 @@ html {
 
 .direccion-general h4 {
     color: white;
-    font-size: 17px;
+    font-size: 14px;
     position: relative;
     z-index: 1;
 }
@@ -1406,42 +1554,27 @@ html {
 .direccion-general .org-icon {
     background: rgba(255,255,255,0.25);
     color: white;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
 }
 
 .org-subgroup {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    padding-left: 25px;
-    border-left: 4px solid var(--gold);
+    gap: 12px;
+    padding-left: 18px;
+    border-left: 2px solid white !important;
     position: relative;
-}
-
-.org-subgroup::before {
-    content: '';
-    position: absolute;
-    left: -4px;
-    top: 0;
-    width: 4px;
-    height: 0;
-    background: var(--navy);
-    transition: height 0.6s ease;
-}
-
-.org-group:hover .org-subgroup::before {
-    height: 100%;
 }
 
 .org-box {
     background: white;
-    border-radius: 16px;
-    padding: 30px;
+    border-radius: 12px;
+    padding: 20px 18px;
     text-align: center;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    min-width: 220px;
-    border-top: 5px solid var(--gold);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 180px;
+    border-top: 3px solid var(--gold);
     position: relative;
     overflow: hidden;
 }
@@ -1463,58 +1596,259 @@ html {
 }
 
 .org-box:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
     border-top-color: var(--navy);
 }
 
 .org-icon {
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     background: linear-gradient(135deg, var(--gold), #d4a75a);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--navy);
-    font-size: 28px;
-    margin: 0 auto 20px;
-    box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4);
+    font-size: 22px;
+    margin: 0 auto 12px;
+    box-shadow: 0 5px 15px rgba(197, 160, 89, 0.35);
     transition: transform 0.3s ease;
 }
 
 .org-box:hover .org-icon {
-    transform: scale(1.15) rotate(5deg);
+    transform: scale(1.1) rotate(5deg);
 }
 
 .org-box h4 {
-    font-size: 17px;
+    font-size: 13px;
     font-weight: 700;
     color: var(--navy);
-    margin: 0 0 10px 0;
-    line-height: 1.4;
+    margin: 0 0 6px 0;
+    line-height: 1.3;
 }
 
 .org-box.small {
     min-width: 100%;
-    padding: 20px 25px;
+    padding: 16px 20px;
     background: #f8f9fa;
-    border-top: 4px solid var(--navy);
+    border-top: 3px solid var(--navy);
     transition: all 0.3s ease;
 }
 
 .org-box.small h5 {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     color: var(--navy);
     margin: 0;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 .org-box.small:hover {
     background: white;
     border-top-color: var(--gold);
-    transform: translateX(8px);
+    transform: translateX(6px);
+}
+
+/* ============================================
+   LÍNEAS CONECTORAS DEL ORGANIGRAMA - BLANCAS
+   ============================================ */
+
+/* ===== NIVEL 1: PUNTO FOCAL ===== */
+.level-1 {
+    position: relative;
+}
+
+/* Línea vertical desde Punto Focal hacia abajo */
+.level-1::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 30px;
+    background: white !important;
+    display: block !important;
+    z-index: 1;
+}
+
+/* ===== NIVEL 2: OFICINAS SUPERIORES ===== */
+.level-2 {
+    position: relative;
+}
+
+/* Línea vertical central desde arriba */
+.level-2::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 30px;
+    background: white !important;
+    z-index: 1;
+}
+
+/* Línea vertical central que baja hacia Dirección Ejecutiva */
+.level-2::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 30px;
+    background: white !important;
+    display: block !important;
+    z-index: 1;
+}
+
+/* Configuración de columnas */
+.org-column {
+    position: relative;
+}
+
+/* Línea horizontal superior que conecta todas las cajas del Nivel 2 */
+.level-2 .org-column:first-child::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: -40px;
+    height: 2px;
+    background: white !important;
+    z-index: 0;
+}
+
+.level-2 .org-column:last-child::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 50%;
+    left: -40px;
+    height: 2px;
+    background: white !important;
+    z-index: 0;
+}
+
+/* Líneas verticales desde cada caja hacia la línea horizontal superior */
+.org-column .org-box {
+    position: relative;
+}
+
+.org-column .org-box::after {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 15px;
+    background: white !important;
+    z-index: 0;
+}
+
+/* ===== NIVEL 3: DIRECCIÓN EJECUTIVA ===== */
+.level-3 {
+    position: relative;
+}
+
+/* Línea vertical que baja hacia las Direcciones Generales */
+.level-3::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 30px;
+    background: white !important;
+    display: block !important;
+    z-index: 1;
+}
+
+/* ===== NIVEL 4: DIRECCIONES GENERALES ===== */
+.level-4 {
+    position: relative;
+}
+
+/* Línea horizontal superior que conecta las 3 Direcciones Generales */
+.level-4::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: white !important;
+    z-index: 0;
+}
+
+/* Configuración de grupos */
+.org-group {
+    position: relative;
+}
+
+/* Líneas verticales desde cada Dirección General hacia la línea horizontal superior */
+.org-group::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 15px;
+    background: white !important;
+    z-index: 1;
+}
+
+/* Línea vertical desde cada Dirección General hacia abajo (subdirecciones) */
+.direccion-general {
+    position: relative;
+}
+
+.direccion-general::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 10px;
+    background: white !important;
+    z-index: 1;
+}
+
+/* ===== SUBDIRECCIONES ===== */
+.org-subgroup {
+    position: relative;
+    padding-left: 18px;
+    border-left: 2px solid white !important;
+}
+
+/* Líneas horizontales desde cada subdirección hacia la línea vertical izquierda */
+.org-subgroup .org-box.small {
+    position: relative;
+}
+
+.org-subgroup .org-box.small::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -18px;
+    width: 18px;
+    height: 2px;
+    background: white !important;
+    z-index: 0;
+    transform: translateY(-50%);
+}
+
+/* Remover las flechas animadas anteriores */
+.org-arrow-down,
+.org-arrow-mini {
+    display: none;
 }
 
 /* ============================================
@@ -1522,7 +1856,7 @@ html {
    ============================================ */
 
 .estadisticas-section {
-    background: linear-gradient(135deg, var(--navy) 0%, #001159 100%);
+    background: white;
     margin: 80px -20px 0;
     padding: 80px 20px;
     position: relative;
@@ -1536,7 +1870,7 @@ html {
     right: -200px;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(197, 160, 89, 0.1), transparent);
+    background: radial-gradient(circle, rgba(197, 160, 89, 0.05), transparent);
     border-radius: 50%;
     animation: pulse 10s ease-in-out infinite;
 }
@@ -1548,7 +1882,7 @@ html {
     left: -150px;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent);
+    background: radial-gradient(circle, rgba(0, 9, 60, 0.03), transparent);
     border-radius: 50%;
 }
 
@@ -1564,26 +1898,33 @@ html {
 
 .stat-card {
     text-align: center;
-    color: white;
-    transition: transform 0.3s ease;
+    background: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    border: 3px solid var(--gold);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
 }
 
 .stat-card:hover {
     transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    border-color: var(--navy);
 }
 
 .stat-icon {
     width: 100px;
     height: 100px;
-    background: rgba(255,255,255,0.12);
+    background: linear-gradient(135deg, var(--gold), #d4a75a);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 25px;
     font-size: 45px;
+    color: white;
     transition: all 0.4s ease;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3);
     position: relative;
 }
 
@@ -1592,7 +1933,7 @@ html {
     position: absolute;
     inset: -5px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--gold), transparent);
+    background: linear-gradient(135deg, var(--navy), transparent);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -1602,24 +1943,24 @@ html {
 }
 
 .stat-card:hover .stat-icon {
-    background: var(--gold);
-    color: var(--navy);
+    background: linear-gradient(135deg, var(--navy), #001159);
+    color: white;
     transform: scale(1.15) rotate(5deg);
-    box-shadow: 0 15px 40px rgba(197, 160, 89, 0.5);
+    box-shadow: 0 15px 40px rgba(0, 9, 60, 0.5);
 }
 
 .stat-number {
     font-size: 56px;
     font-weight: 700;
-    color: var(--gold);
+    color: var(--navy);
     margin-bottom: 12px;
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-shadow: none;
 }
 
 .stat-label {
     font-size: 18px;
-    font-weight: 500;
-    color: rgba(255,255,255,0.95);
+    font-weight: 600;
+    color: #555;
     margin: 0;
     letter-spacing: 0.5px;
 }
@@ -1832,11 +2173,10 @@ html {
     }
 
     .columna-imagen {
-        position: relative;
-        top: 0;
+        min-height: auto;
     }
 
-    .caja-imagen-grande {
+    .caja-imagen-grande:empty {
         min-height: 400px;
     }
 
@@ -1915,7 +2255,7 @@ html {
         line-height: 1.7;
     }
 
-    .caja-imagen-grande {
+    .caja-imagen-grande:empty {
         min-height: 300px;
     }
 
@@ -2012,7 +2352,7 @@ html {
         line-height: 1.6;
     }
 
-    .caja-imagen-grande {
+    .caja-imagen-grande:empty {
         min-height: 250px;
     }
 

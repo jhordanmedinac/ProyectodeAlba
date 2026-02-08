@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructores - CGPVP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="instructores-style.css">
+    <script type="module" src="./headBot.js"></script>
+    <script src="accesibilidad.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-navbar">
+        <div class="nav-content">
+            <div class="brand">
+                <div class="logo-container">
+                    <img src="IMAGENES/LOGO.png" alt="Logo CGPVP">
+                </div>
+                <div class="brand-titles">
+                    <span>Cuerpo General de</span>
+                    <span>Paramédicos Voluntarios</span>
+                    <span>del Perú</span>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <!-- Barra de búsqueda -->
+                <div class="navbar-search">
+                    <input 
+                        type="text" 
+                        id="navbarSearchInput" 
+                        placeholder="Buscar integrante..."
+                        aria-label="Buscar en el sitio"
+                    >
+                    <button type="button" class="search-btn" aria-label="Buscar">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+            <nav class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="Nosotros.html">Nosotros</a>
+                <a href="Unete.html">Únete</a>
+                <a href="Instructores.html" class="active">Instructores</a>
+                <a href="Cursos.html">Cursos</a>
+                <a href="not/noticias.html">Noticias</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="inst-container">
+        
+        <!-- Hero Section -->
+        <section class="inst-hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Nuestro Equipo de Instructores</h1>
+                <p class="hero-subtitle">Profesionales certificados comprometidos con la excelencia en formación de emergencias</p>
+            </div>
+        </section>
+
+        <!-- Barra de búsqueda y filtros -->
+        <section class="search-filter-bar reveal">
+            <div class="search-wrapper">
+                <input type="text" id="searchInstructors" placeholder="Buscar instructor...">
+                <button class="btn-search-icon">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <select class="filter-dropdown" id="specialtyFilter">
+                <option value="">Todas las especialidades</option>
+                <option value="emergencias">Emergencias</option>
+                <option value="rescate">Rescate</option>
+                <option value="trauma">Trauma</option>
+                <option value="soporte-vital">Soporte Vital</option>
+            </select>
+            
+            <select class="filter-dropdown" id="sortFilter">
+                <option value="">Ordenar por</option>
+                <option value="experiencia">Mayor experiencia</option>
+                <option value="rating">Mejor valorados</option>
+            </select>
+        </section>
+
+        <!-- Grid de Instructores y Sidebar -->
+        <section class="content-layout">
+            
+            <!-- Grid de Instructores -->
+            <div class="instructors-section">
+                
+                <!-- Instructor Destacado -->
+                <article class="instructor-featured reveal reveal-scale">
+                    <div class="featured-badge">DIRECTOR ACADÉMICO</div>
+                    <div class="featured-photo">
+                        <img src="https://via.placeholder.com/320x400/00093C/c5a059?text=Director" alt="Director Académico">
+                    </div>
+                    <div class="featured-content">
+                        <h2 class="featured-name">Dr. Ricardo Alejandro Torres Vega</h2>
+                        <p class="featured-role">
+                            <i class="fas fa-award"></i> Director de Formación Académica
+                        </p>
+                        <p class="featured-bio">
+                            Médico emergenciólogo con más de 20 años de experiencia en atención prehospitalaria y formación 
+                            de paramédicos. Certificado internacionalmente por NFPA, AHA y NAEMT. Ha liderado más de 
+                            150 programas de capacitación a nivel nacional e internacional.
+                        </p>
+                        <div class="featured-details">
+                            <div class="detail-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>+20 Años de Experiencia</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <span>+3,500 Alumnos Formados</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-certificate"></i>
+                                <span>Certificación NFPA / AHA</span>
+                            </div>
+                        </div>
+                        <div class="featured-footer">
+                            <div class="featured-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                            <button class="btn-featured">Ver Perfil Completo <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Grid de Instructores -->
+                <div class="instructors-grid">
+                    
+                    <!-- Instructor 1 -->
+                    <article class="instructor-card reveal">
+                        <div class="card-photo">
+                            <img src="https://via.placeholder.com/400x300/00093C/c5a059?text=Instructor+1" alt="Dr. Carlos Méndez">
+                            <div class="card-overlay">
+                                <div class="overlay-social">
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-specialty emergencias">Emergencias</span>
+                            <h3 class="card-name">Dr. Carlos Méndez</h3>
+                            <p class="card-title">
+                                <i class="fas fa-stethoscope"></i> Médico Emergenciólogo
+                            </p>
+                            <div class="card-stats">
+                                <div class="stat-item">
+                                    <span><i class="fas fa-clock"></i> 15 años exp.</span>
+                                    <span><i class="fas fa-star"></i> 4.9</span>
+                                </div>
+                            </div>
+                            <button class="btn-instructor">Ver Perfil</button>
+                        </div>
+                    </article>
+
+                    <!-- Instructor 2 -->
+                    <article class="instructor-card reveal">
+                        <div class="card-photo">
+                            <img src="https://via.placeholder.com/400x300/00093C/c5a059?text=Instructor+2" alt="Lic. María Torres">
+                            <div class="card-overlay">
+                                <div class="overlay-social">
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-specialty soporte-vital">Soporte Vital</span>
+                            <h3 class="card-name">Lic. María Torres</h3>
+                            <p class="card-title">
+                                <i class="fas fa-heartbeat"></i> Especialista en RCP y DEA
+                            </p>
+                            <div class="card-stats">
+                                <div class="stat-item">
+                                    <span><i class="fas fa-clock"></i> 12 años exp.</span>
+                                    <span><i class="fas fa-star"></i> 5.0</span>
+                                </div>
+                            </div>
+                            <button class="btn-instructor">Ver Perfil</button>
+                        </div>
+                    </article>
+
+                    <!-- Instructor 3 -->
+                    <article class="instructor-card reveal">
+                        <div class="card-photo">
+                            <img src="https://via.placeholder.com/400x300/00093C/c5a059?text=Instructor+3" alt="Dr. Roberto Silva">
+                            <div class="card-overlay">
+                                <div class="overlay-social">
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-specialty trauma">Trauma</span>
+                            <h3 class="card-name">Dr. Roberto Silva</h3>
+                            <p class="card-title">
+                                <i class="fas fa-ambulance"></i> Cirujano de Trauma
+                            </p>
+                            <div class="card-stats">
+                                <div class="stat-item">
+                                    <span><i class="fas fa-clock"></i> 18 años exp.</span>
+                                    <span><i class="fas fa-star"></i> 4.8</span>
+                                </div>
+                            </div>
+                            <button class="btn-instructor">Ver Perfil</button>
+                        </div>
+                    </article>
+
+                    <!-- Instructor 4 -->
+                    <article class="instructor-card reveal">
+                        <div class="card-photo">
+                            <img src="https://via.placeholder.com/400x300/00093C/c5a059?text=Instructor+4" alt="Cap. Jorge Ramos">
+                            <div class="card-overlay">
+                                <div class="overlay-social">
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-specialty rescate">Rescate</span>
+                            <h3 class="card-name">Cap. Jorge Ramos</h3>
+                            <p class="card-title">
+                                <i class="fas fa-hard-hat"></i> Especialista en Rescate Vehicular
+                            </p>
+                            <div class="card-stats">
+                                <div class="stat-item">
+                                    <span><i class="fas fa-clock"></i> 14 años exp.</span>
+                                    <span><i class="fas fa-star"></i> 4.9</span>
+                                </div>
+                            </div>
+                            <button class="btn-instructor">Ver Perfil</button>
+                        </div>
+                    </article>
+
+                    <!-- Instructor 5 -->
+                    <article class="instructor-card reveal">
+                        <div class="card-photo">
+                            <img src="https://via.placeholder.com/400x300/00093C/c5a059?text=Instructor+5" alt="Dra. Ana Herrera">
+                            <div class="card-overlay">
+                                <div class="overlay-social">
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-specialty emergencias">Emergencias</span>
+                            <h3 class="card-name">Dra. Ana Herrera</h3>
+                            <p class="card-title">
+                                <i class="fas fa-lungs"></i> Manejo de Vía Aérea Avanzada
+                            </p>
+                            <div class="card-stats">
+                                <div class="stat-item">
+                                    <span><i class="fas fa-clock"></i> 10 años exp.</span>
+                                    <span><i class="fas fa-star"></i> 5.0</span>
+                                </div>
+                            </div>
+                            <button class="btn-instructor">Ver Perfil</button>
+                        </div>
+                    </article>
+
+                    <!-- Instructor 6 -->
+                    <article class="instructor-card reveal">
+                        <div class="card-photo">
+                            <img src="https://via.placeholder.com/400x300/00093C/c5a059?text=Instructor+6" alt="Lic. Fernando Díaz">
+                            <div class="card-overlay">
+                                <div class="overlay-social">
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-specialty soporte-vital">Soporte Vital</span>
+                            <h3 class="card-name">Lic. Fernando Díaz</h3>
+                            <p class="card-title">
+                                <i class="fas fa-heart"></i> Instructor ACLS / PALS
+                            </p>
+                            <div class="card-stats">
+                                <div class="stat-item">
+                                    <span><i class="fas fa-clock"></i> 8 años exp.</span>
+                                    <span><i class="fas fa-star"></i> 4.7</span>
+                                </div>
+                            </div>
+                            <button class="btn-instructor">Ver Perfil</button>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="inst-sidebar">
+                
+                <!-- Especialidades -->
+                <div class="sidebar-box reveal reveal-right">
+                    <h3 class="sidebar-heading">Especialidades</h3>
+                    <ul class="sidebar-list">
+                        <li>
+                            <a href="#" class="list-link active">
+                                <span><i class="fas fa-circle"></i> Todos los Instructores</span>
+                                <span class="badge">18</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="list-link">
+                                <span><i class="fas fa-circle"></i> Emergencias</span>
+                                <span class="badge">6</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="list-link">
+                                <span><i class="fas fa-circle"></i> Rescate</span>
+                                <span class="badge">4</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="list-link">
+                                <span><i class="fas fa-circle"></i> Trauma</span>
+                                <span class="badge">3</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="list-link">
+                                <span><i class="fas fa-circle"></i> Soporte Vital</span>
+                                <span class="badge">5</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Sé Instructor -->
+                <div class="sidebar-box help-banner reveal reveal-right">
+                    <div class="help-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>¿Quieres ser Instructor?</h3>
+                    <p>Únete a nuestro equipo de formadores certificados y comparte tu experiencia</p>
+                    <button class="btn-help">Postular Ahora</button>
+                </div>
+
+            </aside>
+
+        </section>
+
+        <!-- Certificaciones y Respaldo -->
+        <section class="certifications-section">
+            <div class="cert-header reveal">
+                <h2>Certificaciones y Respaldo Institucional</h2>
+                <p>Nuestros instructores cuentan con las más altas acreditaciones internacionales</p>
+            </div>
+
+            <div class="cert-container">
+                
+                <div class="cert-box reveal">
+                    <div class="cert-icon-wrap">
+                        <i class="fas fa-fire-extinguisher"></i>
+                    </div>
+                    <div class="cert-info">
+                        <h4>NFPA – National Fire Protection Association</h4>
+                        <p class="cert-detail">Estándares internacionales en prevención de incendios, emergencias y formación de bomberos profesionales.</p>
+                    </div>
+                </div>
+
+                <div class="cert-box reveal">
+                    <div class="cert-icon-wrap">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="cert-info">
+                        <h4>AHA – American Heart Association</h4>
+                        <p class="cert-detail">Certificación en soporte vital básico y avanzado, RCP y uso de desfibriladores externos automáticos.</p>
+                    </div>
+                </div>
+
+                <div class="cert-box reveal">
+                    <div class="cert-icon-wrap">
+                        <i class="fas fa-ambulance"></i>
+                    </div>
+                    <div class="cert-info">
+                        <h4>NAEMT – National Association of EMTs</h4>
+                        <p class="cert-detail">Programas PHTLS y AMLS reconocidos mundialmente para la atención prehospitalaria de trauma y emergencias médicas.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+     <!-- FOOTER MEJORADO -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section footer-about">
+                <div class="footer-logo">
+                    <img src="IMAGENES/Insignia.png" alt="Logo CGPVP">
+                </div>
+                <div class="footer-social">
+                <a href="https://www.facebook.com/paramedicos.pe" target="_blank" aria-label="Facebook">
+                 <i class="fab fa-facebook-f"></i>
+                </a>
+                 <a href="https://www.linkedin.com/in/param%C3%A9dicos-del-per%C3%BA-324795203/" target="_blank" aria-label="LinkedIn">
+                   <i class="fab fa-linkedin-in"></i>
+                   </a>
+                     <a href="https://www.tiktok.com/@paramedicos.pe/video/7371679537878404358" target="_blank" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+               </a>
+          </div>
+
+                <p class="footer-copyright">
+                    Cuerpo General de Paramédicos Voluntarios del Perú © 2025.<br>
+                    Todos los derechos reservados                                                           
+                </p>                
+            </div>
+
+            <div class="footer-section">
+                <h4>Nosotros</h4>
+                <ul>
+                    <li><a href="#">Cuerpo General de Paramédicos Voluntarios</a></li>
+                    <li><a href="#">Independencia 102, Barranco, Lima, Perú</a></li>
+                    <li><a href="tel:+51987654321">Teléfono: +51 953 958 371</a></li>
+                    <li><a href="mailto:contacto@cgpvp.org">Email: contacto@cgpvp.org</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="index.html">Bienvenidos</a></li>
+                    <li><a href="Nosotros.html">Nosotros</a></li>
+                    <li><a href="Nosotros.html#mision">Misión</a></li>
+                    <li><a href="Nosotros.html#vision">Visión</a></li>
+                    <li><a href="Nosotros.html#organigrama">Organización</a></li>
+                </ul>
+            </div>           
+
+            <div class="footer-section footer-academy">
+                <div class="academy-badge">
+                    <img src="IMAGENES/LOGO.png" alt="Academy Badge">
+                </div>
+            </div>
+        </div>
+    </footer>   
+
+
+    <script>
+        // ============================================
+        // SCROLL REVEAL - IntersectionObserver
+        // ============================================
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ============================================
+        // Búsqueda de instructores en tiempo real
+        // ============================================
+        document.getElementById('searchInstructors').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.instructor-card');
+            
+            cards.forEach(card => {
+                const name = card.querySelector('.card-name').textContent.toLowerCase();
+                const title = card.querySelector('.card-title').textContent.toLowerCase();
+                
+                if (name.includes(searchTerm) || title.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // ============================================
+        // Interacción con especialidades del sidebar
+        // ============================================
+        const listLinks = document.querySelectorAll('.list-link');
+        listLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                listLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

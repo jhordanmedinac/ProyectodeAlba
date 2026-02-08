@@ -25,12 +25,25 @@
                     <span>del Perú</span>
                 </div>
             </div>
+            <nav class="nav-links">
+                <!-- Barra de búsqueda -->
+                <div class="navbar-search">
+                    <input 
+                        type="text" 
+                        id="navbarSearchInput" 
+                        placeholder="Buscar integrante..."
+                        aria-label="Buscar en el sitio"
+                    >
+                    <button type="button" class="search-btn" aria-label="Buscar">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
 
             <nav class="nav-links">
                 <a href="index.html">Inicio</a>
                 <a href="Nosotros.html">Nosotros</a>
                 <a href="Unete.html">Únete</a>
-                <a href="#">Instructores</a>
+                <a href="Instructores.html">Instructores</a>
                 <a href="Cursos.html" class="active">Cursos</a>
                 <a href="not/noticias.html">Noticias</a>
             </nav>
@@ -39,7 +52,7 @@
 
     <main class="cursos-container">
         
-        <!-- Hero Section con Gradiente -->
+        <!-- Hero Section -->
         <section class="cursos-hero">
             <div class="hero-content">
                 <h1 class="hero-title">Nuestros Cursos de Capacitación</h1>
@@ -48,7 +61,7 @@
         </section>
 
         <!-- Barra de búsqueda y filtros -->
-        <section class="search-filter-bar">
+        <section class="search-filter-bar reveal">
             <div class="search-wrapper">
                 <input type="text" id="searchCourses" placeholder="Buscar cursos...">
                 <button class="btn-search-icon">
@@ -68,8 +81,6 @@
                 <option value="">Ordenar por</option>
                 <option value="reciente">Más recientes</option>
                 <option value="popular">Más populares</option>
-                <option value="precio-bajo">Precio: Menor a Mayor</option>
-                <option value="precio-alto">Precio: Mayor a Menor</option>
             </select>
         </section>
 
@@ -80,7 +91,7 @@
             <div class="courses-section">
                 
                 <!-- Curso Destacado Grande -->
-                <article class="course-featured">
+                <article class="course-featured reveal reveal-scale">
                     <div class="featured-badge">CURSO DESTACADO</div>
                     <div class="featured-image">
                         <img src="IMAGENES/LOGO.png" alt="Programa NFPA">
@@ -109,7 +120,6 @@
                             </div>
                         </div>
                         <div class="featured-footer">
-                            <div class="featured-price">S/ 1,500</div>
                             <button class="btn-featured">Ver Detalles <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
@@ -119,9 +129,9 @@
                 <div class="courses-grid">
                     
                     <!-- Curso 1 -->
-                    <article class="course-card">
+                    <article class="course-card reveal">
                         <div class="course-image">
-                            <img src="https://via.placeholder.com/400x250/00093C/c5a059?text=Primeros+Auxilios" alt="Primeros Auxilios">
+                            <img src="IMAGENES/rescate.jpg" alt="Primeros Auxilios">
                         </div>
                         <div class="course-body">
                             <span class="course-level basico">Nivel Básico</span>
@@ -134,16 +144,15 @@
                                     <span><i class="fas fa-users"></i> 245</span>
                                     <span><i class="fas fa-star"></i> 4.8</span>
                                 </div>
-                                <div class="meta-price">S/ 250</div>
                             </div>
                             <button class="btn-course">Inscribirse Ahora</button>
                         </div>
                     </article>
 
                     <!-- Curso 2 -->
-                    <article class="course-card">
+                    <article class="course-card reveal">
                         <div class="course-image">
-                            <img src="https://via.placeholder.com/400x250/00093C/c5a059?text=RCP+%26+DEA" alt="RCP">
+                            <img src="IMAGENES/boca.jpg" alt="RCP">
                         </div>
                         <div class="course-body">
                             <span class="course-level basico">Nivel Básico</span>
@@ -156,16 +165,15 @@
                                     <span><i class="fas fa-users"></i> 189</span>
                                     <span><i class="fas fa-star"></i> 4.9</span>
                                 </div>
-                                <div class="meta-price">S/ 200</div>
                             </div>
                             <button class="btn-course">Inscribirse Ahora</button>
                         </div>
                     </article>
 
                     <!-- Curso 3 -->
-                    <article class="course-card">
+                    <article class="course-card reveal">
                         <div class="course-image">
-                            <img src="https://via.placeholder.com/400x250/00093C/c5a059?text=Trauma" alt="Trauma">
+                            <img src="IMAGENES/trauma.jpg" alt="Trauma">
                         </div>
                         <div class="course-body">
                             <span class="course-level intermedio">Nivel Intermedio</span>
@@ -178,16 +186,15 @@
                                     <span><i class="fas fa-users"></i> 134</span>
                                     <span><i class="fas fa-star"></i> 4.7</span>
                                 </div>
-                                <div class="meta-price">S/ 450</div>
                             </div>
                             <button class="btn-course">Inscribirse Ahora</button>
                         </div>
                     </article>
 
                     <!-- Curso 4 -->
-                    <article class="course-card">
+                    <article class="course-card reveal">
                         <div class="course-image">
-                            <img src="https://via.placeholder.com/400x250/00093C/c5a059?text=Rescate" alt="Rescate">
+                            <img src="IMAGENES/alianza.jpg" alt="Rescate">
                         </div>
                         <div class="course-body">
                             <span class="course-level avanzado">Nivel Avanzado</span>
@@ -200,51 +207,6 @@
                                     <span><i class="fas fa-users"></i> 98</span>
                                     <span><i class="fas fa-star"></i> 4.9</span>
                                 </div>
-                                <div class="meta-price">S/ 650</div>
-                            </div>
-                            <button class="btn-course">Inscribirse Ahora</button>
-                        </div>
-                    </article>
-
-                    <!-- Curso 5 -->
-                    <article class="course-card">
-                        <div class="course-image">
-                            <img src="https://via.placeholder.com/400x250/00093C/c5a059?text=Via+Aerea" alt="Vía Aérea">
-                        </div>
-                        <div class="course-body">
-                            <span class="course-level avanzado">Nivel Avanzado</span>
-                            <h3 class="course-name">Manejo Avanzado de Vía Aérea</h3>
-                            <p class="course-teacher">
-                                <i class="fas fa-user-tie"></i> Dr. Ana Herrera
-                            </p>
-                            <div class="course-meta">
-                                <div class="meta-stats">
-                                    <span><i class="fas fa-users"></i> 76</span>
-                                    <span><i class="fas fa-star"></i> 5.0</span>
-                                </div>
-                                <div class="meta-price">S/ 800</div>
-                            </div>
-                            <button class="btn-course">Inscribirse Ahora</button>
-                        </div>
-                    </article>
-
-                    <!-- Curso 6 -->
-                    <article class="course-card">
-                        <div class="course-image">
-                            <img src="https://via.placeholder.com/400x250/00093C/c5a059?text=Pediatria" alt="Pediatría">
-                        </div>
-                        <div class="course-body">
-                            <span class="course-level especializado">Especializado</span>
-                            <h3 class="course-name">Emergencias Pediátricas</h3>
-                            <p class="course-teacher">
-                                <i class="fas fa-user-tie"></i> Dra. Patricia Vega
-                            </p>
-                            <div class="course-meta">
-                                <div class="meta-stats">
-                                    <span><i class="fas fa-users"></i> 112</span>
-                                    <span><i class="fas fa-star"></i> 4.8</span>
-                                </div>
-                                <div class="meta-price">S/ 550</div>
                             </div>
                             <button class="btn-course">Inscribirse Ahora</button>
                         </div>
@@ -257,7 +219,7 @@
             <aside class="courses-sidebar">
                 
                 <!-- Categorías -->
-                <div class="sidebar-box">
+                <div class="sidebar-box reveal reveal-right">
                     <h3 class="sidebar-heading">Categorías</h3>
                     <ul class="sidebar-list">
                         <li>
@@ -293,20 +255,8 @@
                     </ul>
                 </div>
 
-                <!-- Filtro de Precio -->
-                <div class="sidebar-box">
-                    <h3 class="sidebar-heading">Filtrar por Precio</h3>
-                    <div class="price-range-filter">
-                        <input type="range" min="0" max="2000" value="1000" class="range-slider">
-                        <div class="range-values">
-                            <span>S/ 0</span>
-                            <span>S/ 2,000</span>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Banner de Ayuda -->
-                <div class="sidebar-box help-banner">
+                <div class="sidebar-box help-banner reveal reveal-right">
                     <div class="help-icon">
                         <i class="fas fa-headset"></i>
                     </div>
@@ -321,14 +271,14 @@
 
         <!-- Próximos Eventos -->
         <section class="events-section">
-            <div class="events-header">
+            <div class="events-header reveal">
                 <h2>Próximos Eventos y Talleres</h2>
                 <p>No te pierdas nuestras capacitaciones especiales</p>
             </div>
 
             <div class="events-container">
                 
-                <div class="event-box">
+                <div class="event-box reveal">
                     <div class="event-calendar">
                         <span class="calendar-day">15</span>
                         <span class="calendar-month">MAR</span>
@@ -341,7 +291,7 @@
                     <button class="btn-register">Registrarse</button>
                 </div>
 
-                <div class="event-box">
+                <div class="event-box reveal">
                     <div class="event-calendar">
                         <span class="calendar-day">22</span>
                         <span class="calendar-month">MAR</span>
@@ -354,7 +304,7 @@
                     <button class="btn-register">Registrarse</button>
                 </div>
 
-                <div class="event-box">
+                <div class="event-box reveal">
                     <div class="event-calendar">
                         <span class="calendar-day">05</span>
                         <span class="calendar-month">ABR</span>
@@ -372,19 +322,25 @@
 
     </main>
 
-    <!-- FOOTER -->
+     <!-- FOOTER MEJORADO -->
     <footer class="main-footer">
         <div class="footer-content">
             <div class="footer-section footer-about">
                 <div class="footer-logo">
-                    <img src="IMAGENES/LOGO.png" alt="Logo CGPVP">
+                    <img src="IMAGENES/Insignia.png" alt="Logo CGPVP">
                 </div>
                 <div class="footer-social">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                </div>
+                <a href="https://www.facebook.com/paramedicos.pe" target="_blank" aria-label="Facebook">
+                 <i class="fab fa-facebook-f"></i>
+                </a>
+                 <a href="https://www.linkedin.com/in/param%C3%A9dicos-del-per%C3%BA-324795203/" target="_blank" aria-label="LinkedIn">
+                   <i class="fab fa-linkedin-in"></i>
+                   </a>
+                     <a href="https://www.tiktok.com/@paramedicos.pe/video/7371679537878404358" target="_blank" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+               </a>
+          </div>
+
                 <p class="footer-copyright">
                     Cuerpo General de Paramédicos Voluntarios del Perú © 2025.<br>
                     Todos los derechos reservados                                                           
@@ -395,8 +351,8 @@
                 <h4>Nosotros</h4>
                 <ul>
                     <li><a href="#">Cuerpo General de Paramédicos Voluntarios</a></li>
-                    <li><a href="#">Av. Principal 123, Lima, Perú</a></li>
-                    <li><a href="tel:+51987654321">Teléfono: +51 (1) 987-654-321</a></li>
+                    <li><a href="#">Independencia 102, Barranco, Lima, Perú</a></li>
+                    <li><a href="tel:+51987654321">Teléfono: +51 953 958 371</a></li>
                     <li><a href="mailto:contacto@cgpvp.org">Email: contacto@cgpvp.org</a></li>
                 </ul>
             </div>
@@ -405,33 +361,44 @@
                 <h4>Navegación</h4>
                 <ul>
                     <li><a href="index.html">Bienvenidos</a></li>
-                    <li><a href="nosotros.html">Nosotros</a></li>
-                    <li><a href="unete.html">Únete</a></li>
-                    <li><a href="cursos.html">Cursos</a></li>
-                    <li><a href="#">Instructores</a></li>
+                    <li><a href="Nosotros.html">Nosotros</a></li>
+                    <li><a href="Nosotros.html#mision">Misión</a></li>
+                    <li><a href="Nosotros.html#vision">Visión</a></li>
+                    <li><a href="Nosotros.html#organigrama">Organización</a></li>
                 </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Soporte</h4>
-                <ul>
-                    <li><a href="#">Documentación</a></li>
-                    <li><a href="#">Foros</a></li>
-                    <li><a href="#">Abrir un Ticket</a></li>
-                    <li><a href="#">Preguntas Frecuentes</a></li>
-                </ul>
-            </div>
+            </div>          
 
             <div class="footer-section footer-academy">
                 <div class="academy-badge">
-                    <img src="https://via.placeholder.com/120x120" alt="Academy Badge">
+                    <img src="IMAGENES/LOGO.png" alt="Academy Badge">
                 </div>
             </div>
         </div>
-    </footer>
+    </footer>   
+
 
     <script>
+        // ============================================
+        // SCROLL REVEAL - IntersectionObserver
+        // ============================================
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ============================================
         // Búsqueda de cursos en tiempo real
+        // ============================================
         document.getElementById('searchCourses').addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
             const courses = document.querySelectorAll('.course-card');
@@ -448,7 +415,9 @@
             });
         });
 
+        // ============================================
         // Interacción con categorías del sidebar
+        // ============================================
         const listLinks = document.querySelectorAll('.list-link');
         listLinks.forEach(link => {
             link.addEventListener('click', function(e) {
@@ -457,14 +426,6 @@
                 this.classList.add('active');
             });
         });
-
-        // Slider de precio
-        const priceSlider = document.querySelector('.range-slider');
-        if (priceSlider) {
-            priceSlider.addEventListener('input', function() {
-                console.log('Precio máximo: S/', this.value);
-            });
-        }
     </script>
 </body>
 

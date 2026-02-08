@@ -27,19 +27,31 @@
             </div>
 
             <nav class="nav-links">
+                <!-- Barra de búsqueda -->
+                <div class="navbar-search">
+                    <input 
+                        type="text" 
+                        id="navbarSearchInput" 
+                        placeholder="Buscar instegrante..."
+                        aria-label="Buscar en el sitio"
+                    >
+                    <button type="button" class="search-btn" aria-label="Buscar">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
                 <a href="index.html">Inicio</a>
                 <a href="Nosotros.html">Nosotros</a>                
                 <a href="Unete.html" class="active">Únete</a>
-                <a href="#">Instructores</a>
+                <a href="Instructores.html">Instructores</a>
                 <a href="Cursos.html">Cursos</a>
                 <a href="not/noticias.html">Noticias</a>
-                <a href="#"><i class="fas fa-search"></i></a>
             </nav>
         </div>
     </header>
 
     <!-- Modal de Bienvenida -->
-    <div id="welcomeModal" class="modal-overlay active">
+    <div id="welcomeModal" class="modal-overlay">
         <div class="modal-container">
             <div class="modal-header">
                 <div class="modal-icon">
@@ -144,19 +156,16 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="edad">
-                                    <i class="fas fa-calendar-alt"></i> Edad <span class="required">*</span>
+                                <label for="fechaNacimiento">
+                                    <i class="fas fa-calendar-alt"></i> Fecha de Nacimiento <span class="required">*</span>
                                 </label>
                                 <input 
-                                    type="number" 
-                                    id="edad" 
-                                    name="edad" 
-                                    placeholder="18"
-                                    min="18"
-                                    max="65"
+                                    type="date" 
+                                    id="fechaNacimiento" 
+                                    name="fechaNacimiento" 
                                     required
                                 >
-                                <span class="form-error" id="error-edad"></span>
+                                <span class="form-error" id="error-fechaNacimiento"></span>
                             </div>
 
                             <div class="form-group">
@@ -325,6 +334,21 @@
                                 <span class="checkbox-text">Tengo experiencia previa en atención de emergencias o voluntariado</span>
                             </label>
                         </div>
+
+                        <!-- Campo condicional para detalles de experiencia -->
+                        <div class="form-group" id="experienciaDetalle" style="display: none;">
+                            <label for="experienciaTexto">
+                                <i class="fas fa-comment-medical"></i> Coméntenos en cuál
+                            </label>
+                            <textarea 
+                                id="experienciaTexto" 
+                                name="experienciaTexto" 
+                                rows="3" 
+                                placeholder="Describe brevemente tu experiencia previa (ej: Cruz Roja, bomberos voluntarios, etc.)"
+                                maxlength="300"
+                            ></textarea>
+                            <span class="char-counter-exp">0/300 caracteres</span>
+                        </div>
                     </div>
 
                     <!-- Términos y Condiciones -->
@@ -403,19 +427,25 @@
 
     </main>
 
-    <!-- FOOTER -->
+     <!-- FOOTER MEJORADO -->
     <footer class="main-footer">
         <div class="footer-content">
             <div class="footer-section footer-about">
                 <div class="footer-logo">
-                    <img src="IMAGENES/LOGO.png" alt="Logo CGPVP">
+                    <img src="IMAGENES/Insignia.png" alt="Logo CGPVP">
                 </div>
                 <div class="footer-social">
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                </div>
+                <a href="https://www.facebook.com/paramedicos.pe" target="_blank" aria-label="Facebook">
+                 <i class="fab fa-facebook-f"></i>
+                </a>
+                 <a href="https://www.linkedin.com/in/param%C3%A9dicos-del-per%C3%BA-324795203/" target="_blank" aria-label="LinkedIn">
+                   <i class="fab fa-linkedin-in"></i>
+                   </a>
+                     <a href="https://www.tiktok.com/@paramedicos.pe/video/7371679537878404358" target="_blank" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+               </a>
+          </div>
+
                 <p class="footer-copyright">
                     Cuerpo General de Paramédicos Voluntarios del Perú © 2025.<br>
                     Todos los derechos reservados                                                           
@@ -426,8 +456,8 @@
                 <h4>Nosotros</h4>
                 <ul>
                     <li><a href="#">Cuerpo General de Paramédicos Voluntarios</a></li>
-                    <li><a href="#">Av. Principal 123, Lima, Perú</a></li>
-                    <li><a href="tel:+51987654321">Teléfono: +51 (1) 987-654-321</a></li>
+                    <li><a href="#">Independencia 102, Barranco, Lima, Perú</a></li>
+                    <li><a href="tel:+51987654321">Teléfono: +51 953 958 371</a></li>
                     <li><a href="mailto:contacto@cgpvp.org">Email: contacto@cgpvp.org</a></li>
                 </ul>
             </div>
@@ -436,30 +466,21 @@
                 <h4>Navegación</h4>
                 <ul>
                     <li><a href="index.html">Bienvenidos</a></li>
-                    <li><a href="nosotros.html">Nosotros</a></li>
-                    <li><a href="#">Misión</a></li>
-                    <li><a href="#">Visión</a></li>
-                    <li><a href="#">Organización</a></li>
+                    <li><a href="Nosotros.html">Nosotros</a></li>
+                    <li><a href="Nosotros.html#mision">Misión</a></li>
+                    <li><a href="Nosotros.html#vision">Visión</a></li>
+                    <li><a href="Nosotros.html#organigrama">Organización</a></li>
                 </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Soporte</h4>
-                <ul>
-                    <li><a href="#">Documentación</a></li>
-                    <li><a href="#">Foros</a></li>
-                    <li><a href="#">Abrir un Ticket</a></li>
-                    <li><a href="#">Preguntas Frecuentes</a></li>
-                </ul>
-            </div>
+            </div>          
 
             <div class="footer-section footer-academy">
                 <div class="academy-badge">
-                    <img src="https://via.placeholder.com/120x120" alt="Academy Badge">
+                    <img src="IMAGENES/LOGO.png" alt="Academy Badge">
                 </div>
             </div>
         </div>
-    </footer>
+    </footer>   
+
 
     <!-- Modal de Confirmación -->
     <div id="confirmModal" class="modal-overlay">
@@ -487,15 +508,55 @@
     </div>
 
     <script>
+        // Establecer fecha máxima (13 años atrás desde hoy)
+        function setMaxDate() {
+            const today = new Date();
+            const maxDate = new Date(today.getFullYear() - 13, today.getMonth(), today.getDate());
+            const maxDateString = maxDate.toISOString().split('T')[0];
+            document.getElementById('fechaNacimiento').setAttribute('max', maxDateString);
+            
+            // Establecer fecha mínima (por ejemplo, 100 años atrás)
+            const minDate = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
+            const minDateString = minDate.toISOString().split('T')[0];
+            document.getElementById('fechaNacimiento').setAttribute('min', minDateString);
+        }
+
+        // Ejecutar al cargar la página
+        window.addEventListener('load', () => {
+            setMaxDate();
+            // Mostrar el modal de bienvenida
+            document.getElementById('welcomeModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
         // Modal de Bienvenida
         function acceptModal() {
-            document.getElementById('welcomeModal').classList.remove('active');
+            const modal = document.getElementById('welcomeModal');
+            modal.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        // Prevenir cierre del modal inicial
-        window.addEventListener('load', () => {
-            document.body.style.overflow = 'hidden';
+        // Cerrar modal al hacer clic fuera (solo para modal de bienvenida)
+        document.addEventListener('click', function(e) {
+            const welcomeModal = document.getElementById('welcomeModal');
+            const confirmModal = document.getElementById('confirmModal');
+            
+            // Modal de bienvenida
+            if (e.target === welcomeModal && welcomeModal.classList.contains('active')) {
+                acceptModal();
+            }
+            
+            // Modal de confirmación
+            if (e.target === confirmModal && confirmModal.classList.contains('active')) {
+                closeConfirmModal();
+            }
+        });
+
+        // Prevenir que el clic en el contenido del modal lo cierre
+        document.querySelectorAll('.modal-container').forEach(container => {
+            container.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
         });
 
         // Validación DNI
@@ -508,11 +569,46 @@
             this.value = this.value.replace(/[^0-9]/g, '');
         });
 
-        // Contador de caracteres
+        // Contador de caracteres para motivación
         document.getElementById('motivacion').addEventListener('input', function() {
             const counter = this.parentElement.querySelector('.char-counter');
             counter.textContent = `${this.value.length}/500 caracteres`;
         });
+
+        // Mostrar/ocultar campo de experiencia
+        document.getElementById('experiencia').addEventListener('change', function() {
+            const experienciaDetalle = document.getElementById('experienciaDetalle');
+            const experienciaTexto = document.getElementById('experienciaTexto');
+            
+            if (this.checked) {
+                experienciaDetalle.style.display = 'flex';
+                experienciaTexto.focus();
+            } else {
+                experienciaDetalle.style.display = 'none';
+                experienciaTexto.value = '';
+                document.querySelector('.char-counter-exp').textContent = '0/300 caracteres';
+            }
+        });
+
+        // Contador de caracteres para experiencia
+        document.getElementById('experienciaTexto').addEventListener('input', function() {
+            const counter = document.querySelector('.char-counter-exp');
+            counter.textContent = `${this.value.length}/300 caracteres`;
+        });
+
+        // Función para calcular edad desde fecha de nacimiento
+        function calcularEdad(fechaNacimiento) {
+            const hoy = new Date();
+            const nacimiento = new Date(fechaNacimiento);
+            let edad = hoy.getFullYear() - nacimiento.getFullYear();
+            const mes = hoy.getMonth() - nacimiento.getMonth();
+            
+            if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
+                edad--;
+            }
+            
+            return edad;
+        }
 
         // Validación del Formulario
         document.getElementById('registroForm').addEventListener('submit', function(e) {
@@ -549,11 +645,17 @@
                 isValid = false;
             }
 
-            // Validar edad
-            const edad = document.getElementById('edad');
-            if (edad.value < 18 || edad.value > 65) {
-                showError('edad', 'La edad debe estar entre 18 y 65 años');
+            // Validar fecha de nacimiento
+            const fechaNacimiento = document.getElementById('fechaNacimiento');
+            if (!fechaNacimiento.value) {
+                showError('fechaNacimiento', 'Debes ingresar tu fecha de nacimiento');
                 isValid = false;
+            } else {
+                const edad = calcularEdad(fechaNacimiento.value);
+                if (edad < 13) {
+                    showError('fechaNacimiento', 'Debes tener al menos 13 años para postular');
+                    isValid = false;
+                }
             }
 
             // Validar email
@@ -619,17 +721,35 @@
             window.location.href = 'index.html';
         }
 
-        // Prevenir cierre de modales al hacer click fuera
-        document.querySelectorAll('.modal-overlay').forEach(modal => {
-            modal.addEventListener('click', function(e) {
-                if (e.target === this && this.id !== 'welcomeModal') {
-                    // Solo permitir cerrar el modal de confirmación
-                    if (this.id === 'confirmModal') {
-                        closeConfirmModal();
-                    }
+        // Funcionalidad de búsqueda del navbar
+        const navbarSearchInput = document.getElementById('navbarSearchInput');
+        const searchBtn = document.querySelector('.navbar-search .search-btn');
+
+        // Búsqueda al hacer clic en el botón
+        if (searchBtn) {
+            searchBtn.addEventListener('click', function() {
+                performSearch();
+            });
+        }
+
+        // Búsqueda al presionar Enter
+        if (navbarSearchInput) {
+            navbarSearchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
                 }
             });
-        });
+        }
+
+        function performSearch() {
+            const searchTerm = navbarSearchInput.value.trim();
+            if (searchTerm) {
+                // Aquí puedes redirigir a una página de resultados o implementar búsqueda en el sitio
+                alert(`Buscando: "${searchTerm}"\n\nEsta funcionalidad se puede conectar a tu sistema de búsqueda.`);
+                // Ejemplo de redirección:
+                // window.location.href = `buscar.html?q=${encodeURIComponent(searchTerm)}`;
+            }
+        }
     </script>
 </body>
 
