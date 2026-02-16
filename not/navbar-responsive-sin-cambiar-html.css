@@ -1,0 +1,408 @@
+/* ============================================
+   NAVBAR RESPONSIVE - VERSIÓN SIN CAMBIAR HTML
+   Funciona con tu estructura actual
+   ============================================ */
+
+/* TABLET Y MÓVIL (< 1024px) */
+@media (max-width: 1024px) {
+    .main-navbar {
+        padding: 15px 20px;
+    }
+    
+    .nav-content {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    /* Logo centrado arriba */
+    .brand {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+        margin-right: 0;
+        width: 100%;
+    }
+    
+    .logo-container {
+        width: 60px;
+    }
+    
+    .brand-titles {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .brand-titles span {
+        font-size: 11px;
+        text-align: center;
+    }
+    
+    /* Contenedor de navegación */
+    .nav-content > .nav-links {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+    
+    /* Barra de búsqueda PRIMERO (arriba de los botones) */
+    .navbar-search {
+        display: flex !important;
+        width: 100%;
+        max-width: 400px;
+        margin: 0;
+        order: -1;
+    }
+    
+    .navbar-search input {
+        width: 100%;
+        padding: 12px 45px 12px 20px;
+        font-size: 14px;
+        border-radius: 30px;
+    }
+    
+    .navbar-search input:focus {
+        width: 100%;
+    }
+    
+    .navbar-search .search-btn {
+        right: 10px;
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+    
+    /* 🔥 GRID 2 COLUMNAS - CON !IMPORTANT PARA SOBRESCRIBIR */
+    .nav-content > .nav-links > .nav-links {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        width: 100% !important;
+        max-width: 500px !important;
+    }
+    
+    /* Estilos de los botones */
+    .nav-content > .nav-links > .nav-links a {
+        background: rgba(197, 160, 89, 0.2);
+        padding: 10px 15px;
+        border-radius: 25px;
+        text-align: center;
+        font-size: 13px;
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        grid-column: auto !important; /* Evita que ocupe toda la fila */
+    }
+    
+    .nav-content > .nav-links > .nav-links a:hover {
+        background: rgba(197, 160, 89, 0.4);
+        border-color: var(--gold);
+    }
+    
+    .nav-content > .nav-links > .nav-links a.active {
+        background: var(--gold);
+        color: var(--navy);
+        border-bottom: none;
+        padding: 10px 15px;
+        font-weight: 600;
+        width: 100%;
+        box-sizing: border-box;
+        grid-column: auto !important; /* Evita que ocupe toda la fila */
+    }
+    
+    /* 🔥 IMPORTANTE: Evitar que el último botón ocupe toda la fila */
+    .nav-content > .nav-links > .nav-links a:last-child {
+        grid-column: auto !important;
+        justify-self: stretch !important;
+        max-width: 100% !important;
+        padding: 10px 15px !important;
+    }
+}
+
+/* MÓVIL PEQUEÑO (< 768px) */
+@media (max-width: 768px) {
+    .main-navbar {
+        padding: 12px 15px;
+    }
+    
+    .logo-container {
+        width: 55px;
+    }
+    
+    .brand-titles span {
+        font-size: 10px;
+    }
+    
+    /* 🔥 GRID 2 COLUMNAS */
+    .nav-content > .nav-links > .nav-links {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+        max-width: 100% !important;
+    }
+    
+    .nav-content > .nav-links > .nav-links a {
+        font-size: 12px;
+        padding: 8px 10px;
+        width: 100%;
+        box-sizing: border-box;
+        grid-column: auto !important;
+    }
+    
+    .nav-content > .nav-links > .nav-links a:last-child {
+        grid-column: auto !important;
+        justify-self: stretch !important;
+        max-width: 100% !important;
+        padding: 8px 10px !important;
+    }
+    
+    /* Barra de búsqueda */
+    .navbar-search {
+        max-width: 100%;
+    }
+    
+    .navbar-search input {
+        padding: 10px 40px 10px 15px;
+        font-size: 13px;
+    }
+}
+
+/* MÓVIL MUY PEQUEÑO (< 480px) */
+@media (max-width: 480px) {
+    .main-navbar {
+        padding: 10px 12px;
+    }
+    
+    .logo-container {
+        width: 50px;
+    }
+    
+    .brand-titles span {
+        font-size: 9px;
+        line-height: 1.2;
+    }
+    
+    /* 🔥 GRID 2 COLUMNAS */
+    .nav-content > .nav-links > .nav-links {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 6px !important;
+    }
+    
+    .nav-content > .nav-links > .nav-links a {
+        font-size: 11px;
+        padding: 8px 6px;
+        width: 100%;
+        box-sizing: border-box;
+        grid-column: auto !important;
+    }
+    
+    .nav-content > .nav-links > .nav-links a:last-child {
+        grid-column: auto !important;
+        justify-self: stretch !important;
+        max-width: 100% !important;
+        padding: 8px 6px !important;
+    }
+    
+    /* Barra de búsqueda ajustada */
+    .navbar-search {
+        margin-top: 0;
+    }
+    
+    .navbar-search input {
+        padding: 10px 40px 10px 12px;
+        font-size: 12px;
+    }
+    
+    .navbar-search .search-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+}
+
+/* ============================================
+   PANTALLAS EXTRA PEQUEÑAS (< 320px)
+   Para dispositivos muy pequeños tipo 200px
+   ============================================ */
+@media (max-width: 320px) {
+    .main-navbar {
+        padding: 8px 8px;
+    }
+    
+    .logo-container {
+        width: 40px;
+    }
+    
+    .brand-titles span {
+        font-size: 8px;
+        line-height: 1.1;
+    }
+    
+    .nav-content > .nav-links {
+        gap: 8px;
+    }
+    
+    /* 🔥 GRID 2 COLUMNAS */
+    .nav-content > .nav-links > .nav-links {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 5px !important;
+        max-width: 100% !important;
+    }
+    
+    .nav-content > .nav-links > .nav-links a {
+        font-size: 9px;
+        padding: 6px 4px;
+        border-radius: 15px;
+        width: 100%;
+        box-sizing: border-box;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        grid-column: auto !important;
+    }
+    
+    .nav-content > .nav-links > .nav-links a.active {
+        font-size: 9px;
+        padding: 6px 4px;
+        width: 100%;
+        box-sizing: border-box;
+        grid-column: auto !important;
+    }
+    
+    .nav-content > .nav-links > .nav-links a:last-child {
+        grid-column: auto !important;
+        justify-self: stretch !important;
+        max-width: 100% !important;
+        padding: 6px 4px !important;
+    }
+    
+    /* Barra de búsqueda más compacta */
+    .navbar-search {
+        max-width: 100%;
+    }
+    
+    .navbar-search input {
+        padding: 8px 35px 8px 10px;
+        font-size: 10px;
+        border-radius: 20px;
+    }
+    
+    .navbar-search .search-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+        right: 8px;
+    }
+}
+
+/* ============================================
+   ULTRA PEQUEÑAS (< 250px)
+   Para casos extremos como 200px
+   ============================================ */
+@media (max-width: 250px) {
+    .main-navbar {
+        padding: 6px 6px;
+    }
+    
+    .logo-container {
+        width: 35px;
+    }
+    
+    .brand-titles {
+        display: none; /* Ocultar títulos en pantallas muy pequeñas */
+    }
+    
+    .nav-content {
+        gap: 6px;
+    }
+    
+    .nav-content > .nav-links {
+        gap: 6px;
+    }
+    
+    /* 🔥 GRID 2 COLUMNAS */
+    .nav-content > .nav-links > .nav-links {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 4px !important;
+    }
+    
+    .nav-content > .nav-links > .nav-links a {
+        font-size: 8px;
+        padding: 5px 3px;
+        border-radius: 12px;
+        line-height: 1.2;
+        grid-column: auto !important;
+    }
+    
+    .nav-content > .nav-links > .nav-links a.active {
+        font-size: 8px;
+        padding: 5px 3px;
+        grid-column: auto !important;
+    }
+    
+    .nav-content > .nav-links > .nav-links a:last-child {
+        grid-column: auto !important;
+        justify-self: stretch !important;
+        max-width: 100% !important;
+        padding: 5px 3px !important;
+    }
+    
+    /* Barra de búsqueda ultra compacta */
+    .navbar-search input {
+        padding: 6px 30px 6px 8px;
+        font-size: 9px;
+        border-radius: 15px;
+    }
+    
+    .navbar-search .search-btn {
+        width: 24px;
+        height: 24px;
+        font-size: 10px;
+        right: 6px;
+    }
+}
+
+/* ============================================
+   AJUSTE PARA EL DROPDOWN DE RESULTADOS
+   En móvil debe quedar centrado y responsivo
+   ============================================ */
+@media (max-width: 768px) {
+    .search-results-dropdown {
+        position: fixed !important;
+        top: auto !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        max-height: 50vh !important;
+        border-radius: 20px 20px 0 0 !important;
+        box-shadow: 0 -10px 40px rgba(0, 9, 60, 0.3) !important;
+    }
+}
+
+/* ============================================
+   ORDEN: Logo → Búsqueda → Botones
+   Esto hace que la búsqueda aparezca ARRIBA de los botones
+   ============================================ */
+@media (max-width: 1024px) {
+    .nav-content > .nav-links {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    /* La búsqueda va primero */
+    .navbar-search {
+        order: 1;
+    }
+    
+    /* Los botones van después */
+    .nav-content > .nav-links > .nav-links {
+        order: 2;
+    }
+}

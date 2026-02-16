@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias - CGPVP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="noticiasstyle.css">
+    <link rel="stylesheet" href="noticias-stylebody.css">
+    <link rel="stylesheet" href="buscar-miembros.css">
+    <link rel="stylesheet" href="navbar-responsive-sin-cambiar-html.css">
+    <script type="module" src="./headBot.js"></script>
+    <script src="accesibilidad.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="../IMAGENES/LOGO.png" type="image/png">
+</head>
+<body>
+
+    <header class="main-navbar">
+        <div class="nav-content">
+            <div class="brand">
+                <div class="logo-container">
+                    <img src="../IMAGENES/LOGO.png" alt="Logo CGPVP">
+                </div>
+                <div class="brand-titles">
+                    <span>Cuerpo General de</span>
+                    <span>Paramédicos Voluntarios</span>
+                    <span>del Perú</span>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <!-- Barra de búsqueda -->
+                <div class="navbar-search">
+                    <input 
+                        type="text" 
+                        id="navbarSearchInput" 
+                        placeholder="Buscar integrante..."
+                        aria-label="Buscar en el sitio"
+                    >
+                    <button type="button" class="search-btn" aria-label="Buscar">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+            <nav class="nav-links">
+                <a href="../index.html">Inicio</a>
+                <a href="../nos/Nosotros.html">Nosotros</a>
+                <a href="../un/Unete.html">Únete</a>
+                <a href="../ins/Instructores.html">Instructores</a>
+                <a href="../cur/Cursos.html">Cursos</a>
+                <a href="../not/noticias.html" class="active">Noticias</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="news-container">
+        
+        <!-- Hero Section -->
+        <section class="news-hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Noticias y Actualidad</h1>
+                <p class="hero-subtitle">Mantente informado sobre nuestras actividades, eventos y lo último</p>
+            </div>
+        </section>
+
+        <!-- Barra de búsqueda y filtros -->
+        <section class="search-filter-bar reveal">
+            <div class="search-wrapper">
+                <input type="text" id="searchNews" placeholder="Buscar noticia...">
+                <button class="btn-search-icon">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <select class="filter-dropdown" id="categoryFilter">
+                <option value="">Todas las categorías</option>
+                <option value="eventos">Eventos</option>
+                <option value="capacitaciones">Capacitaciones</option>
+                <option value="emergencias">Emergencias</option>
+                <option value="logros">Logros</option>
+                <option value="alianzas">Alianzas</option>
+            </select>
+            
+            <select class="filter-dropdown" id="dateFilter">
+                <option value="">Ordenar por</option>
+                <option value="recientes">Más recientes</option>
+                <option value="antiguas">Más antiguas</option>
+            </select>
+        </section>
+
+        <!-- Grid de Noticias y Sidebar -->
+        <section class="content-layout">
+            
+            <!-- Grid de Noticias -->
+            <div class="news-section">
+                
+                <!-- Noticia Destacada -->
+                <article class="news-featured reveal reveal-scale">
+                    <div class="featured-badge">NOTICIA DESTACADA</div>
+                    <div class="featured-image">
+                        <img src="https://via.placeholder.com/800x450/00093C/c5a059?text=Noticia+Destacada" alt="Noticia Destacada">
+                    </div>
+                    <div class="featured-content">
+                        <span class="news-date"><i class="fas fa-calendar-alt"></i> 5 de Febrero, 2026</span>
+                        <p class="featured-excerpt">
+                            El Cuerpo General de Paramédicos Voluntarios del Perú participó activamente en el Gran Simulacro Nacional, 
+                            coordinando la atención de más de 500 casos simulados en Lima y provincias. Esta importante actividad 
+                            permitió evaluar los protocolos de respuesta ante desastres naturales y fortalecer la coordinación 
+                            interinstitucional con bomberos, policía y defensa civil.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Grid de Noticias -->
+                <div class="news-grid">
+                    
+                    <!-- Noticia 1 -->
+                    <article class="news-card reveal" data-category="capacitaciones">
+                        <div class="card-image">
+                            <img src="https://via.placeholder.com/400x250/00093C/c5a059?text=Capacitacion" alt="Capacitación">
+                        </div>
+                        <div class="card-body">
+                            <span class="card-date"><i class="fas fa-calendar-alt"></i> 1 de Febrero, 2026</span>
+                            <p class="card-excerpt">
+                                Iniciamos un nuevo programa de certificación internacional en Soporte Vital Cardiovascular Avanzado (ACLS) 
+                                con instructores certificados por la American Heart Association.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Noticia 2 -->
+                    <article class="news-card reveal" data-category="logros">
+                        <div class="card-image">
+                            <img src="https://via.placeholder.com/400x250/00093C/c5a059?text=Reconocimiento" alt="Reconocimiento">
+                        </div>
+                        <div class="card-body">
+                            <span class="card-date"><i class="fas fa-calendar-alt"></i> 28 de Enero, 2026</span>
+                            <p class="card-excerpt">
+                                El CGPVP recibe reconocimiento del Ministerio de Salud por su destacada labor en la atención prehospitalaria 
+                                durante el año 2025, atendiendo más de 3,000 emergencias en todo el país.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Noticia 3 -->
+                    <article class="news-card reveal" data-category="emergencias">
+                        <div class="card-image">
+                            <img src="https://via.placeholder.com/400x250/00093C/c5a059?text=Emergencia" alt="Emergencia">
+                        </div>
+                        <div class="card-body">
+                            <span class="card-date"><i class="fas fa-calendar-alt"></i> 25 de Enero, 2026</span>
+                            <p class="card-excerpt">
+                                Nuestros equipos de respuesta rápida actuaron con eficiencia durante el sismo de magnitud 5.8 en Arequipa, 
+                                brindando atención inmediata a los afectados y coordinando con autoridades locales.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Noticia 4 -->
+                    <article class="news-card reveal" data-category="alianzas">
+                        <div class="card-image">
+                            <img src="https://via.placeholder.com/400x250/00093C/c5a059?text=Alianza" alt="Alianza">
+                        </div>
+                        <div class="card-body">
+                            <span class="card-date"><i class="fas fa-calendar-alt"></i> 20 de Enero, 2026</span>
+                            <p class="card-excerpt">
+                                Firmamos un convenio de colaboración con el Cuerpo General de Bomberos Voluntarios del Perú para fortalecer 
+                                la respuesta ante emergencias y desastres en todo el territorio nacional.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Noticia 5 -->
+                    <article class="news-card reveal" data-category="capacitaciones">
+                        <div class="card-image">
+                            <img src="https://via.placeholder.com/400x250/00093C/c5a059?text=BLS" alt="Curso BLS">
+                        </div>
+                        <div class="card-body">
+                            <span class="card-date"><i class="fas fa-calendar-alt"></i> 15 de Enero, 2026</span>
+                            <p class="card-excerpt">
+                                Más de 100 personas recibieron certificación en Soporte Vital Básico (BLS) durante nuestro programa intensivo 
+                                de capacitación comunitaria realizado en Lima.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Noticia 6 -->
+                    <article class="news-card reveal" data-category="eventos">
+                        <div class="card-image">
+                            <img src="https://via.placeholder.com/400x250/00093C/c5a059?text=Maraton" alt="Maratón">
+                        </div>
+                        <div class="card-body">
+                            <span class="card-date"><i class="fas fa-calendar-alt"></i> 10 de Enero, 2026</span>
+                            <p class="card-excerpt">
+                                Participamos en la cobertura médica de la Maratón Internacional de Lima, brindando atención a más de 
+                                15,000 corredores durante todo el evento deportivo.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Noticia 7 -->
+                    <article class="news-card reveal" data-category="logros">
+                        <div class="card-image">
+                            <img src="https://via.placeholder.com/400x250/00093C/c5a059?text=Donacion" alt="Donación">
+                        </div>
+                        <div class="card-body">
+                            <span class="card-date"><i class="fas fa-calendar-alt"></i> 5 de Enero, 2026</span>
+                            <p class="card-excerpt">
+                                Recibimos donación de equipamiento médico moderno valorizado en $50,000 que permitirá mejorar 
+                                significativamente nuestra capacidad de respuesta en emergencias.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Noticia 8 -->
+                    <article class="news-card reveal" data-category="capacitaciones">
+                        <div class="card-image">
+                            <img src="https://via.placeholder.com/400x250/00093C/c5a059?text=PHTLS" alt="PHTLS">
+                        </div>
+                        <div class="card-body">
+                            <span class="card-date"><i class="fas fa-calendar-alt"></i> 1 de Enero, 2026</span>
+                            <p class="card-excerpt">
+                                Iniciamos el año con el lanzamiento de nuestro nuevo programa de Atención Prehospitalaria al Traumatizado (PHTLS) 
+                                con certificación internacional.
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="sidebar reveal">
+                
+                <!-- Próximos Eventos y Talleres -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Próximos Eventos y Talleres</h3>
+                    <div class="events-list">
+                        <article class="event-item">
+                            <div class="event-content">
+                                <h4 class="event-title">Curso de Soporte Vital Básico (BLS)</h4>
+                                <div class="event-details">
+                                    <span class="event-date"><i class="fas fa-calendar-alt"></i> 15 de Marzo, 2026</span>
+                                    <span class="event-mode"><i class="fas fa-laptop"></i> Virtual</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="event-item">
+                            <div class="event-content">
+                                <h4 class="event-title">Taller de Primeros Auxilios Pediátricos</h4>
+                                <div class="event-details">
+                                    <span class="event-date"><i class="fas fa-calendar-alt"></i> 22 de Marzo, 2026</span>
+                                    <span class="event-mode"><i class="fas fa-building"></i> Presencial</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="event-item">
+                            <div class="event-content">
+                                <h4 class="event-title">Certificación ACLS Avanzado</h4>
+                                <div class="event-details">
+                                    <span class="event-date"><i class="fas fa-calendar-alt"></i> 5 de Abril, 2026</span>
+                                    <span class="event-mode"><i class="fas fa-users"></i> Híbrido</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- Noticias Recientes -->
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">Noticias Recientes</h3>
+                    <div class="recent-news-list">
+                        <article class="recent-news-item">
+                            <img src="https://via.placeholder.com/80x60/00093C/c5a059" alt="Noticia reciente">
+                            <div class="recent-news-content">
+                                <h4>Gran Simulacro Nacional 2026</h4>
+                                <span class="recent-date"><i class="fas fa-calendar-alt"></i> 5 Feb, 2026</span>
+                            </div>
+                        </article>
+                        <article class="recent-news-item">
+                            <img src="https://via.placeholder.com/80x60/00093C/c5a059" alt="Noticia reciente">
+                            <div class="recent-news-content">
+                                <h4>Nuevo curso ACLS certificado</h4>
+                                <span class="recent-date"><i class="fas fa-calendar-alt"></i> 1 Feb, 2026</span>
+                            </div>
+                        </article>
+                        <article class="recent-news-item">
+                            <img src="https://via.placeholder.com/80x60/00093C/c5a059" alt="Noticia reciente">
+                            <div class="recent-news-content">
+                                <h4>Reconocimiento del MINSA</h4>
+                                <span class="recent-date"><i class="fas fa-calendar-alt"></i> 28 Ene, 2026</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="sidebar-widget newsletter-widget">
+                    <h3 class="widget-title">Recibe Noticias</h3>
+                    <p>Suscríbete para recibir las últimas actualizaciones</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Tu email" required>
+                        <button type="submit" class="btn-newsletter">Suscribirme</button>
+                    </form>
+                </div>
+
+            </aside>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER MEJORADO CON LOGOS CIRCULARES -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <!-- Logos circulares superiores -->
+            <div class="footer-partners-logos">
+                <a href="https://www.tccc-mp.com/" target="_blank" class="partner-logo" aria-label="Socio 1">
+                    <img src="../IMAGENES/logo1.png" alt="Socio 1">
+                </a>
+                <a href="https://cpr.heart.org/es" target="_blank" class="partner-logo" aria-label="Socio 2">
+                    <img src="../IMAGENES/logo2.png" alt="Socio 2">
+                </a>
+                <a href="https://www.bomberos.gob.pe/" target="_blank" class="partner-logo" aria-label="Socio 3">
+                    <img src="../IMAGENES/logo3.png" alt="Socio 3">
+                </a>
+                <a href="https://www.gob.pe/ccffaa" target="_blank" class="partner-logo" aria-label="Socio 4">
+                    <img src="../IMAGENES/logo4.png" alt="Socio 4">
+                </a>
+                <a href="https://www.usa.gov/agencies/u-s-department-of-defense" target="_blank" class="partner-logo" aria-label="Socio 5">
+                    <img src="../IMAGENES/logo5.png" alt="Socio 5">
+                </a>
+                <a href="https://www.stopthebleed.org/" target="_blank" class="partner-logo" aria-label="Socio 6">
+                    <img src="../IMAGENES/logo6.png" alt="Socio 6">
+                </a>
+            </div>
+
+            <div class="footer-section footer-about">
+                <h4>CONOCE SOBRE NUESTRAS REDES SOCIALES</h4>                
+                <div class="footer-social">
+                <a href="https://www.facebook.com/paramedicos.pe" target="_blank" aria-label="Facebook">
+                 <i class="fab fa-facebook-f"></i>
+                </a>
+                 <a href="https://www.linkedin.com/in/param%C3%A9dicos-del-per%C3%BA-324795203/" target="_blank" aria-label="LinkedIn">
+                   <i class="fab fa-linkedin-in"></i>
+                   </a>
+                     <a href="https://www.tiktok.com/@paramedicos.pe/video/7371679537878404358" target="_blank" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+               </a>
+          </div>
+
+                <p class="footer-copyright">
+                    Cuerpo General de Paramédicos Voluntarios del Perú © 2025.<br>
+                    Todos los derechos reservados                                                           
+                </p>
+                <p class="footer-copyright">
+                    Powered by ALBA                                                        
+                </p>                  
+            </div>
+
+            <div class="footer-section">
+                <h4>Nosotros</h4>
+                <ul>
+                    <li><a href="#">Cuerpo General de Paramédicos Voluntarios</a></li>
+                    <li><a href="#">Independencia 102, Barranco, Lima, Perú</a></li>
+                    <li><a href="tel:+51987654321">Teléfono: +51 953 958 371</a></li>
+                    <li><a href="mailto:info@cgpvp.org">Email: info@cgpvp.org</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="../index.html">Bienvenidos</a></li>
+                    <li><a href="../nos/Nosotros.html">Nosotros</a></li>
+                    <li><a href="../nos/Nosotros.html#mision">Misión</a></li>
+                    <li><a href="../nos/Nosotros.html#vision">Visión</a></li>
+                    <li><a href="../nos/Nosotros.html#organigrama">Organización</a></li>
+                </ul>
+            </div> 
+             <div class="footer-section">
+                <h4>Conoce más sobre nuestros cursos</h4>
+                <ul>
+                    <li><a href="../cur/Cursos.html">Cursos</a></li>
+                    <li><a href="../ins/Instructores.html">Instructores</a></li>
+                    <li><a href="../un/Unete.html">Únete</a></li>
+                    <li><a href="../not/noticias.html">Noticias</a></li>                    
+                </ul>
+            </div>              
+            
+    </footer>   
+
+    <script>
+        // ============================================
+        // SCROLL REVEAL - IntersectionObserver
+        // ============================================
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ============================================
+        // Búsqueda de noticias en tiempo real
+        // ============================================
+        document.getElementById('searchNews').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.news-card');
+            
+            cards.forEach(card => {
+                const excerpt = card.querySelector('.card-excerpt').textContent.toLowerCase();
+                
+                if (excerpt.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // ============================================
+        // Filtro por categoría
+        // ============================================
+        document.getElementById('categoryFilter').addEventListener('change', function(e) {
+            const category = e.target.value;
+            const cards = document.querySelectorAll('.news-card');
+            
+            cards.forEach(card => {
+                if (category === '' || card.dataset.category === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // ============================================
+        // Interacción con categorías del sidebar
+        // ============================================
+        const categoryLinks = document.querySelectorAll('.category-link');
+        categoryLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const category = this.dataset.category;
+                
+                // Actualizar dropdown
+                document.getElementById('categoryFilter').value = category;
+                
+                // Filtrar noticias
+                const cards = document.querySelectorAll('.news-card');
+                cards.forEach(card => {
+                    if (card.dataset.category === category) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Scroll suave al grid
+                document.querySelector('.news-grid').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // ============================================
+        // Newsletter form
+        // ============================================
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            alert('¡Gracias por suscribirte! Pronto recibirás nuestras noticias en: ' + email);
+            this.reset();
+        });
+    </script>
+    <script src="buscar-miembros.js"></script>
+    <script src="noticias-api.js" defer></script>
+    <script src="headBot.js"></script>
+</body>
+</html>

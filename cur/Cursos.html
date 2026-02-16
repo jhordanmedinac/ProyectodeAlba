@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos - CGPVP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="cursosstyle.css">
+    <link rel="stylesheet" href="cursos-stylebody.css">
+    <link rel="stylesheet" href="../not/buscar-miembros.css">
+    <link rel="stylesheet" href="../not/navbar-responsive-sin-cambiar-html.css">
+    <script type="module" src="./headBot.js"></script>
+    <script src="accesibilidad.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="../IMAGENES/LOGO.png" type="image/png">
+</head>
+<body>
+
+    <header class="main-navbar">
+        <div class="nav-content">
+            <div class="brand">
+                <div class="logo-container">
+                    <img src="../IMAGENES/LOGO.png" alt="Logo CGPVP">
+                </div>
+                <div class="brand-titles">
+                    <span>Cuerpo General de</span>
+                    <span>Paramédicos Voluntarios</span>
+                    <span>del Perú</span>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <!-- Barra de búsqueda -->
+                <div class="navbar-search">
+                    <input 
+                        type="text" 
+                        id="navbarSearchInput" 
+                        placeholder="Buscar integrante..."
+                        aria-label="Buscar en el sitio"
+                    >
+                    <button type="button" class="search-btn" aria-label="Buscar">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+            <nav class="nav-links">
+                <a href="../index.html">Inicio</a>
+                <a href="../nos/Nosotros.html">Nosotros</a>
+                <a href="../un/Unete.html">Únete</a>
+                <a href="../ins/Instructores.html">Instructores</a>
+                <a href="Cursos.html" class="active">Cursos</a>
+                <a href="../not/noticias.html">Noticias</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="cursos-container">
+        
+        <!-- Hero Section -->
+        <section class="cursos-hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Nuestros Cursos de Capacitación</h1>
+                <p class="hero-subtitle">Formación profesional certificada en emergencias y atención prehospitalaria</p>
+            </div>
+        </section>
+
+        <!-- Barra de búsqueda y filtros -->
+        <section class="search-filter-bar reveal">
+            <div class="search-wrapper">
+                <input type="text" id="searchCourses" placeholder="Buscar cursos...">
+                <button class="btn-search-icon">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <select class="filter-dropdown" id="categoryFilter">
+                <option value="">Todas las categorías</option>
+                <!-- Se llenarán dinámicamente desde la API -->
+            </select>
+            
+            <select class="filter-dropdown" id="modalityFilter">
+                <option value="">Todas las modalidades</option>
+                <!-- Se llenarán dinámicamente desde la API -->
+            </select>
+        </section>
+
+        <!-- Grid de Cursos y Sidebar -->
+        <section class="content-layout">
+            
+            <!-- Grid de Cursos -->
+            <div class="courses-section">
+                
+                <!-- Curso Más Próximo -->
+                <article class="course-featured reveal reveal-scale">
+                    <div class="featured-image">
+                        <i class="fas fa-hand-holding-medical"></i>
+                    </div>
+                    <div class="featured-content">
+                        <h2 class="featured-title">Primeros Auxilios Básicos</h2>
+                        <div class="featured-info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-tag"></i>
+                                <div>
+                                    <span class="info-label">Categoría</span>
+                                    <span class="info-value">Nivel Básico</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <span class="info-label">Duración</span>
+                                    <span class="info-value">40 Horas</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                                <div>
+                                    <span class="info-label">Modalidad</span>
+                                    <span class="info-value">Presencial</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <div>
+                                    <span class="info-label">Fecha</span>
+                                    <span class="info-value">10 Ene - 28 Feb 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="featured-footer">
+                            <button class="btn-featured" id="btn-curso-destacado">
+                                Ver Detalles <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Grid de Cursos Regulares -->
+                <div class="courses-grid">
+                    <!-- Los cursos se cargarán dinámicamente desde la API -->
+                    <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 48px; color: #c5a059;"></i>
+                        <p style="color: #666; margin-top: 20px;">Cargando cursos...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="courses-sidebar">
+                
+                <!-- Categorías -->
+                <div class="sidebar-box reveal">
+                    <h3 class="sidebar-title">Categorías</h3>
+                    <ul class="category-list">
+                        <li>
+                            <a href="#" class="list-link">
+                                <i class="fas fa-chevron-right"></i>
+                                <span>Nivel Básico</span>
+                                <span class="count">12</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="list-link">
+                                <i class="fas fa-chevron-right"></i>
+                                <span>Nivel Intermedio</span>
+                                <span class="count">8</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="list-link">
+                                <i class="fas fa-chevron-right"></i>
+                                <span>Nivel Avanzado</span>
+                                <span class="count">5</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="list-link">
+                                <i class="fas fa-chevron-right"></i>
+                                <span>Especializado</span>
+                                <span class="count">7</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Próximos Eventos -->
+                <div class="sidebar-box reveal">
+                    <h3 class="sidebar-title">Próximos Eventos</h3>
+                    
+                    <div class="event-box-mini">
+                        <div class="event-date">
+                            <span class="day">15</span>
+                            <span class="month">ENE</span>
+                        </div>
+                        <div class="event-details">
+                            <h4>Taller Práctico RCP</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> Lima, Perú</p>
+                        </div>
+                    </div>
+
+                    <div class="event-box-mini">
+                        <div class="event-date">
+                            <span class="day">22</span>
+                            <span class="month">MAR</span>
+                        </div>
+                        <div class="event-details">
+                            <h4>Seminario Protocolos</h4>
+                            <p><i class="fas fa-video"></i> Virtual</p>
+                        </div>
+                    </div>
+
+                    <div class="event-box-mini">
+                        <div class="event-date">
+                            <span class="day">05</span>
+                            <span class="month">ABR</span>
+                        </div>
+                        <div class="event-details">
+                            <h4>Curso Intensivo SVA</h4>
+                            <p><i class="fas fa-building"></i> Centro CGPVP</p>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+        </section>
+
+    </main>
+
+    <!-- MODALES SE CREAN DINÁMICAMENTE -->
+
+     <!-- FOOTER MEJORADO CON LOGOS CIRCULARES -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <!-- Logos circulares superiores -->
+            <div class="footer-partners-logos">
+                <a href="https://americancollegefire.org/" target="_blank" class="partner-logo" aria-label="Socio 1">
+                    <img src="../IMAGENES/logo1.png" alt="Socio 1">
+                </a>
+                <a href="https://usar-internationalrescue.org/" target="_blank" class="partner-logo" aria-label="Socio 2">
+                    <img src="../IMAGENES/logo2.png" alt="Socio 2">
+                </a>
+                <a href="https://nasar.org/" target="_blank" class="partner-logo" aria-label="Socio 3">
+                    <img src="../IMAGENES/logo3.png" alt="Socio 3">
+                </a>
+                <a href="https://www.gob.pe/ccffaa" target="_blank" class="partner-logo" aria-label="Socio 4">
+                    <img src="../IMAGENES/logo4.png" alt="Socio 4">
+                </a>
+                <a href="https://www.usa.gov/agencies/u-s-department-of-defense" target="_blank" class="partner-logo" aria-label="Socio 5">
+                    <img src="../IMAGENES/logo5.png" alt="Socio 5">
+                </a>
+                <a href="https://www.stopthebleed.org/" target="_blank" class="partner-logo" aria-label="Socio 6">
+                    <img src="../IMAGENES/logo6.png" alt="Socio 6">
+                </a>
+            </div>
+
+            <div class="footer-section footer-about">
+                <h4>CONOCE SOBRE NUESTRAS REDES SOCIALES</h4>                
+                <div class="footer-social">
+                <a href="https://www.facebook.com/paramedicos.pe" target="_blank" aria-label="Facebook">
+                 <i class="fab fa-facebook-f"></i>
+                </a>
+                 <a href="https://www.linkedin.com/in/param%C3%A9dicos-del-per%C3%BA-324795203/" target="_blank" aria-label="LinkedIn">
+                   <i class="fab fa-linkedin-in"></i>
+                   </a>
+                     <a href="https://www.tiktok.com/@paramedicos.pe/video/7371679537878404358" target="_blank" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+               </a>
+          </div>
+
+                <p class="footer-copyright">
+                    Cuerpo General de Paramédicos Voluntarios del Perú © 2025.<br>
+                    Todos los derechos reservados                                                           
+                </p>
+                <p class="footer-copyright">
+                    Powered by ALBA                                                        
+                </p>                  
+            </div>
+
+            <div class="footer-section">
+                <h4>Nosotros</h4>
+                <ul>
+                    <li><a href="#">Cuerpo General de Paramédicos Voluntarios</a></li>
+                    <li><a href="#">Independencia 102, Barranco, Lima, Perú</a></li>
+                    <li><a href="tel:+51987654321">Teléfono: +51 953 958 371</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#4d2e2223392c2e39220d2e2a3d3b3d63223f2a">Email: <span class="__cf_email__" data-cfemail="72111d1c061311061d3211150204025c1d0015">[email&#160;protected]</span></a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="../index.html">Bienvenidos</a></li>
+                    <li><a href="../nos/Nosotros.html">Nosotros</a></li>
+                    <li><a href="../nos/Nosotros.html#mision">Misión</a></li>
+                    <li><a href="../nos/Nosotros.html#vision">Visión</a></li>
+                    <li><a href="../nos/Nosotros.html#organigrama">Organización</a></li>
+                </ul>
+            </div> 
+             <div class="footer-section">
+                <h4>Conoce más sobre nuestros cursos</h4>
+                <ul>
+                    <li><a href="Cursos.html">Cursos</a></li>
+                    <li><a href="../ins/Instructores.html">Instructores</a></li>
+                    <li><a href="../un/Unete.html">Únete</a></li>
+                    <li><a href="../not/noticias.html">Noticias</a></li>                    
+                </ul>
+            </div>              
+            
+    </footer>   
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="cursosscript.js"></script>
+    <script src="../not/buscar-miembros.js"></script>
+</body>
+</html>

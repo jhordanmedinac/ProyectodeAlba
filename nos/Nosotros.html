@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros - CGPVP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="nosotrosstyle.css">
+    <link rel="stylesheet" href="nosotros-stylebody.css">
+    <link rel="stylesheet" href="../not/buscar-miembros.css">
+    <link rel="stylesheet" href="../not/navbar-responsive-sin-cambiar-html.css">
+    <script type="module" src="./headBot.js"></script>
+    <script src="accesibilidad.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="../IMAGENES/LOGO.png" type="image/png">
+</head>
+<body>
+
+    <header class="main-navbar">
+        <div class="nav-content">
+            <div class="brand">
+                <div class="logo-container">
+                    <img src="../IMAGENES/LOGO.png" alt="Logo CGPVP">
+                </div>
+                <div class="brand-titles">
+                    <span>Cuerpo General de</span>
+                    <span>Paramédicos Voluntarios</span>
+                    <span>del Perú</span>
+                </div>
+            </div>
+             <nav class="nav-links">
+                <!-- Barra de búsqueda -->
+                <div class="navbar-search">
+                    <input 
+                        type="text" 
+                        id="navbarSearchInput" 
+                        placeholder="Buscar integrante..."
+                        aria-label="Buscar en el sitio"
+                    >
+                    <button type="button" class="search-btn" aria-label="Buscar">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+            <nav class="nav-links">
+                <a href="../index.html">Inicio</a>
+                <a href="Nosotros.html" class="active">Nosotros</a>                
+                <a href="../un/Unete.html">Únete</a>
+                <a href="../ins/Instructores.html">Instructores</a>
+                <a href="../cur/Cursos.html">Cursos</a>
+                <a href="../not/noticias.html">Noticias</a>                
+            </nav>
+        </div>
+    </header>
+
+    <main class="nosotros-container">
+        
+        <!-- Hero Section -->
+        <section class="nosotros-hero">
+            <div class="hero-overlay">
+                <h1 class="hero-title">Nosotros</h1>
+                <p class="hero-subtitle">Comprometidos con salvar vidas desde hace más de una década</p>
+                
+                <button class="btn-ver-mas-hero" onclick="scrollToContent()">
+                    <i class="fas fa-chevron-down"></i> Ver más
+                </button>
+            </div>
+        </section>
+
+        <!-- CUADRO 1: Quiénes Somos -->
+        <section id="nosotros" class="cuadro-azul-section">
+            <div class="contenedor-cuadro-completo">
+                <div class="section-header-white fade-in-element">
+                    <h2 class="section-title-white">¿Quiénes Somos?</h2>
+                </div>
+                
+                <div class="grid-quienes-somos">
+                    <!-- Columna izquierda: 2 bloques de texto -->
+                    <div class="columna-textos">
+                        <!-- Bloque 1 -->
+                        <div class="caja-texto-individual fade-in-element fade-delay-1">
+                            <p>
+                                El <strong>Cuerpo General de Paramédicos Voluntarios del Perú (CGPVP)</strong> es una organización voluntaria sin fines de lucro, creada en marzo del año 2020, en el contexto de la emergencia sanitaria por la COVID-19, como respuesta organizada desde la sociedad civil ante el colapso de los sistemas de atención y la necesidad urgente de una primera respuesta técnica, humana y disciplinada.
+                            </p>
+                        </div>
+
+                        <!-- Bloque 2 -->
+                        <div class="caja-texto-individual fade-in-element fade-delay-2">
+                            <p>
+                                Nacimos del dolor y desde la realidad operativa, evolucionamos de brigadas comunitarias a un cuerpo estructurado una institución legalmente constituida, con doctrina, orden, procesos formativos y capacidad operativa, orientada a la participación comunitaria en atención de emergencias, desastres, búsqueda y rescate, en apoyo y complemento de las instituciones del Estado.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Columna derecha: Imagen -->
+                    <div class="columna-imagen">
+                        <div class="caja-imagen-grande fade-in-element fade-delay-3">
+                            <!-- COLOCA AQUÍ TU IMAGEN 1 -->
+                            <img src="../IMAGENES/rescate.jpg" alt="CGPVP en acción">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bloque 3: Texto completo abajo -->
+                <div class="caja-texto-individual caja-completa fade-in-element fade-delay-4">
+                    <p>
+                        Hoy, el CGPVP se consolida como una capacidad estratégica comunitaria, integrada al <strong>Sistema Nacional para la Gestión del Riesgo de Desastres (SINAGERD)</strong> dentro del marco normativo que faculta a las empresas privadas é organizaciones sin fines de Lucro, contribuyendo al fortalecimiento de la primera respuesta ciudadana, la reducción del riesgo y la protección de la vida, bajo principios de disciplina, ética del servicio y preparación permanente.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CUADRO 2: Articulación y Alianzas -->
+        <section class="cuadro-azul-section">
+            <div class="contenedor-cuadro-completo">
+                <div class="section-header-white fade-in-element">
+                    <h2 class="section-title-white">Articulación y alianzas nacionales</h2>
+                </div>
+
+                <!-- Grid: 2 bloques izquierda + imagen derecha -->
+                <div class="grid-articulacion">
+                    <!-- Columna izquierda: 2 bloques de texto separados -->
+                    <div class="columna-textos">
+                        <!-- Bloque 1 -->
+                        <div class="caja-texto-individual fade-in-element fade-delay-1">
+                            <p class="texto-intro">
+                                El Cuerpo mantiene una articulación activa y cooperación institucional con entidades del Estado y del sistema de defensa, destacando:
+                            </p>
+                            <ul class="lista-puntos">
+                                <li>Coordinación y convenios con el Comando Conjunto de las Fuerzas Armadas, en procesos de formación y fortalecimiento de brigadas comunitarias para la respuesta a emergencias y desastres.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Bloque 2 -->
+                        <div class="caja-texto-individual fade-in-element fade-delay-2">
+                            <ul class="lista-puntos">
+                                <li>Trabajo conjunto con unidades y centros de formación del Ejército del Perú, Comando de Educación y Doctrina del Ejército, Escuela de Comandos del Ejército.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Columna derecha: Imagen grande -->
+                    <div class="columna-imagen">
+                        <div class="caja-imagen-grande fade-in-element fade-delay-3">
+                            <!-- COLOCA AQUÍ TU IMAGEN 2 -->
+                            <img src="../IMAGENES/ayuda.jpg" alt="Alianzas CGPVP">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bloque 3: Texto completo abajo -->
+                <div class="caja-texto-individual caja-completa fade-in-element fade-delay-4">
+                    <ul class="lista-puntos">
+                        <li>Cooperación con entidades públicas, Ministerio Público, gobiernos locales y organismos del sistema de gestión del riesgo, en capacitación, organización comunitaria y apoyo en escenarios de emergencia.</li>
+                    </ul>
+                    <p class="texto-conclusion">
+                        Estas alianzas permiten que nuestra labor complemente, fortalezca e integre las capacidades del Estado, sin sustituir sus funciones.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reconocimiento y respaldo internacional -->
+        <section class="otras-secciones">
+            <div class="section-container">
+                <div class="international-recognition fade-in-element">
+                    <h3><i class="fas fa-globe-americas"></i> Reconocimiento y respaldo internacional</h3>
+                    <p class="international-text">
+                        A nivel internacional, el Cuerpo General de Paramédicos Voluntarios del Perú cuenta con acreditación, respaldo y reconocimiento de la Worldwide Academy Firefighter, con sede en New York, lo que avala nuestros estándares de formación, doctrina operativa y liderazgo humanitario, y nos vincula a una red internacional de buenas prácticas en respuesta a emergencias y desastres.
+                    </p>
+                </div>
+
+                <!-- Declaración Final -->
+                <div class="closing-statement fade-in-element">
+                    <p class="closing-main">
+                        El CGPVP es, hoy, una institución voluntaria organizada, interoperable y confiable, formada por ciudadanos preparados para actuar antes, durante y después de la emergencia, convencidos de que la defensa de la vida, la solidaridad y la resiliencia también se entrenan.
+                    </p>
+                    <p class="closing-highlight">
+                        Somos una fuerza que sirve en silencio,<br>
+                        que se prepara con disciplina y que permanece firme cuando el país más lo necesite.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Misión y Visión -->
+        <section id="mision-vision" class="mision-vision-section">
+            <div class="section-container">
+                <div class="mv-grid">
+                    <div id="mision" class="mv-card mision-card fade-in-element fade-delay-1">
+                        <div class="mv-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Misión</h3>
+                        <div class="mv-content">
+                            <p>
+                                El Cuerpo General de Paramédicos Voluntarios del Perú tiene como misión organizar, formar y desplegar voluntarios capacitados para la atención y primera respuesta a emergencias, desastres, búsqueda y rescate, actuando de manera oportuna, disciplinada y coordinada en apoyo del Estado y de las unidades de Primera Respuesta.
+                            </p>
+                            <button class="btn-ver-mas" onclick="openModal('misionModal')">
+                                Ver más <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="vision" class="mv-card vision-card fade-in-element fade-delay-2">
+                        <div class="mv-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Visión</h3>
+                        <div class="mv-content">
+                            <p>
+                                Consolidar a la comunidad como una capacidad estratégica permanente del país, especializada en la atención y primera respuesta a emergencias, desastres, búsqueda y rescate, que fortalezca de manera complementaria al Sistema Nacional para la Gestión del Riesgo de Desastres, SINAGERD.
+                            </p>
+                            <button class="btn-ver-mas" onclick="openModal('visionModal')">
+                                Ver más <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Historia -->
+        <section class="historia-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-main-title">Nuestra Historia</h2>
+                    <div class="title-underline"></div>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2010</div>
+                            <h4>Fundación</h4>
+                            <p>Nace el Cuerpo General de Paramédicos Voluntarios del Perú con el objetivo de profesionalizar la atención prehospitalaria en el país.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2014</div>
+                            <h4>Certificación Internacional</h4>
+                            <p>Obtenemos la certificación como Capitanes de Rescate Internacional WAF, posicionándonos a nivel internacional.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2018</div>
+                            <h4>Creación de BIRED</h4>
+                            <p>Se establece la Brigada de Intervención Rápida en Emergencias y Desastres, nuestro equipo élite de respuesta.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2022</div>
+                            <h4>Expansión Nacional</h4>
+                            <p>Expandimos nuestra presencia a nivel nacional con sedes en las principales ciudades del Perú.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2026</div>
+                            <h4>Líderes en Formación</h4>
+                            <p>Nos consolidamos como la principal institución formadora de paramédicos en el Perú, con más de 5,000 graduados.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Organigrama -->
+        <section id="organigrama" class="organigrama-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-main-title">Organigrama</h2>
+                    <div class="title-underline"></div>
+                    <p class="section-subtitle">Estructura organizacional del CGPVP</p>
+                    <p class="section-lema">"Año de la Esperanza y el Fortalecimiento de la Democracia"</p>
+                </div>
+
+                <div class="organigrama-container">
+                    <!-- Nivel 1: Punto Focal -->
+                    <div class="org-level level-1">
+                        <div class="org-box punto-focal">
+                            <div class="org-icon"><i class="fas fa-globe"></i></div>
+                            <h4>Punto Focal Perú</h4>
+                        </div>
+                    </div>
+
+                    <!-- Nivel 2: Oficinas superiores -->
+                    <div class="org-level level-2">
+                        <div class="org-column">
+                            <div class="org-box">
+                                <div class="org-icon"><i class="fas fa-star"></i></div>
+                                <h4>Jefatura del Estado Mayor</h4>
+                            </div>
+                            <div class="org-box">
+                                <div class="org-icon"><i class="fas fa-file-alt"></i></div>
+                                <h4>Secretaría General</h4>
+                            </div>
+                            <div class="org-box">
+                                <div class="org-icon"><i class="fas fa-search"></i></div>
+                                <h4>Inspectoría General</h4>
+                            </div>
+                            <div class="org-box">
+                                <div class="org-icon"><i class="fas fa-balance-scale"></i></div>
+                                <h4>Oficina de Asesoría Legal</h4>
+                            </div>
+                        </div>
+
+                        <div class="org-column">
+                            <div class="org-box">
+                                <div class="org-icon"><i class="fas fa-shield-alt"></i></div>
+                                <h4>Oficina de Inteligencia y Ciberseguridad</h4>
+                            </div>
+                            <div class="org-box">
+                                <div class="org-icon"><i class="fas fa-handshake"></i></div>
+                                <h4>Oficina de Relaciones Públicas y Protocolo</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nivel 3: Dirección Ejecutiva -->
+                    <div class="org-level level-3">
+                        <div class="org-box director">
+                            <div class="org-icon"><i class="fas fa-user-tie"></i></div>
+                            <h4>Dirección Ejecutiva</h4>
+                        </div>
+                    </div>
+
+                    <!-- Nivel 4: Direcciones Generales -->
+                    <div class="org-level level-4">
+                        <!-- Dirección General de Administración -->
+                        <div class="org-group">
+                            <div class="org-box direccion-general">
+                                <div class="org-icon"><i class="fas fa-briefcase"></i></div>
+                                <h4>Dirección General de Administración</h4>
+                            </div>
+                            
+                            <div class="org-subgroup">
+                                <div class="org-box small">
+                                    <h5>Subdirección de Logística</h5>
+                                </div>
+                                <div class="org-box small">
+                                    <h5>Subdirección de Planeamiento</h5>
+                                </div>
+                                <div class="org-box small">
+                                    <h5>Subdirección de Economía</h5>
+                                </div>
+                                <div class="org-box small">
+                                    <h5>Subdirección de Personal</h5>
+                                </div>
+                                <div class="org-box small">
+                                    <h5>Subdirección de Salud y Programas Sociales</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dirección General de Educación y Doctrina -->
+                        <div class="org-group">
+                            <div class="org-box direccion-general">
+                                <div class="org-icon"><i class="fas fa-graduation-cap"></i></div>
+                                <h4>Dirección General de Educación y Doctrina</h4>
+                            </div>
+                            
+                            <div class="org-subgroup">
+                                <div class="org-box small">
+                                    <h5>Subdirección de Educación y Doctrina</h5>
+                                </div>
+                                <div class="org-box small">
+                                    <h5>Subdirección de Formación Técnica</h5>
+                                </div>
+                                <div class="org-box small">
+                                    <h5>Subdirección de Formación Básica</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dirección General de Operaciones -->
+                        <div class="org-group">
+                            <div class="org-box direccion-general">
+                                <div class="org-icon"><i class="fas fa-ambulance"></i></div>
+                                <h4>Dirección General de Operaciones</h4>
+                            </div>
+                            
+                            <div class="org-subgroup">
+                                <div class="org-box small">
+                                    <h5>Subdirección de Operaciones</h5>
+                                </div>
+                                <div class="org-box small">
+                                    <h5>Equipos Médicos de Emergencia</h5>
+                                </div>
+                                <div class="org-box small">
+                                    <h5>Brigadas de Intervención en Emergencias y Desastres</h5>
+                                </div>
+                                <div class="org-box small">
+                                    <h5>Subdirección de Comunicación y Mantenimiento</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Estadísticas -->
+        <section class="estadisticas-section">
+            <div class="section-container">
+                <div class="stats-grid">
+                    <div class="stat-card fade-in-element fade-delay-1">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-number" data-target="5000">0</div>
+                        <p class="stat-label">Paramédicos Graduados</p>
+                    </div>
+
+                    <div class="stat-card fade-in-element fade-delay-2">
+                        <div class="stat-icon">
+                            <i class="fas fa-ambulance"></i>
+                        </div>
+                        <div class="stat-number" data-target="15000">0</div>
+                        <p class="stat-label">Emergencias Atendidas</p>
+                    </div>
+
+                    <div class="stat-card fade-in-element fade-delay-3">
+                        <div class="stat-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="stat-number" data-target="50000">0</div>
+                        <p class="stat-label">Vidas Salvadas</p>
+                    </div>
+
+                    <div class="stat-card fade-in-element fade-delay-4">
+                        <div class="stat-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="stat-number" data-target="16">0</div>
+                        <p class="stat-label">Años de Experiencia</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER MEJORADO CON LOGOS CIRCULARES -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <!-- Logos circulares superiores -->
+            <div class="footer-partners-logos">
+                <a href="https://americancollegefire.org/" target="_blank" class="partner-logo" aria-label="Socio 1">
+                    <img src="../IMAGENES/logo1.png" alt="Socio 1">
+                </a>
+                <a href="https://usar-internationalrescue.org/" target="_blank" class="partner-logo" aria-label="Socio 2">
+                    <img src="../IMAGENES/logo2.png" alt="Socio 2">
+                </a>
+                <a href="https://nasar.org/" target="_blank" class="partner-logo" aria-label="Socio 3">
+                    <img src="../IMAGENES/logo3.png" alt="Socio 3">
+                </a>
+                <a href="https://www.gob.pe/ccffaa" target="_blank" class="partner-logo" aria-label="Socio 4">
+                    <img src="../IMAGENES/logo4.png" alt="Socio 4">
+                </a>
+                <a href="https://www.usa.gov/agencies/u-s-department-of-defense" target="_blank" class="partner-logo" aria-label="Socio 5">
+                    <img src="../IMAGENES/logo5.png" alt="Socio 5">
+                </a>
+                <a href="https://www.stopthebleed.org/" target="_blank" class="partner-logo" aria-label="Socio 6">
+                    <img src="../IMAGENES/logo6.png" alt="Socio 6">
+                </a>
+            </div>
+
+            <div class="footer-section footer-about">
+                <h4>CONOCE SOBRE NUESTRAS REDES SOCIALES</h4>                
+                <div class="footer-social">
+                <a href="https://www.facebook.com/paramedicos.pe" target="_blank" aria-label="Facebook">
+                 <i class="fab fa-facebook-f"></i>
+                </a>
+                 <a href="https://www.linkedin.com/in/param%C3%A9dicos-del-per%C3%BA-324795203/" target="_blank" aria-label="LinkedIn">
+                   <i class="fab fa-linkedin-in"></i>
+                   </a>
+                     <a href="https://www.tiktok.com/@paramedicos.pe/video/7371679537878404358" target="_blank" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+               </a>
+          </div>
+
+                <p class="footer-copyright">
+                    Cuerpo General de Paramédicos Voluntarios del Perú © 2025.<br>
+                    Todos los derechos reservados                                                           
+                </p>
+                <p class="footer-copyright">
+                    Powered by ALBA                                                        
+                </p>                  
+            </div>
+
+            <div class="footer-section">
+                <h4>Nosotros</h4>
+                <ul>
+                    <li><a href="#">Cuerpo General de Paramédicos Voluntarios</a></li>
+                    <li><a href="#">Independencia 102, Barranco, Lima, Perú</a></li>
+                    <li><a href="tel:+51987654321">Teléfono: +51 953 958 371</a></li>
+                    <li><a href="mailto:contacto@cgpvp.org">Email: contacto@cgpvp.org</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="../index.html">Bienvenidos</a></li>
+                    <li><a href="Nosotros.html">Nosotros</a></li>
+                    <li><a href="Nosotros.html#mision">Misión</a></li>
+                    <li><a href="Nosotros.html#vision">Visión</a></li>
+                    <li><a href="Nosotros.html#organigrama">Organización</a></li>
+                </ul>
+            </div> 
+             <div class="footer-section">
+                <h4>Conoce más sobre nuestros cursos</h4>
+                <ul>
+                    <li><a href="../cur/Cursos.html">Cursos</a></li>
+                    <li><a href="../ins/Instructores.html">Instructores</a></li>
+                    <li><a href="../un/Unete.html">Únete</a></li>
+                    <li><a href="../not/noticias.html">Noticias</a></li>                    
+                </ul>
+            </div>              
+            
+    </footer>   
+
+    <!-- Modal Misión -->
+    <div id="misionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-bullseye"></i> Misión</h2>
+                <span class="modal-close" onclick="closeModal('misionModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>
+                    El Cuerpo General de Paramédicos Voluntarios del Perú tiene como misión organizar, formar y desplegar voluntarios capacitados para la atención y primera respuesta a emergencias, desastres, búsqueda y rescate, actuando de manera oportuna, disciplinada y coordinada en apoyo del Estado y de las unidades de Primera Respuesta.
+                </p>
+                <p>
+                    Contribuimos al fortalecimiento del Sistema Nacional para la Gestión del Riesgo de Desastres (SINAGERD) mediante el desarrollo de capacidades comunitarias interoperables, basadas en doctrina operativa, preparación técnica, ética del servicio y liderazgo ciudadano.
+                </p>
+                <p>
+                    Nuestra misión es proteger la vida y reducir el impacto de los desastres, anticipando riesgos, multiplicando capacidades locales y actuando con eficacia en escenarios complejos, como parte de una respuesta nacional integrada, orientada a la seguridad humana, la resiliencia del país y el servicio permanente a la comunidad.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Visión -->
+    <div id="visionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-eye"></i> Visión</h2>
+                <span class="modal-close" onclick="closeModal('visionModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Consolidar a la comunidad como una capacidad estratégica permanente del país, especializada en la atención y primera respuesta a emergencias, desastres, búsqueda y rescate, que fortalezca de manera complementaria al Sistema Nacional para la Gestión del Riesgo de Desastres, SINAGERD.
+                </p>
+                <p>
+                    Ser una institución voluntaria estructurada, interoperable y confiable con capacidad operativa, reconocida por el Estado, las Fuerzas Armadas y la comunidad, por su doctrina operativa, disciplina, preparación técnica y liderazgo en la formación comunitaria para la primera respuesta ciudadana.
+                </p>
+                <p>
+                    Proyectar al Cuerpo General de Paramédicos Voluntarios del Perú como un modelo estratégico de voluntariado comunitario organizado, capaz de anticipar riesgos, multiplicar capacidades nacionales y actuar con eficacia en escenarios complejos en apoyo de las unidades de Primera Respuesta, contribuyendo de forma sostenida a la seguridad humana, la resiliencia nacional y la protección de la vida.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Función para scroll suave al contenido
+        function scrollToContent() {
+            const nosotrosSection = document.getElementById('nosotros');
+            nosotrosSection.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        });
+
+        // Counter Animation
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString() + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString();
+                }
+            }, 16);
+        }
+
+        // Intersection Observer for stats
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(num => animateCounter(num));
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.estadisticas-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // ============================================
+        // ANIMACIONES DE SCROLL PARA ELEMENTOS
+        // ============================================
+        
+        // Intersection Observer para animaciones de aparición
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Opcional: dejar de observar después de animar
+                    fadeInObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15, // El elemento debe ser 15% visible para activar la animación
+            rootMargin: '0px 0px -50px 0px' // Activa un poco antes de que sea totalmente visible
+        });
+
+        // Aplicar observer a todos los elementos con la clase fade-in-element
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in-element');
+            fadeElements.forEach(element => {
+                fadeInObserver.observe(element);
+            });
+        });
+    </script>
+    <script src="../not/buscar-miembros.js"></script>
+    <script src="headBot.js"></script>
+</body>
+</html>

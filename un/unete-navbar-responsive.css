@@ -1,0 +1,401 @@
+/* ============================================
+   NAVBAR RESPONSIVE - ESPECÍFICO PARA UNETE.HTML
+   Grid de 2 columnas con orden específico
+   Orden: Búsqueda → Inicio|Nosotros → Únete|Instructores → Cursos|Noticias
+   🔥 SIN AFECTAR OTRAS SECCIONES + FIX BOTÓN NOTICIAS
+   ============================================ */
+
+/* TABLET Y MÓVIL (< 1024px) */
+@media (max-width: 1024px) {
+    /* ⚠️ SOLO AFECTAR AL NAVBAR */
+    .main-navbar {
+        padding: 15px 20px;
+    }
+    
+    .main-navbar .nav-content {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    /* Logo centrado arriba */
+    .main-navbar .brand {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+        margin-right: 0;
+        width: 100%;
+    }
+    
+    .main-navbar .logo-container {
+        width: 60px;
+    }
+    
+    .main-navbar .brand-titles {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .main-navbar .brand-titles span {
+        font-size: 11px;
+        text-align: center;
+    }
+    
+    /* Contenedor de navegación */
+    .main-navbar .nav-content > .nav-links {
+        width: 100%;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        max-width: 500px !important;
+    }
+    
+    /* Barra de búsqueda PRIMERO (arriba de los botones) */
+    .main-navbar .navbar-search {
+        display: flex !important;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        grid-column: 1 / -1 !important; /* Ocupa toda la fila */
+        order: 1 !important;
+    }
+    
+    .main-navbar .navbar-search input {
+        width: 100%;
+        padding: 12px 45px 12px 20px;
+        font-size: 14px;
+        border-radius: 30px;
+    }
+    
+    .main-navbar .navbar-search input:focus {
+        width: 100%;
+    }
+    
+    .main-navbar .navbar-search .search-btn {
+        right: 10px;
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+    
+    /* 🔥 ORDEN ESPECÍFICO DE LOS BOTONES */
+    
+    /* Inicio - Orden 2 (columna 1, fila 2) */
+    .main-navbar .nav-content > .nav-links > a[href*="index.html"] {
+        order: 2 !important;
+    }
+    
+    /* Nosotros - Orden 3 (columna 2, fila 2) */
+    .main-navbar .nav-content > .nav-links > a[href*="Nosotros.html"] {
+        order: 3 !important;
+    }
+    
+    /* Únete - Orden 4 (columna 1, fila 3) */
+    .main-navbar .nav-content > .nav-links > a[href*="Unete.html"] {
+        order: 4 !important;
+    }
+    
+    /* Instructores - Orden 5 (columna 2, fila 3) */
+    .main-navbar .nav-content > .nav-links > a[href*="Instructores.html"] {
+        order: 5 !important;
+    }
+    
+    /* Cursos - Orden 6 (columna 1, fila 4) */
+    .main-navbar .nav-content > .nav-links > a[href*="Cursos.html"] {
+        order: 6 !important;
+    }
+    
+    /* Noticias - Orden 7 (columna 2, fila 4) */
+    .main-navbar .nav-content > .nav-links > a[href*="noticias.html"] {
+        order: 7 !important;
+    }
+    
+    /* Estilos generales de los botones */
+    .main-navbar .nav-content > .nav-links > a {
+        background: rgba(197, 160, 89, 0.2) !important;
+        padding: 10px 15px !important;
+        border-radius: 25px !important;
+        text-align: center !important;
+        font-size: 13px !important;
+        border: 2px solid transparent !important;
+        transition: all 0.3s ease !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important; /* 🔥 IMPORTANTE para Noticias */
+        box-sizing: border-box !important;
+        white-space: nowrap !important;
+        grid-column: auto !important;
+    }
+    
+    .main-navbar .nav-content > .nav-links > a:hover {
+        background: rgba(197, 160, 89, 0.4) !important;
+        border-color: var(--gold) !important;
+    }
+    
+    /* Botón activo (Únete) */
+    .main-navbar .nav-content > .nav-links > a.active {
+        background: var(--gold) !important;
+        color: var(--navy) !important;
+        border-bottom: none !important;
+        padding: 10px 15px !important;
+        font-weight: 600 !important;
+        grid-column: auto !important;
+    }
+    
+    /* 🔥 FIX ESPECÍFICO PARA EL ÚLTIMO BOTÓN (Noticias) */
+    .main-navbar .nav-content > .nav-links > a:last-child {
+        grid-column: auto !important;
+        justify-self: stretch !important;
+        max-width: 100% !important;
+        padding: 10px 15px !important;
+    }
+}
+
+/* MÓVIL PEQUEÑO (< 768px) */
+@media (max-width: 768px) {
+    .main-navbar {
+        padding: 12px 15px;
+    }
+    
+    .main-navbar .logo-container {
+        width: 55px;
+    }
+    
+    .main-navbar .brand-titles span {
+        font-size: 10px;
+    }
+    
+    .main-navbar .nav-content > .nav-links {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+        max-width: 100% !important;
+    }
+    
+    .main-navbar .nav-content > .nav-links > a {
+        font-size: 12px !important;
+        padding: 8px 10px !important;
+        max-width: 100% !important;
+    }
+    
+    .main-navbar .nav-content > .nav-links > a:last-child {
+        max-width: 100% !important;
+        padding: 8px 10px !important;
+    }
+    
+    /* Barra de búsqueda */
+    .main-navbar .navbar-search {
+        max-width: 100%;
+        grid-column: 1 / -1 !important;
+    }
+    
+    .main-navbar .navbar-search input {
+        padding: 10px 40px 10px 15px;
+        font-size: 13px;
+    }
+    
+    /* 🔥 FIX PARA EL HERO - NO RECORTAR TEXTO */
+    .hero-title {
+        font-size: 42px !important;
+        line-height: 1.3 !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+}
+
+/* MÓVIL MUY PEQUEÑO (< 480px) */
+@media (max-width: 480px) {
+    .main-navbar {
+        padding: 10px 12px;
+    }
+    
+    .main-navbar .logo-container {
+        width: 50px;
+    }
+    
+    .main-navbar .brand-titles span {
+        font-size: 9px;
+        line-height: 1.2;
+    }
+    
+    .main-navbar .nav-content > .nav-links {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 6px !important;
+    }
+    
+    .main-navbar .nav-content > .nav-links > a {
+        font-size: 11px !important;
+        padding: 8px 6px !important;
+        max-width: 100% !important;
+    }
+    
+    .main-navbar .nav-content > .nav-links > a:last-child {
+        max-width: 100% !important;
+        padding: 8px 6px !important;
+    }
+    
+    /* Barra de búsqueda ajustada */
+    .main-navbar .navbar-search {
+        margin-top: 0;
+        grid-column: 1 / -1 !important;
+    }
+    
+    .main-navbar .navbar-search input {
+        padding: 10px 40px 10px 12px;
+        font-size: 12px;
+    }
+    
+    .main-navbar .navbar-search .search-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+    
+    /* 🔥 FIX PARA EL HERO - Texto más pequeño pero completo */
+    .hero-title {
+        font-size: 32px !important;
+        line-height: 1.3 !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+}
+
+/* PANTALLAS EXTRA PEQUEÑAS (< 320px) */
+@media (max-width: 320px) {
+    .main-navbar {
+        padding: 8px 8px;
+    }
+    
+    .main-navbar .logo-container {
+        width: 40px;
+    }
+    
+    .main-navbar .brand-titles span {
+        font-size: 8px;
+        line-height: 1.1;
+    }
+    
+    .main-navbar .nav-content > .nav-links {
+        gap: 8px;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 5px !important;
+        max-width: 100% !important;
+    }
+    
+    .main-navbar .nav-content > .nav-links > a {
+        font-size: 9px !important;
+        padding: 6px 4px !important;
+        border-radius: 15px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        max-width: 100% !important;
+    }
+    
+    .main-navbar .nav-content > .nav-links > a:last-child {
+        max-width: 100% !important;
+        padding: 6px 4px !important;
+    }
+    
+    /* Barra de búsqueda más compacta */
+    .main-navbar .navbar-search {
+        max-width: 100%;
+        grid-column: 1 / -1 !important;
+    }
+    
+    .main-navbar .navbar-search input {
+        padding: 8px 35px 8px 10px;
+        font-size: 10px;
+        border-radius: 20px;
+    }
+    
+    .main-navbar .navbar-search .search-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+        right: 8px;
+    }
+    
+    /* Hero title ajustado */
+    .hero-title {
+        font-size: 28px !important;
+        line-height: 1.3 !important;
+    }
+}
+
+/* ULTRA PEQUEÑAS (< 250px) */
+@media (max-width: 250px) {
+    .main-navbar {
+        padding: 6px 6px;
+    }
+    
+    .main-navbar .logo-container {
+        width: 35px;
+    }
+    
+    .main-navbar .brand-titles {
+        display: none;
+    }
+    
+    .main-navbar .nav-content {
+        gap: 6px;
+    }
+    
+    .main-navbar .nav-content > .nav-links {
+        gap: 6px;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 4px !important;
+    }
+    
+    .main-navbar .nav-content > .nav-links > a {
+        font-size: 8px !important;
+        padding: 5px 3px !important;
+        border-radius: 12px !important;
+        line-height: 1.2 !important;
+        max-width: 100% !important;
+    }
+    
+    .main-navbar .nav-content > .nav-links > a:last-child {
+        max-width: 100% !important;
+        padding: 5px 3px !important;
+    }
+    
+    /* Barra de búsqueda ultra compacta */
+    .main-navbar .navbar-search {
+        grid-column: 1 / -1 !important;
+    }
+    
+    .main-navbar .navbar-search input {
+        padding: 6px 30px 6px 8px;
+        font-size: 9px;
+        border-radius: 15px;
+    }
+    
+    .main-navbar .navbar-search .search-btn {
+        width: 24px;
+        height: 24px;
+        font-size: 10px;
+        right: 6px;
+    }
+    
+    .hero-title {
+        font-size: 24px !important;
+        line-height: 1.3 !important;
+    }
+}
+
+/* AJUSTE PARA EL DROPDOWN DE RESULTADOS */
+@media (max-width: 768px) {
+    .search-results-dropdown {
+        position: fixed !important;
+        top: auto !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        max-height: 50vh !important;
+        border-radius: 20px 20px 0 0 !important;
+        box-shadow: 0 -10px 40px rgba(0, 9, 60, 0.3) !important;
+    }
+}

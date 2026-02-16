@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal CGPVP - Noticias</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="indexstyle.css">
+    <link rel="stylesheet" href="not/buscar-miembros.css">
+    <link rel="stylesheet" href="not/navbar-responsive-sin-cambiar-html.css">
+    <script src="accesibilidad.js" defer></script> 
+    <script type="module" src="./headBot.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="IMAGENES/LOGO.png" type="image/png">
+</head>
+<body>
+
+    <header class="main-navbar">
+        <div class="nav-content">
+            <div class="brand">
+                <div class="logo-container">
+                    <img src="IMAGENES/LOGO.png" alt="Logo CGPVP">
+                </div>
+                <div class="brand-titles">
+                    <span>Cuerpo General de</span>
+                    <span>Paramédicos Voluntarios</span>
+                    <span>del Perú</span>
+                </div>
+            </div>
+
+            <nav class="nav-links">
+                <!-- Barra de búsqueda -->
+                <div class="navbar-search">
+                    <input 
+                        type="text" 
+                        id="navbarSearchInput" 
+                        placeholder="Buscar integrante..."
+                        aria-label="Buscar en el sitio"
+                    >
+                    <button type="button" class="search-btn" aria-label="Buscar">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+            <nav class="nav-links">
+                <a href="index.html" class="active">Inicio</a>
+                <a href="nos/Nosotros.html">Nosotros</a>               
+                <a href="un/Unete.html">Únete</a>
+                <a href="ins/Instructores.html">Instructores</a>
+                <a href="cur/Cursos.html">Cursos</a>
+                <a href="not/noticias.html">Noticias</a>                
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Banner Section - CON 6 LOGOS SEPARADOS -->
+    <section class="hero-banner">
+        <div class="hero-overlay">
+            <h1 class="hero-title">
+                <span class="hero-subtitle">Cuerpo General de
+                 Paramédicos</span>
+                <span class="hero-main">Voluntarios
+                 del Perú</span>
+            </h1>
+            
+            <!-- LOGOS DE ASOCIACIONES -->
+            <div class="hero-logos-container">
+                <div class="hero-logo">
+                    <img src="IMAGENES/logo1.png" alt="Logo 1">
+                </div>
+                <div class="hero-logo">
+                    <img src="IMAGENES/logo2.png" alt="Logo 2">
+                </div>
+                <div class="hero-logo">
+                    <img src="IMAGENES/logo3.png" alt="Logo 3">
+                </div>
+                <div class="hero-logo">
+                    <img src="IMAGENES/logo4.png" alt="Logo 4">
+                </div>
+                <div class="hero-logo">
+                    <img src="IMAGENES/logo5.png" alt="Logo 5">
+                </div>
+                <div class="hero-logo">
+                    <img src="IMAGENES/logo6.png" alt="Logo 6">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="page-container" id="mainContent">
+
+        <!-- Sección de Testimonios -->
+        <section class="testimonials-section fade-in-section">
+            <h2 class="section-title">Opinión de nuestros estudiantes</h2>
+            
+            <div class="testimonials-carousel">
+                <button class="carousel-arrow carousel-prev" onclick="moveTestimonial(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="testimonial-container">
+                    <div class="testimonial-slide active">
+                        <div class="quote-icon quote-left">"</div>
+                        <img src="https://via.placeholder.com/100" alt="Estudiante 1" class="testimonial-avatar">
+                        <p class="testimonial-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget risus porta, tincidunt turpis at, interdum tortor. Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce ante tellus, convallis non consectetur sed, pharetra nec ex.
+                        </p>
+                        <h4 class="testimonial-author">María González</h4>
+                        <div class="quote-icon quote-right">"</div>
+                    </div>
+
+                    <div class="testimonial-slide">
+                        <div class="quote-icon quote-left">"</div>
+                        <img src="https://via.placeholder.com/100" alt="Estudiante 2" class="testimonial-avatar">
+                        <p class="testimonial-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget risus porta, tincidunt turpis at, interdum tortor. Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce ante tellus, convallis non consectetur sed, pharetra nec ex.
+                        </p>
+                        <h4 class="testimonial-author">Carlos Ramírez</h4>
+                        <div class="quote-icon quote-right">"</div>
+                    </div>
+
+                    <div class="testimonial-slide">
+                        <div class="quote-icon quote-left">"</div>
+                        <img src="https://via.placeholder.com/100" alt="Estudiante 3" class="testimonial-avatar">
+                        <p class="testimonial-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget risus porta, tincidunt turpis at, interdum tortor. Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce ante tellus, convallis non consectetur sed, pharetra nec ex.
+                        </p>
+                        <h4 class="testimonial-author">Ana Pérez</h4>
+                        <div class="quote-icon quote-right">"</div>
+                    </div>
+
+                    <div class="testimonial-slide">
+                        <div class="quote-icon quote-left">"</div>
+                        <img src="https://via.placeholder.com/100" alt="Estudiante 4" class="testimonial-avatar">
+                        <p class="testimonial-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget risus porta, tincidunt turpis at, interdum tortor. Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce ante tellus, convallis non consectetur sed, pharetra nec ex.
+                        </p>
+                        <h4 class="testimonial-author">Jorge Silva</h4>
+                        <div class="quote-icon quote-right">"</div>
+                    </div>
+                </div>
+
+                <button class="carousel-arrow carousel-next" onclick="moveTestimonial(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentTestimonial(0)"></span>
+                <span class="dot" onclick="currentTestimonial(1)"></span>
+                <span class="dot" onclick="currentTestimonial(2)"></span>
+                <span class="dot" onclick="currentTestimonial(3)"></span>
+            </div>
+        </section>
+
+        <!-- NUEVA SECCIÓN: Beneficios de la Capacitación -->
+        <section class="benefits-section fade-in-section">
+            <h2 class="section-title">Beneficios de nuestra capacitación</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h3>Capacitación para Paramédicos, por Paramédicos</h3>
+                    <p>Formación especializada diseñada e impartida por profesionales con experiencia en el campo</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-laptop-house"></i>
+                    </div>
+                    <h3>Aprendizaje remoto para la mayoría de las clases</h3>
+                    <p>Flexibilidad de horarios con clases en línea de alta calidad desde cualquier lugar</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Clases aprobadas y acreditadas</h3>
+                    <p>Certificaciones reconocidas que cumplen con los más altos estándares nacionales</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>Precios accesibles</h3>
+                    <p>Inversión justa en tu formación profesional con opciones de pago flexibles</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Transfiere créditos hacia tu título</h3>
+                    <p>Aprovecha tu formación previa y avanza más rápido en tu carrera profesional</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NUEVA SECCIÓN: Formación Especializada -->
+        <section class="training-features-section fade-in-section">
+            <div class="training-image">
+                <img src="IMAGENES/Inicio.jpg" alt="Formación CGPVP">
+            </div>
+            <div class="training-content">
+                <div class="training-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Formación Especializada y Actualizada</h3>
+                        <p>Ofrecemos capacitaciones diseñadas para responder a las últimas normativas y procedimientos en emergencias, asegurando que el equipo esté preparado para actuar con seguridad y eficiencia en situaciones críticas.</p>
+                    </div>
+                </div>
+
+                <div class="training-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Instructores Altamente Calificados</h3>
+                        <p>Nuestro equipo de profesionales cuenta con experiencia en el campo y habilidades de enseñanza prácticas, permitiendo una comprensión clara y aplicable de cada técnica y protocolo.</p>
+                    </div>
+                </div>
+
+                <div class="training-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Aprendizaje Práctico en Simulaciones Reales</h3>
+                        <p>Las capacitaciones incluyen simulaciones en escenarios controlados que imitan condiciones de emergencia reales, proporcionando una experiencia inmersiva y efectiva que facilita la aplicación de lo aprendido.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NUEVA SECCIÓN: Call to Action con Imagen -->
+        <section class="cta-section fade-in-section">
+            <div class="cta-content">
+                <div class="cta-text">
+                    <h2>Conoce más sobre nuestra institución</h2>
+                    <p>Descubre nuestra historia, misión y valores. Somos una organización comprometida con la formación de paramédicos profesionales que marcan la diferencia en situaciones de emergencia.</p>
+                    <div class="cta-buttons">
+                        <a href="nosotros.html" class="btn-cta-primary">
+                            <i class="fas fa-users"></i>
+                            Sobre Nosotros
+                        </a>
+                        <a href="Cursos.html" class="btn-cta-secondary">
+                            <i class="fas fa-graduation-cap"></i>
+                            Ver Cursos
+                        </a>
+                    </div>
+                </div>
+                <div class="cta-image">
+                    <img src="IMAGENES/Unete.jpg" alt="Institución CGPVP">
+                </div>
+            </div>
+        </section>
+
+        <!-- NUEVA SECCIÓN: Contacto Rápido -->
+        <section class="quick-contact-section fade-in-section">
+            <div class="contact-container">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Llámanos</h3>
+                    <p>+51 953 958 371</p>
+                    <span>Lun - Dom: 8:00 AM - 6:00 PM</span>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Escríbenos</h3>
+                    <p>contacto@cgpvp.org</p>
+                    <span>Respondemos en 24 horas</span>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Visítanos</h3>
+                    <p>Independencia 102, Barranco</p>
+                    <span>Lima, Perú</span>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Horario</h3>
+                    <p>Lunes a Domingo</p>
+                    <span>8:00 AM - 6:00 PM</span>
+                </div>
+            </div>
+        </section>
+
+    </main>  
+
+    <!-- FOOTER MEJORADO CON LOGOS CIRCULARES -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <!-- Logos circulares superiores -->
+            <div class="footer-partners-logos">
+                <a href="https://americancollegefire.org/" target="_blank" class="partner-logo" aria-label="Socio 1">
+                    <img src="IMAGENES/logo1.png" alt="Socio 1">
+                </a>
+                <a href="https://usar-internationalrescue.org/" target="_blank" class="partner-logo" aria-label="Socio 2">
+                    <img src="IMAGENES/logo2.png" alt="Socio 2">
+                </a>
+                <a href="https://nasar.org/" target="_blank" class="partner-logo" aria-label="Socio 3">
+                    <img src="IMAGENES/logo3.png" alt="Socio 3">
+                </a>
+                <a href="https://www.gob.pe/ccffaa" target="_blank" class="partner-logo" aria-label="Socio 4">
+                    <img src="IMAGENES/logo4.png" alt="Socio 4">
+                </a>
+                <a href="https://www.usa.gov/agencies/u-s-department-of-defense" target="_blank" class="partner-logo" aria-label="Socio 5">
+                    <img src="IMAGENES/logo5.png" alt="Socio 5">
+                </a>
+                <a href="https://www.stopthebleed.org/" target="_blank" class="partner-logo" aria-label="Socio 6">
+                    <img src="IMAGENES/logo6.png" alt="Socio 6">
+                </a>
+            </div>
+
+            <div class="footer-section footer-about">
+                <h4>CONOCE SOBRE NUESTRAS REDES SOCIALES</h4>                
+                <div class="footer-social">
+                <a href="https://www.facebook.com/paramedicos.pe" target="_blank" aria-label="Facebook">
+                 <i class="fab fa-facebook-f"></i>
+                </a>
+                 <a href="https://www.linkedin.com/in/param%C3%A9dicos-del-per%C3%BA-324795203/" target="_blank" aria-label="LinkedIn">
+                   <i class="fab fa-linkedin-in"></i>
+                   </a>
+                     <a href="https://www.tiktok.com/@paramedicos.pe/video/7371679537878404358" target="_blank" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+               </a>
+          </div>
+
+                <p class="footer-copyright">
+                    Cuerpo General de Paramédicos Voluntarios del Perú © 2025.<br>
+                    Todos los derechos reservados                                                           
+                </p>
+                <p class="footer-copyright">
+                    Powered by ALBA                                                        
+                </p>                  
+            </div>
+
+            <div class="footer-section">
+                <h4>Nosotros</h4>
+                <ul>
+                    <li><a href="#">Cuerpo General de Paramédicos Voluntarios</a></li>
+                    <li><a href="#">Independencia 102, Barranco, Lima, Perú</a></li>
+                    <li><a href="tel:+51987654321">Teléfono: +51 953 958 371</a></li>
+                    <li><a href="mailto:contacto@cgpvp.org">Email: contacto@cgpvp.org</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="index.html">Bienvenidos</a></li>
+                    <li><a href="nos/Nosotros.html">Nosotros</a></li>
+                    <li><a href="nos/Nosotros.html#mision">Misión</a></li>
+                    <li><a href="nos/Nosotros.html#vision">Visión</a></li>
+                    <li><a href="nos/Nosotros.html#organigrama">Organización</a></li>
+                </ul>
+            </div> 
+             <div class="footer-section">
+                <h4>Conoce más sobre nuestros cursos</h4>
+                <ul>
+                    <li><a href="cur/Cursos.html">Cursos</a></li>
+                    <li><a href="ins/Instructores.html">Instructores</a></li>
+                    <li><a href="un/Unete.html">Únete</a></li>
+                    <li><a href="not/noticias.html">Noticias</a></li>                    
+                </ul>
+            </div>              
+            
+    </footer>   
+
+    <script>
+        // Animación de números para estadísticas
+        function animateNumber(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    element.textContent = target.toLocaleString() + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString();
+                }
+            }, 16);
+        }
+
+        // Animación de aparición al hacer scroll
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    
+                    // Animar números de estadísticas cuando aparecen
+                    if (entry.target.classList.contains('stats-section')) {
+                        const statNumbers = entry.target.querySelectorAll('.stat-number');
+                        statNumbers.forEach((num, index) => {
+                            setTimeout(() => animateNumber(num), index * 200);
+                        });
+                    }
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Observar todas las secciones con fade-in
+        document.addEventListener('DOMContentLoaded', () => {
+            const fadeInSections = document.querySelectorAll('.fade-in-section');
+            fadeInSections.forEach(section => {
+                fadeInObserver.observe(section);
+            });
+        });
+
+        // Chat Toggle
+        function toggleChat() {
+            const chat = document.getElementById('bullChat');
+            const isVisible = (chat.style.display === 'flex');
+            chat.style.display = isVisible ? 'none' : 'flex';
+            if (!isVisible) {
+                const badge = document.querySelector('.notification-badge');
+                if(badge) badge.style.display = 'none';
+            }
+        }
+
+        function toggleAccessibility() {
+            const menu = document.getElementById('accessibilityMenu');
+            menu.classList.toggle('active');
+            console.log("Accionando menú de accesibilidad...");
+        }
+
+        // Testimonials Carousel
+        let currentSlide = 0;
+
+        function showTestimonial(n) {
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const dots = document.querySelectorAll('.carousel-dots .dot');
+            
+            if (n >= slides.length) { currentSlide = 0; }
+            if (n < 0) { currentSlide = slides.length - 1; }
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function moveTestimonial(direction) {
+            currentSlide += direction;
+            showTestimonial(currentSlide);
+        }
+
+        function currentTestimonial(n) {
+            currentSlide = n;
+            showTestimonial(currentSlide);
+        }
+
+        // Auto-advance carousel every 5 seconds
+        setInterval(() => {
+            moveTestimonial(1);
+        }, 5000);
+    </script>
+    <script src="not/buscar-miembros.js"></script>
+    <script src="headBot.js"></script>
+</body>
+</html>

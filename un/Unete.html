@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Únete - CGPVP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="unetestyle.css">
+    <link rel="stylesheet" href="unete-stylebody.css">
+    <link rel="stylesheet" href="../not/buscar-miembros.css">
+    <link rel="stylesheet" href="unete-navbar-responsive.css">
+    <script type="module" src="./headBot.js"></script>
+    <script src="accesibilidad.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="../IMAGENES/LOGO.png" type="image/png">
+</head>
+<body>
+
+    <header class="main-navbar">
+        <div class="nav-content">
+            <div class="brand">
+                <div class="logo-container">
+                    <img src="../IMAGENES/LOGO.png" alt="Logo CGPVP">
+                </div>
+                <div class="brand-titles">
+                    <span>Cuerpo General de</span>
+                    <span>Paramédicos Voluntarios</span>
+                    <span>del Perú</span>
+                </div>
+            </div>
+
+            <nav class="nav-links">
+                <!-- Barra de búsqueda -->
+                <div class="navbar-search">
+                    <input 
+                        type="text" 
+                        id="navbarSearchInput" 
+                        placeholder="Buscar instegrante..."
+                        aria-label="Buscar en el sitio"
+                    >
+                    <button type="button" class="search-btn" aria-label="Buscar">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <a href="../index.html">Inicio</a>
+                <a href="../nos/Nosotros.html">Nosotros</a>                
+                <a href="Unete.html" class="active">Únete</a>
+                <a href="../ins/Instructores.html">Instructores</a>
+                <a href="../cur/Cursos.html">Cursos</a>
+                <a href="../not/noticias.html">Noticias</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Modal de Bienvenida -->
+    <div id="welcomeModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h2>¿Estás listo para unirte a nosotros?</h2>
+            </div>
+            <div class="modal-body">
+                <p class="modal-message">
+                    Recuerda que se postula una vez cada año.
+                </p>
+                <p class="modal-message-highlight">
+                    ¡Suerte! Te avisaremos sobre tu postulación.
+                </p>
+                <div class="modal-illustration">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-accept" onclick="acceptModal()">
+                    <i class="fas fa-check-circle"></i> Aceptar y Continuar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <main class="unete-container">
+        
+        <!-- Hero Section -->
+        <section class="unete-hero">
+            <div class="hero-overlay">
+                <h1 class="hero-title">Únete a Nosotros</h1>
+                <p class="hero-subtitle">Forma parte del equipo de paramédicos más profesional del Perú</p>
+            </div>
+        </section>
+
+        <!-- Formulario de Registro -->
+        <section class="registro-section">
+            <div class="registro-container">
+                
+                <div class="registro-header">
+                    <div class="header-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h2>Formulario de Registro</h2>
+                    <p>Completa todos los campos para iniciar tu proceso de postulación</p>
+                </div>
+
+                <form id="registroForm" class="registro-form">
+                    
+                    <!-- Información Personal -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">
+                            <i class="fas fa-id-card"></i> Información Personal
+                        </h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nombre">
+                                    <i class="fas fa-user"></i> Nombre(s) <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="nombre" 
+                                    name="nombre" 
+                                    placeholder="Ingresa tu(s) nombre(s)"
+                                    required
+                                >
+                                <span class="form-error" id="error-nombre"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="apellido">
+                                    <i class="fas fa-user"></i> Apellidos <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="apellido" 
+                                    name="apellido" 
+                                    placeholder="Ingresa tus apellidos"
+                                    required
+                                >
+                                <span class="form-error" id="error-apellido"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="dni">
+                                    <i class="fas fa-id-card-alt"></i> DNI <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="dni" 
+                                    name="dni" 
+                                    placeholder="12345678"
+                                    maxlength="8"
+                                    pattern="[0-9]{8}"
+                                    required
+                                >
+                                <span class="form-error" id="error-dni"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fechaNacimiento">
+                                    <i class="fas fa-calendar-alt"></i> Fecha de Nacimiento <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="date" 
+                                    id="fechaNacimiento" 
+                                    name="fechaNacimiento" 
+                                    required
+                                >
+                                <span class="form-error" id="error-fechaNacimiento"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="genero">
+                                    <i class="fas fa-venus-mars"></i> Género <span class="required">*</span>
+                                </label>
+                                <select id="genero" name="genero" required>
+                                    <option value="">Selecciona</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="femenino">Femenino</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                                <span class="form-error" id="error-genero"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Información de Contacto -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">
+                            <i class="fas fa-envelope"></i> Información de Contacto
+                        </h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">
+                                    <i class="fas fa-at"></i> Correo Electrónico <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    placeholder="tu.correo@ejemplo.com"
+                                    required
+                                >
+                                <span class="form-error" id="error-email"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="telefono">
+                                    <i class="fas fa-phone"></i> Teléfono <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="tel" 
+                                    id="telefono" 
+                                    name="telefono" 
+                                    placeholder="987654321"
+                                    maxlength="9"
+                                    pattern="[0-9]{9}"
+                                    required
+                                >
+                                <span class="form-error" id="error-telefono"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="direccion">
+                                <i class="fas fa-map-marker-alt"></i> Dirección <span class="required">*</span>
+                            </label>
+                            <input 
+                                type="text" 
+                                id="direccion" 
+                                name="direccion" 
+                                placeholder="Av. Principal 123, Distrito, Provincia"
+                                required
+                            >
+                            <span class="form-error" id="error-direccion"></span>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="departamento">
+                                    <i class="fas fa-map"></i> Departamento <span class="required">*</span>
+                                </label>
+                                <select id="departamento" name="departamento" required>
+                                    <option value="">Selecciona</option>
+                                    <option value="lima">Lima</option>
+                                    <option value="arequipa">Arequipa</option>
+                                    <option value="cusco">Cusco</option>
+                                    <option value="trujillo">La Libertad</option>
+                                    <option value="piura">Piura</option>
+                                    <option value="otros">Otros</option>
+                                </select>
+                                <span class="form-error" id="error-departamento"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="distrito">
+                                    <i class="fas fa-building"></i> Distrito <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="distrito" 
+                                    name="distrito" 
+                                    placeholder="Nombre del distrito"
+                                    required
+                                >
+                                <span class="form-error" id="error-distrito"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Información Académica -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">
+                            <i class="fas fa-graduation-cap"></i> Información Académica
+                        </h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nivel-educativo">
+                                    <i class="fas fa-book"></i> Nivel Educativo <span class="required">*</span>
+                                </label>
+                                <select id="nivel-educativo" name="nivelEducativo" required>
+                                    <option value="">Selecciona</option>
+                                    <option value="secundaria">Secundaria Completa</option>
+                                    <option value="tecnico">Técnico</option>
+                                    <option value="universitario">Universitario</option>
+                                    <option value="postgrado">Postgrado</option>
+                                </select>
+                                <span class="form-error" id="error-nivel-educativo"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="profesion">
+                                    <i class="fas fa-briefcase"></i> Profesión u Ocupación <span class="required">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="profesion" 
+                                    name="profesion" 
+                                    placeholder="Ingeniero, Estudiante, etc."
+                                    required
+                                >
+                                <span class="form-error" id="error-profesion"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Motivación -->
+                    <div class="form-section">
+                        <h3 class="form-section-title">
+                            <i class="fas fa-heart"></i> Motivación
+                        </h3>
+
+                        <div class="form-group">
+                            <label for="motivacion">
+                                <i class="fas fa-comment-dots"></i> ¿Por qué quieres unirte al CGPVP? <span class="required">*</span>
+                            </label>
+                            <textarea 
+                                id="motivacion" 
+                                name="motivacion" 
+                                rows="5" 
+                                placeholder="Cuéntanos tu motivación para formar parte de nuestro equipo..."
+                                maxlength="500"
+                                required
+                            ></textarea>
+                            <span class="char-counter">0/500 caracteres</span>
+                            <span class="form-error" id="error-motivacion"></span>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="experiencia" name="experiencia">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">Tengo experiencia previa en atención de emergencias o voluntariado</span>
+                            </label>
+                        </div>
+
+                        <!-- Campo condicional para detalles de experiencia -->
+                        <div class="form-group" id="experienciaDetalle" style="display: none;">
+                            <label for="experienciaTexto">
+                                <i class="fas fa-comment-medical"></i> Coméntenos en cuál
+                            </label>
+                            <textarea 
+                                id="experienciaTexto" 
+                                name="experienciaTexto" 
+                                rows="3" 
+                                placeholder="Describe brevemente tu experiencia previa (ej: Cruz Roja, bomberos voluntarios, etc.)"
+                                maxlength="300"
+                            ></textarea>
+                            <span class="char-counter-exp">0/300 caracteres</span>
+                        </div>
+                    </div>
+
+                    <!-- Términos y Condiciones -->
+                    <div class="form-section">
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="terminos" name="terminos" required>
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">
+                                    Acepto los <a href="#" class="link-terminos">términos y condiciones</a> y la <a href="#" class="link-terminos">política de privacidad</a> <span class="required">*</span>
+                                </span>
+                            </label>
+                            <span class="form-error" id="error-terminos"></span>
+                        </div>
+                    </div>
+
+                    <!-- Botones de Acción -->
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancelar" onclick="cancelarRegistro()">
+                            <i class="fas fa-times-circle"></i> Cancelar
+                        </button>
+                        <button type="submit" class="btn-registrar" id="submitBtn">
+                            <span class="btn-text">
+                                <i class="fas fa-paper-plane"></i> Registrarse
+                            </span>
+                            <span class="btn-loading">
+                                <i class="fas fa-spinner fa-spin"></i> Enviando...
+                            </span>
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </section>
+
+        <!-- Información Adicional -->
+        <section class="info-adicional-section">
+            <div class="section-container">
+                <h2 class="section-title">Proceso de Selección</h2>
+                
+                <div class="proceso-grid">
+                    <div class="proceso-card">
+                        <div class="proceso-number">1</div>
+                        <div class="proceso-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <h4>Registro</h4>
+                        <p>Completa el formulario de postulación con toda tu información</p>
+                    </div>
+
+                    <div class="proceso-card">
+                        <div class="proceso-number">2</div>
+                        <div class="proceso-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h4>Evaluación</h4>
+                        <p>Revisaremos tu perfil y experiencia cuidadosamente</p>
+                    </div>
+
+                    <div class="proceso-card">
+                        <div class="proceso-number">3</div>
+                        <div class="proceso-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <h4>Entrevista</h4>
+                        <p>Los seleccionados serán contactados para una entrevista personal</p>
+                    </div>
+
+                    <div class="proceso-card">
+                        <div class="proceso-number">4</div>
+                        <div class="proceso-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4>Capacitación</h4>
+                        <p>Iniciarás tu formación como paramédico profesional</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+     <!-- FOOTER MEJORADO CON LOGOS CIRCULARES -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <!-- Logos circulares superiores -->
+            <div class="footer-partners-logos">
+                <a href="https://americancollegefire.org/" target="_blank" class="partner-logo" aria-label="Socio 1">
+                    <img src="../IMAGENES/logo1.png" alt="Socio 1">
+                </a>
+                <a href="https://usar-internationalrescue.org/" target="_blank" class="partner-logo" aria-label="Socio 2">
+                    <img src="../IMAGENES/logo2.png" alt="Socio 2">
+                </a>
+                <a href="https://nasar.org/" target="_blank" class="partner-logo" aria-label="Socio 3">
+                    <img src="../IMAGENES/logo3.png" alt="Socio 3">
+                </a>
+                <a href="https://www.gob.pe/ccffaa" target="_blank" class="partner-logo" aria-label="Socio 4">
+                    <img src="../IMAGENES/logo4.png" alt="Socio 4">
+                </a>
+                <a href="https://www.usa.gov/agencies/u-s-department-of-defense" target="_blank" class="partner-logo" aria-label="Socio 5">
+                    <img src="../IMAGENES/logo5.png" alt="Socio 5">
+                </a>
+                <a href="https://www.stopthebleed.org/" target="_blank" class="partner-logo" aria-label="Socio 6">
+                    <img src="../IMAGENES/logo6.png" alt="Socio 6">
+                </a>
+            </div>
+
+            <div class="footer-section footer-about">
+                <h4>CONOCE SOBRE NUESTRAS REDES SOCIALES</h4>                
+                <div class="footer-social">
+                <a href="https://www.facebook.com/paramedicos.pe" target="_blank" aria-label="Facebook">
+                 <i class="fab fa-facebook-f"></i>
+                </a>
+                 <a href="https://www.linkedin.com/in/param%C3%A9dicos-del-per%C3%BA-324795203/" target="_blank" aria-label="LinkedIn">
+                   <i class="fab fa-linkedin-in"></i>
+                   </a>
+                     <a href="https://www.tiktok.com/@paramedicos.pe/video/7371679537878404358" target="_blank" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+               </a>
+          </div>
+
+                <p class="footer-copyright">
+                    Cuerpo General de Paramédicos Voluntarios del Perú © 2025.<br>
+                    Todos los derechos reservados                                                           
+                </p>
+                <p class="footer-copyright">
+                    Powered by <a href="https://TU-LINK-AQUI.com" target="_blank" style="text-decoration: none; color: inherit;">ALBA</a>                                                       
+                </p>                  
+            </div>
+
+            <div class="footer-section">
+                <h4>Nosotros</h4>
+                <ul>
+                    <li><a href="#">Cuerpo General de Paramédicos Voluntarios</a></li>
+                    <li><a href="#">Independencia 102, Barranco, Lima, Perú</a></li>
+                    <li><a href="tel:+51987654321">Teléfono: +51 953 958 371</a></li>
+                    <li><a href="mailto:contacto@cgpvp.org">Email: contacto@cgpvp.org</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="../index.html">Bienvenidos</a></li>
+                    <li><a href="../nos/Nosotros.html">Nosotros</a></li>
+                    <li><a href="../nos/Nosotros.html#mision">Misión</a></li>
+                    <li><a href="../nos/Nosotros.html#vision">Visión</a></li>
+                    <li><a href="../nos/Nosotros.html#organigrama">Organización</a></li>
+                </ul>
+            </div> 
+             <div class="footer-section">
+                <h4>Conoce más sobre nuestros cursos</h4>
+                <ul>
+                    <li><a href="../cur/Cursos.html">Cursos</a></li>
+                    <li><a href="../ins/Instructores.html">Instructores</a></li>
+                    <li><a href="Unete.html">Únete</a></li>
+                    <li><a href="../not/noticias.html">Noticias</a></li>                    
+                </ul>
+            </div>              
+            
+    </footer>   
+
+
+    <!-- Modal de Confirmación -->
+    <div id="confirmModal" class="modal-overlay">
+        <div class="modal-container success-modal">
+            <div class="modal-header">
+                <div class="modal-icon success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>¡Registro Exitoso!</h2>
+            </div>
+            <div class="modal-body">
+                <p class="modal-message">
+                    Tu solicitud ha sido enviada correctamente.
+                </p>
+                <p class="modal-message-highlight">
+                    Nos pondremos en contacto contigo pronto. ¡Gracias por tu interés!
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-accept" onclick="closeConfirmModal()">
+                    <i class="fas fa-home"></i> Volver al Inicio
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Establecer fecha máxima (13 años atrás desde hoy)
+        function setMaxDate() {
+            const today = new Date();
+            const maxDate = new Date(today.getFullYear() - 13, today.getMonth(), today.getDate());
+            const maxDateString = maxDate.toISOString().split('T')[0];
+            document.getElementById('fechaNacimiento').setAttribute('max', maxDateString);
+            
+            // Establecer fecha mínima (por ejemplo, 100 años atrás)
+            const minDate = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
+            const minDateString = minDate.toISOString().split('T')[0];
+            document.getElementById('fechaNacimiento').setAttribute('min', minDateString);
+        }
+
+        // Ejecutar al cargar la página
+        window.addEventListener('load', () => {
+            setMaxDate();
+            // Mostrar el modal de bienvenida
+            document.getElementById('welcomeModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Modal de Bienvenida
+        function acceptModal() {
+            const modal = document.getElementById('welcomeModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Cerrar modal al hacer clic fuera (solo para modal de bienvenida)
+        document.addEventListener('click', function(e) {
+            const welcomeModal = document.getElementById('welcomeModal');
+            const confirmModal = document.getElementById('confirmModal');
+            
+            // Modal de bienvenida
+            if (e.target === welcomeModal && welcomeModal.classList.contains('active')) {
+                acceptModal();
+            }
+            
+            // Modal de confirmación
+            if (e.target === confirmModal && confirmModal.classList.contains('active')) {
+                closeConfirmModal();
+            }
+        });
+
+        // Prevenir que el clic en el contenido del modal lo cierre
+        document.querySelectorAll('.modal-container').forEach(container => {
+            container.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+
+        // Validación DNI
+        document.getElementById('dni').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        // Validación Teléfono
+        document.getElementById('telefono').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        // Contador de caracteres para motivación
+        document.getElementById('motivacion').addEventListener('input', function() {
+            const counter = this.parentElement.querySelector('.char-counter');
+            counter.textContent = `${this.value.length}/500 caracteres`;
+        });
+
+        // Mostrar/ocultar campo de experiencia
+        document.getElementById('experiencia').addEventListener('change', function() {
+            const experienciaDetalle = document.getElementById('experienciaDetalle');
+            const experienciaTexto = document.getElementById('experienciaTexto');
+            
+            if (this.checked) {
+                experienciaDetalle.style.display = 'flex';
+                experienciaTexto.focus();
+            } else {
+                experienciaDetalle.style.display = 'none';
+                experienciaTexto.value = '';
+                document.querySelector('.char-counter-exp').textContent = '0/300 caracteres';
+            }
+        });
+
+        // Contador de caracteres para experiencia
+        document.getElementById('experienciaTexto').addEventListener('input', function() {
+            const counter = document.querySelector('.char-counter-exp');
+            counter.textContent = `${this.value.length}/300 caracteres`;
+        });
+
+        // Función para calcular edad desde fecha de nacimiento
+        function calcularEdad(fechaNacimiento) {
+            const hoy = new Date();
+            const nacimiento = new Date(fechaNacimiento);
+            let edad = hoy.getFullYear() - nacimiento.getFullYear();
+            const mes = hoy.getMonth() - nacimiento.getMonth();
+            
+            if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
+                edad--;
+            }
+            
+            return edad;
+        }
+
+        // Función para mostrar errores (usada por unete-api.js)
+        function showError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            const error = document.getElementById(`error-${fieldId}`);
+            const formGroup = field.closest('.form-group');
+            
+            if (error) {
+                error.textContent = message;
+            }
+            if (formGroup) {
+                formGroup.classList.add('error');
+            }
+        }
+
+        function cancelarRegistro() {
+            if (confirm('¿Estás seguro de que deseas cancelar el registro? Se perderán todos los datos ingresados.')) {
+                window.location.href = '../index.html';
+            }
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            window.location.href = '../index.html';
+        }
+
+        // Funcionalidad de búsqueda del navbar
+        const navbarSearchInput = document.getElementById('navbarSearchInput');
+        const searchBtn = document.querySelector('.navbar-search .search-btn');
+
+        // Búsqueda al hacer clic en el botón
+        if (searchBtn) {
+            searchBtn.addEventListener('click', function() {
+                performSearch();
+            });
+        }
+
+        // Búsqueda al presionar Enter
+        if (navbarSearchInput) {
+            navbarSearchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        }
+
+        function performSearch() {
+            const searchTerm = navbarSearchInput.value.trim();
+            if (searchTerm) {
+                // Aquí puedes redirigir a una página de resultados o implementar búsqueda en el sitio
+                alert(`Buscando: "${searchTerm}"\n\nEsta funcionalidad se puede conectar a tu sistema de búsqueda.`);
+                // Ejemplo de redirección:
+                // window.location.href = `buscar.html?q=${encodeURIComponent(searchTerm)}`;
+            }
+        }
+    </script>
+    <script src="../not/buscar-miembros.js"></script>
+    <!-- ⚡ API DE REGISTRO - ESTE SCRIPT MANEJA EL ENVÍO AL BACKEND -->
+    <script src="unete-api.js"></script>
+    <script src="headBot.js"></script>
+</body>
+</html>

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructores - CGPVP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="instructoresstyle.css">
+    <link rel="stylesheet" href="instructores-stylebody.css">
+    <link rel="stylesheet" href="../not/buscar-miembros.css">
+    <link rel="stylesheet" href="../not/navbar-responsive-sin-cambiar-html.css">
+    <script type="module" src="./headBot.js"></script>
+    <script src="accesibilidad.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="../IMAGENES/LOGO.png" type="image/png">
+</head>
+<body>
+    <header class="main-navbar">
+        <div class="nav-content">
+            <div class="brand">
+                <div class="logo-container">
+                    <img src="../IMAGENES/LOGO.png" alt="Logo CGPVP">
+                </div>
+                <div class="brand-titles">
+                    <span>Cuerpo General de</span>
+                    <span>Paramédicos Voluntarios</span>
+                    <span>del Perú</span>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <!-- Barra de búsqueda -->
+                <div class="navbar-search">
+                    <input 
+                        type="text" 
+                        id="navbarSearchInput" 
+                        placeholder="Buscar integrante..."
+                        aria-label="Buscar en el sitio"
+                    >
+                    <button type="button" class="search-btn" aria-label="Buscar">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+            <nav class="nav-links">
+                <a href="../index.html">Inicio</a>
+                <a href="../nos/Nosotros.html">Nosotros</a>
+                <a href="../un/Unete.html">Únete</a>
+                <a href="Instructores.html" class="active">Instructores</a>
+                <a href="../cur/Cursos.html">Cursos</a>
+                <a href="../not/noticias.html">Noticias</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="inst-container">
+        
+        <!-- Hero Section -->
+        <section class="inst-hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Nuestro Equipo de Instructores</h1>
+                <p class="hero-subtitle">Profesionales certificados comprometidos con la excelencia en formación de emergencias</p>
+            </div>
+        </section>
+
+        <!-- Barra de búsqueda y filtros -->
+        <section class="search-filter-bar reveal">
+            <div class="search-wrapper">
+                <input type="text" id="searchInstructors" placeholder="Buscar instructor...">
+                <button class="btn-search-icon">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <select class="filter-dropdown" id="specialtyFilter">
+                <option value="todos">Todas las especialidades</option>
+                <!-- Las especialidades se cargarán dinámicamente desde la BD -->
+            </select>
+            
+            <select class="filter-dropdown" id="sortFilter">
+                <option value="">Ordenar por</option>
+                <option value="experiencia-desc">Mayor experiencia</option>
+                <option value="experiencia-asc">Menor experiencia</option>
+                <option value="nombre-asc">Nombre (A-Z)</option>
+                <option value="nombre-desc">Nombre (Z-A)</option>
+            </select>
+        </section>
+
+        <!-- Grid de Instructores y Sidebar -->
+        <section class="content-layout">
+            
+            <!-- Grid de Instructores -->
+            <div class="instructors-section">
+                
+                <!-- Instructor Destacado - COMENTADO: Se cargará dinámicamente desde la API -->
+                <!--
+                <article class="instructor-featured reveal reveal-scale">
+                    <div class="featured-badge">DIRECTOR ACADÉMICO</div>
+                    <div class="featured-photo">
+                        <img src="https://via.placeholder.com/320x400/00093C/c5a059?text=Director" alt="Director Académico">
+                    </div>
+                    <div class="featured-content">
+                        <h2 class="featured-name">Dr. Ricardo Alejandro Torres Vega</h2>
+                        <p class="featured-role">
+                            <i class="fas fa-award"></i> Director de Formación Académica
+                        </p>
+                        
+                        <div class="featured-experience">
+                            <i class="fas fa-briefcase"></i>
+                            <strong>Experiencia:</strong> +20 años en atención prehospitalaria y formación de paramédicos
+                        </div>
+                        
+                        <div class="featured-certifications">
+                            <i class="fas fa-certificate"></i>
+                            <span><strong>Certificaciones:</strong> NFPA, AHA, NAEMT</span>
+                        </div>
+                        
+                        <p class="featured-bio">
+                            Médico emergenciólogo con más de 20 años de experiencia en atención prehospitalaria y formación 
+                            de paramédicos. Ha liderado más de 150 programas de capacitación a nivel nacional e internacional.
+                        </p>
+                        
+                        <div class="featured-details">
+                            <div class="detail-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>+20 Años de Experiencia</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-certificate"></i>
+                                <span>Certificación NFPA / AHA</span>
+                            </div>
+                        </div>
+                        <div class="featured-footer">
+                            <div class="featured-social">
+                                <a href="/cdn-cgi/l/email-protection#503439223533243f2210203122313d353439333f237e2035"><i class="fas fa-envelope"></i></a>
+                            </div>
+                            <button class="btn-featured" onclick="openBioModal('director')">
+                                Ver Biografía Completa <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+                -->
+
+                <!-- Grid de Instructores -->
+                <div class="instructors-grid">
+                    
+                    <!-- Los instructores se cargarán dinámicamente desde la API -->
+                </div>
+            </div>
+
+            <!-- SIDEBAR -->
+            <aside class="inst-sidebar">
+                
+                <!-- Especialidades -->
+                <div class="sidebar-box list-box reveal">
+                    <h3>
+                        <i class="fas fa-list-ul"></i> Especialidades
+                    </h3>
+                    <ul class="specialty-list">
+                        <!-- Las especialidades se cargarán dinámicamente desde la BD -->
+                        <li>
+                            <a href="#" class="list-link active" data-filter="todos">
+                                <i class="fas fa-spinner fa-spin"></i> Cargando...
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </aside>
+
+        </section>
+
+        <!-- Certificaciones Internacionales -->
+        <section class="certifications-section">
+            <div class="cert-header reveal">
+                <h2>Certificaciones Internacionales</h2>
+                <p>Nuestros instructores están respaldados por las organizaciones más prestigiosas del mundo</p>
+            </div>
+
+            <div class="cert-container">
+                
+                <div class="cert-box reveal">
+                    <div class="cert-icon-wrap">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="cert-info">
+                        <h4>NFPA – National Fire Protection Association</h4>
+                        <p class="cert-detail">Estándares internacionales en prevención de incendios, emergencias y formación de bomberos profesionales.</p>
+                    </div>
+                </div>
+
+                <div class="cert-box reveal">
+                    <div class="cert-icon-wrap">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="cert-info">
+                        <h4>AHA – American Heart Association</h4>
+                        <p class="cert-detail">Certificación en soporte vital básico y avanzado, RCP y uso de desfibriladores externos automáticos.</p>
+                    </div>
+                </div>
+
+                <div class="cert-box reveal">
+                    <div class="cert-icon-wrap">
+                        <i class="fas fa-ambulance"></i>
+                    </div>
+                    <div class="cert-info">
+                        <h4>NAEMT – National Association of EMTs</h4>
+                        <p class="cert-detail">Programas PHTLS y AMLS reconocidos mundialmente para la atención prehospitalaria de trauma y emergencias médicas.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal para Biografía -->
+    <div id="bioModal" class="bio-modal">
+        <div class="bio-modal-content">
+            <span class="bio-modal-close" onclick="closeBioModal()">&times;</span>
+            <div id="bioModalBody">
+                <!-- El contenido se cargará dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+     <!-- FOOTER MEJORADO CON LOGOS CIRCULARES -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <!-- Logos circulares superiores -->
+            <div class="footer-partners-logos">
+                <a href="https://americancollegefire.org/" target="_blank" class="partner-logo" aria-label="Socio 1">
+                    <img src="../IMAGENES/logo1.png" alt="Socio 1">
+                </a>
+                <a href="https://usar-internationalrescue.org/" target="_blank" class="partner-logo" aria-label="Socio 2">
+                    <img src="../IMAGENES/logo2.png" alt="Socio 2">
+                </a>
+                <a href="https://nasar.org/" target="_blank" class="partner-logo" aria-label="Socio 3">
+                    <img src="../IMAGENES/logo3.png" alt="Socio 3">
+                </a>
+                <a href="https://www.gob.pe/ccffaa" target="_blank" class="partner-logo" aria-label="Socio 4">
+                    <img src="../IMAGENES/logo4.png" alt="Socio 4">
+                </a>
+                <a href="https://www.usa.gov/agencies/u-s-department-of-defense" target="_blank" class="partner-logo" aria-label="Socio 5">
+                    <img src="../IMAGENES/logo5.png" alt="Socio 5">
+                </a>
+                <a href="https://www.stopthebleed.org/" target="_blank" class="partner-logo" aria-label="Socio 6">
+                    <img src="../IMAGENES/logo6.png" alt="Socio 6">
+                </a>
+            </div>
+
+            <div class="footer-section footer-about">
+                <h4>CONOCE SOBRE NUESTRAS REDES SOCIALES</h4>                
+                <div class="footer-social">
+                <a href="https://www.facebook.com/paramedicos.pe" target="_blank" aria-label="Facebook">
+                 <i class="fab fa-facebook-f"></i>
+                </a>
+                 <a href="https://www.linkedin.com/in/param%C3%A9dicos-del-per%C3%BA-324795203/" target="_blank" aria-label="LinkedIn">
+                   <i class="fab fa-linkedin-in"></i>
+                   </a>
+                     <a href="https://www.tiktok.com/@paramedicos.pe/video/7371679537878404358" target="_blank" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+               </a>
+          </div>
+
+                <p class="footer-copyright">
+                    Cuerpo General de Paramédicos Voluntarios del Perú © 2025.<br>
+                    Todos los derechos reservados                                                           
+                </p>
+                <p class="footer-copyright">
+                    Powered by ALBA                                                        
+                </p>                  
+            </div>
+
+            <div class="footer-section">
+                <h4>Nosotros</h4>
+                <ul>
+                    <li><a href="#">Cuerpo General de Paramédicos Voluntarios</a></li>
+                    <li><a href="#">Independencia 102, Barranco, Lima, Perú</a></li>
+                    <li><a href="tel:+51987654321">Teléfono: +51 953 958 371</a></li>
+                    <li><a href="/cdn-cgi/l/email-protection#c0a9aea6af80b0a1b2a1ada5a4a9a3afb3eeb0a5">Email: <span class="__cf_email__" data-cfemail="f29b9c949db2829380939f97969b919d81dc8297">[email&#160;protected]</span></a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="../index.html">Bienvenidos</a></li>
+                    <li><a href="../nos/Nosotros.html">Nosotros</a></li>
+                    <li><a href="../nos/Nosotros.html#mision">Misión</a></li>
+                    <li><a href="../nos/Nosotros.html#vision">Visión</a></li>
+                    <li><a href="../nos/Nosotros.html#organigrama">Organización</a></li>
+                </ul>
+            </div> 
+             <div class="footer-section">
+                <h4>Conoce más sobre nuestros cursos</h4>
+                <ul>
+                    <li><a href="../cur/Cursos.html">Cursos</a></li>
+                    <li><a href="Instructores.html">Instructores</a></li>
+                    <li><a href="../un/Unete.html">Únete</a></li>
+                    <li><a href="../not/noticias.html">Noticias</a></li>                    
+                </ul>
+            </div>              
+            
+    </footer>   
+
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // ============================================
+        // SCROLL REVEAL - IntersectionObserver
+        // ============================================
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ============================================
+        // Búsqueda de instructores en tiempo real
+        // ============================================
+        document.getElementById('searchInstructors').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.instructor-card');
+            
+            cards.forEach(card => {
+                const name = card.querySelector('.card-name').textContent.toLowerCase();
+                const title = card.querySelector('.card-title').textContent.toLowerCase();
+                
+                if (name.includes(searchTerm) || title.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // ============================================
+        // Interacción con especialidades del sidebar
+        // ============================================
+        const listLinks = document.querySelectorAll('.list-link');
+        listLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const filter = this.getAttribute('data-filter');
+                const cards = document.querySelectorAll('.instructor-card');
+                
+                cards.forEach(card => {
+                    if (filter === '' || card.getAttribute('data-specialty') === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Actualizar clase activa
+                listLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // ============================================
+        // MODAL DE BIOGRAFÍA
+        // ============================================
+        
+        // Base de datos de biografías
+        const biographies = {
+            'director': {
+                name: 'Dr. Ricardo Alejandro Torres Vega',
+                title: 'Director de Formación Académica',
+                photo: 'https://via.placeholder.com/200x200/00093C/c5a059?text=Director',
+                experience: '+20 años',
+                email: 'director@paramedicos.pe',
+                specialties: ['Medicina de Emergencia', 'Formación Académica', 'Gestión de Crisis'],
+                certifications: [
+                    'NFPA - National Fire Protection Association',
+                    'AHA - American Heart Association',
+                    'NAEMT - National Association of EMTs',
+                    'ITLS - International Trauma Life Support'
+                ],
+                bio: `El Dr. Ricardo Alejandro Torres Vega es un médico emergenciólogo con más de 20 años de experiencia 
+                en atención prehospitalaria y formación de paramédicos. Ha liderado más de 150 programas de capacitación 
+                a nivel nacional e internacional, formando a más de 3,500 profesionales de la salud.
+                
+                Su compromiso con la excelencia académica lo ha llevado a desarrollar programas de capacitación innovadores 
+                que combinan la teoría con la práctica intensiva. Es reconocido internacionalmente por su metodología de 
+                enseñanza basada en simulaciones de alta fidelidad y escenarios reales.
+                
+                Ha participado en múltiples misiones humanitarias y operaciones de respuesta a desastres naturales, 
+                liderando equipos médicos de emergencia en diferentes países de Latinoamérica.`
+            },
+            'instructor1': {
+                name: 'Dr. Carlos Méndez',
+                title: 'Médico Emergenciólogo',
+                photo: 'https://via.placeholder.com/200x200/00093C/c5a059?text=Instructor+1',
+                experience: '15 años',
+                email: 'cmendez@paramedicos.pe',
+                specialties: ['Emergencias Médicas', 'Trauma', 'Cardiología'],
+                certifications: [
+                    'ACLS - Advanced Cardiovascular Life Support',
+                    'ATLS - Advanced Trauma Life Support',
+                    'PHTLS - Prehospital Trauma Life Support'
+                ],
+                bio: `El Dr. Carlos Méndez cuenta con 15 años de experiencia en medicina de emergencia, habiendo trabajado 
+                en los principales hospitales de Lima. Es especialista en manejo avanzado de trauma y reanimación cardiopulmonar.
+                
+                Ha sido instructor líder en más de 80 cursos de formación paramédica y ha entrenado a cientos de profesionales 
+                de la salud en técnicas avanzadas de soporte vital. Su pasión por la enseñanza se refleja en la excelente 
+                evaluación que recibe de sus estudiantes.
+                
+                Actualmente lidera el programa de simulación clínica del CGPVP, donde implementa escenarios realistas 
+                para la formación de paramédicos.`
+            },
+            'instructor2': {
+                name: 'Lic. Ana Vargas',
+                title: 'Especialista en Rescate Técnico',
+                photo: 'https://via.placeholder.com/200x200/00093C/c5a059?text=Instructor+2',
+                experience: '12 años',
+                email: 'avargas@paramedicos.pe',
+                specialties: ['Rescate Técnico', 'Rescate en Altura', 'Búsqueda y Rescate'],
+                certifications: [
+                    'USAR - Urban Search and Rescue',
+                    'NFPA 1006 - Technical Rescue',
+                    'Rope Rescue Technician Level III'
+                ],
+                bio: `La Lic. Ana Vargas es una experta en rescate técnico con 12 años de experiencia en operaciones 
+                de búsqueda y rescate urbano y en montaña. Ha participado en múltiples operaciones de rescate durante 
+                desastres naturales en Perú y otros países de la región.
+                
+                Es instructora certificada en rescate con cuerdas, rescate en espacios confinados y rescate en altura. 
+                Su experiencia práctica en situaciones reales le permite enseñar técnicas probadas en el campo.
+                
+                Ha formado parte del equipo de respuesta internacional USAR-Perú en misiones de ayuda humanitaria 
+                tras terremotos y desastres naturales.`
+            },
+            'instructor3': {
+                name: 'Téc. Jorge Ramírez',
+                title: 'Técnico de Emergencias Médicas',
+                photo: 'https://via.placeholder.com/200x200/00093C/c5a059?text=Instructor+3',
+                experience: '10 años',
+                email: 'jramirez@paramedicos.pe',
+                specialties: ['Atención de Trauma', 'EMT Avanzado', 'Medicina Táctica'],
+                certifications: [
+                    'PHTLS - Prehospital Trauma Life Support',
+                    'BTLS - Basic Trauma Life Support',
+                    'EMT-Paramedic National Registry'
+                ],
+                bio: `El Téc. Jorge Ramírez es un técnico de emergencias médicas con 10 años de experiencia en atención 
+                prehospitalaria de trauma. Ha trabajado en unidades de ambulancia de alta complejidad y ha participado 
+                en operaciones de respuesta rápida.
+                
+                Su especialización en trauma prehospitalario lo convierte en un instructor ideal para enseñar técnicas 
+                de estabilización y manejo de víctimas en escenarios críticos. Ha dictado más de 60 cursos de PHTLS 
+                y BTLS.
+                
+                Actualmente es coordinador del programa de formación de técnicos de emergencias médicas del CGPVP.`
+            },
+            'instructor4': {
+                name: 'Dra. María Soto',
+                title: 'Cardióloga Intensivista',
+                photo: 'https://via.placeholder.com/200x200/00093C/c5a059?text=Instructor+4',
+                experience: '18 años',
+                email: 'msoto@paramedicos.pe',
+                specialties: ['Cardiología', 'Cuidados Intensivos', 'Soporte Vital Avanzado'],
+                certifications: [
+                    'ACLS - Advanced Cardiovascular Life Support',
+                    'BLS - Basic Life Support Instructor',
+                    'AHA - American Heart Association'
+                ],
+                bio: `La Dra. María Soto es cardióloga intensivista con 18 años de experiencia en cuidados críticos 
+                y soporte vital cardiovascular avanzado. Ha trabajado en las unidades de cuidados intensivos más 
+                prestigiosas del país.
+                
+                Es instructora senior de la American Heart Association y ha formado a cientos de profesionales en 
+                técnicas de reanimación cardiopulmonar avanzada. Su experiencia clínica es invaluable para la 
+                formación de paramédicos.
+                
+                Actualmente lidera el programa de soporte vital cardiovascular del CGPVP y es responsable de la 
+                actualización de protocolos de atención cardíaca.`
+            },
+            'instructor5': {
+                name: 'Lic. Pedro Gonzales',
+                title: 'Paramédico Avanzado',
+                photo: 'https://via.placeholder.com/200x200/00093C/c5a059?text=Instructor+5',
+                experience: '8 años',
+                email: 'pgonzales@paramedicos.pe',
+                specialties: ['Medicina Prehospitalaria', 'Emergencias', 'Medicina Táctica'],
+                certifications: [
+                    'NAEMT - National Association of EMTs',
+                    'Advanced EMT Certification',
+                    'Tactical Combat Casualty Care (TCCC)'
+                ],
+                bio: `El Lic. Pedro Gonzales es un paramédico avanzado con 8 años de experiencia en unidades de 
+                ambulancia de emergencia. Ha respondido a miles de llamadas de emergencia y tiene amplia experiencia 
+                en atención prehospitalaria.
+                
+                Su especialización en medicina táctica le permite enseñar técnicas de atención en entornos hostiles 
+                y situaciones de emergencia complejas. Es certificado en TCCC (Tactical Combat Casualty Care).
+                
+                Actualmente es instructor del programa de formación básica de paramédicos y coordina las prácticas 
+                en ambulancia de los estudiantes del CGPVP.`
+            },
+            'instructor6': {
+                name: 'Cap. Luis Torres',
+                title: 'Bombero Especialista',
+                photo: 'https://via.placeholder.com/200x200/00093C/c5a059?text=Instructor+6',
+                experience: '14 años',
+                email: 'ltorres@paramedicos.pe',
+                specialties: ['Bomberos', 'Rescate', 'Materiales Peligrosos'],
+                certifications: [
+                    'NFPA 1001 - Firefighter Professional',
+                    'Hazmat Operations Technician',
+                    'Confined Space Rescue Specialist'
+                ],
+                bio: `El Cap. Luis Torres es bombero profesional con 14 años de experiencia en combate de incendios 
+                y operaciones de rescate. Ha sido bombero en estaciones de alta demanda y ha participado en operaciones 
+                de respuesta a emergencias complejas.
+                
+                Es especialista en manejo de materiales peligrosos y rescate en espacios confinados. Su experiencia 
+                práctica en situaciones de alto riesgo es fundamental para la formación de futuros paramédicos y 
+                rescatistas.
+                
+                Actualmente coordina el programa de formación en prevención y combate de incendios del CGPVP y 
+                lidera las simulaciones de rescate vehicular.`
+            }
+        };
+
+        function openBioModal(instructorId) {
+            const modal = document.getElementById('bioModal');
+            const modalBody = document.getElementById('bioModalBody');
+            const bio = biographies[instructorId];
+            
+            if (!bio) {
+                console.error('Biografía no encontrada');
+                return;
+            }
+            
+            modalBody.innerHTML = `
+                <div class="bio-header">
+                    <img src="${bio.photo}" alt="${bio.name}" class="bio-photo">
+                    <div class="bio-header-info">
+                        <h2>${bio.name}</h2>
+                        <p class="bio-title"><i class="fas fa-briefcase"></i> ${bio.title}</p>
+                        <p class="bio-experience"><i class="fas fa-clock"></i> <strong>Experiencia:</strong> ${bio.experience}</p>
+                        <p class="bio-email"><i class="fas fa-envelope"></i> ${bio.email}</p>
+                    </div>
+                </div>
+                
+                <div class="bio-section">
+                    <h3><i class="fas fa-user"></i> Biografía</h3>
+                    <p>${bio.bio.replace(/\n\n/g, '</p><p>')}</p>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBioModal() {
+            const modal = document.getElementById('bioModal');
+            modal.style.display = 'none';
+                    document.body.style.overflow = '';
+        }
+    </script>
+
+    <!-- 🔥 SCRIPT DE CONSUMO DE API - INTEGRADO CON TU SISTEMA EXISTENTE -->
+    <script src="instructores-api.js"></script>
+
+</body>
+</html>
