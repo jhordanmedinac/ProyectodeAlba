@@ -2,6 +2,7 @@
 // CONFIGURACIÓN DEL API
 // ============================================
 const API_BASE_URL = 'http://localhost:8000/api/noticias';
+const FOTO_BASE_URL = 'http://localhost:8000/api/noticias/foto';
 
 // ============================================
 // FUNCIONES PARA CONSUMIR EL BACKEND
@@ -167,14 +168,15 @@ function renderizarNoticiaDestacada(publicacion) {
     
     if (!contenedor || !publicacion) return;
     
-    const imagenUrl = publicacion.foto || getPlaceholderImage(800, 450, 'Sin Imagen');
+    const imagenUrl = `${FOTO_BASE_URL}/${publicacion.idpublicacion}`;
+    const placeholder = getPlaceholderImage(800, 450, 'Sin Imagen');
     
     contenedor.innerHTML = `
         <div class="featured-badge">NOTICIA DESTACADA</div>
         <div class="featured-image">
             <img src="${imagenUrl}" 
                  alt="${publicacion.titulo || 'Noticia destacada'}"
-                 onerror="this.src='${getPlaceholderImage(800, 450, 'Sin Imagen')}'">
+                 onerror="this.src='${placeholder}'">
         </div>
         <div class="featured-content">
             <span class="news-date">
@@ -189,7 +191,8 @@ function renderizarNoticiaDestacada(publicacion) {
  * Renderizar una tarjeta de noticia
  */
 function crearTarjetaNoticia(publicacion) {
-    const imagenUrl = publicacion.foto || getPlaceholderImage(400, 250, 'Sin Imagen');
+    const imagenUrl = `${FOTO_BASE_URL}/${publicacion.idpublicacion}`;
+    const placeholder = getPlaceholderImage(400, 250, 'Sin Imagen');
     const titulo = publicacion.titulo || 'Noticia';
     
     return `
@@ -197,7 +200,7 @@ function crearTarjetaNoticia(publicacion) {
             <div class="card-image">
                 <img src="${imagenUrl}" 
                      alt="${titulo}"
-                     onerror="this.src='${getPlaceholderImage(400, 250, 'Error')}'">
+                     onerror="this.src='${placeholder}'">
             </div>
             <div class="card-body">
                 <span class="card-date">
@@ -255,14 +258,15 @@ function renderizarNoticiasRecientes(publicaciones) {
     if (!lista || !publicaciones) return;
     
     lista.innerHTML = publicaciones.map(pub => {
-        const imagenUrl = pub.foto || getPlaceholderImage(80, 60, 'Noticia');
+        const imagenUrl = `${FOTO_BASE_URL}/${pub.idpublicacion}`;
+        const placeholder = getPlaceholderImage(80, 60, 'Noticia');
         const titulo = pub.titulo || pub.contenido.substring(0, 50) + '...';
         
         return `
             <div class="recent-news-item" data-id="${pub.idpublicacion}">
                 <img src="${imagenUrl}" 
                      alt="${titulo}"
-                     onerror="this.src='${getPlaceholderImage(80, 60, 'Noticia')}'">
+                     onerror="this.src='${placeholder}'">
                 <div class="recent-news-content">
                     <h4>${titulo}</h4>
                     <span class="recent-date">
