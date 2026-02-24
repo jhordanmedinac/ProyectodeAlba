@@ -28,7 +28,7 @@
     width: 100vw;
     height: calc(100vh - 80px);
     min-height: 500px;
-    background-image: url('../IMAGENES/NOTICIAS.jpg');
+    background-image: url('../IMAGENES/Noticia.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -339,7 +339,7 @@
 .sidebar-widget {
     background-color: white;
     border-radius: 15px;
-    padding: 30px;
+    padding: 20px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 

@@ -7,6 +7,79 @@
     --navy: #00093C;
     --gold: #c5a059;
 }
+/* ============================================
+   PEGA ESTO AL FINAL DE nosotros-stylebody.css
+   ============================================ */
+
+@media (max-width: 768px) {
+
+    /* SEPARACIÓN ENTRE CARDS */
+    .columna-textos {
+        gap: 25px !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .columna-textos .caja-texto-individual {
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    .columna-textos .caja-texto-individual:nth-child(2) {
+        margin-top: 0 !important;
+    }
+
+    .caja-texto-individual.caja-completa {
+        margin-top: 25px !important;
+    }
+
+    /* TEXTO NO JUSTIFICADO */
+    .caja-texto-individual p {
+        text-align: left !important;
+        hyphens: none !important;
+    }
+
+    .caja-texto-blanca p,
+    .lista-puntos li,
+    .texto-intro {
+        text-align: left !important;
+    }
+
+    /* ESPACIO ENTRE SECCIONES */
+    .grid-quienes-somos,
+    .grid-articulacion {
+        gap: 25px !important;
+    }
+
+    /* ESPACIO INTERIOR DE CADA CARD */
+    .caja-texto-individual {
+        padding: 20px !important;
+    }
+
+    /* CONTENEDOR CON AIRE */
+    .contenedor-cuadro-completo {
+        padding: 0 20px !important;
+    }
+
+    .cuadro-azul-section {
+        padding: 50px 0 !important;
+    }
+}
+@media (max-width: 768px) {
+    .international-recognition h3 {
+        font-size: 1.3rem !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+        line-height: 1.4 !important;
+    }
+
+    .international-recognition i {
+        font-size: 2rem !important;
+    }
+}
+
+
 
 /* ============================================
    CUADROS AZULES - ANCHO COMPLETO
