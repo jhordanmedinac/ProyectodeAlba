@@ -1,6 +1,6 @@
 -- =============================================
 -- BASE DE DATOS COMPLETA: DB_CGPVP
--- Cuerpo General de Paramédicos Voluntarios del Perú
+-- Cuerpo General de Paramï¿½dicos Voluntarios del Perï¿½
 -- Sistema Integral: Web + Panel Admin + Credenciales Digitales
 -- =============================================
 
@@ -17,7 +17,7 @@ GO
 
 -- =============================================
 -- TABLA 1: admin_users (Primero porque otras tablas dependen de ella)
--- Descripción: Usuarios administradores del panel
+-- Descripciï¿½n: Usuarios administradores del panel
 -- =============================================
 IF OBJECT_ID('dbo.admin_users', 'U') IS NOT NULL DROP TABLE dbo.admin_users;
 GO
@@ -38,7 +38,7 @@ GO
 
 -- =============================================
 -- TABLA 2: postulantes
--- Descripción: Registro desde formulario web público
+-- Descripciï¿½n: Registro desde formulario web pï¿½blico
 -- =============================================
 IF OBJECT_ID('dbo.postulantes', 'U') IS NOT NULL DROP TABLE dbo.postulantes;
 GO
@@ -65,7 +65,7 @@ GO
 
 -- =============================================
 -- TABLA 3: miembros (Credenciales Digitales)
--- Descripción: Miembros del cuerpo con credencial digital
+-- Descripciï¿½n: Miembros del cuerpo con credencial digital
 -- =============================================
 IF OBJECT_ID('dbo.miembros', 'U') IS NOT NULL DROP TABLE dbo.miembros;
 GO
@@ -87,8 +87,8 @@ CREATE TABLE miembros (
     profesion NVARCHAR(100) NULL,
     
     -- Datos de la credencial
-    legajo NVARCHAR(20) NOT NULL UNIQUE,  -- Número de legajo (ej: 12345)
-    rango NVARCHAR(50) NOT NULL,  -- TÉCNICO PARAMÉDICO, INSTRUCTOR, etc.
+    legajo NVARCHAR(20) NOT NULL UNIQUE,  -- Nï¿½mero de legajo (ej: 12345)
+    rango NVARCHAR(50) NOT NULL,  -- Tï¿½CNICO PARAMï¿½DICO, INSTRUCTOR, etc.
     jefatura NVARCHAR(100) NOT NULL,  -- BRIGADA DE EMERGENCIAS - LIMA, etc.
     foto_perfil NVARCHAR(MAX) NULL,  -- URL o base64 de la foto
     codigo_qr NVARCHAR(MAX) NULL,  -- Datos o URL del QR
@@ -99,14 +99,14 @@ CREATE TABLE miembros (
     -- Cursos y certificaciones
     cursos_certificaciones NVARCHAR(MAX) NULL,  -- JSON o texto separado por comas
     
-    -- Auditoría
+    -- Auditorï¿½a
     fecha_ingreso DATETIME2 DEFAULT SYSUTCDATETIME(),
     fecha_ultimo_cambio DATETIME2 DEFAULT SYSUTCDATETIME(),
     creado_por INT NULL,
     modificado_por INT NULL,
     notas NVARCHAR(500) NULL,
     
-    -- Relación opcional con postulantes
+    -- Relaciï¿½n opcional con postulantes
     id_postulante INT NULL,
     
     CONSTRAINT FK_miembros_postulantes FOREIGN KEY (id_postulante) 
@@ -126,7 +126,7 @@ GO
 
 -- =============================================
 -- TABLA 4: instructores
--- Descripción: Gestión de instructores y formadores
+-- Descripciï¿½n: Gestiï¿½n de instructores y formadores
 -- =============================================
 IF OBJECT_ID('dbo.instructores', 'U') IS NOT NULL DROP TABLE dbo.instructores;
 GO
@@ -135,8 +135,8 @@ CREATE TABLE instructores (
     id INT IDENTITY(1,1) PRIMARY KEY,
     nombre_completo NVARCHAR(150) NOT NULL,
     especialidad NVARCHAR(100) NOT NULL CHECK (especialidad IN (
-        'Emergencias Médicas', 'Rescate', 'Trauma', 'Soporte Vital', 
-        'Comunicaciones', 'Materiales Peligrosos', 'Búsqueda y Salvamento', 'Otros'
+        'Emergencias Mï¿½dicas', 'Rescate', 'Trauma', 'Soporte Vital', 
+        'Comunicaciones', 'Materiales Peligrosos', 'Bï¿½squeda y Salvamento', 'Otros'
     )),
     rango NVARCHAR(50) NULL,
     experiencia_anios INT DEFAULT 0,
@@ -160,7 +160,7 @@ GO
 
 -- =============================================
 -- TABLA 5: cursos
--- Descripción: Gestión de cursos y capacitaciones
+-- Descripciï¿½n: Gestiï¿½n de cursos y capacitaciones
 -- =============================================
 IF OBJECT_ID('dbo.cursos', 'U') IS NOT NULL DROP TABLE dbo.cursos;
 GO
@@ -168,7 +168,7 @@ GO
 CREATE TABLE cursos (
     id INT IDENTITY(1,1) PRIMARY KEY,
     titulo NVARCHAR(200) NOT NULL,
-    categoria NVARCHAR(30) NOT NULL CHECK (categoria IN ('Básico', 'Intermedio', 'Avanzado', 'Especializado')),
+    categoria NVARCHAR(30) NOT NULL CHECK (categoria IN ('Bï¿½sico', 'Intermedio', 'Avanzado', 'Especializado')),
     duracion NVARCHAR(50) NULL,
     modalidad NVARCHAR(20) NOT NULL DEFAULT 'Presencial' CHECK (modalidad IN ('Presencial', 'Virtual', 'Semipresencial')),
     id_instructor INT NULL,
@@ -202,7 +202,7 @@ ADD direccion NVARCHAR(250) NULL;
 GO
 -- =============================================
 -- TABLA 6: eventos_talleres
--- Descripción: Gestión de eventos, talleres, simulacros y conferencias
+-- Descripciï¿½n: Gestiï¿½n de eventos, talleres, simulacros y conferencias
 -- =============================================
 IF OBJECT_ID('dbo.eventos_talleres', 'U') IS NOT NULL DROP TABLE dbo.eventos_talleres;
 GO
@@ -210,7 +210,7 @@ GO
 CREATE TABLE eventos_talleres (
     id INT IDENTITY(1,1) PRIMARY KEY,
     titulo NVARCHAR(200) NOT NULL,
-    tipo NVARCHAR(30) NOT NULL CHECK (tipo IN ('Capacitación', 'Taller', 'Simulacro', 'Conferencia')),
+    tipo NVARCHAR(30) NOT NULL CHECK (tipo IN ('Capacitaciï¿½n', 'Taller', 'Simulacro', 'Conferencia')),
     descripcion NVARCHAR(MAX) NULL,
     fecha DATE NOT NULL,
     hora_inicio TIME NULL,
@@ -241,7 +241,7 @@ GO
 
 -- =============================================
 -- TABLA 7: publicaciones
--- Descripción: Noticias para web y Facebook
+-- Descripciï¿½n: Noticias para web y Facebook
 -- =============================================
 IF OBJECT_ID('dbo.publicaciones', 'U') IS NOT NULL DROP TABLE dbo.publicaciones;
 GO
@@ -250,7 +250,7 @@ CREATE TABLE publicaciones (
     idpublicacion NVARCHAR(100) PRIMARY KEY,
     titulo NVARCHAR(200) NOT NULL,
     contenido NVARCHAR(MAX) NOT NULL,
-    foto NVARCHAR(MAX) NULL,
+    foto VARBINARY(MAX) NULL,
     fecha DATETIME2 NOT NULL,
     creado_por NVARCHAR(20) DEFAULT 'Facebook' CHECK (creado_por IN ('Facebook', 'Admin')),
     destacada BIT DEFAULT 0 NOT NULL,
@@ -266,7 +266,7 @@ GO
 
 -- =============================================
 -- TABLA 8: historial_cambios
--- Descripción: Auditoría de cambios en miembros
+-- Descripciï¿½n: Auditorï¿½a de cambios en miembros
 -- =============================================
 IF OBJECT_ID('dbo.historial_cambios', 'U') IS NOT NULL DROP TABLE dbo.historial_cambios;
 GO
@@ -321,10 +321,10 @@ BEGIN
         BEGIN TRANSACTION;
         
         IF EXISTS (SELECT 1 FROM postulantes WHERE dni = @dni)
-            THROW 50001, 'El DNI ya está registrado', 1;
+            THROW 50001, 'El DNI ya estï¿½ registrado', 1;
         
         IF EXISTS (SELECT 1 FROM postulantes WHERE email = @email)
-            THROW 50002, 'El Email ya está registrado', 1;
+            THROW 50002, 'El Email ya estï¿½ registrado', 1;
         
         INSERT INTO postulantes 
         (nombre, apellido, dni, fecha_nacimiento, genero, email, telefono,
@@ -411,10 +411,10 @@ BEGIN
         BEGIN TRANSACTION;
         
         IF EXISTS (SELECT 1 FROM miembros WHERE dni = @dni)
-            THROW 50010, 'El DNI ya está registrado como miembro', 1;
+            THROW 50010, 'El DNI ya estï¿½ registrado como miembro', 1;
         
         IF EXISTS (SELECT 1 FROM miembros WHERE legajo = @legajo)
-            THROW 50011, 'El número de legajo ya existe', 1;
+            THROW 50011, 'El nï¿½mero de legajo ya existe', 1;
         
         INSERT INTO miembros
         (nombre, apellido, dni, fecha_nacimiento, genero, email, telefono,
@@ -467,7 +467,7 @@ BEGIN
             THROW 50021, 'El postulante ya es miembro', 1;
         
         IF EXISTS (SELECT 1 FROM miembros WHERE legajo = @legajo)
-            THROW 50022, 'El número de legajo ya existe', 1;
+            THROW 50022, 'El nï¿½mero de legajo ya existe', 1;
         
         DECLARE @nombre NVARCHAR(50), @apellido NVARCHAR(50), @dni CHAR(8),
                 @fecha_nacimiento DATE, @genero NVARCHAR(10), @email NVARCHAR(100),
@@ -662,7 +662,7 @@ END
 GO
 
 -- =============================================
--- PROCEDIMIENTOS ALMACENADOS - ESTADÍSTICAS
+-- PROCEDIMIENTOS ALMACENADOS - ESTADï¿½STICAS
 -- =============================================
 
 CREATE OR ALTER PROCEDURE SP_ESTADISTICAS_DASHBOARD
@@ -689,51 +689,48 @@ GO
 -- PROCEDIMIENTOS ALMACENADOS - PUBLICACIONES
 -- =============================================
 
-CREATE OR ALTER PROCEDURE SP_INSERTAR_ACTUALIZAR_PUBLICACION
-    @idpublicacion NVARCHAR(100),
-    @titulo NVARCHAR(200),
-    @contenido NVARCHAR(MAX),
-    @foto NVARCHAR(MAX),
-    @fecha DATETIME2,
-    @creado_por NVARCHAR(20) = 'Facebook',
-    @destacada BIT = 0
-AS
-BEGIN
+CREATE OR ALTER PROCEDURE SP_INSERTAR_ACTUALIZAR_PUBLICACION  
+    @idpublicacion VARCHAR(255),  
+    @titulo NVARCHAR(MAX),  
+    @contenido NVARCHAR(MAX),  
+    @foto VARBINARY(MAX),  
+    @fecha DATETIME,  
+    @creado_por VARCHAR(50)  
+AS  
+BEGIN  
     SET NOCOUNT ON;
-    SET XACT_ABORT ON;
-    
+
     BEGIN TRY
         BEGIN TRANSACTION;
-        
-        IF EXISTS (SELECT 1 FROM publicaciones WHERE idpublicacion = @idpublicacion)
-        BEGIN
-            UPDATE publicaciones SET 
-                titulo = @titulo,
-                contenido = @contenido, 
-                foto = @foto,
-                fecha = @fecha,
-                destacada = @destacada
-            WHERE idpublicacion = @idpublicacion;
-            
-            SELECT 'UPDATED' AS status, @idpublicacion AS idpublicacion;
-        END
-        ELSE
-        BEGIN
-            INSERT INTO publicaciones (idpublicacion, titulo, contenido, foto, fecha, creado_por, destacada) 
-            VALUES (@idpublicacion, @titulo, @contenido, @foto, @fecha, @creado_por, @destacada);
-            
-            SELECT 'INSERTED' AS status, @idpublicacion AS idpublicacion;
-        END
-        
+
+        IF NOT EXISTS (
+            SELECT 1 
+            FROM publicaciones 
+            WHERE idpublicacion = @idpublicacion
+        )  
+        BEGIN  
+            INSERT INTO publicaciones 
+            (idpublicacion, titulo, contenido, foto, fecha, creado_por)  
+            VALUES 
+            (@idpublicacion, @titulo, @contenido, @foto, @fecha, @creado_por);  
+        END  
+
         COMMIT TRANSACTION;
     END TRY
+
     BEGIN CATCH
-        IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
-        THROW;
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+
+        -- Opcional: devolver error real
+        DECLARE @ErrorMessage NVARCHAR(4000) = ERROR_MESSAGE();
+        DECLARE @ErrorSeverity INT = ERROR_SEVERITY();
+        DECLARE @ErrorState INT = ERROR_STATE();
+
+        RAISERROR (@ErrorMessage, @ErrorSeverity, @ErrorState);
     END CATCH
 END
 GO
-
 CREATE OR ALTER PROCEDURE SP_LISTAR_PUBLICACIONES_PAGINADO
     @Pagina INT,
     @CantidadPorPagina INT,
@@ -796,11 +793,11 @@ BEGIN
         DATEDIFF(YEAR, m.fecha_ingreso, GETDATE()) AS anios_en_cuerpo
         
     FROM miembros m
-    WHERE m.dni = @criterio_busqueda  -- Búsqueda exacta por DNI
-       OR m.nombre LIKE '%' + @criterio_busqueda + '%'  -- Búsqueda parcial por nombre
-       OR m.apellido LIKE '%' + @criterio_busqueda + '%'  -- Búsqueda parcial por apellido
-       OR CONCAT(m.apellido, ' ', m.nombre) LIKE '%' + @criterio_busqueda + '%'  -- Búsqueda por nombre completo
-       OR m.legajo = @criterio_busqueda  -- Búsqueda por legajo
+    WHERE m.dni = @criterio_busqueda  -- Bï¿½squeda exacta por DNI
+       OR m.nombre LIKE '%' + @criterio_busqueda + '%'  -- Bï¿½squeda parcial por nombre
+       OR m.apellido LIKE '%' + @criterio_busqueda + '%'  -- Bï¿½squeda parcial por apellido
+       OR CONCAT(m.apellido, ' ', m.nombre) LIKE '%' + @criterio_busqueda + '%'  -- Bï¿½squeda por nombre completo
+       OR m.legajo = @criterio_busqueda  -- Bï¿½squeda por legajo
     ORDER BY 
         CASE 
             WHEN m.dni = @criterio_busqueda THEN 1  -- Prioridad a coincidencia exacta de DNI
