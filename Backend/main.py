@@ -154,7 +154,7 @@ async def reloj_programador_fb():
     while True:
         ahora = datetime.now()
         # Si es la 1:00 AM
-        if ahora.hour == 1 and ahora.minute == 0:
+        if ahora.hour == 00 and ahora.minute == 26:
             print(f"🔥 {ahora} - ¡Es la hora, Rey! Iniciando bot...")
             try:
                 loop = asyncio.get_event_loop()

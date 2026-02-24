@@ -1,5 +1,5 @@
 import time
-import os
+import requests
 import hashlib
 import pyodbc
 from datetime import datetime
@@ -14,24 +14,52 @@ from webdriver_manager.chrome import ChromeDriverManager
 # =============================================
 DB_CONFIG = "DRIVER={ODBC Driver 17 for SQL Server};SERVER=localhost;DATABASE=DB_CGPVP2;Trusted_Connection=yes;Encrypt=no;"
 
+# =============================================
+# HELPER: Descargar imagen como bytes
+# =============================================
+def descargar_foto_bytes(url: str) -> bytes | None:
+    """
+    Descarga la imagen desde la URL de Facebook y retorna los bytes.
+    Retorna None si falla o si la URL no es válida.
+    """
+    if not url or url == "Sin imagen" or not url.startswith("http"):
+        print("ℹ️ No hay imagen válida para descargar.")
+        return None
+
+    try:
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
+        }
+        response = requests.get(url, headers=headers, timeout=15)
+        response.raise_for_status()
+
+        foto_bytes = response.content
+        print(f"✅ Imagen descargada: {len(foto_bytes)} bytes")
+        return foto_bytes
+
+    except Exception as e:
+        print(f"⚠️ No se pudo descargar la imagen: {e}")
+        return None
+
+
+# =============================================
+# FUNCIÓN PRINCIPAL
+# =============================================
 def escanear_y_guardar_db():
     print(f"🚀 [{datetime.now()}] Iniciando extracción reforzada...")
     
     options = Options()
-    # --- CAPA DE PROTECCIÓN ANTI-DETECCIÓN ---
-    options.add_argument("--headless=new") # Modo oculto ultra-estable
+    options.add_argument("--headless=new")
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage") # Evita que Chrome explote por falta de RAM
+    options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-notifications")
-    # Este User-Agent es clave para durar meses sin bloqueos:
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36")
 
     driver = None
     conn = None
 
     try:
-        # Instalación/Actualización automática del driver
         service = Service(ChromeDriverManager().install())
         driver = webdriver.Chrome(service=service, options=options)
         
@@ -39,7 +67,7 @@ def escanear_y_guardar_db():
         print("⏳ Esperando carga inicial (10s)...")
         time.sleep(10)
 
-        # --- LÓGICA DE EXPANSIÓN 'VER MÁS' ---
+        # --- EXPANDIR 'VER MÁS' ---
         try:
             print("🔍 Expandiendo contenido...")
             boton = driver.find_element(By.XPATH, "//div[contains(text(), 'Ver más')]")
@@ -58,19 +86,25 @@ def escanear_y_guardar_db():
                 texto_raw = post.find_element(By.XPATH, ".//div[@data-ad-comet-preview='message']").text
                 contenido = texto_raw.strip()
 
-                # Extraer foto
+                # Extraer URL de foto
+                foto_url = None
                 try:
                     img_elem = post.find_element(By.XPATH, ".//img[contains(@src, 'scontent')]")
                     foto_url = img_elem.get_attribute('src')
+                    print(f"🖼️ URL de imagen encontrada: {foto_url[:80]}...")
                 except:
-                    foto_url = "Sin imagen"
+                    print("ℹ️ No se encontró imagen en el post.")
+
+                # ✅ Descargar imagen como bytes (antes se guardaba la URL como texto)
+                foto_bytes = descargar_foto_bytes(foto_url)
+                foto_varbinary = pyodbc.Binary(foto_bytes) if foto_bytes else None
 
                 # Metadatos
                 id_pub = hashlib.md5(contenido.encode('utf-8')).hexdigest()
                 titulo_auto = contenido[:80] + ('...' if len(contenido) > 80 else '')
                 fecha_recolecta = datetime.now()
 
-                # --- CARGA A BASE DE DATOS ---
+                # --- GUARDAR EN BASE DE DATOS ---
                 print(f"📡 Conectando a SQL Server...")
                 conn = pyodbc.connect(DB_CONFIG)
                 cursor = conn.cursor()
@@ -83,10 +117,10 @@ def escanear_y_guardar_db():
                         @foto = ?, 
                         @fecha = ?,
                         @creado_por = 'Facebook'
-                """, (id_pub, titulo_auto, contenido, foto_url, fecha_recolecta))
+                """, (id_pub, titulo_auto, contenido, foto_varbinary, fecha_recolecta))
                 
                 conn.commit()
-                print(f"✅ Éxito: Post '{id_pub[:8]}' procesado.")
+                print(f"✅ Éxito: Post '{id_pub[:8]}' guardado con {'foto' if foto_varbinary else 'sin foto'}.")
 
             except Exception as e:
                 print(f"⚠️ Error al extraer datos del post: {e}")
@@ -97,12 +131,12 @@ def escanear_y_guardar_db():
         print(f"❌ Error crítico: {e}")
     
     finally:
-        # Limpieza total de recursos (Vital para aguantar meses)
         if conn:
             conn.close()
         if driver:
             driver.quit()
         print("🏁 Navegador y conexiones cerradas correctamente.")
+
 
 if __name__ == "__main__":
     escanear_y_guardar_db()
