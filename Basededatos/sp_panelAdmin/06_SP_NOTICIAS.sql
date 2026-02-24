@@ -116,7 +116,7 @@ GO
 CREATE OR ALTER PROCEDURE SP_NOT_CREAR
     @titulo    NVARCHAR(200),
     @contenido NVARCHAR(MAX),
-    @foto      NVARCHAR(MAX) = NULL,
+    @foto      VARBINARY(MAX) = NULL,   -- Ahora es VARBINARY
     @fecha     DATETIME2     = NULL,
     @destacada BIT           = 0,
     @admin_id  INT
@@ -124,26 +124,26 @@ AS
 BEGIN
     SET NOCOUNT ON;
     SET XACT_ABORT ON;
-    
+
     BEGIN TRY
         BEGIN TRANSACTION;
-        
+
         -- Validaciones
         IF LTRIM(RTRIM(@titulo)) = ''
             THROW 50001, 'El título no puede estar vacío', 1;
-            
+
         IF LTRIM(RTRIM(@contenido)) = ''
             THROW 50002, 'El contenido no puede estar vacío', 1;
-        
+
         -- Si no se proporciona fecha, usar la actual
         IF @fecha IS NULL
             SET @fecha = SYSUTCDATETIME();
-        
+
         -- Generar ID único: admin_YYYYMMDDHHMMSS_RAND
         DECLARE @timestamp NVARCHAR(50) = FORMAT(GETDATE(), 'yyyyMMddHHmmss');
         DECLARE @random INT = ABS(CHECKSUM(NEWID())) % 9000 + 1000;
         DECLARE @new_id NVARCHAR(100) = CONCAT('admin_', @timestamp, '_', @random);
-        
+
         -- Si se marca como destacada, quitar destacado de las demás
         IF @destacada = 1
         BEGIN
@@ -151,13 +151,13 @@ BEGIN
             SET destacada = 0
             WHERE destacada = 1;
         END
-        
+
         -- Insertar nueva publicación
         INSERT INTO publicaciones (
             idpublicacion,
             titulo,
             contenido,
-            foto,
+            foto,           -- VARBINARY ahora
             fecha,
             creado_por,
             destacada,
@@ -175,21 +175,21 @@ BEGIN
             1,
             SYSUTCDATETIME()
         );
-        
+
         COMMIT TRANSACTION;
-        
+
         -- Retornar éxito con el ID generado
-        SELECT 
+        SELECT
             'SUCCESS' AS status,
             'Publicación creada correctamente' AS mensaje,
             @new_id AS idpublicacion;
-            
+
     END TRY
     BEGIN CATCH
         IF @@TRANCOUNT > 0
             ROLLBACK TRANSACTION;
-            
-        SELECT 
+
+        SELECT
             'ERROR' AS status,
             ERROR_MESSAGE() AS mensaje;
     END CATCH
@@ -199,77 +199,68 @@ GO
 -- ============================================================
 -- SP 5: EDITAR PUBLICACIÓN (SOLO LAS DE ADMIN)
 -- ============================================================
-CREATE OR ALTER PROCEDURE SP_NOT_EDITAR
-    @idpublicacion NVARCHAR(100),
-    @titulo        NVARCHAR(200),
-    @contenido     NVARCHAR(MAX),
-    @foto          NVARCHAR(MAX) = NULL,
-    @fecha         DATETIME2     = NULL,
-    @destacada     BIT           = 0,
-    @admin_id      INT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    SET XACT_ABORT ON;
-    
-    BEGIN TRY
-        BEGIN TRANSACTION;
-        
-        -- Verificar que existe
-        IF NOT EXISTS (SELECT 1 FROM publicaciones WHERE idpublicacion = @idpublicacion)
-            THROW 50003, 'La publicación no existe', 1;
-        
-        -- ⚠️ COMENTADO: Ya NO verificamos si es de Facebook
-        -- Ahora se pueden editar todas las publicaciones
-        /*
-        IF EXISTS (SELECT 1 FROM publicaciones 
-                   WHERE idpublicacion = @idpublicacion AND creado_por = 'Facebook')
-            THROW 50004, 'No se pueden editar publicaciones de Facebook', 1;
-        */
-        
-        -- Validaciones
-        IF LTRIM(RTRIM(@titulo)) = ''
-            THROW 50001, 'El título no puede estar vacío', 1;
-        
-        IF LTRIM(RTRIM(@contenido)) = ''
-            THROW 50002, 'El contenido no puede estar vacío', 1;
-        
-        -- Si se marca como destacada, quitar destacado de las demás
-        IF @destacada = 1
-        BEGIN
-            UPDATE publicaciones
-            SET destacada = 0
-            WHERE idpublicacion != @idpublicacion;
-        END
-        
-        -- Actualizar publicación
-        UPDATE publicaciones
-        SET 
-            titulo = LTRIM(RTRIM(@titulo)),
-            contenido = @contenido,
-            foto = ISNULL(@foto, foto),  -- Si viene NULL, mantener la actual
-            fecha = ISNULL(@fecha, fecha),  -- Si viene NULL, mantener la actual
-            destacada = @destacada
-        WHERE idpublicacion = @idpublicacion;
-        
-        COMMIT TRANSACTION;
-        
-        SELECT 
-            'SUCCESS' AS status,
-            'Publicación actualizada correctamente' AS mensaje;
-        
-    END TRY
-    BEGIN CATCH
-        IF @@TRANCOUNT > 0
-            ROLLBACK TRANSACTION;
-        
-        SELECT 
-            'ERROR' AS status,
-            ERROR_MESSAGE() AS mensaje;
-    END CATCH
+CREATE OR ALTER PROCEDURE SP_NOT_EDITAR  
+    @idpublicacion NVARCHAR(100),  
+    @titulo        NVARCHAR(200),  
+    @contenido     NVARCHAR(MAX),  
+    @foto          VARBINARY(MAX) = NULL,   -- 🔥 CAMBIO AQUÍ
+    @fecha         DATETIME2     = NULL,  
+    @destacada     BIT           = 0,  
+    @admin_id      INT  
+AS  
+BEGIN  
+    SET NOCOUNT ON;  
+    SET XACT_ABORT ON;  
+      
+    BEGIN TRY  
+        BEGIN TRANSACTION;  
+          
+        -- Verificar que existe  
+        IF NOT EXISTS (SELECT 1 FROM publicaciones WHERE idpublicacion = @idpublicacion)  
+            THROW 50003, 'La publicación no existe', 1;  
+          
+        -- Validaciones  
+        IF LTRIM(RTRIM(@titulo)) = ''  
+            THROW 50001, 'El título no puede estar vacío', 1;  
+          
+        IF LTRIM(RTRIM(@contenido)) = ''  
+            THROW 50002, 'El contenido no puede estar vacío', 1;  
+          
+        -- Si se marca como destacada, quitar destacado de las demás  
+        IF @destacada = 1  
+        BEGIN  
+            UPDATE publicaciones  
+            SET destacada = 0  
+            WHERE idpublicacion != @idpublicacion;  
+        END  
+          
+        -- Actualizar publicación  
+        UPDATE publicaciones  
+        SET   
+            titulo = LTRIM(RTRIM(@titulo)),  
+            contenido = @contenido,  
+            foto = ISNULL(@foto, foto),  -- 🔥 Mantiene imagen si viene NULL  
+            fecha = ISNULL(@fecha, fecha),  
+            destacada = @destacada  
+        WHERE idpublicacion = @idpublicacion;  
+          
+        COMMIT TRANSACTION;  
+          
+        SELECT   
+            'SUCCESS' AS status,  
+            'Publicación actualizada correctamente' AS mensaje;  
+          
+    END TRY  
+    BEGIN CATCH  
+        IF @@TRANCOUNT > 0  
+            ROLLBACK TRANSACTION;  
+          
+        SELECT   
+            'ERROR' AS status,  
+            ERROR_MESSAGE() AS mensaje;  
+    END CATCH  
 END
 GO
-
 -- ============================================================
 -- SP 6: TOGGLE DESTACADA (MARCAR/DESMARCAR)
 -- ============================================================
