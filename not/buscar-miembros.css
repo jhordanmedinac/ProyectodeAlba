@@ -5,10 +5,7 @@
 
 /* Contenedor de resultados (dropdown) */
 .search-results-dropdown {
-    position: absolute;
-    top: calc(100% + 5px);
-    left: 0;
-    right: 0;
+    /* posición manejada 100% por JS */
     background: white;
     border-radius: 12px;
     box-shadow: 0 10px 40px rgba(0, 9, 60, 0.2);
@@ -449,21 +446,10 @@
    RESPONSIVE
    ============================================ */
 
-@media (max-width: 1024px) {
-    .search-results-dropdown {
-        left: -50px;
-        right: -50px;
-        width: 350px;
-    }
-}
+/* dropdown posicionado por JS, no necesita overrides en media queries */
 
 @media (max-width: 768px) {
     .search-results-dropdown {
-        position: fixed;
-        top: 70px;
-        left: 10px;
-        right: 10px;
-        width: auto;
         max-height: 60vh;
     }
     

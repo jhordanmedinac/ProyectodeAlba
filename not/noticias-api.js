@@ -105,7 +105,13 @@ async function buscarPublicaciones(termino) {
         }
         
         const data = await response.json();
-        return data;
+
+        // Normalizar: el SP de búsqueda devuelve "resumen", mapearlo a "contenido"
+        return data.map(pub => ({
+            ...pub,
+            contenido: pub.contenido || pub.resumen || pub.Resumen || pub.RESUMEN || pub.resumen_corto || ''
+        }));
+
     } catch (error) {
         console.error('Error al buscar publicaciones:', error);
         return [];
@@ -194,6 +200,13 @@ function crearTarjetaNoticia(publicacion) {
     const imagenUrl = `${FOTO_BASE_URL}/${publicacion.idpublicacion}`;
     const placeholder = getPlaceholderImage(400, 250, 'Sin Imagen');
     const titulo = publicacion.titulo || 'Noticia';
+    // El SP de búsqueda devuelve "resumen", los demás devuelven "contenido"
+    // Probamos todos los posibles nombres de campo
+    const descripcion = publicacion.contenido 
+        || publicacion.resumen 
+        || publicacion.resumen_corto 
+        || publicacion.descripcion 
+        || '';
     
     return `
         <article class="news-card reveal" data-id="${publicacion.idpublicacion}">
@@ -206,7 +219,10 @@ function crearTarjetaNoticia(publicacion) {
                 <span class="card-date">
                     <i class="fas fa-calendar-alt"></i> ${formatearFecha(publicacion.fecha)}
                 </span>
-                <p class="card-excerpt">${publicacion.contenido}</p>
+                <p class="card-excerpt">${descripcion}</p>
+                <a href="https://www.facebook.com/paramedicos.pe" target="_blank" class="btn-card-facebook">
+                    <i class="fab fa-facebook-f"></i> Ver en Facebook
+                </a>
             </div>
         </article>
     `;

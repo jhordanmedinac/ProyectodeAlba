@@ -150,6 +150,116 @@
 }
 
 /* ============================================
+   FILTRO RANGO DE FECHAS
+   ============================================ */
+.date-range-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.date-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.date-input-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--navy);
+    padding-left: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.date-input-group label i {
+    color: var(--gold);
+}
+
+.filter-date-input {
+    padding: 10px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    font-size: 14px;
+    background-color: white;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 160px;
+}
+
+.filter-date-input:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+}
+
+.date-range-separator {
+    font-size: 18px;
+    color: #aaa;
+    margin-top: 18px;
+}
+
+.btn-date-filter {
+    margin-top: 18px;
+    padding: 10px 22px;
+    background: linear-gradient(135deg, var(--navy) 0%, #001a5c 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-date-filter:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 9, 60, 0.3);
+}
+
+.btn-date-clear {
+    margin-top: 18px;
+    padding: 10px 16px;
+    background: #f0f0f0;
+    color: #666;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.btn-date-clear:hover {
+    background: #e0e0e0;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .date-range-wrapper {
+        gap: 8px;
+    }
+    .filter-date-input {
+        width: 140px;
+    }
+    .date-range-separator,
+    .btn-date-filter,
+    .btn-date-clear {
+        margin-top: 0;
+    }
+}
+
+/* ============================================
    LAYOUT CONTENIDO + SIDEBAR
    ============================================ */
 .content-layout {
@@ -539,47 +649,74 @@
     margin-bottom: 20px;
 }
 
-.newsletter-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.newsletter-form input {
-    padding: 12px 18px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 25px;
-    background-color: rgba(255, 255, 255, 0.1);
+/* ============================================
+   BOTÓN FACEBOOK DENTRO DE CADA CARD
+   ============================================ */
+.btn-card-facebook {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #1877F2 0%, #0d5dbf 100%);
     color: white;
-    font-size: 14px;
-    transition: all 0.3s ease;
-}
-
-.newsletter-form input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.newsletter-form input:focus {
-    outline: none;
-    border-color: var(--gold);
-    background-color: rgba(255, 255, 255, 0.15);
-}
-
-.btn-newsletter {
-    background: linear-gradient(135deg, var(--gold) 0%, #d4b06a 100%);
-    color: var(--navy);
-    border: none;
-    padding: 12px 24px;
+    text-decoration: none;
     border-radius: 25px;
     font-size: 14px;
     font-weight: 600;
-    cursor: pointer;
+    margin-top: auto;
+    align-self: flex-start;
+    box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);
     transition: all 0.3s ease;
 }
 
-.btn-newsletter:hover {
+.btn-card-facebook i {
+    font-size: 14px;
+}
+
+.btn-card-facebook:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(197, 160, 89, 0.4);
+    box-shadow: 0 8px 20px rgba(24, 119, 242, 0.45);
+    background: linear-gradient(135deg, #0d5dbf 0%, #1877F2 100%);
+}
+.social-links-widget {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 5px;
+}
+
+.social-link-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-link-btn i {
+    font-size: 16px;
+    color: var(--gold);
+    width: 18px;
+    text-align: center;
+}
+
+.social-link-btn:hover {
+    background: linear-gradient(135deg, var(--gold) 0%, #d4b06a 100%);
+    border-color: var(--gold);
+    color: var(--navy);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(197, 160, 89, 0.35);
+}
+
+.social-link-btn:hover i {
+    color: var(--navy);
 }
 
 /* ============================================

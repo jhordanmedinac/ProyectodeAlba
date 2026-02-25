@@ -13,6 +13,7 @@
     <script src="../accesibilidad.js" defer></script> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="../IMAGENES/LOGO.png" type="image/png">
+    <script src="./noticias-api.js" defer></script>
 </head>
 <body>
 
@@ -72,14 +73,23 @@
                 </button>
             </div>
             
-            <select class="filter-dropdown" id="categoryFilter">
-                <option value="">Todas las categorías</option>
-                <option value="eventos">Eventos</option>
-                <option value="capacitaciones">Capacitaciones</option>
-                <option value="emergencias">Emergencias</option>
-                <option value="logros">Logros</option>
-                <option value="alianzas">Alianzas</option>
-            </select>
+            <div class="date-range-wrapper">
+                <div class="date-input-group">
+                    <label for="dateFrom"><i class="fas fa-calendar-alt"></i> Desde</label>
+                    <input type="date" id="dateFrom" class="filter-date-input">
+                </div>
+                <span class="date-range-separator">—</span>
+                <div class="date-input-group">
+                    <label for="dateTo"><i class="fas fa-calendar-alt"></i> Hasta</label>
+                    <input type="date" id="dateTo" class="filter-date-input">
+                </div>
+                <button id="btnDateFilter" class="btn-date-filter">
+                    <i class="fas fa-filter"></i> Filtrar
+                </button>
+                <button id="btnDateClear" class="btn-date-clear" style="display:none;">
+                    <i class="fas fa-times"></i> Limpiar
+                </button>
+            </div>
             
             <select class="filter-dropdown" id="dateFilter">
                 <option value="">Ordenar por</option>
@@ -125,6 +135,9 @@
                                 Iniciamos un nuevo programa de certificación internacional en Soporte Vital Cardiovascular Avanzado (ACLS) 
                                 con instructores certificados por la American Heart Association.
                             </p>
+                            <a href="https://www.facebook.com/paramedicos.pe" target="_blank" class="btn-card-facebook">
+                                <i class="fab fa-facebook-f"></i> Ver en Facebook
+                            </a>
                         </div>
                     </article>
 
@@ -139,6 +152,9 @@
                                 El CGPVP recibe reconocimiento del Ministerio de Salud por su destacada labor en la atención prehospitalaria 
                                 durante el año 2025, atendiendo más de 3,000 emergencias en todo el país.
                             </p>
+                            <a href="https://www.facebook.com/paramedicos.pe" target="_blank" class="btn-card-facebook">
+                                <i class="fab fa-facebook-f"></i> Ver en Facebook
+                            </a>
                         </div>
                     </article>
 
@@ -153,6 +169,9 @@
                                 Nuestros equipos de respuesta rápida actuaron con eficiencia durante el sismo de magnitud 5.8 en Arequipa, 
                                 brindando atención inmediata a los afectados y coordinando con autoridades locales.
                             </p>
+                            <a href="https://www.facebook.com/paramedicos.pe" target="_blank" class="btn-card-facebook">
+                                <i class="fab fa-facebook-f"></i> Ver en Facebook
+                            </a>
                         </div>
                     </article>
 
@@ -167,6 +186,9 @@
                                 Firmamos un convenio de colaboración con el Cuerpo General de Bomberos Voluntarios del Perú para fortalecer 
                                 la respuesta ante emergencias y desastres en todo el territorio nacional.
                             </p>
+                            <a href="https://www.facebook.com/paramedicos.pe" target="_blank" class="btn-card-facebook">
+                                <i class="fab fa-facebook-f"></i> Ver en Facebook
+                            </a>
                         </div>
                     </article>
 
@@ -181,6 +203,9 @@
                                 Más de 100 personas recibieron certificación en Soporte Vital Básico (BLS) durante nuestro programa intensivo 
                                 de capacitación comunitaria realizado en Lima.
                             </p>
+                            <a href="https://www.facebook.com/paramedicos.pe" target="_blank" class="btn-card-facebook">
+                                <i class="fab fa-facebook-f"></i> Ver en Facebook
+                            </a>
                         </div>
                     </article>
 
@@ -195,6 +220,9 @@
                                 Participamos en la cobertura médica de la Maratón Internacional de Lima, brindando atención a más de 
                                 15,000 corredores durante todo el evento deportivo.
                             </p>
+                            <a href="https://www.facebook.com/paramedicos.pe" target="_blank" class="btn-card-facebook">
+                                <i class="fab fa-facebook-f"></i> Ver en Facebook
+                            </a>
                         </div>
                     </article>
 
@@ -209,6 +237,9 @@
                                 Recibimos donación de equipamiento médico moderno valorizado en $50,000 que permitirá mejorar 
                                 significativamente nuestra capacidad de respuesta en emergencias.
                             </p>
+                            <a href="https://www.facebook.com/paramedicos.pe" target="_blank" class="btn-card-facebook">
+                                <i class="fab fa-facebook-f"></i> Ver en Facebook
+                            </a>
                         </div>
                     </article>
 
@@ -223,10 +254,14 @@
                                 Iniciamos el año con el lanzamiento de nuestro nuevo programa de Atención Prehospitalaria al Traumatizado (PHTLS) 
                                 con certificación internacional.
                             </p>
+                            <a href="https://www.facebook.com/paramedicos.pe" target="_blank" class="btn-card-facebook">
+                                <i class="fab fa-facebook-f"></i> Ver en Facebook
+                            </a>
                         </div>
                     </article>
 
                 </div>
+
             </div>
 
             <!-- Sidebar -->
@@ -294,14 +329,18 @@
                     </div>
                 </div>
 
-                <!-- Newsletter -->
+                <!-- Mantente Informado -->
                 <div class="sidebar-widget newsletter-widget">
-                    <h3 class="widget-title">Recibe Noticias</h3>
-                    <p>Suscríbete para recibir las últimas actualizaciones</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Tu email" required>
-                        <button type="submit" class="btn-newsletter">Suscribirme</button>
-                    </form>
+                    <h3 class="widget-title"><i class="fas fa-bell"></i> Mantente Informado</h3>
+                    <p>Síguenos en nuestras redes sociales y no te pierdas ninguna novedad del CGPVP.</p>
+                    <div class="social-links-widget">
+                        <a href="https://www.linkedin.com/in/param%C3%A9dicos-del-per%C3%BA-324795203/" target="_blank" class="social-link-btn">
+                            <i class="fab fa-linkedin-in"></i> LinkedIn
+                        </a>
+                        <a href="https://www.tiktok.com/@paramedicos.pe/video/7371679537878404358" target="_blank" class="social-link-btn">
+                            <i class="fab fa-tiktok"></i> TikTok
+                        </a>
+                    </div>
                 </div>
 
             </aside>
@@ -364,7 +403,7 @@
                     <li><a>Cuerpo General de Paramédicos Voluntarios</a></li>
                     <li><a>Lima, Perú</a></li>
                     <li><a>Teléfono: 929285669</a></li>
-                    <li><a>Email: cuerpodeparamedicosvoluntarios@gmail.com</a></li>
+                    <li><a>Email: <span class="__cf_email__" data-cfemail="2447514156544b4041544556454941404d474b57524b48514a5045564d4b57644349454d480a474b49">[email&#160;protected]</span></a></li>
                 </ul>
             </div>
 
@@ -390,7 +429,7 @@
             
     </footer>   
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // ============================================
         // SCROLL REVEAL - IntersectionObserver
         // ============================================
@@ -428,60 +467,48 @@
         });
 
         // ============================================
-        // Filtro por categoría
+        // Filtro por rango de fechas
         // ============================================
-        document.getElementById('categoryFilter').addEventListener('change', function(e) {
-            const category = e.target.value;
-            const cards = document.querySelectorAll('.news-card');
-            
-            cards.forEach(card => {
-                if (category === '' || card.dataset.category === category) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+        const btnDateFilter = document.getElementById('btnDateFilter');
+        const btnDateClear  = document.getElementById('btnDateClear');
+        const dateFrom      = document.getElementById('dateFrom');
+        const dateTo        = document.getElementById('dateTo');
+
+        btnDateFilter.addEventListener('click', async function() {
+            const desde = dateFrom.value;
+            const hasta = dateTo.value;
+
+            if (!desde || !hasta) {
+                alert('Por favor selecciona ambas fechas.');
+                return;
+            }
+            if (desde > hasta) {
+                alert('La fecha "Desde" no puede ser mayor a "Hasta".');
+                return;
+            }
+
+            mostrarLoader(true);
+            try {
+                const response = await fetch(`${API_BASE_URL}/rango?fecha_inicio=${desde}&fecha_fin=${hasta}`);
+                const publicaciones = await response.json();
+                renderizarGridNoticias(publicaciones);
+                btnDateClear.style.display = 'inline-flex';
+            } catch (e) {
+                console.error('Error al filtrar por fechas:', e);
+                mostrarLoader(false);
+            }
         });
 
-        // ============================================
-        // Interacción con categorías del sidebar
-        // ============================================
-        const categoryLinks = document.querySelectorAll('.category-link');
-        categoryLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const category = this.dataset.category;
-                
-                // Actualizar dropdown
-                document.getElementById('categoryFilter').value = category;
-                
-                // Filtrar noticias
-                const cards = document.querySelectorAll('.news-card');
-                cards.forEach(card => {
-                    if (card.dataset.category === category) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-
-                // Scroll suave al grid
-                document.querySelector('.news-grid').scrollIntoView({ behavior: 'smooth' });
-            });
+        btnDateClear.addEventListener('click', async function() {
+            dateFrom.value = '';
+            dateTo.value = '';
+            btnDateClear.style.display = 'none';
+            mostrarLoader(true);
+            const { publicaciones } = await obtenerPublicaciones({ cantidad: 9, ordenar: 'reciente' });
+            renderizarGridNoticias(publicaciones);
         });
 
-        // ============================================
-        // Newsletter form
-        // ============================================
-        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            alert('¡Gracias por suscribirte! Pronto recibirás nuestras noticias en: ' + email);
-            this.reset();
-        });
     </script>
     <script src="buscar-miembros.js"></script>
-    <script src="noticias-api.js" defer></script>
-    <script src="headBot.js"></script>
 </body>
 </html>

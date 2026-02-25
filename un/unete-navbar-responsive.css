@@ -385,17 +385,4 @@
     }
 }
 
-/* AJUSTE PARA EL DROPDOWN DE RESULTADOS */
-@media (max-width: 768px) {
-    .search-results-dropdown {
-        position: fixed !important;
-        top: auto !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        width: 100% !important;
-        max-height: 50vh !important;
-        border-radius: 20px 20px 0 0 !important;
-        box-shadow: 0 -10px 40px rgba(0, 9, 60, 0.3) !important;
-    }
-}
+/* dropdown posicionado dinámicamente por buscar-miembros.js */

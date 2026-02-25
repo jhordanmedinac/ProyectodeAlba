@@ -134,9 +134,9 @@
                             </div>
                             <div class="modal-info-item">
                                 <div class="modal-info-label">
-                                    <i class="fas fa-briefcase"></i> Profesión
+                                    <i class="fas fa-certificate"></i> Certificaciones
                                 </div>
-                                <div class="modal-info-value" id="modalMemberProfesion">-</div>
+                                <div class="modal-info-value" id="modalMemberCertificaciones">-</div>
                             </div>
                             <div class="modal-info-item">
                                 <div class="modal-info-label">
@@ -388,6 +388,15 @@
     }
     
     /**
+     * Convierte el campo cursos_certificaciones (string separado por comas) en array limpio.
+     * Ejemplo: "CGV, Certi, certi2" → ["CGV", "Certi", "certi2"]
+     */
+    function formatearCertificaciones(valor) {
+        if (!valor || typeof valor !== 'string' || !valor.trim()) return [];
+        return valor.split(',').map(c => c.trim()).filter(c => c.length > 0);
+    }
+
+    /**
      * Rellena el modal con los datos del miembro
      */
     function renderModal(m) {
@@ -399,7 +408,7 @@
         const legajo       = m.legajo        || 'No asignado';
         const rango        = m.rango         || 'No especificado';
         const jefatura     = m.jefatura      || 'No asignado';
-        const profesion    = m.profesion     || 'No especificado';
+        const certificaciones = formatearCertificaciones(m.cursos_certificaciones);
         const estado       = (m.estado       || 'activo').toLowerCase();
         const foto         = m.foto_perfil   || null;
         const fechaIngreso = m.fecha_ingreso
@@ -409,15 +418,12 @@
             ? new Date(m.fecha_ultimo_cambio).toLocaleString('es-PE')
             : '-';
         
-        // -- Foto en el header --
+        // -- Logo institucional en el header (siempre fijo) --
         const photoContainer = document.getElementById('modalMemberPhoto');
-        if (foto) {
-            photoContainer.innerHTML = `
-                <img src="${foto}" alt="${nombreCompleto}" class="modal-member-photo"
-                     onerror="this.outerHTML='<div class=\\'modal-member-photo-placeholder\\'><i class=\\'fas fa-user\\'></i></div>'">`;
-        } else {
-            photoContainer.innerHTML = `<div class="modal-member-photo-placeholder"><i class="fas fa-user"></i></div>`;
-        }
+        photoContainer.innerHTML = `
+            <img src="IMAGENES/LOGO.png" alt="Logo" class="modal-member-photo"
+                 onerror="this.outerHTML='<div class=\\'modal-member-photo-placeholder\\'><i class=\\'fas fa-shield-alt\\'></i></div>'">`;
+
         
         // -- Nombre --
         document.getElementById('modalMemberName').textContent = nombreCompleto;
@@ -440,7 +446,19 @@
         document.getElementById('modalMemberLegajo').textContent   = legajo;
         document.getElementById('modalMemberRango').textContent    = rango;
         document.getElementById('modalMemberJefatura').textContent = jefatura;
-        document.getElementById('modalMemberProfesion').textContent = profesion;
+        
+        // Certificaciones: renderizar como badges o lista
+        const certEl = document.getElementById('modalMemberCertificaciones');
+        if (certificaciones.length > 0) {
+            certEl.innerHTML = certificaciones
+                .map(c => `<span style="display:inline-block;background:rgba(197,160,89,0.15);border:1px solid rgba(197,160,89,0.4);border-radius:12px;padding:3px 10px;margin:2px;font-size:13px;">${c}</span>`)
+                .join('');
+            certEl.classList.remove('empty');
+        } else {
+            certEl.textContent = 'Sin certificaciones';
+            certEl.classList.add('empty');
+        }
+        
         document.getElementById('modalMemberIngreso').textContent  = fechaIngreso;
         document.getElementById('modalUpdateDate').textContent     = `Última actualización: ${fechaUpdate}`;
         
@@ -495,11 +513,13 @@
     function openModalLoading() {
         // Poner valores vacíos/spinner antes de que lleguen los datos
         const photoContainer = document.getElementById('modalMemberPhoto');
-        photoContainer.innerHTML = `<div class="modal-member-photo-placeholder"><i class="fas fa-spinner fa-spin"></i></div>`;
+        photoContainer.innerHTML = `
+            <img src="IMAGENES/LOGO.png" alt="Logo" class="modal-member-photo"
+                 onerror="this.outerHTML='<div class=\\'modal-member-photo-placeholder\\'><i class=\\'fas fa-shield-alt\\'></i></div>'">`;
         document.getElementById('modalMemberName').textContent = 'Cargando...';
         document.getElementById('modalMemberStatus').innerHTML = '';
         ['modalMemberDNI','modalMemberLegajo','modalMemberRango',
-         'modalMemberJefatura','modalMemberProfesion','modalMemberIngreso'].forEach(id => {
+         'modalMemberJefatura','modalMemberCertificaciones','modalMemberIngreso'].forEach(id => {
             const el = document.getElementById(id);
             if (el) el.textContent = '-';
         });
@@ -618,8 +638,16 @@
     
     window.closeMemberModal = closeModal;
     
-    function showResults() { resultsContainer.style.display = 'block'; }
-    function hideResults()  { resultsContainer.style.display = 'none';  }
+    function showResults() {
+        const rect = searchInput.getBoundingClientRect();
+        resultsContainer.style.position = 'fixed';
+        resultsContainer.style.top      = (rect.bottom + 6) + 'px';
+        resultsContainer.style.left     = rect.left + 'px';
+        resultsContainer.style.width    = rect.width + 'px';
+        resultsContainer.style.zIndex   = '99999';
+        resultsContainer.style.display  = 'block';
+    }
+    function hideResults() { resultsContainer.style.display = 'none'; }
     
     // Inicializar
     init();
