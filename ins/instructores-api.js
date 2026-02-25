@@ -15,10 +15,6 @@ const API_CONFIG = {
     RETRY_DELAY: 1000
 };
 
-// ═══════════════════════════════════════════════════════════════
-// UTILIDADES
-// ═══════════════════════════════════════════════════════════════
-
 async function fetchWithTimeout(url, options = {}) {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), API_CONFIG.TIMEOUT);
@@ -105,7 +101,7 @@ const InstructoresAPI = {
             if (data.status === 'SUCCESS') return data.instructores;
             throw new Error('Error al obtener instructores');
         } catch (error) {
-            console.error('❌ Error en obtenerTodos:', error);
+            console.error(' Error en obtenerTodos:', error);
             mostrarNotificacion('Error al cargar instructores: ' + error.message, 'error');
             throw error;
         }
@@ -120,7 +116,7 @@ const InstructoresAPI = {
             if (data.status === 'SUCCESS') return data.instructor;
             throw new Error('Instructor no encontrado');
         } catch (error) {
-            console.error('❌ Error en obtenerPorId:', error);
+            console.error(' Error en obtenerPorId:', error);
             mostrarNotificacion('Error al cargar instructor: ' + error.message, 'error');
             throw error;
         }
@@ -138,7 +134,7 @@ const InstructoresAPI = {
             if (data.status === 'SUCCESS') return data.instructores;
             throw new Error('Error en la búsqueda');
         } catch (error) {
-            console.error('❌ Error en buscar:', error);
+            console.error(' Error en buscar:', error);
             mostrarNotificacion('Error en búsqueda: ' + error.message, 'error');
             throw error;
         }
@@ -158,7 +154,7 @@ const InstructoresAPI = {
             if (data.status === 'SUCCESS') return data.instructores;
             throw new Error('Error al filtrar');
         } catch (error) {
-            console.error('❌ Error en filtrarPorEspecialidad:', error);
+            console.error(' Error en filtrarPorEspecialidad:', error);
             mostrarNotificacion('Error al filtrar: ' + error.message, 'error');
             throw error;
         }
@@ -172,7 +168,7 @@ const InstructoresAPI = {
 const InstructoresUI = {
     
     async init() {
-        console.log('🚀 Inicializando sistema de instructores con API...');
+        console.log('Inicializando sistema de instructores con API...');
         
         // Cargar instructores desde la API
         await this.cargarInstructoresDesdeAPI();
@@ -186,7 +182,7 @@ const InstructoresUI = {
         // Cargar especialidades dinámicas
         await this.cargarEspecialidadesDinamicas();
         
-        console.log('✅ Sistema API inicializado');
+        console.log('Sistema API inicializado');
     },
     
     async cargarEspecialidadesDinamicas() {
@@ -203,7 +199,7 @@ const InstructoresUI = {
             
             const especialidades = Array.from(especialidadesSet).sort();
             
-            // 🔥 1. Actualizar el SELECT de especialidades
+            //  1. Actualizar el SELECT de especialidades
             const selectEspecialidad = document.getElementById('specialtyFilter');
             if (selectEspecialidad) {
                 selectEspecialidad.innerHTML = '<option value="todos">Todas las especialidades</option>';
@@ -218,7 +214,7 @@ const InstructoresUI = {
                 console.log(`✅ ${especialidades.length} especialidades cargadas en select`);
             }
             
-            // 🔥 2. Actualizar el SIDEBAR de especialidades
+            //  2. Actualizar el SIDEBAR de especialidades
             const sidebarList = document.querySelector('.specialty-list');
             if (sidebarList) {
                 sidebarList.innerHTML = '';
@@ -260,7 +256,7 @@ const InstructoresUI = {
                 
                 console.log(`✅ ${especialidades.length} especialidades cargadas en sidebar`);
                 
-                // 🔥 3. Configurar eventos en los links del sidebar
+                //  3. Configurar eventos en los links del sidebar
                 this.configurarSidebarEspecialidades();
             }
             
@@ -325,18 +321,18 @@ const InstructoresUI = {
         try {
             const grid = document.querySelector('.instructors-grid');
             if (!grid) {
-                console.warn('❌ Grid no encontrado, saltando carga de API');
+                console.warn(' Grid no encontrado, saltando carga de API');
                 return;
             }
             
-            console.log('📦 Grid encontrado:', grid);
+            console.log(' Grid encontrado:', grid);
             
             // Mostrar loading
             this.mostrarCargando(true);
             
             // Obtener datos de la API
             const instructores = await InstructoresAPI.obtenerTodos();
-            console.log('📊 Instructores recibidos:', instructores);
+            console.log(' Instructores recibidos:', instructores);
             
             // Ver todos los campos del primer instructor
             if (instructores.length > 0) {
@@ -349,18 +345,12 @@ const InstructoresUI = {
             
             // Renderizar instructores
             instructores.forEach((instructor, index) => {
-                console.log(`🎯 Creando card ${index + 1}:`, instructor.nombre_completo);
-                console.log(`   📷 Campo 'foto':`, instructor.foto ? 'SÍ tiene' : 'NO tiene');
                 if (instructor.foto) {
-                    console.log(`   📷 Primeros 80 caracteres:`, instructor.foto.substring(0, 80));
+                    console.log(`    Primeros 80 caracteres:`, instructor.foto.substring(0, 80));
                 }
                 const card = this.crearCardInstructor(instructor);
                 grid.appendChild(card);
             });
-            
-            console.log(`✅ ${instructores.length} cards agregadas al grid`);
-            console.log(`📊 HTML del grid después de agregar:`, grid.innerHTML.substring(0, 500));
-            console.log(`📊 Total de elementos hijos en el grid:`, grid.children.length);
             
             // Verificar visibilidad
             const primeraCard = grid.querySelector('.instructor-card');
@@ -378,10 +368,10 @@ const InstructoresUI = {
             // Activar animaciones reveal
             this.activarAnimaciones();
             
-            mostrarNotificacion(`${instructores.length} instructores cargados`, 'success');
+           
             
         } catch (error) {
-            console.error('❌ Error al cargar instructores:', error);
+            console.error('Error al cargar instructores:', error);
             this.mostrarError('No se pudieron cargar los instructores desde la API');
         } finally {
             this.mostrarCargando(false);
@@ -416,7 +406,7 @@ const InstructoresUI = {
             imagenSrc = instructor.foto;
         }
         
-        // 🔥 ESTRUCTURA EXACTA COMO LAS CARDS ORIGINALES
+        //  ESTRUCTURA EXACTA COMO LAS CARDS ORIGINALES
         card.innerHTML = `
             <div class="card-photo">
                 <img src="${imagenSrc}" 
@@ -510,7 +500,7 @@ const InstructoresUI = {
             });
         }
         
-        // 🔥 AGREGAR FILTRO DE ORDENAMIENTO
+        //  AGREGAR FILTRO DE ORDENAMIENTO
         const sortFilter = document.getElementById('sortFilter');
         if (sortFilter) {
             sortFilter.addEventListener('change', async (e) => {
@@ -651,7 +641,7 @@ async function abrirModalAPI(idInstructor) {
         const modalBody = document.getElementById('bioModalBody');
         
         if (!modal || !modalBody) {
-            console.error('❌ Modal no encontrado');
+            console.error(' Modal no encontrado');
             return;
         }
         
@@ -760,5 +750,3 @@ if (typeof window !== 'undefined') {
     window.InstructoresUI = InstructoresUI;
     window.abrirModalAPI = abrirModalAPI;
 }
-
-console.log('✅ API de Instructores cargada y lista');
