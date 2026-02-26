@@ -23,6 +23,7 @@ body {
     background-color: var(--white); 
     color: var(--text-dark);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 * {
@@ -127,7 +128,6 @@ div, section, article, header, footer, nav {
     position: relative;
 }
 
-/* Overlay con gradiente más profesional */
 .hero-banner::before {
     content: '';
     position: absolute;
@@ -179,7 +179,6 @@ div, section, article, header, footer, nav {
     position: relative;
     z-index: 2;
     animation: fadeInUp 1s ease-out 0.6s both;
-    
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -214,7 +213,6 @@ div, section, article, header, footer, nav {
     display: block;
 }
 
-/* Logo 2 más grande porque la imagen es pequeña */
 .hero-logo:nth-child(2) {
     width: 140px;
     height: 140px;
@@ -228,8 +226,6 @@ div, section, article, header, footer, nav {
 /* ============================================
    RESPONSIVE - LOGOS
    ============================================ */
-
-/* Tablets */
 @media (max-width: 1024px) {
     .hero-logos-container {
         margin-top: 153px;
@@ -238,14 +234,11 @@ div, section, article, header, footer, nav {
         gap: 25px;
         padding: 0;
     }
-    
     .hero-logo {
         width: 95px;
         height: 95px;
         padding: 0;
     }
-    
-    /* Logo 2 más grande en tablets */
     .hero-logo:nth-child(2) {
         width: 115px;
         height: 115px;
@@ -260,21 +253,17 @@ div, section, article, header, footer, nav {
         gap: 20px;
         padding: 0;
     }
-    
     .hero-logo {
         width: 85px;
         height: 85px;
         padding: 0;
     }
-    
-    /* Logo 2 más grande */
     .hero-logo:nth-child(2) {
         width: 105px;
         height: 105px;
     }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
     .hero-logos-container {
         margin-top: 113px;
@@ -286,22 +275,18 @@ div, section, article, header, footer, nav {
         flex-wrap: wrap;
         justify-content: flex-start;
     }
-    
     .hero-logo {
         width: 70px;
         height: 70px;
         padding: 0;
         flex: 0 0 calc(25% - 12px);
     }
-    
-    /* Logo 2 más grande en mobile */
     .hero-logo:nth-child(2) {
         width: 85px;
         height: 85px;
     }
 }
 
-/* Small Mobile */
 @media (max-width: 480px) {
     .hero-logos-container {
         margin-top: 93px;
@@ -310,22 +295,18 @@ div, section, article, header, footer, nav {
         gap: 12px;
         padding: 0;
     }
-    
     .hero-logo {
         width: 75px;
         height: 75px;
         padding: 0;
         flex: 0 0 calc(33.333% - 10px);
     }
-    
-    /* Logo 2 más grande */
     .hero-logo:nth-child(2) {
         width: 90px;
         height: 90px;
     }
 }
 
-/* Extra Small */
 @media (max-width: 375px) {
     .hero-logos-container {
         margin-top: 83px;
@@ -333,15 +314,12 @@ div, section, article, header, footer, nav {
         gap: 10px;
         padding: 0;
     }
-    
     .hero-logo {
         width: 65px;
         height: 65px;
         padding: 0;
         flex: 0 0 calc(33.333% - 8px);
     }
-    
-    /* Logo 2 más grande */
     .hero-logo:nth-child(2) {
         width: 78px;
         height: 78px;
@@ -349,25 +327,13 @@ div, section, article, header, footer, nav {
 }
 
 @keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-30px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ============================================
@@ -442,32 +408,7 @@ div, section, article, header, footer, nav {
     object-fit: contain;
 }
 
-/* Responsive para los logos */
-@media (max-width: 768px) {
-    .footer-partners-logos {
-        gap: 20px;
-        padding: 0;
-    }
-    
-    .partner-logo {
-        width: 80px;
-        height: 80px;
-    }
-}
-
-@media (max-width: 480px) {
-    .footer-partners-logos {
-        gap: 15px;
-        padding: 0;
-    }
-    
-    .partner-logo {
-        width: 70px;
-        height: 70px;
-    }
-}
-
-/* Ajustar espaciado del footer para que todo suba MUCHO */
+/* Ajustar espaciado del footer */
 .main-footer .footer-content {
     padding-top: 15px !important;
     padding-bottom: 0px !important;
@@ -631,9 +572,7 @@ div, section, article, header, footer, nav {
     display: block;
 }
 
-.news-date i {
-    margin-right: 5px;
-}
+.news-date i { margin-right: 5px; }
 
 .news-title {
     color: var(--navy);
@@ -680,9 +619,7 @@ div, section, article, header, footer, nav {
     color: var(--navy);
 }
 
-.btn-read-more-full i {
-    font-size: 11px;
-}
+.btn-read-more-full i { font-size: 11px; }
 
 .news-stats {
     display: flex;
@@ -697,9 +634,7 @@ div, section, article, header, footer, nav {
     gap: 5px;
 }
 
-.news-stats i {
-    font-size: 14px;
-}
+.news-stats i { font-size: 14px; }
 
 /* ============================================
    MEMBERS HIGHLIGHT SECTION
@@ -782,20 +717,20 @@ div, section, article, header, footer, nav {
     margin: 0;
 }
 
-/* Animación escalonada para member cards */
 .fade-in-section.is-visible .member-highlight-card {
     animation: fadeInUpStagger 0.6s ease-out forwards;
 }
 
-.fade-in-section.is-visible .member-highlight-card:nth-child(1) { animation-delay: 0.1s; }
-.fade-in-section.is-visible .member-highlight-card:nth-child(2) { animation-delay: 0.25s; }
-.fade-in-section.is-visible .member-highlight-card:nth-child(3) { animation-delay: 0.4s; }
+.fade-in-section.is-visible .member-highlight-card:nth-child(1) {
+     animation-delay: 0.1s; }
+.fade-in-section.is-visible .member-highlight-card:nth-child(2) {
+    animation-delay: 0.25s; }
+.fade-in-section.is-visible .member-highlight-card:nth-child(3) { 
+    
+    animation-delay: 0.4s; }
 
-/* Responsive Members */
 @media (max-width: 900px) {
-    .members-cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .members-cards { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
@@ -819,7 +754,7 @@ div, section, article, header, footer, nav {
 }
 
 /* ============================================
-   SECTION TITLE (compartido)
+   SECTION TITLE
    ============================================ */
 .section-title {
     text-align: center;
@@ -864,7 +799,7 @@ div, section, article, header, footer, nav {
     left: -100px;
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
     border-radius: 50%;
 }
 
@@ -875,7 +810,7 @@ div, section, article, header, footer, nav {
     right: -80px;
     width: 250px;
     height: 250px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
     border-radius: 50%;
 }
 
@@ -925,9 +860,7 @@ div, section, article, header, footer, nav {
     transition: transform 0.4s ease;
 }
 
-.benefit-card:hover::before {
-    transform: scaleX(1);
-}
+.benefit-card:hover::before { transform: scaleX(1); }
 
 .benefit-card:hover {
     transform: translateY(-12px);
@@ -959,9 +892,7 @@ div, section, article, header, footer, nav {
     transition: color 0.4s ease;
 }
 
-.benefit-card:hover .benefit-icon i {
-    color: var(--navy);
-}
+.benefit-card:hover .benefit-icon i { color: var(--navy); }
 
 .benefit-card h3 {
     color: var(--navy);
@@ -1033,9 +964,7 @@ div, section, article, header, footer, nav {
     box-shadow: 0 4px 12px rgba(0, 8, 49, 0.2);
 }
 
-.feature-icon i {
-    font-size: 26px;
-}
+.feature-icon i { font-size: 26px; }
 
 .feature-text h3 {
     color: var(--navy);
@@ -1052,7 +981,7 @@ div, section, article, header, footer, nav {
 }
 
 /* ============================================
-   CTA SECTION - VERSIÓN CON IMAGEN
+   CTA SECTION
    ============================================ */
 .cta-section {
     background: #00093C;
@@ -1070,9 +999,7 @@ div, section, article, header, footer, nav {
     margin-bottom: 0;
 }
 
-.cta-section::before {
-    content: none;
-}
+.cta-section::before { content: none; }
 
 .cta-content {
     max-width: 100%;
@@ -1110,7 +1037,7 @@ div, section, article, header, footer, nav {
 
 .cta-text p {
     font-size: 17px;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255,255,255,0.9);
     line-height: 1.8;
     margin: 0 0 25px 0;
     font-weight: 400;
@@ -1142,9 +1069,7 @@ div, section, article, header, footer, nav {
     transition: transform 0.5s ease;
 }
 
-.cta-image:hover img {
-    transform: scale(1.05);
-}
+.cta-image:hover img { transform: scale(1.05); }
 
 .btn-cta-primary,
 .btn-cta-secondary {
@@ -1185,7 +1110,7 @@ div, section, article, header, footer, nav {
     background: white;
     color: var(--navy);
     transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 5px 20px rgba(255,255,255,0.3);
 }
 
 /* ============================================
@@ -1201,6 +1126,7 @@ div, section, article, header, footer, nav {
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
+    overflow-x: hidden;
 }
 
 .contact-container {
@@ -1220,6 +1146,8 @@ div, section, article, header, footer, nav {
     box-shadow: 0 3px 15px rgba(0,0,0,0.08);
     transition: all 0.3s ease;
     border-top: 4px solid var(--navy);
+    box-sizing: border-box;
+    
 }
 
 .contact-card:hover {
@@ -1257,9 +1185,13 @@ div, section, article, header, footer, nav {
 
 .contact-card p {
     color: var(--text-dark);
-    font-size: 16px;
+    font-size: 11px;
     font-weight: 600;
     margin: 0 0 8px 0;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .contact-card span {
@@ -1275,6 +1207,7 @@ div, section, article, header, footer, nav {
     color: white;
     padding: 100px 5% 30px;
     margin-top: 0;
+    overflow-x: hidden;
 }
 
 .footer-content {
@@ -1301,9 +1234,7 @@ div, section, article, header, footer, nav {
     margin: 0;
 }
 
-.footer-section ul li {
-    margin-bottom: 12px;
-}
+.footer-section ul li { margin-bottom: 12px; }
 
 .footer-section ul li a {
     color: rgba(255,255,255,0.8);
@@ -1313,9 +1244,7 @@ div, section, article, header, footer, nav {
     display: block;
 }
 
-.footer-section ul li a:hover {
-    color: var(--gold);
-}
+.footer-section ul li a:hover { color: var(--gold); }
 
 .footer-about {
     display: flex;
@@ -1323,9 +1252,7 @@ div, section, article, header, footer, nav {
     gap: 20px;
 }
 
-.footer-logo {
-    width: 80px;
-}
+.footer-logo { width: 80px; }
 
 .footer-logo img {
     width: 100%;
@@ -1370,9 +1297,7 @@ div, section, article, header, footer, nav {
     justify-content: center;
 }
 
-.academy-badge {
-    width: 120px;
-}
+.academy-badge { width: 120px; }
 
 .academy-badge img {
     width: 100%;
@@ -1408,9 +1333,7 @@ div, section, article, header, footer, nav {
     font-size: 28px;
 }
 
-.accessibility-trigger i {
-    pointer-events: none;
-}
+.accessibility-trigger i { pointer-events: none; }
 
 .accessibility-trigger:hover { 
     transform: scale(1.1); 
@@ -1430,9 +1353,7 @@ div, section, article, header, footer, nav {
     z-index: 9999;
 }
 
-.accessibility-menu.active { 
-    display: block; 
-}
+.accessibility-menu.active { display: block; }
 
 .accessibility-menu h4 {
     color: var(--navy);
@@ -1459,9 +1380,7 @@ div, section, article, header, footer, nav {
     color: white;
 }
 
-.accessibility-option:last-child {
-    margin-bottom: 0;
-}
+.accessibility-option:last-child { margin-bottom: 0; }
 
 /* ============================================
    CHATBOT BUTTON (RIGHT)
@@ -1492,9 +1411,7 @@ div, section, article, header, footer, nav {
     position: relative;
 }
 
-.chat-trigger i {
-    pointer-events: none;
-}
+.chat-trigger i { pointer-events: none; }
 
 .chat-trigger:hover {
     transform: scale(1.1);
@@ -1518,7 +1435,6 @@ div, section, article, header, footer, nav {
     border: 2px solid white;
 }
 
-/* Chat Window */
 #bullChat {
     display: none;
     position: fixed;
@@ -1567,9 +1483,7 @@ div, section, article, header, footer, nav {
     transition: 0.3s;
 }
 
-.chat-close:hover {
-    background: rgba(255,255,255,0.2);
-}
+.chat-close:hover { background: rgba(255,255,255,0.2); }
 
 .chat-messages {
     flex: 1;
@@ -1606,12 +1520,10 @@ div, section, article, header, footer, nav {
     transition: 0.3s;
 }
 
-.chat-send:hover {
-    background: #d4a75a;
-}
+.chat-send:hover { background: #d4a75a; }
 
 /* ============================================
-   HEADBOT - ASISTENTE VIRTUAL
+   HEADBOT
    ============================================ */
 #headBot {
     position: fixed;
@@ -1632,14 +1544,8 @@ div, section, article, header, footer, nav {
 }
 
 @keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 .headbot-header {
@@ -1720,23 +1626,14 @@ div, section, article, header, footer, nav {
 }
 
 @keyframes fadeInMessage {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
-.headbot-message.bot {
-    flex-direction: row;
-}
-
+.headbot-message.bot  {
+     flex-direction: row; }
 .headbot-message.user {
-    flex-direction: row-reverse;
-}
+     flex-direction: row-reverse; }
 
 .headbot-message-avatar {
     width: 35px;
@@ -1749,15 +1646,10 @@ div, section, article, header, footer, nav {
     font-size: 18px;
 }
 
-.headbot-message.bot .headbot-message-avatar {
-    background: var(--gold);
-    color: var(--navy);
-}
-
+.headbot-message.bot  .headbot-message-avatar { 
+    background: var(--gold); color: var(--navy); }
 .headbot-message.user .headbot-message-avatar {
-    background: var(--navy);
-    color: white;
-}
+     background: var(--navy); color: white; }
 
 .headbot-message-content {
     max-width: 75%;
@@ -1791,14 +1683,9 @@ div, section, article, header, footer, nav {
     width: fit-content;
 }
 
-.headbot-typing.active {
-    display: flex;
-}
+.headbot-typing.active { display: flex; }
 
-.typing-indicator {
-    display: flex;
-    gap: 4px;
-}
+.typing-indicator { display: flex; gap: 4px; }
 
 .typing-dot {
     width: 8px;
@@ -1808,23 +1695,14 @@ div, section, article, header, footer, nav {
     animation: typingDot 1.4s infinite;
 }
 
-.typing-dot:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-.typing-dot:nth-child(3) {
-    animation-delay: 0.4s;
-}
+.typing-dot:nth-child(2) { 
+    animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { 
+    animation-delay: 0.4s; }
 
 @keyframes typingDot {
-    0%, 60%, 100% {
-        transform: translateY(0);
-        opacity: 0.4;
-    }
-    30% {
-        transform: translateY(-10px);
-        opacity: 1;
-    }
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-10px); opacity: 1; }
 }
 
 .headbot-input-container {
@@ -1868,16 +1746,11 @@ div, section, article, header, footer, nav {
     font-size: 18px;
 }
 
-.headbot-send:hover {
-    background: #d4a75a;
-    transform: scale(1.05);
-}
+.headbot-send:hover  { 
+    background: #d4a75a; transform: scale(1.05); }
+.headbot-send:active { 
+    transform: scale(0.95); }
 
-.headbot-send:active {
-    transform: scale(0.95);
-}
-
-/* Quick Actions */
 .headbot-quick-actions {
     display: flex;
     flex-wrap: wrap;
@@ -1904,26 +1777,17 @@ div, section, article, header, footer, nav {
     color: white;
 }
 
-/* Scrollbar personalizado */
-.headbot-messages::-webkit-scrollbar {
-    width: 6px;
-}
-
-.headbot-messages::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
+.headbot-messages::-webkit-scrollbar { 
+    width: 6px; }
+.headbot-messages::-webkit-scrollbar-track { 
+    background: #f1f1f1; }
 .headbot-messages::-webkit-scrollbar-thumb {
-    background: var(--gold);
-    border-radius: 10px;
-}
-
+     background: var(--gold); border-radius: 10px; }
 .headbot-messages::-webkit-scrollbar-thumb:hover {
-    background: #d4a75a;
-}
+     background: #d4a75a; }
 
 /* ============================================
-   SCROLL ANIMATIONS - FADE IN SECTIONS
+   SCROLL ANIMATIONS
    ============================================ */
 .fade-in-section {
     opacity: 0;
@@ -1955,10 +1819,7 @@ div, section, article, header, footer, nav {
 .stats-section::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,255,255,0.05)"/></svg>');
     background-size: 30px 30px;
     opacity: 0.5;
@@ -1977,17 +1838,17 @@ div, section, article, header, footer, nav {
 .stat-card {
     text-align: center;
     padding: 40px 20px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255,255,255,0.05);
     border-radius: 16px;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255,255,255,0.1);
     transition: all 0.4s ease;
 }
 
 .stat-card:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255,255,255,0.1);
     transform: translateY(-10px);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
 }
 
 .stat-icon {
@@ -2002,22 +1863,18 @@ div, section, article, header, footer, nav {
     box-shadow: 0 5px 20px rgba(197, 160, 89, 0.4);
 }
 
-.stat-icon i {
-    font-size: 36px;
-    color: var(--navy);
-}
+.stat-icon i { font-size: 36px; color: var(--navy); }
 
 .stat-number {
     font-size: 48px;
     font-weight: 700;
     color: white;
     margin: 20px 0 10px;
-    font-family: 'Inter', sans-serif;
 }
 
 .stat-label {
     font-size: 16px;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255,255,255,0.8);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -2045,7 +1902,7 @@ div, section, article, header, footer, nav {
     border-radius: 16px;
     height: 300px;
     cursor: pointer;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     transition: all 0.4s ease;
 }
 
@@ -2061,1245 +1918,118 @@ div, section, article, header, footer, nav {
     transition: transform 0.5s ease;
 }
 
-.gallery-item:hover img {
-    transform: scale(1.1);
-}
+.gallery-item:hover img { transform: scale(1.1); }
 
 .gallery-overlay {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(0, 9, 60, 0.95) 0%, transparent 100%);
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(0,9,60,0.95) 0%, transparent 100%);
     padding: 30px 25px;
     transform: translateY(100%);
     transition: transform 0.4s ease;
 }
 
-.gallery-item:hover .gallery-overlay {
-    transform: translateY(0);
+.gallery-item:hover .gallery-overlay { transform: translateY(0); }
+
+.gallery-overlay h3 { 
+    color: white; font-size: 22px; font-weight: 700; margin: 0 0 10px;
+ }
+.gallery-overlay p  { 
+    color: rgba(255,255,255,0.9); font-size: 15px; margin: 0; 
 }
 
-.gallery-overlay h3 {
-    color: white;
-    font-size: 22px;
-    font-weight: 700;
-    margin: 0 0 10px 0;
-}
+/* Animaciones escalonadas */
+.fade-in-section.is-visible .benefit-card       {
+     animation: fadeInUpStagger 0.6s ease-out forwards;
+    }
+.fade-in-section.is-visible .benefit-card:nth-child(1) {
+    animation-delay: 0.1s; 
+    }
+.fade-in-section.is-visible .benefit-card:nth-child(2) {
+     animation-delay: 0.2s;
+    }
+.fade-in-section.is-visible .benefit-card:nth-child(3) {
+     animation-delay: 0.3s; 
+    }
+.fade-in-section.is-visible .benefit-card:nth-child(4) {
+     animation-delay: 0.4s; 
+    }
+.fade-in-section.is-visible .benefit-card:nth-child(5) { 
+    animation-delay: 0.5s;
+    }
 
-.gallery-overlay p {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 15px;
-    margin: 0;
-}
-
-/* Animación escalonada para elementos dentro de las secciones */
-.fade-in-section.is-visible .benefit-card {
-    animation: fadeInUpStagger 0.6s ease-out forwards;
-}
-
-.fade-in-section.is-visible .benefit-card:nth-child(1) { animation-delay: 0.1s; }
-.fade-in-section.is-visible .benefit-card:nth-child(2) { animation-delay: 0.2s; }
-.fade-in-section.is-visible .benefit-card:nth-child(3) { animation-delay: 0.3s; }
-.fade-in-section.is-visible .benefit-card:nth-child(4) { animation-delay: 0.4s; }
-.fade-in-section.is-visible .benefit-card:nth-child(5) { animation-delay: 0.5s; }
-
-.fade-in-section.is-visible .training-feature {
+.fade-in-section.is-visible .training-feature   { 
     animation: fadeInRight 0.7s ease-out forwards;
-}
+    }
+.fade-in-section.is-visible .training-feature:nth-child(1) { 
+    animation-delay: 0.2s; 
+    }
+.fade-in-section.is-visible .training-feature:nth-child(2) { 
+    animation-delay: 0.4s;
+    }
+.fade-in-section.is-visible .training-feature:nth-child(3) {
+     animation-delay: 0.6s;
+    }
 
-.fade-in-section.is-visible .training-feature:nth-child(1) { animation-delay: 0.2s; }
-.fade-in-section.is-visible .training-feature:nth-child(2) { animation-delay: 0.4s; }
-.fade-in-section.is-visible .training-feature:nth-child(3) { animation-delay: 0.6s; }
+.fade-in-section.is-visible .training-image     {
+     animation: fadeInLeft 0.8s ease-out forwards;
+    }
 
-.fade-in-section.is-visible .training-image {
-    animation: fadeInLeft 0.8s ease-out forwards;
-}
-
-.fade-in-section.is-visible .contact-card {
-    animation: fadeInUpStagger 0.6s ease-out forwards;
-}
-
-.fade-in-section.is-visible .contact-card:nth-child(1) { animation-delay: 0.1s; }
-.fade-in-section.is-visible .contact-card:nth-child(2) { animation-delay: 0.2s; }
-.fade-in-section.is-visible .contact-card:nth-child(3) { animation-delay: 0.3s; }
-.fade-in-section.is-visible .contact-card:nth-child(4) { animation-delay: 0.4s; }
+.fade-in-section.is-visible .contact-card       {
+     animation: fadeInUpStagger 0.6s ease-out forwards;
+     }
+.fade-in-section.is-visible .contact-card:nth-child(1) { 
+    animation-delay: 0.1s;
+ }
+.fade-in-section.is-visible .contact-card:nth-child(2) { 
+    animation-delay: 0.2s;
+ }
+.fade-in-section.is-visible .contact-card:nth-child(3) { 
+    animation-delay: 0.3s;
+ }
+.fade-in-section.is-visible .contact-card:nth-child(4) { 
+    animation-delay: 0.4s;
+ }
 
 @keyframes fadeInUpStagger {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInRight {
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    from { opacity: 0; transform: translateX(30px); }
+    to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes fadeInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    from { opacity: 0; transform: translateX(-30px); }
+    to   { opacity: 1; transform: translateX(0); }
 }
 
-/* Estado inicial para elementos animados */
+/* Estado inicial para animaciones */
 .benefit-card,
 .training-feature,
 .training-image,
-.contact-card {
-    opacity: 0;
-}
+.contact-card { opacity: 0; }
 
-/* Estados visibles para animaciones de CTA */
-.cta-section.is-visible .cta-text {
-    opacity: 1;
-    transform: translateX(0);
-}
+.cta-section.is-visible .cta-text  { 
+    opacity: 1; transform: translateX(0);
+ }
+.cta-section.is-visible .cta-image { 
+    opacity: 1; transform: translateX(0);
+ }
 
-.cta-section.is-visible .cta-image {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* ============================================
-   SCROLL ANIMATIONS
-   ============================================ */
 .fade-in-element {
     opacity: 0;
     transform: translateY(40px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-.fade-in-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.benefit-card.fade-in-element {
-    transition-delay: calc(var(--card-index, 0) * 0.1s);
-}
-
-.training-feature.fade-in-element {
-    transition-delay: calc(var(--feature-index, 0) * 0.15s);
-}
+.fade-in-visible { opacity: 1; transform: translateY(0); }
 
 /* ============================================
-   RESPONSIVE DESIGN - TABLETS
+   NAVBAR SEARCH
    ============================================ */
-@media (max-width: 1024px) {
-    .hero-banner {
-        height: 70vh;
-        min-height: 450px;
-        padding-top: 40px;
-        background-attachment: scroll;
-    }
-
-    .hero-subtitle {
-        font-size: 1.4rem;
-    }
-    
-    .hero-main {
-        font-size: 3rem;
-    }
-    
-    .training-features-section {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-    
-    .training-image {
-        max-height: 400px;
-    }
-    
-    .footer-content {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .footer-academy {
-        grid-column: span 2;
-        justify-content: flex-start;
-    }
-
-    .gallery-item.gallery-large {
-        grid-column: span 1;
-        height: 300px;
-    }
-
-    .cta-section {
-        margin: 60px calc(-50vw + 50%) 0;
-        width: 100vw;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-    }
-
-    .cta-content {
-        gap: 0;
-        min-height: 400px;
-    }
-
-    .cta-text {
-        padding: 50px 60px;
-    }
-
-    .cta-text h2 {
-        font-size: 38px;
-    }
-
-    .cta-text p {
-        font-size: 16px;
-        margin-bottom: 20px;
-    }
-
-    .cta-buttons {
-        gap: 12px;
-    }
-
-    .btn-cta-primary,
-    .btn-cta-secondary {
-        padding: 11px 24px;
-        font-size: 12px;
-    }
-
-    .cta-image {
-        min-height: 400px;
-    }
-
-    .contact-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 900px) {
-    .hero-banner {
-        height: 60vh;
-        min-height: 400px;
-        padding-top: 50px;
-    }
-
-    .hero-subtitle {
-        font-size: 1.2rem;
-    }
-    
-    .hero-main {
-        font-size: 2.6rem;
-    }
-    
-    .filter-row { 
-        justify-content: center; 
-        gap: 10px; 
-    }
-    
-    .filter-btn {
-        min-width: 140px;
-        font-size: 11px;
-    }
-    
-    .hero-grid { 
-        grid-template-columns: 1fr; 
-    }
-    
-    .main-news-card {
-        height: 350px;
-    }
-    
-    .detailed-news-section { 
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-
-    .section-title {
-        font-size: 26px;
-        margin-bottom: 35px;
-    }
-    
-    .benefits-grid {
-        grid-template-columns: repeat(2, 1fr);
-        padding: 0 30px;
-    }
-    
-    .benefits-section {
-        padding: 50px 0;
-        margin: 60px calc(-50vw + 50%) 40px;
-    }
-
-    .members-cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* ============================================
-   RESPONSIVE DESIGN - MOBILE
-   ============================================ */
-@media (max-width: 768px) {
-    .hero-banner {
-        height: 50vh;
-        min-height: 350px;
-        padding-top: 30px;
-        background-attachment: scroll;
-    }
-    
-    .hero-subtitle {
-        font-size: 0.95rem;
-        letter-spacing: 0.2em;
-    }
-    
-    .hero-main {
-        font-size: 2rem;
-    }
-    
-    .page-container {
-        padding: 0 15px;
-        margin: 20px auto;
-    }
-    
-    .main-navbar {
-        padding: 12px 15px;
-    }
-    
-    .nav-content { 
-        flex-direction: column; 
-        gap: 15px; 
-    }
-    
-    .brand {
-        gap: 12px;
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .logo-container {
-        width: 65px;
-    }
-    
-    .brand-titles span {
-        font-size: 12px;
-        letter-spacing: 0.3px;
-    }
-    
-    .nav-links {
-        gap: 15px;
-        font-size: 14px;
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .nav-links a {
-        padding: 10px 15px;
-        font-size: 13px;
-    }
-    
-    .filter-row {
-        gap: 8px;
-        justify-content: center;
-    }
-    
-    .filter-btn {
-        min-width: 110px;
-        padding: 8px 5px;
-        font-size: 10px;
-    }
-    
-    .news-search-group input {
-        padding: 10px 12px;
-        font-size: 14px;
-    }
-    
-    .btn-search-action {
-        padding: 0 25px;
-        font-size: 13px;
-    }
-    
-    .main-news-card {
-        height: 250px;
-    }
-    
-    .side-img-container img {
-        height: 180px;
-    }
-    
-    .side-text {
-        padding: 15px;
-    }
-    
-    .side-text h4 {
-        font-size: 16px;
-    }
-    
-    .side-text p {
-        font-size: 14px;
-    }
-    
-    .detailed-news-section {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .news-title {
-        min-height: auto;
-        font-size: 15px;
-    }
-    
-    .news-image-gallery {
-        height: 200px;
-    }
-    
-    .news-content {
-        padding: 15px;
-    }
-    
-    .news-excerpt {
-        font-size: 13px;
-    }
-    
-    .btn-read-more-full {
-        padding: 8px 16px;
-        font-size: 12px;
-    }
-    
-    .news-stats {
-        font-size: 12px;
-    }
-
-    .section-title {
-        font-size: 26px;
-        margin-bottom: 30px;
-        padding: 0 10px;
-    }
-
-    .section-title::after {
-        width: 60px;
-        height: 3px;
-        margin: 12px auto 0;
-    }
-
-    .members-highlight-section {
-        padding: 50px 20px;
-        margin: 40px 0 30px;
-        width: 100%;
-        left: 0;
-        right: 0;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    .members-subtitle {
-        font-size: 16px;
-        margin-bottom: 35px;
-    }
-
-    .members-cards {
-        grid-template-columns: 1fr;
-        max-width: 100%;
-    }
-
-    .stats-section {
-        padding: 60px 20px;
-        margin: 60px calc(-50vw + 50%) 40px;
-    }
-
-    .stats-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
-    }
-
-    .stat-number {
-        font-size: 36px;
-    }
-
-    .stat-label {
-        font-size: 14px;
-    }
-    
-    .benefits-section {
-        margin: 40px 0 30px;
-        padding: 50px 0;
-        width: 100%;
-        left: 0;
-        right: 0;
-        margin-left: 0;
-        margin-right: 0;
-    }
-    
-    .benefits-grid {
-        grid-template-columns: 1fr;
-        padding: 0 20px;
-        gap: 25px;
-        max-width: 100%;
-    }
-    
-    .benefit-card {
-        padding: 30px 25px;
-        width: 100%;
-        max-width: 100%;
-    }
-    
-    .benefit-icon {
-        width: 75px;
-        height: 75px;
-    }
-    
-    .benefit-icon i {
-        font-size: 34px;
-    }
-    
-    .benefit-card h3 {
-        font-size: 17px;
-        min-height: auto;
-        margin-bottom: 15px;
-    }
-
-    .benefit-card p {
-        font-size: 14px;
-        line-height: 1.6;
-    }
-
-    .cta-section {
-        padding: 0;
-        margin: 40px calc(-50vw + 50%) 0;
-        width: 100vw;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-    }
-
-    .cta-content {
-        grid-template-columns: 1fr;
-        gap: 0;
-        min-height: auto;
-    }
-
-    .cta-text {
-        text-align: center;
-        padding: 40px 25px;
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    .cta-text h2 {
-        font-size: 28px;
-        margin-bottom: 18px;
-        letter-spacing: 1px;
-    }
-
-    .cta-text p {
-        font-size: 15px;
-        margin-bottom: 25px;
-    }
-
-    .cta-buttons {
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .cta-image {
-        min-height: 300px;
-        order: -1;
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    .quick-contact-section {
-        padding: 60px 0;
-    }
-
-    .contact-container {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 0 20px;
-    }
-
-    .gallery-section {
-        padding: 60px 0;
-    }
-
-    .gallery-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .gallery-item {
-        height: 250px;
-    }
-
-    .gallery-item.gallery-large {
-        height: 300px;
-    }
-    
-    .training-features-section {
-        padding: 40px 0;
-        margin-bottom: 40px;
-    }
-    
-    .training-content {
-        gap: 25px;
-    }
-    
-    .training-feature {
-        gap: 15px;
-    }
-    
-    .feature-icon {
-        width: 55px;
-        height: 55px;
-    }
-    
-    .feature-icon i {
-        font-size: 24px;
-    }
-    
-    .feature-text h3 {
-        font-size: 18px;
-        margin-bottom: 8px;
-    }
-    
-    .feature-text p {
-        font-size: 14px;
-    }
-    
-    .main-footer {
-        padding: 60px 15px 20px;
-        margin-top: 0;
-    }
-    
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-    
-    .footer-section h4 {
-        font-size: 16px;
-        margin-bottom: 15px;
-    }
-    
-    .footer-academy {
-        grid-column: 1;
-    }
-    
-    /* Botones flotantes en móvil */
-    .accessibility-wrapper {
-        bottom: 20px;
-        left: 15px;
-    }
-    
-    .accessibility-trigger {
-        width: 60px;
-        height: 60px;
-        font-size: 24px;
-        border-width: 2px;
-    }
-
-    .accessibility-menu {
-        width: calc(100vw - 80px);
-        max-width: 280px;
-        bottom: 75px;
-    }
-
-    .chat-button-wrapper {
-        bottom: 20px;
-        right: 15px;
-    }
-
-    .chat-trigger {
-        width: 60px;
-        height: 60px;
-        font-size: 28px;
-        border-width: 2px;
-    }
-
-    .notification-badge {
-        width: 20px;
-        height: 20px;
-        font-size: 11px;
-        top: -3px;
-        right: -3px;
-    }
-
-    #bullChat {
-        bottom: 90px;
-        right: 15px;
-        left: 15px;
-        width: calc(100vw - 30px);
-        height: calc(100vh - 180px);
-        max-height: 500px;
-    }
-
-    .chat-header {
-        padding: 15px;
-    }
-
-    .chat-header h3 {
-        font-size: 16px;
-    }
-
-    .chat-messages {
-        padding: 15px;
-    }
-
-    .chat-input-container {
-        padding: 12px;
-    }
-
-    .chat-input {
-        padding: 10px 12px;
-        font-size: 13px;
-    }
-
-    .chat-send {
-        padding: 10px 16px;
-        font-size: 13px;
-    }
-
-    /* HeadBot responsive 768px */
-    #headBot {
-        bottom: 90px;
-        right: 15px;
-        left: 15px;
-        width: calc(100vw - 30px);
-        height: calc(100vh - 170px);
-        max-height: 550px;
-        border-radius: 16px;
-    }
-
-    .headbot-header {
-        padding: 15px;
-    }
-
-    .headbot-avatar {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-    }
-
-    .headbot-title-text h3 {
-        font-size: 16px;
-    }
-
-    .headbot-title-text p {
-        font-size: 11px;
-    }
-
-    .headbot-messages {
-        padding: 15px;
-        gap: 12px;
-    }
-
-    .headbot-message-avatar {
-        width: 32px;
-        height: 32px;
-        font-size: 16px;
-    }
-
-    .headbot-message-content {
-        max-width: 70%;
-        padding: 10px 14px;
-        font-size: 13px;
-    }
-
-    .headbot-input-container {
-        padding: 12px 15px;
-    }
-
-    .headbot-input {
-        padding: 10px 15px;
-        font-size: 13px;
-    }
-
-    .headbot-send {
-        width: 42px;
-        height: 42px;
-        font-size: 16px;
-    }
-
-    .headbot-quick-actions {
-        padding: 12px 15px;
-        gap: 6px;
-    }
-
-    .quick-action-btn {
-        padding: 7px 14px;
-        font-size: 12px;
-    }
-}
-
-/* ============================================
-   RESPONSIVE DESIGN - SMALL MOBILE
-   ============================================ */
-@media (max-width: 480px) {
-    .hero-banner {
-        height: 45vh;
-        min-height: 300px;
-        padding-top: 25px;
-    }
-    
-    .hero-subtitle {
-        font-size: 0.85rem;
-        letter-spacing: 0.15em;
-    }
-    
-    .hero-main {
-        font-size: 1.7rem;
-    }
-    
-    .brand {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .brand-titles span {
-        font-size: 10px;
-        letter-spacing: 0.2px;
-    }
-    
-    .logo-container {
-        width: 55px;
-    }
-    
-    .nav-links {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-        padding: 0;
-    }
-    
-    .nav-links a {
-        font-size: 11px;
-        font-weight: 600;
-        padding: 10px 8px;
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.1);
-        white-space: nowrap;
-        text-align: center;
-        transition: all 0.3s;
-        border: none;
-    }
-    
-    .nav-links a.active {
-        background: var(--gold);
-        color: var(--navy);
-        border-bottom: none;
-        padding: 10px 8px;
-    }
-    
-    .nav-links a:hover {
-        background: var(--gold);
-        color: var(--navy);
-    }
-    
-    /* Botón de búsqueda en su propia fila */
-    .nav-links a:last-child {
-        grid-column: 1 / -1;
-        justify-self: center;
-        max-width: 60px;
-        padding: 10px;
-    }
-    
-    .filter-row {
-        justify-content: center;
-    }
-    
-    .filter-btn {
-        min-width: 100px;
-        padding: 7px 4px;
-        font-size: 9px;
-    }
-    
-    .main-news-card {
-        height: 200px;
-    }
-    
-    .news-image-gallery {
-        height: 180px;
-    }
-    
-    .news-title {
-        font-size: 14px;
-    }
-    
-    .news-excerpt {
-        font-size: 12px;
-    }
-
-    .section-title {
-        font-size: 24px;
-    }
-
-    .section-title::after {
-        width: 60px;
-        margin: 10px auto 0;
-    }
-
-    .members-subtitle {
-        font-size: 15px;
-    }
-
-    .member-highlight-card {
-        padding: 30px 20px;
-    }
-
-    .member-highlight-card h3 {
-        font-size: 16px;
-    }
-
-    .member-highlight-card p {
-        font-size: 14px;
-    }
-
-    .stats-container {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .stat-number {
-        font-size: 32px;
-    }
-
-    .stat-icon {
-        width: 70px;
-        height: 70px;
-    }
-
-    .stat-icon i {
-        font-size: 30px;
-    }
-    
-    .benefit-card {
-        padding: 25px 20px;
-    }
-    
-    .benefit-card h3 {
-        font-size: 16px;
-    }
-    
-    .benefit-card p {
-        font-size: 13px;
-    }
-
-    .cta-text {
-        padding: 40px 20px;
-    }
-
-    .cta-text h2 {
-        font-size: 28px;
-        letter-spacing: 0.5px;
-    }
-
-    .cta-text p {
-        font-size: 14px;
-        margin-bottom: 20px;
-    }
-
-    .cta-buttons {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .btn-cta-primary,
-    .btn-cta-secondary {
-        width: 100%;
-        justify-content: center;
-        padding: 15px 35px;
-        font-size: 14px;
-    }
-
-    .cta-image {
-        min-height: 250px;
-    }
-
-    .gallery-item {
-        height: 220px;
-    }
-
-    .gallery-item.gallery-large {
-        height: 250px;
-    }
-
-    .gallery-overlay h3 {
-        font-size: 18px;
-    }
-
-    .gallery-overlay p {
-        font-size: 14px;
-    }
-    
-    .feature-icon {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .feature-icon i {
-        font-size: 22px;
-    }
-    
-    .feature-text h3 {
-        font-size: 16px;
-    }
-    
-    .feature-text p {
-        font-size: 13px;
-    }
-    
-    /* Botones flotantes en pantallas pequeñas */
-    .accessibility-wrapper {
-        bottom: 15px;
-        left: 10px;
-    }
-    
-    .accessibility-trigger {
-        width: 55px;
-        height: 55px;
-        font-size: 22px;
-        border-width: 2px;
-    }
-
-    .accessibility-menu {
-        width: calc(100vw - 60px);
-        max-width: 260px;
-        bottom: 70px;
-        padding: 15px;
-    }
-
-    .accessibility-menu h4 {
-        font-size: 14px;
-        margin-bottom: 12px;
-    }
-
-    .accessibility-option {
-        padding: 10px;
-        font-size: 13px;
-        margin-bottom: 8px;
-    }
-
-    .chat-button-wrapper {
-        bottom: 15px;
-        right: 10px;
-    }
-
-    .chat-trigger {
-        width: 55px;
-        height: 55px;
-        font-size: 26px;
-        border-width: 2px;
-    }
-
-    .notification-badge {
-        width: 18px;
-        height: 18px;
-        font-size: 10px;
-        top: -2px;
-        right: -2px;
-        border-width: 1px;
-    }
-
-    #bullChat {
-        bottom: 80px;
-        right: 10px;
-        left: 10px;
-        width: calc(100vw - 20px);
-        height: calc(100vh - 160px);
-        max-height: 450px;
-    }
-
-    .chat-header {
-        padding: 12px 15px;
-    }
-
-    .chat-header h3 {
-        font-size: 15px;
-    }
-
-    .chat-close {
-        font-size: 20px;
-        width: 28px;
-        height: 28px;
-    }
-
-    .chat-messages {
-        padding: 12px;
-    }
-
-    .chat-input-container {
-        padding: 10px;
-        gap: 8px;
-    }
-
-    .chat-input {
-        padding: 9px 12px;
-        font-size: 12px;
-    }
-
-    .chat-send {
-        padding: 9px 14px;
-        font-size: 12px;
-    }
-
-    /* HeadBot responsive 480px */
-    #headBot {
-        bottom: 80px;
-        right: 10px;
-        left: 10px;
-        width: calc(100vw - 20px);
-        height: calc(100vh - 150px);
-        max-height: 500px;
-        border-radius: 12px;
-    }
-
-    .headbot-header {
-        padding: 12px 15px;
-    }
-
-    .headbot-avatar {
-        width: 38px;
-        height: 38px;
-        font-size: 18px;
-    }
-
-    .headbot-title-text h3 {
-        font-size: 15px;
-    }
-
-    .headbot-title-text p {
-        font-size: 10px;
-    }
-
-    .headbot-close {
-        width: 32px;
-        height: 32px;
-        font-size: 22px;
-    }
-
-    .headbot-messages {
-        padding: 12px;
-        gap: 10px;
-    }
-
-    .headbot-message-avatar {
-        width: 30px;
-        height: 30px;
-        font-size: 15px;
-    }
-
-    .headbot-message-content {
-        max-width: 75%;
-        padding: 9px 12px;
-        font-size: 12px;
-        border-radius: 16px;
-    }
-
-    .headbot-typing {
-        padding: 9px 12px;
-    }
-
-    .typing-dot {
-        width: 7px;
-        height: 7px;
-    }
-
-    .headbot-input-container {
-        padding: 10px 12px;
-        gap: 8px;
-    }
-
-    .headbot-input {
-        padding: 10px 14px;
-        font-size: 12px;
-        border-radius: 20px;
-    }
-
-    .headbot-send {
-        width: 40px;
-        height: 40px;
-        font-size: 15px;
-    }
-
-    .headbot-quick-actions {
-        padding: 10px 12px;
-        gap: 6px;
-    }
-
-    .quick-action-btn {
-        padding: 6px 12px;
-        font-size: 11px;
-        border-radius: 16px;
-    }
-
-    .contact-card {
-        padding: 30px 20px;
-    }
-
-    .contact-icon {
-        width: 60px;
-        height: 60px;
-        font-size: 24px;
-    }
-
-    .contact-card h3 {
-        font-size: 16px;
-    }
-
-    .contact-card p {
-        font-size: 15px;
-    }
-
-    .contact-card span {
-        font-size: 12px;
-    }
-
-    .footer-logo {
-        width: 70px;
-    }
-
-    .footer-social {
-        gap: 12px;
-    }
-
-    .footer-social a {
-        width: 36px;
-        height: 36px;
-        font-size: 16px;
-    }
-
-    .footer-copyright {
-        font-size: 12px;
-    }
-
-    .footer-section ul li a {
-        font-size: 13px;
-    }
-
-    .footer-section h4 {
-        font-size: 15px;
-    }
-
-    .academy-badge {
-        width: 100px;
-    }
-}
-
-/* ============================================
-   BARRA DE BÚSQUEDA EN NAVBAR
-   ============================================ */
-
 .navbar-search {
     position: relative;
     display: flex;
@@ -3310,24 +2040,21 @@ div, section, article, header, footer, nav {
 .navbar-search input {
     width: 200px;
     padding: 8px 40px 8px 15px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255,255,255,0.3);
     border-radius: 25px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255,255,255,0.1);
     color: white;
     font-size: 14px;
-    font-family: 'Inter', sans-serif;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
 }
 
-.navbar-search input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
+.navbar-search input::placeholder { color: rgba(255,255,255,0.7); }
 
 .navbar-search input:focus {
     outline: none;
     width: 280px;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255,255,255,0.15);
     border-color: rgba(197, 160, 89, 0.8);
     box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.2);
 }
@@ -3355,66 +2082,660 @@ div, section, article, header, footer, nav {
     transform: scale(1.1);
 }
 
-.navbar-search .search-btn i {
-    pointer-events: none;
-}
+.navbar-search .search-btn i { pointer-events: none; }
 
-/* Responsive - Navbar Search */
-@media (max-width: 1024px) {
-    .navbar-search {
-        display: none;
-    }
-}
+@media (max-width: 1024px) { .navbar-search { display: none; } }
 
-/* Opcional: Mostrar en tablet pero más pequeño */
 @media (max-width: 1200px) and (min-width: 1025px) {
-    .navbar-search input {
-        width: 150px;
+    .navbar-search input { width: 150px; }
+    .navbar-search input:focus { width: 220px; }
+}
+
+/* ============================================
+   RESPONSIVE - TABLETS (max 1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+    .hero-banner {
+        height: 70vh;
+        min-height: 450px;
+        padding-top: 40px;
+        background-attachment: scroll;
     }
-    
-    .navbar-search input:focus {
-        width: 220px;
+    .hero-subtitle { font-size: 1.4rem; }
+    .hero-main     { font-size: 3rem; }
+
+    .training-features-section {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .training-image { max-height: 400px; }
+
+    .footer-content { grid-template-columns: repeat(2, 1fr); }
+    .footer-academy { grid-column: span 2; justify-content: flex-start; }
+
+    .gallery-item.gallery-large { grid-column: span 1; height: 300px; }
+
+    .cta-section {
+        margin: 60px calc(-50vw + 50%) 0;
+        width: 100vw;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+    }
+    .cta-content   { 
+        min-height: 400px;
+     }
+    .cta-text      {
+         padding: 50px 60px; 
+     }
+    .cta-text h2   {
+         font-size: 38px;
+     }
+    .cta-text p    { 
+        font-size: 16px; margin-bottom: 20px;
+     }
+    .cta-buttons   { 
+        gap: 12px;
+     }
+    .btn-cta-primary, .btn-cta-secondary {
+         padding: 11px 24px; font-size: 12px;
+     }
+    .cta-image     { 
+        min-height: 400px; 
+     }
+
+    .contact-container { 
+        grid-template-columns: repeat(2, 1fr);
+     }
+}
+
+/* ============================================
+   RESPONSIVE - 900px
+   ============================================ */
+@media (max-width: 900px) {
+    .hero-banner {
+         height: 60vh; min-height: 400px; padding-top: 50px;
+    }
+    .hero-subtitle { 
+        font-size: 1.2rem; 
+    }
+    .hero-main     { 
+        font-size: 2.6rem; 
+    }
+
+    .filter-row    { 
+        justify-content: center; gap: 10px; 
+    }
+    .filter-btn    { 
+        min-width: 140px; font-size: 11px;
+    }
+
+    .hero-grid     { 
+        grid-template-columns: 1fr; 
+    }
+    .main-news-card { 
+        height: 350px; 
+    }
+
+    .detailed-news-section {
+         grid-template-columns: repeat(2, 1fr); gap: 20px; 
+    }
+
+    .section-title { 
+        font-size: 26px; margin-bottom: 35px;
+    }
+
+    .benefits-grid  { 
+        grid-template-columns: repeat(2, 1fr); padding: 0 30px;
+    }
+    .benefits-section {
+         padding: 50px 0; margin: 60px calc(-50vw + 50%) 40px;
+    }
+
+    .members-cards { 
+        grid-template-columns: repeat(2, 1fr); 
     }
 }
 
 /* ============================================
-   AJUSTES EXTRA PEQUEÑOS (< 375px)
+   RESPONSIVE - MOBILE (max 768px)
+   ============================================ */
+@media (max-width: 768px) {
+
+    /* --- HERO --- */
+    .hero-banner {
+        height: 50vh;
+        min-height: 350px;
+        padding-top: 30px;
+        background-attachment: scroll;
+    }
+    .hero-subtitle { font-size: 0.95rem; letter-spacing: 0.2em; }
+    .hero-main     { font-size: 2rem; }
+
+    /* --- LAYOUT --- */
+    .page-container { padding: 0 15px; margin: 20px auto; }
+
+    /* --- NAVBAR --- */
+    .main-navbar { padding: 12px 15px; }
+    .nav-content { flex-direction: column; gap: 15px; }
+    .brand       { gap: 12px; width: 100%; justify-content: center; }
+    .logo-container { width: 65px; }
+    .brand-titles span { font-size: 12px; letter-spacing: 0.3px; }
+    .nav-links   { gap: 15px; font-size: 14px; flex-wrap: wrap; justify-content: center; width: 100%; }
+    .nav-links a { padding: 10px 15px; font-size: 13px; }
+
+    /* --- FILTERS --- */
+    .filter-row  { gap: 8px; justify-content: center; }
+    .filter-btn  { min-width: 110px; padding: 8px 5px; font-size: 10px; }
+
+    /* --- SEARCH --- */
+    .news-search-group input { padding: 10px 12px; font-size: 14px; }
+    .btn-search-action { padding: 0 25px; font-size: 13px; }
+
+    /* --- NEWS CARDS --- */
+    .main-news-card          { height: 250px; }
+    .side-img-container img  { height: 180px; }
+    .side-text               { padding: 15px; }
+    .side-text h4            { font-size: 16px; }
+    .side-text p             { font-size: 14px; }
+    .detailed-news-section   { grid-template-columns: 1fr; gap: 20px; }
+    .news-title              { min-height: auto; font-size: 15px; }
+    .news-image-gallery      { height: 200px; }
+    .news-content            { padding: 15px; }
+    .news-excerpt            { font-size: 13px; }
+    .btn-read-more-full      { padding: 8px 16px; font-size: 12px; }
+    .news-stats              { font-size: 12px; }
+
+    /* --- SECTION TITLE --- */
+    .section-title { font-size: 26px; margin-bottom: 30px; padding: 0 10px; }
+    .section-title::after { width: 60px; height: 3px; margin: 12px auto 0; }
+
+    /* --- MEMBERS --- */
+    .members-highlight-section {
+        padding: 50px 20px;
+        margin: 40px 0 30px;
+        width: 100%;
+        left: 0; right: 0;
+        margin-left: 0; margin-right: 0;
+    }
+    .members-subtitle { font-size: 16px; margin-bottom: 35px; }
+    .members-cards    { grid-template-columns: 1fr; max-width: 100%; }
+
+    /* --- STATS --- */
+    .stats-section {
+        padding: 60px 20px;
+        margin: 60px calc(-50vw + 50%) 40px;
+    }
+    .stats-container { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+    .stat-number { font-size: 36px; }
+    .stat-label  { font-size: 14px; }
+
+    /* --- BENEFITS --- */
+    .benefits-section {
+        margin: 40px 0 30px;
+        padding: 50px 0;
+        width: 100%;
+        left: 0; right: 0;
+        margin-left: 0; margin-right: 0;
+    }
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+        gap: 25px;
+        max-width: 100%;
+    }
+    .benefit-card    { padding: 30px 25px; width: 100%; max-width: 100%; }
+    .benefit-icon    { width: 75px; height: 75px; }
+    .benefit-icon i  { font-size: 34px; }
+    .benefit-card h3 { font-size: 17px; min-height: auto; margin-bottom: 15px; }
+    .benefit-card p  { font-size: 14px; line-height: 1.6; }
+
+    /* --- CTA --- */
+    .cta-section {
+        padding: 0;
+        margin: 40px 0 0;
+        width: 100%;
+        left: 0; right: 0;
+        margin-left: 0; margin-right: 0;
+    }
+    .cta-content    { grid-template-columns: 1fr; min-height: auto; }
+    .cta-text       { text-align: center; padding: 40px 25px; opacity: 1; transform: translateX(0); }
+    .cta-text h2    { font-size: 28px; margin-bottom: 18px; letter-spacing: 1px; }
+    .cta-text p     { font-size: 15px; margin-bottom: 25px; }
+    .cta-buttons    { justify-content: center; flex-wrap: wrap; }
+    .cta-image      { min-height: 300px; order: -1; opacity: 1; transform: translateX(0); }
+
+    /* ============================================
+       CONTACT SECTION - MÓVIL CORREGIDO
+       ============================================ */
+    .quick-contact-section {
+        padding: 40px 0;
+        width: 100%;
+        left: 0; right: 0;
+        margin-left: 0; margin-right: 0;
+        overflow-x: hidden;
+    }
+
+    .contact-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 0 15px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        margin: 0 auto;
+    }
+
+    .contact-card {
+        padding: 20px 12px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        border-radius: 10px;
+        overflow: hidden;
+    max-width: 100%;
+    }
+
+    .contact-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        margin: 0 auto 12px auto;
+    }
+
+    .contact-card h3  { font-size: 14px; margin-bottom: 6px; }
+    .contact-card p   { font-size: 11px; word-break: break-word; margin-bottom: 4px; }
+    .contact-card span { font-size: 10px; }
+
+    /* ============================================
+       FOOTER MÓVIL - CORREGIDO
+       ============================================ */
+    .main-footer {
+        padding: 40px 15px 20px;
+        overflow-x: hidden;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .main-footer .footer-content,
+    .footer-content {
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: unset !important;
+        gap: 25px !important;
+        padding-bottom: 25px;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        margin-top: 0 !important;
+    }
+
+    .footer-partners-logos {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 15px !important;
+        justify-items: center;
+        align-items: center;
+        padding: 10px 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .partner-logo {
+        width: 65px;
+        height: 65px;
+    }
+
+    .footer-section.footer-about {
+        text-align: center;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .footer-section.footer-about h4 {
+        font-size: 15px !important;
+        word-break: break-word;
+        white-space: normal;
+        line-height: 1.5;
+        margin-bottom: 8px !important;
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+
+    .footer-section {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .footer-section h4 {
+        font-size: 14px;
+        margin-bottom: 12px !important;
+    }
+
+    .footer-copyright {
+        font-size: 12px;
+        text-align: center;
+        max-width: 100%;
+        word-break: break-word;
+    }
+
+    .footer-academy { width: 100%; justify-content: center; }
+
+    /* --- GALLERY --- */
+    .gallery-section { padding: 60px 0; }
+    .gallery-grid    { grid-template-columns: 1fr; gap: 20px; }
+    .gallery-item    { height: 250px; }
+    .gallery-item.gallery-large { height: 300px; }
+
+    /* --- TRAINING --- */
+    .training-features-section { padding: 40px 0; margin-bottom: 40px; }
+    .training-content { gap: 25px; }
+    .training-feature { gap: 15px; }
+    .feature-icon   { width: 55px; height: 55px; }
+    .feature-icon i { font-size: 24px; }
+    .feature-text h3 { font-size: 18px; margin-bottom: 8px; }
+    .feature-text p  { font-size: 14px; }
+
+    /* --- BOTONES FLOTANTES --- */
+    .accessibility-wrapper { bottom: 20px; left: 15px; }
+    .accessibility-trigger { width: 60px; height: 60px; font-size: 24px; border-width: 2px; }
+    .accessibility-menu    { width: calc(100vw - 80px); max-width: 280px; bottom: 75px; }
+
+    .chat-button-wrapper { bottom: 20px; right: 15px; }
+    .chat-trigger        { width: 60px; height: 60px; font-size: 28px; border-width: 2px; }
+    .notification-badge  { width: 20px; height: 20px; font-size: 11px; top: -3px; right: -3px; }
+
+    #bullChat {
+        bottom: 90px; right: 15px; left: 15px;
+        width: calc(100vw - 30px);
+        height: calc(100vh - 180px);
+        max-height: 500px;
+    }
+
+    .chat-header h3 { font-size: 16px; }
+    .chat-messages  { padding: 15px; }
+    .chat-input-container { padding: 12px; }
+    .chat-input     { padding: 10px 12px; font-size: 13px; }
+    .chat-send      { padding: 10px 16px; font-size: 13px; }
+
+    #headBot {
+        bottom: 90px; right: 15px; left: 15px;
+        width: calc(100vw - 30px);
+        height: calc(100vh - 170px);
+        max-height: 550px;
+        border-radius: 16px;
+    }
+
+    .headbot-header          { padding: 15px; }
+    .headbot-avatar          { width: 40px; height: 40px; font-size: 20px; }
+    .headbot-title-text h3   { font-size: 16px; }
+    .headbot-title-text p    { font-size: 11px; }
+    .headbot-messages        { padding: 15px; gap: 12px; }
+    .headbot-message-avatar  { width: 32px; height: 32px; font-size: 16px; }
+    .headbot-message-content { max-width: 70%; padding: 10px 14px; font-size: 13px; }
+    .headbot-input-container { padding: 12px 15px; }
+    .headbot-input           { padding: 10px 15px; font-size: 13px; }
+    .headbot-send            { width: 42px; height: 42px; font-size: 16px; }
+    .headbot-quick-actions   { padding: 12px 15px; gap: 6px; }
+    .quick-action-btn        { padding: 7px 14px; font-size: 12px; }
+}
+
+/* ============================================
+   RESPONSIVE - SMALL MOBILE (max 480px)
+   ============================================ */
+@media (max-width: 480px) {
+    .hero-banner   { height: 45vh; min-height: 300px; padding-top: 25px; }
+    .hero-subtitle { font-size: 0.85rem; letter-spacing: 0.15em; }
+    .hero-main     { font-size: 1.7rem; }
+
+    .brand         { width: 100%; justify-content: center; }
+    .brand-titles span { font-size: 10px; letter-spacing: 0.2px; }
+    .logo-container { width: 55px; }
+
+    .nav-links {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        padding: 0;
+    }
+    .nav-links a {
+        font-size: 11px;
+        font-weight: 600;
+        padding: 10px 8px;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.1);
+        white-space: nowrap;
+        text-align: center;
+        transition: all 0.3s;
+        border: none;
+    }
+    .nav-links a.active {
+        background: var(--gold);
+        color: var(--navy);
+        border-bottom: none;
+        padding: 10px 8px;
+    }
+    .nav-links a:hover  { background: var(--gold); color: var(--navy); }
+    .nav-links a:last-child { grid-column: 1 / -1; justify-self: center; max-width: 60px; padding: 10px; }
+
+    /* --- CONTACT 480px --- */
+    .contact-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 0 10px;
+    }
+
+    .contact-card   { padding: 18px 10px; }
+    .contact-icon   { width: 45px; height: 45px; font-size: 18px; margin-bottom: 10px; }
+    .contact-card h3  { font-size: 13px; }
+    .contact-card p   { font-size: 10px; }
+    .contact-card span { font-size: 9px; }
+
+    /* --- FOOTER 480px --- */
+    .footer-partners-logos {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px !important;
+        padding: 8px 0;
+    }
+    .partner-logo { width: 55px; height: 55px; }
+    .footer-section.footer-about h4 {
+        font-size: 13px !important;
+        text-align: center;
+        white-space: normal;
+        word-break: break-word;
+    }
+
+    .filter-row  { justify-content: center; }
+    .filter-btn  { min-width: 100px; padding: 7px 4px; font-size: 9px; }
+
+    .main-news-card     { height: 200px; }
+    .news-image-gallery { height: 180px; }
+    .news-title  { font-size: 14px; }
+    .news-excerpt { font-size: 12px; }
+
+    .section-title { font-size: 24px; }
+    .section-title::after { width: 60px; margin: 10px auto 0; }
+
+    .members-subtitle   { font-size: 15px; }
+    .member-highlight-card { padding: 30px 20px; }
+    .member-highlight-card h3 { font-size: 16px; }
+    .member-highlight-card p  { font-size: 14px; }
+
+    .stats-container { grid-template-columns: 1fr; gap: 20px; }
+    .stat-number { font-size: 32px; }
+    .stat-icon   { width: 70px; height: 70px; }
+    .stat-icon i { font-size: 30px; }
+
+    .benefit-card    { padding: 25px 20px; }
+    .benefit-card h3 { font-size: 16px; }
+    .benefit-card p  { font-size: 13px; }
+
+    .cta-text    { padding: 40px 20px; }
+    .cta-text h2 { font-size: 28px; letter-spacing: 0.5px; }
+    .cta-text p  { font-size: 14px; margin-bottom: 20px; }
+    .cta-buttons { flex-direction: column; width: 100%; }
+    .btn-cta-primary, .btn-cta-secondary {
+        width: 100%;
+        justify-content: center;
+        padding: 15px 35px;
+        font-size: 14px;
+    }
+    .cta-image { min-height: 250px; }
+
+    .gallery-item { height: 220px; }
+    .gallery-item.gallery-large { height: 250px; }
+    .gallery-overlay h3 { font-size: 18px; }
+    .gallery-overlay p  { font-size: 14px; }
+
+    .feature-icon   { width: 50px; height: 50px; }
+    .feature-icon i { font-size: 22px; }
+    .feature-text h3 { font-size: 16px; }
+    .feature-text p  { font-size: 13px; }
+
+    .accessibility-wrapper { bottom: 15px; left: 10px; }
+    .accessibility-trigger { width: 55px; height: 55px; font-size: 22px; border-width: 2px; }
+    .accessibility-menu    { width: calc(100vw - 60px); max-width: 260px; bottom: 70px; padding: 15px; }
+    .accessibility-menu h4 { font-size: 14px; margin-bottom: 12px; }
+    .accessibility-option  { padding: 10px; font-size: 13px; margin-bottom: 8px; }
+
+    .chat-button-wrapper { bottom: 15px; right: 10px; }
+    .chat-trigger        { width: 55px; height: 55px; font-size: 26px; border-width: 2px; }
+    .notification-badge  { width: 18px; height: 18px; font-size: 10px; top: -2px; right: -2px; border-width: 1px; }
+
+    #bullChat {
+        bottom: 80px; right: 10px; left: 10px;
+        width: calc(100vw - 20px);
+        height: calc(100vh - 160px);
+        max-height: 450px;
+    }
+    .chat-header h3 { font-size: 15px; }
+    .chat-close     { font-size: 20px; width: 28px; height: 28px; }
+    .chat-messages  { padding: 12px; }
+    .chat-input-container { padding: 10px; gap: 8px; }
+    .chat-input     { padding: 9px 12px; font-size: 12px; }
+    .chat-send      { padding: 9px 14px; font-size: 12px; }
+
+    #headBot {
+        bottom: 80px; right: 10px; left: 10px;
+        width: calc(100vw - 20px);
+        height: calc(100vh - 150px);
+        max-height: 500px;
+        border-radius: 12px;
+    }
+    .headbot-header          { 
+        padding: 12px 15px; 
+    }
+    .headbot-avatar          { 
+        width: 38px; height: 38px; font-size: 18px;
+    }
+    .headbot-title-text h3   {
+         font-size: 15px; 
+    }
+    .headbot-title-text p    {
+         font-size: 10px; 
+    }
+    .headbot-close           {
+         width: 32px; height: 32px; font-size: 22px; 
+    }
+    .headbot-messages        { 
+        padding: 12px; gap: 10px; 
+    }
+    .headbot-message-avatar  { 
+        width: 30px; height: 30px; font-size: 15px; 
+    }
+    .headbot-message-content {
+         max-width: 75%; padding: 9px 12px; font-size: 12px; border-radius: 16px;
+    }
+    .headbot-typing          { 
+        padding: 9px 12px; 
+    }
+    .typing-dot              { 
+        width: 7px; height: 7px; 
+    }
+    .headbot-input-container {
+         padding: 10px 12px; gap: 8px; 
+    }
+    .headbot-input           {
+         padding: 10px 14px; font-size: 12px; border-radius: 20px;
+    }
+    .headbot-send            {
+         width: 40px; height: 40px; font-size: 15px; 
+    }
+    .headbot-quick-actions   {
+         padding: 10px 12px; gap: 6px; 
+    }
+    .quick-action-btn        { 
+        padding: 6px 12px; font-size: 11px; border-radius: 16px;
+    }
+
+    .footer-logo    { 
+        width: 70px;
+     }
+    .footer-social  {
+         gap: 12px; 
+     }
+    .footer-social a {
+         width: 36px; height: 36px; font-size: 16px; 
+     }
+    .footer-copyright { 
+        font-size: 12px; 
+     }
+    .footer-section ul li a { 
+        font-size: 13px; 
+     }
+    .footer-section h4 { 
+        font-size: 15px; 
+     }
+    .academy-badge { 
+        width: 100px; 
+     }
+}
+
+/* ============================================
+   EXTRA PEQUEÑO (max 375px)
    ============================================ */
 @media (max-width: 375px) {
-    .hero-subtitle {
-        font-size: 0.75rem;
+    .hero-subtitle { 
+        font-size: 0.75rem; 
     }
-    
-    .hero-main {
-        font-size: 1.4rem;
+    .hero-main     {
+         font-size: 1.4rem; 
+        }
+    .section-title { 
+        font-size: 22px; 
     }
-    
-    .section-title {
-        font-size: 22px;
+    .cta-text h2   { 
+        font-size: 22px; 
     }
-    
-    .cta-text h2 {
-        font-size: 22px;
+    .benefit-card h3 { 
+        font-size: 15px; 
     }
-    
-    .benefit-card h3 {
-        font-size: 15px;
-    }
-    
-    .benefit-card p {
+    .benefit-card p  { 
         font-size: 12px;
+     }
+    .nav-links a     { 
+        font-size: 10px; padding: 8px 6px; 
     }
-
-    .nav-links a {
-        font-size: 10px;
-        padding: 8px 6px;
+    .logo-container  {
+         width: 50px;
     }
-
-    .logo-container {
-        width: 50px;
-    }
-
-    .brand-titles span {
+    .brand-titles span { 
         font-size: 9px;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 0 15px;
     }
 }
