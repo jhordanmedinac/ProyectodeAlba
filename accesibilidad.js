@@ -229,18 +229,21 @@
       fab.style.bottom='auto'; fab.style.right='auto';
       e.preventDefault();
     }
-    function onEnd(e){
-      if(!isDragging) return;
-      isDragging=false;
-      fab.classList.remove('dragging');
-      fab.style.transition='box-shadow .2s ease';
-      if(moved){
-        const rect=fab.getBoundingClientRect();
-        saveFabPos(rect.left,rect.top);
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    }
+   function onEnd(e){
+  if(!isDragging) return;
+  isDragging=false;
+  fab.classList.remove('dragging');
+  fab.style.transition='box-shadow .2s ease';
+  if(moved){
+    const rect=fab.getBoundingClientRect();
+    saveFabPos(rect.left,rect.top);
+    fab._wasDragged=true;
+    e.preventDefault();
+    e.stopPropagation();
+  } else {
+    fab._wasDragged=false;
+  }
+}
 
     // Mouse
     fab.addEventListener('mousedown',onStart);
@@ -381,12 +384,19 @@
     const open=()=>{overlay.classList.add('open');panel.classList.add('open')};
     const close=()=>{overlay.classList.remove('open');panel.classList.remove('open')};
 
-    // Click only if not dragged
     fab.addEventListener('click',(e)=>{
-      if(fab._wasDragged){fab._wasDragged=false;return}
-      open();
-    });
+  if(fab._wasDragged){fab._wasDragged=false;return}
+  open();
+});
 
+// Fix para touch en móvil
+fab.addEventListener('touchend',(e)=>{
+  if(!fab._wasDragged){
+    e.preventDefault();
+    open();
+  }
+  fab._wasDragged=false;
+},{passive:false});
     // Patch drag end to set flag
     const origMouseup=window.onmouseup;
     fab.addEventListener('mousedown',()=>{fab._wasDragged=false});

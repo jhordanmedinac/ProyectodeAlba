@@ -93,6 +93,7 @@
     margin: 0 auto;
     padding: 0 20px;
 }
+
 /* ============================================
    LOGOS CIRCULARES EN EL FOOTER
    ============================================ */
@@ -152,22 +153,21 @@
 }
 
 /* Ajustar espaciado del footer para que todo suba MUCHO */
-.main-footer .footer-content {
-    padding-top: 15px !important;
-    padding-bottom: 0px !important;
-    gap: 40px !important;
-    margin-top: -60px !important;
-}
+.footer-section {
+        width: 100% !important;
+        padding: 0 15px !important;
+        text-align: left !important;
+    }
 
-.main-footer .footer-section {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-}
+    
 
-.main-footer .footer-section h4 {
-    margin-top: 0 !important;
-    margin-bottom: 10px !important;
-}
+    .footer-section ul li a {
+        text-align: left !important;
+    }
+
+    .main-footer .footer-content {
+        align-items: flex-start !important;
+    }
 
 .main-footer .footer-about {
     padding-top: 0 !important;
@@ -836,7 +836,7 @@
     }
 
     .registro-form {
-        padding: 35px 25px;
+        padding: 25px 15px;
     }
 
     .form-section-title {
@@ -846,6 +846,15 @@
     .form-row {
         grid-template-columns: 1fr;
         gap: 20px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 14px;
+        padding: 12px 14px;
     }
 
     .form-actions {
@@ -858,6 +867,50 @@
 
     .section-title {
         font-size: 30px;
+    }
+
+    /* FOOTER MÓVIL */
+    .main-footer {
+        padding: 30px 15px 20px !important;
+    }
+
+    .main-footer .footer-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
+        padding-top: 10px !important;
+        margin-top: 0 !important;
+    }
+
+    .footer-partners-logos {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 12px !important;
+        justify-items: center !important;
+        max-width: 260px !important;
+        margin: 10px auto !important;
+    }
+
+    .partner-logo {
+        width: 75px !important;
+        height: 75px !important;
+    }
+
+    .footer-about {
+        text-align: center !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+
+    .footer-social {
+        justify-content: center !important;
+    }
+
+    
+
+    .footer-copyright {
+        text-align: center;
     }
 }
 
@@ -919,6 +972,8 @@
     .form-group textarea {
         padding: 12px 15px;
         font-size: 14px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .btn-cancelar,
@@ -943,6 +998,19 @@
 
     .section-title {
         font-size: 26px;
+    }
+
+    /* FOOTER LOGOS PEQUEÑOS */
+    .footer-partners-logos {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 10px !important;
+        max-width: 220px !important;
+        margin: 8px auto !important;
+    }
+
+    .partner-logo {
+        width: 60px !important;
+        height: 60px !important;
     }
 }
 
