@@ -11,8 +11,140 @@
     <link rel="stylesheet" href="unete-navbar-responsive.css">
     <script type="module" src="./headBot.js"></script>
     <script src="../accesibilidad.js" defer></script>
+    <script src="../f2.js" defer></script> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="../IMAGENES/LOGO.png" type="image/png">
+
+    <style>
+        /* ── Botón X de cierre en modales ── */
+        .modal-close-btn {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            z-index: 10;
+        }
+        .modal-close-btn:hover { background: rgba(255,255,255,0.3); }
+        .modal-header { position: relative; }
+
+        /* ── CAPTCHA ── */
+        #captchaModal .modal-container {
+            max-width: 420px;
+        }
+        .captcha-box {
+            background: #f5f7fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 24px 20px;
+            text-align: center;
+            margin: 10px 0 20px;
+        }
+        .captcha-question {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--navy, #00093C);
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+            user-select: none;
+        }
+        .captcha-input-row {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+        .captcha-input-row input {
+            width: 90px;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 20px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s;
+        }
+        .captcha-input-row input:focus {
+            outline: none;
+            border-color: #c5a059;
+            box-shadow: 0 0 0 3px rgba(197,160,89,0.15);
+        }
+        .captcha-input-row input.error {
+            border-color: #dc3545;
+            animation: shake 0.3s ease;
+        }
+        @keyframes shake {
+            0%,100%{transform:translateX(0)}
+            25%{transform:translateX(-6px)}
+            75%{transform:translateX(6px)}
+        }
+        .captcha-refresh {
+            background: none;
+            border: none;
+            color: #c5a059;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: color 0.2s;
+        }
+        .captcha-refresh:hover { color: #00093C; }
+        .captcha-attempts {
+            font-size: 13px;
+            margin-top: 10px;
+            color: #888;
+        }
+        .captcha-attempts.warning { color: #dc3545; font-weight: 600; }
+        .captcha-error-msg {
+            color: #dc3545;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 6px;
+            min-height: 18px;
+        }
+        .captcha-blocked {
+            padding: 20px;
+            text-align: center;
+            color: #dc3545;
+        }
+        .captcha-blocked i { font-size: 40px; margin-bottom: 12px; display: block; }
+        .captcha-blocked p { font-size: 15px; font-weight: 600; margin: 0; }
+        .btn-captcha-verify {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--navy, #00093C), #001159);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-captcha-verify:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,9,60,0.25);
+        }
+        .btn-captcha-verify:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+    </style>
 </head>
 <body>
 
@@ -28,21 +160,13 @@
                     <span>del Perú</span>
                 </div>
             </div>
-
             <nav class="nav-links">
-                <!-- Barra de búsqueda -->
                 <div class="navbar-search">
-                    <input 
-                        type="text" 
-                        id="navbarSearchInput" 
-                        placeholder="Buscar instegrante..."
-                        aria-label="Buscar en el sitio"
-                    >
+                    <input type="text" id="navbarSearchInput" placeholder="Buscar integrante..." aria-label="Buscar en el sitio">
                     <button type="button" class="search-btn" aria-label="Buscar">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
-                
                 <a href="../index.html">Inicio</a>
                 <a href="../nos/Nosotros.html">Nosotros</a>                
                 <a href="Unete.html" class="active">Únete</a>
@@ -53,29 +177,109 @@
         </div>
     </header>
 
-    <!-- Modal de Bienvenida -->
+    <!-- ══ Modal de Bienvenida ══ -->
     <div id="welcomeModal" class="modal-overlay">
         <div class="modal-container">
             <div class="modal-header">
-                <div class="modal-icon">
-                    <i class="fas fa-users"></i>
-                </div>
+                <button class="modal-close-btn" onclick="cerrarModal('welcomeModal')" aria-label="Cerrar">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="modal-icon"><i class="fas fa-users"></i></div>
                 <h2>¿Estás listo para unirte a nosotros?</h2>
             </div>
             <div class="modal-body">
-                <p class="modal-message">
-                    Recuerda que se postula una vez cada año.
-                </p>
-                <p class="modal-message-highlight">
-                    ¡Suerte! Te avisaremos sobre tu postulación.
-                </p>
-                <div class="modal-illustration">
-                    <i class="fas fa-clipboard-check"></i>
-                </div>
+                <p class="modal-message">Recuerda que se postula una vez cada año.</p>
+                <p class="modal-message-highlight">¡Suerte! Te avisaremos sobre tu postulación.</p>
+                <div class="modal-illustration"><i class="fas fa-clipboard-check"></i></div>
             </div>
             <div class="modal-footer">
-                <button class="btn-modal-accept" onclick="acceptModal()">
+                <button class="btn-modal-accept" onclick="cerrarModal('welcomeModal')">
                     <i class="fas fa-check-circle"></i> Aceptar y Continuar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ Modal CAPTCHA ══ -->
+    <div id="captchaModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <button class="modal-close-btn" onclick="cerrarModal('captchaModal')" aria-label="Cerrar">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="modal-icon"><i class="fas fa-shield-alt"></i></div>
+                <h2>Verificación de Seguridad</h2>
+            </div>
+            <div class="modal-body" id="captchaBody">
+                <p class="modal-message">Resuelve la operación para confirmar que no eres un robot.</p>
+                <div class="captcha-box">
+                    <div class="captcha-question" id="captchaQuestion">? + ? = ?</div>
+                    <div class="captcha-input-row">
+                        <input type="number" id="captchaAnswer" placeholder="?" min="0" max="99" autocomplete="off">
+                        <button class="captcha-refresh" onclick="generarCaptcha()" title="Nueva operación" type="button">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                    <div class="captcha-error-msg" id="captchaErrorMsg"></div>
+                    <div class="captcha-attempts" id="captchaAttemptsMsg">3 intentos disponibles</div>
+                </div>
+            </div>
+            <div class="modal-footer" id="captchaFooter">
+                <button class="btn-captcha-verify" id="btnVerifyCaptcha" onclick="verificarCaptcha()">
+                    <i class="fas fa-check-circle"></i> Verificar y Enviar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ Modal Términos y Condiciones ══ -->
+    <div id="modalTerminos" class="modal-overlay">
+        <div class="modal-container" style="max-width:650px">
+            <div class="modal-header">
+                <button class="modal-close-btn" onclick="cerrarModal('modalTerminos')" aria-label="Cerrar">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="modal-icon"><i class="fas fa-file-contract"></i></div>
+                <h2>Términos y Condiciones</h2>
+            </div>
+            <div class="modal-body" style="text-align:left">
+                <p class="modal-message"><strong>ISO 9001:2015 — Gestión de Calidad</strong></p>
+                <p class="modal-message">El Cuerpo General de Paramédicos Voluntarios del Perú opera bajo estándares de calidad alineados a la norma ISO 9001:2015, garantizando procesos de selección, formación y atención transparentes y verificables.</p>
+                <p class="modal-message"><strong>Condiciones de postulación:</strong></p>
+                <p class="modal-message">Al registrarse, el postulante declara que la información proporcionada es verídica. El CGPVP se reserva el derecho de verificar los datos y rechazar postulaciones con información falsa o incompleta. La postulación se realiza una vez por año calendario.</p>
+                <p class="modal-message"><strong>Uso de datos:</strong></p>
+                <p class="modal-message">Los datos serán utilizados exclusivamente para el proceso de selección interno. No serán compartidos con terceros sin consentimiento expreso del postulante.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-accept" onclick="cerrarModal('modalTerminos')">
+                    <i class="fas fa-check-circle"></i> Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ Modal Política de Privacidad ══ -->
+    <div id="modalPrivacidad" class="modal-overlay">
+        <div class="modal-container" style="max-width:650px">
+            <div class="modal-header">
+                <button class="modal-close-btn" onclick="cerrarModal('modalPrivacidad')" aria-label="Cerrar">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="modal-icon"><i class="fas fa-user-shield"></i></div>
+                <h2>Política de Privacidad</h2>
+            </div>
+            <div class="modal-body" style="text-align:left">
+                <p class="modal-message"><strong>ISO/IEC 27001 — Seguridad de la Información</strong></p>
+                <p class="modal-message">El CGPVP aplica principios de seguridad de la información conforme a la norma ISO/IEC 27001, asegurando la confidencialidad, integridad y disponibilidad de los datos personales de sus postulantes y miembros.</p>
+                <p class="modal-message"><strong>Datos recopilados:</strong></p>
+                <p class="modal-message">Nombres, apellidos, DNI, fecha de nacimiento, correo electrónico, teléfono y dirección. Estos datos son necesarios para gestionar el proceso de postulación.</p>
+                <p class="modal-message"><strong>Derechos del titular:</strong></p>
+                <p class="modal-message">El postulante tiene derecho a acceder, rectificar o eliminar sus datos en cualquier momento enviando una solicitud a: <strong>cuerpodeparamedicosvoluntarios@gmail.com</strong></p>
+                <p class="modal-message">De acuerdo con la Ley N° 29733 — Ley de Protección de Datos Personales del Perú.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-accept" onclick="cerrarModal('modalPrivacidad')">
+                    <i class="fas fa-check-circle"></i> Entendido
                 </button>
             </div>
         </div>
@@ -94,11 +298,8 @@
         <!-- Formulario de Registro -->
         <section class="registro-section">
             <div class="registro-container">
-                
                 <div class="registro-header">
-                    <div class="header-icon">
-                        <i class="fas fa-user-plus"></i>
-                    </div>
+                    <div class="header-icon"><i class="fas fa-user-plus"></i></div>
                     <h2>Formulario de Registro</h2>
                     <p>Completa todos los campos para iniciar tu proceso de postulación</p>
                 </div>
@@ -110,71 +311,31 @@
                         <h3 class="form-section-title">
                             <i class="fas fa-id-card"></i> Información Personal
                         </h3>
-                        
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="nombre">
-                                    <i class="fas fa-user"></i> Nombre(s) <span class="required">*</span>
-                                </label>
-                                <input 
-                                    type="text" 
-                                    id="nombre" 
-                                    name="nombre" 
-                                    placeholder="Ingresa tu(s) nombre(s)"
-                                    required
-                                >
+                                <label for="nombre"><i class="fas fa-user"></i> Nombre(s) <span class="required">*</span></label>
+                                <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu(s) nombre(s)" required>
                                 <span class="form-error" id="error-nombre"></span>
                             </div>
-
                             <div class="form-group">
-                                <label for="apellido">
-                                    <i class="fas fa-user"></i> Apellidos <span class="required">*</span>
-                                </label>
-                                <input 
-                                    type="text" 
-                                    id="apellido" 
-                                    name="apellido" 
-                                    placeholder="Ingresa tus apellidos"
-                                    required
-                                >
+                                <label for="apellido"><i class="fas fa-user"></i> Apellidos <span class="required">*</span></label>
+                                <input type="text" id="apellido" name="apellido" placeholder="Ingresa tus apellidos" required>
                                 <span class="form-error" id="error-apellido"></span>
                             </div>
                         </div>
-
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="dni">
-                                    <i class="fas fa-id-card-alt"></i> DNI <span class="required">*</span>
-                                </label>
-                                <input 
-                                    type="text" 
-                                    id="dni" 
-                                    name="dni" 
-                                    placeholder="12345678"
-                                    maxlength="8"
-                                    pattern="[0-9]{8}"
-                                    required
-                                >
+                                <label for="dni"><i class="fas fa-id-card-alt"></i> DNI <span class="required">*</span></label>
+                                <input type="text" id="dni" name="dni" placeholder="12345678" maxlength="8" pattern="[0-9]{8}" required>
                                 <span class="form-error" id="error-dni"></span>
                             </div>
-
                             <div class="form-group">
-                                <label for="fechaNacimiento">
-                                    <i class="fas fa-calendar-alt"></i> Fecha de Nacimiento <span class="required">*</span>
-                                </label>
-                                <input 
-                                    type="date" 
-                                    id="fechaNacimiento" 
-                                    name="fechaNacimiento" 
-                                    required
-                                >
+                                <label for="fechaNacimiento"><i class="fas fa-calendar-alt"></i> Fecha de Nacimiento <span class="required">*</span></label>
+                                <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
                                 <span class="form-error" id="error-fechaNacimiento"></span>
                             </div>
-
                             <div class="form-group">
-                                <label for="genero">
-                                    <i class="fas fa-venus-mars"></i> Género <span class="required">*</span>
-                                </label>
+                                <label for="genero"><i class="fas fa-venus-mars"></i> Género <span class="required">*</span></label>
                                 <select id="genero" name="genero" required>
                                     <option value="">Selecciona</option>
                                     <option value="masculino">Masculino</option>
@@ -191,58 +352,26 @@
                         <h3 class="form-section-title">
                             <i class="fas fa-envelope"></i> Información de Contacto
                         </h3>
-
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="email">
-                                    <i class="fas fa-at"></i> Correo Electrónico <span class="required">*</span>
-                                </label>
-                                <input 
-                                    type="email" 
-                                    id="email" 
-                                    name="email" 
-                                    placeholder="tu.correo@ejemplo.com"
-                                    required
-                                >
+                                <label for="email"><i class="fas fa-at"></i> Correo Electrónico <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" placeholder="tu.correo@ejemplo.com" required>
                                 <span class="form-error" id="error-email"></span>
                             </div>
-
                             <div class="form-group">
-                                <label for="telefono">
-                                    <i class="fas fa-phone"></i> Teléfono <span class="required">*</span>
-                                </label>
-                                <input 
-                                    type="tel" 
-                                    id="telefono" 
-                                    name="telefono" 
-                                    placeholder="987654321"
-                                    maxlength="9"
-                                    pattern="[0-9]{9}"
-                                    required
-                                >
+                                <label for="telefono"><i class="fas fa-phone"></i> Teléfono <span class="required">*</span></label>
+                                <input type="tel" id="telefono" name="telefono" placeholder="987654321" maxlength="9" pattern="[0-9]{9}" required>
                                 <span class="form-error" id="error-telefono"></span>
                             </div>
                         </div>
-
                         <div class="form-group">
-                            <label for="direccion">
-                                <i class="fas fa-map-marker-alt"></i> Dirección <span class="required">*</span>
-                            </label>
-                            <input 
-                                type="text" 
-                                id="direccion" 
-                                name="direccion" 
-                                placeholder="Av. Principal 123, Distrito, Provincia"
-                                required
-                            >
+                            <label for="direccion"><i class="fas fa-map-marker-alt"></i> Dirección <span class="required">*</span></label>
+                            <input type="text" id="direccion" name="direccion" placeholder="Av. Principal 123, Distrito, Provincia" required>
                             <span class="form-error" id="error-direccion"></span>
                         </div>
-
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="departamento">
-                                    <i class="fas fa-map"></i> Departamento <span class="required">*</span>
-                                </label>
+                                <label for="departamento"><i class="fas fa-map"></i> Departamento <span class="required">*</span></label>
                                 <select id="departamento" name="departamento" required>
                                     <option value="">Selecciona</option>
                                     <option value="lima">Lima</option>
@@ -254,18 +383,9 @@
                                 </select>
                                 <span class="form-error" id="error-departamento"></span>
                             </div>
-
                             <div class="form-group">
-                                <label for="distrito">
-                                    <i class="fas fa-building"></i> Distrito <span class="required">*</span>
-                                </label>
-                                <input 
-                                    type="text" 
-                                    id="distrito" 
-                                    name="distrito" 
-                                    placeholder="Nombre del distrito"
-                                    required
-                                >
+                                <label for="distrito"><i class="fas fa-building"></i> Distrito <span class="required">*</span></label>
+                                <input type="text" id="distrito" name="distrito" placeholder="Nombre del distrito" required>
                                 <span class="form-error" id="error-distrito"></span>
                             </div>
                         </div>
@@ -276,12 +396,9 @@
                         <h3 class="form-section-title">
                             <i class="fas fa-graduation-cap"></i> Información Académica
                         </h3>
-
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="nivel-educativo">
-                                    <i class="fas fa-book"></i> Nivel Educativo <span class="required">*</span>
-                                </label>
+                                <label for="nivel-educativo"><i class="fas fa-book"></i> Nivel Educativo <span class="required">*</span></label>
                                 <select id="nivel-educativo" name="nivelEducativo" required>
                                     <option value="">Selecciona</option>
                                     <option value="secundaria">Secundaria Completa</option>
@@ -291,18 +408,9 @@
                                 </select>
                                 <span class="form-error" id="error-nivel-educativo"></span>
                             </div>
-
                             <div class="form-group">
-                                <label for="profesion">
-                                    <i class="fas fa-briefcase"></i> Profesión u Ocupación <span class="required">*</span>
-                                </label>
-                                <input 
-                                    type="text" 
-                                    id="profesion" 
-                                    name="profesion" 
-                                    placeholder="Ingeniero, Estudiante, etc."
-                                    required
-                                >
+                                <label for="profesion"><i class="fas fa-briefcase"></i> Profesión u Ocupación <span class="required">*</span></label>
+                                <input type="text" id="profesion" name="profesion" placeholder="Ingeniero, Estudiante, etc." required>
                                 <span class="form-error" id="error-profesion"></span>
                             </div>
                         </div>
@@ -313,23 +421,12 @@
                         <h3 class="form-section-title">
                             <i class="fas fa-heart"></i> Motivación
                         </h3>
-
                         <div class="form-group">
-                            <label for="motivacion">
-                                <i class="fas fa-comment-dots"></i> ¿Por qué quieres unirte al CGPVP? <span class="required">*</span>
-                            </label>
-                            <textarea 
-                                id="motivacion" 
-                                name="motivacion" 
-                                rows="5" 
-                                placeholder="Cuéntanos tu motivación para formar parte de nuestro equipo..."
-                                maxlength="500"
-                                required
-                            ></textarea>
+                            <label for="motivacion"><i class="fas fa-comment-dots"></i> ¿Por qué quieres unirte al CGPVP? <span class="required">*</span></label>
+                            <textarea id="motivacion" name="motivacion" rows="5" placeholder="Cuéntanos tu motivación para formar parte de nuestro equipo..." maxlength="500" required></textarea>
                             <span class="char-counter">0/500 caracteres</span>
                             <span class="form-error" id="error-motivacion"></span>
                         </div>
-
                         <div class="form-group checkbox-group">
                             <label class="checkbox-label">
                                 <input type="checkbox" id="experiencia" name="experiencia">
@@ -337,19 +434,9 @@
                                 <span class="checkbox-text">Tengo experiencia previa en atención de emergencias o voluntariado</span>
                             </label>
                         </div>
-
-                        <!-- Campo condicional para detalles de experiencia -->
                         <div class="form-group" id="experienciaDetalle" style="display: none;">
-                            <label for="experienciaTexto">
-                                <i class="fas fa-comment-medical"></i> Coméntenos en cuál
-                            </label>
-                            <textarea 
-                                id="experienciaTexto" 
-                                name="experienciaTexto" 
-                                rows="3" 
-                                placeholder="Describe brevemente tu experiencia previa (ej: Cruz Roja, bomberos voluntarios, etc.)"
-                                maxlength="300"
-                            ></textarea>
+                            <label for="experienciaTexto"><i class="fas fa-comment-medical"></i> Coméntenos en cuál</label>
+                            <textarea id="experienciaTexto" name="experienciaTexto" rows="3" placeholder="Describe brevemente tu experiencia previa (ej: Cruz Roja, bomberos voluntarios, etc.)" maxlength="300"></textarea>
                             <span class="char-counter-exp">0/300 caracteres</span>
                         </div>
                     </div>
@@ -361,7 +448,7 @@
                                 <input type="checkbox" id="terminos" name="terminos" required>
                                 <span class="checkbox-custom"></span>
                                 <span class="checkbox-text">
-                                    Acepto los <a href="#" class="link-terminos">términos y condiciones</a> y la <a href="#" class="link-terminos">política de privacidad</a> <span class="required">*</span>
+                                    Acepto los <a href="#" class="link-terminos" onclick="abrirModal('modalTerminos', event)">términos y condiciones</a> y la <a href="#" class="link-terminos" onclick="abrirModal('modalPrivacidad', event)">política de privacidad</a> <span class="required">*</span>
                                 </span>
                             </label>
                             <span class="form-error" id="error-terminos"></span>
@@ -374,58 +461,41 @@
                             <i class="fas fa-times-circle"></i> Cancelar
                         </button>
                         <button type="submit" class="btn-registrar" id="submitBtn">
-                            <span class="btn-text">
-                                <i class="fas fa-paper-plane"></i> Registrarse
-                            </span>
-                            <span class="btn-loading">
-                                <i class="fas fa-spinner fa-spin"></i> Enviando...
-                            </span>
+                            <span class="btn-text"><i class="fas fa-paper-plane"></i> Registrarse</span>
+                            <span class="btn-loading"><i class="fas fa-spinner fa-spin"></i> Enviando...</span>
                         </button>
                     </div>
 
                 </form>
-
             </div>
         </section>
 
-        <!-- Información Adicional -->
+        <!-- Proceso de Selección -->
         <section class="info-adicional-section">
             <div class="section-container">
                 <h2 class="section-title">Proceso de Selección</h2>
-                
                 <div class="proceso-grid">
                     <div class="proceso-card">
                         <div class="proceso-number">1</div>
-                        <div class="proceso-icon">
-                            <i class="fas fa-edit"></i>
-                        </div>
+                        <div class="proceso-icon"><i class="fas fa-edit"></i></div>
                         <h4>Registro</h4>
                         <p>Completa el formulario de postulación con toda tu información</p>
                     </div>
-
                     <div class="proceso-card">
                         <div class="proceso-number">2</div>
-                        <div class="proceso-icon">
-                            <i class="fas fa-search"></i>
-                        </div>
+                        <div class="proceso-icon"><i class="fas fa-search"></i></div>
                         <h4>Evaluación</h4>
                         <p>Revisaremos tu perfil y experiencia cuidadosamente</p>
                     </div>
-
                     <div class="proceso-card">
                         <div class="proceso-number">3</div>
-                        <div class="proceso-icon">
-                            <i class="fas fa-user-check"></i>
-                        </div>
+                        <div class="proceso-icon"><i class="fas fa-user-check"></i></div>
                         <h4>Entrevista</h4>
                         <p>Los seleccionados serán contactados para una entrevista personal</p>
                     </div>
-
                     <div class="proceso-card">
                         <div class="proceso-number">4</div>
-                        <div class="proceso-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
+                        <div class="proceso-icon"><i class="fas fa-graduation-cap"></i></div>
                         <h4>Capacitación</h4>
                         <p>Iniciarás tu formación como paramédico profesional</p>
                     </div>
@@ -435,10 +505,9 @@
 
     </main>
 
-     <!-- FOOTER MEJORADO CON LOGOS CIRCULARES -->
+    <!-- FOOTER -->
     <footer class="main-footer">
         <div class="footer-content">
-            <!-- Logos circulares superiores -->
             <div class="footer-partners-logos">
                 <a href="https://americancollegefire.org/" target="_blank" class="partner-logo" aria-label="Socio 1">
                     <img src="../IMAGENES/logo1.png" alt="Socio 1">
@@ -463,24 +532,23 @@
             <div class="footer-section footer-about">
                 <h4>CONOCE SOBRE NUESTRAS REDES SOCIALES</h4>                
                 <div class="footer-social">
-                <a href="https://www.facebook.com/paramedicos.pe" target="_blank" aria-label="Facebook">
-                 <i class="fab fa-facebook-f"></i>
-                </a>
-                 <a href="https://www.linkedin.com/in/param%C3%A9dicos-del-per%C3%BA-324795203/" target="_blank" aria-label="LinkedIn">
-                   <i class="fab fa-linkedin-in"></i>
-                   </a>
-                     <a href="https://www.tiktok.com/@paramedicos.pe/video/7371679537878404358" target="_blank" aria-label="TikTok">
-                    <i class="fab fa-tiktok"></i>
-               </a>
-          </div>
-
+                    <a href="https://www.facebook.com/paramedicos.pe" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/param%C3%A9dicos-del-per%C3%BA-324795203/" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@paramedicos.pe/video/7371679537878404358" target="_blank" aria-label="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
                 <p class="footer-copyright">
                     Cuerpo General de Paramédicos Voluntarios del Perú © 2025.<br>
-                    Todos los derechos reservados                                                           
+                    Todos los derechos reservados
                 </p>
                 <p class="footer-copyright">
-                    Powered by <a href="https://www.linkedin.com/in/alba-ingenier%C3%ADa-de-desarrollo-42a3493ab/" target="_blank" style="text-decoration: none; color: inherit;">ALBA</a>                                                       
-                </p>                  
+                    Powered by <a href="https://www.linkedin.com/in/alba-ingenier%C3%ADa-de-desarrollo-42a3493ab/" target="_blank" style="text-decoration: none; color: inherit;">ALBA</a>
+                </p>
             </div>
 
             <div class="footer-section">
@@ -502,36 +570,33 @@
                     <li><a href="../nos/Nosotros.html#vision">Visión</a></li>
                     <li><a href="../nos/Nosotros.html#organigrama">Organización</a></li>
                 </ul>
-            </div> 
-             <div class="footer-section">
+            </div>
+
+            <div class="footer-section">
                 <h4>Conoce más sobre nuestros cursos</h4>
                 <ul>
                     <li><a href="../cur/Cursos.html">Cursos</a></li>
                     <li><a href="../ins/Instructores.html">Instructores</a></li>
                     <li><a href="Unete.html">Únete</a></li>
-                    <li><a href="../not/noticias.html">Noticias</a></li>                    
+                    <li><a href="../not/noticias.html">Noticias</a></li>
                 </ul>
-            </div>              
-            
-    </footer>   
+            </div>
+        </div>
+    </footer>
 
-
-    <!-- Modal de Confirmación -->
+    <!-- ══ Modal de Confirmación ══ -->
     <div id="confirmModal" class="modal-overlay">
         <div class="modal-container success-modal">
             <div class="modal-header">
-                <div class="modal-icon success-icon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
+                <button class="modal-close-btn" onclick="closeConfirmModal()" aria-label="Cerrar">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="modal-icon success-icon"><i class="fas fa-check-circle"></i></div>
                 <h2>¡Registro Exitoso!</h2>
             </div>
             <div class="modal-body">
-                <p class="modal-message">
-                    Tu solicitud ha sido enviada correctamente.
-                </p>
-                <p class="modal-message-highlight">
-                    Nos pondremos en contacto contigo pronto. ¡Gracias por tu interés!
-                </p>
+                <p class="modal-message">Tu solicitud ha sido enviada correctamente.</p>
+                <p class="modal-message-highlight">Nos pondremos en contacto contigo pronto. ¡Gracias por tu interés!</p>
             </div>
             <div class="modal-footer">
                 <button class="btn-modal-accept" onclick="closeConfirmModal()">
@@ -542,120 +607,278 @@
     </div>
 
     <script>
-        // Establecer fecha máxima (13 años atrás desde hoy)
-        function setMaxDate() {
-            const today = new Date();
-            const maxDate = new Date(today.getFullYear() - 13, today.getMonth(), today.getDate());
-            const maxDateString = maxDate.toISOString().split('T')[0];
-            document.getElementById('fechaNacimiento').setAttribute('max', maxDateString);
-            
-            // Establecer fecha mínima (por ejemplo, 100 años atrás)
-            const minDate = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
-            const minDateString = minDate.toISOString().split('T')[0];
-            document.getElementById('fechaNacimiento').setAttribute('min', minDateString);
+        // ══════════════════════════════════════
+        // SISTEMA DE MODALES UNIFICADO
+        // ══════════════════════════════════════
+
+        // Abre cualquier modal por ID
+        function abrirModal(id, e) {
+            if (e) e.preventDefault();
+            document.getElementById(id).classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
-        // Ejecutar al cargar la página
-        window.addEventListener('load', () => {
-            setMaxDate();
-            // Mostrar el modal de bienvenida
-            document.getElementById('welcomeModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-
-        // Modal de Bienvenida
-        function acceptModal() {
-            const modal = document.getElementById('welcomeModal');
-            modal.classList.remove('active');
+        // Cierra cualquier modal por ID
+        function cerrarModal(id) {
+            document.getElementById(id).classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        // Cerrar modal al hacer clic fuera (solo para modal de bienvenida)
+        // Cierra modal al hacer clic en el overlay (fuera del contenido)
         document.addEventListener('click', function(e) {
-            const welcomeModal = document.getElementById('welcomeModal');
-            const confirmModal = document.getElementById('confirmModal');
-            
-            // Modal de bienvenida
-            if (e.target === welcomeModal && welcomeModal.classList.contains('active')) {
-                acceptModal();
-            }
-            
-            // Modal de confirmación
-            if (e.target === confirmModal && confirmModal.classList.contains('active')) {
-                closeConfirmModal();
-            }
-        });
-
-        // Prevenir que el clic en el contenido del modal lo cierre
-        document.querySelectorAll('.modal-container').forEach(container => {
-            container.addEventListener('click', function(e) {
-                e.stopPropagation();
+            const modales = ['welcomeModal','confirmModal','modalTerminos','modalPrivacidad','captchaModal'];
+            modales.forEach(id => {
+                const modal = document.getElementById(id);
+                if (modal && e.target === modal && modal.classList.contains('active')) {
+                    // No cerrar captcha si está bloqueado
+                    if (id === 'captchaModal' && captchasBloqueado) return;
+                    cerrarModal(id);
+                }
             });
         });
 
-        // Validación DNI
-        document.getElementById('dni').addEventListener('input', function(e) {
-            this.value = this.value.replace(/[^0-9]/g, '');
+        // Evitar que el clic dentro del contenedor cierre el modal
+        document.querySelectorAll('.modal-container').forEach(container => {
+            container.addEventListener('click', e => e.stopPropagation());
         });
 
-        // Validación Teléfono
-        document.getElementById('telefono').addEventListener('input', function(e) {
-            this.value = this.value.replace(/[^0-9]/g, '');
+        // Atajos de teclado para cerrar modales
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                ['modalTerminos','modalPrivacidad','captchaModal','confirmModal'].forEach(id => {
+                    const m = document.getElementById(id);
+                    if (m && m.classList.contains('active')) cerrarModal(id);
+                });
+            }
         });
 
-        // Contador de caracteres para motivación
-        document.getElementById('motivacion').addEventListener('input', function() {
-            const counter = this.parentElement.querySelector('.char-counter');
-            counter.textContent = `${this.value.length}/500 caracteres`;
-        });
+        // Mantener retrocompatibilidad
+        function acceptModal()          { cerrarModal('welcomeModal'); }
+        function abrirModalTerminos(e)  { abrirModal('modalTerminos', e); }
+        function cerrarModalTerminos()  { cerrarModal('modalTerminos'); }
+        function abrirModalPrivacidad(e){ abrirModal('modalPrivacidad', e); }
+        function cerrarModalPrivacidad(){ cerrarModal('modalPrivacidad'); }
 
-        // Mostrar/ocultar campo de experiencia
-        document.getElementById('experiencia').addEventListener('change', function() {
-            const experienciaDetalle = document.getElementById('experienciaDetalle');
-            const experienciaTexto = document.getElementById('experienciaTexto');
-            
-            if (this.checked) {
-                experienciaDetalle.style.display = 'flex';
-                experienciaTexto.focus();
+        function closeConfirmModal() {
+            cerrarModal('confirmModal');
+            window.location.href = '../index.html';
+        }
+
+        // ══════════════════════════════════════
+        // CAPTCHA MATEMÁTICO — 3 INTENTOS
+        // ══════════════════════════════════════
+
+        let captchaRespuesta  = 0;
+        let captchaIntentos   = 3;
+        let captchasBloqueado = false;
+        let captchaVerificado = false;
+        let formDataPendiente = null; // guarda el submit hasta que pase captcha
+
+        const operadores = ['+', '-', 'x'];
+
+        function generarCaptcha() {
+            if (captchasBloqueado) return;
+            const op  = operadores[Math.floor(Math.random() * operadores.length)];
+            let a, b;
+            if (op === '+') {
+                a = Math.floor(Math.random() * 20) + 1;
+                b = Math.floor(Math.random() * 20) + 1;
+                captchaRespuesta = a + b;
+            } else if (op === '-') {
+                a = Math.floor(Math.random() * 20) + 10;
+                b = Math.floor(Math.random() * a) + 1;
+                captchaRespuesta = a - b;
             } else {
-                experienciaDetalle.style.display = 'none';
-                experienciaTexto.value = '';
+                a = Math.floor(Math.random() * 9) + 1;
+                b = Math.floor(Math.random() * 9) + 1;
+                captchaRespuesta = a * b;
+            }
+            document.getElementById('captchaQuestion').textContent = `${a} ${op} ${b} = ?`;
+            const inp = document.getElementById('captchaAnswer');
+            if (inp) { inp.value = ''; inp.classList.remove('error'); }
+            document.getElementById('captchaErrorMsg').textContent = '';
+            actualizarIntentosMsg();
+        }
+
+        function actualizarIntentosMsg() {
+            const msg = document.getElementById('captchaAttemptsMsg');
+            if (!msg) return;
+            if (captchaIntentos === 1) {
+                msg.textContent = '⚠ Último intento disponible';
+                msg.className = 'captcha-attempts warning';
+            } else {
+                msg.textContent = `${captchaIntentos} intentos disponibles`;
+                msg.className = 'captcha-attempts';
+            }
+        }
+
+        function bloquearCaptcha() {
+            captchasBloqueado = true;
+            document.getElementById('captchaBody').innerHTML = `
+                <div class="captcha-blocked">
+                    <i class="fas fa-ban"></i>
+                    <p>Demasiados intentos fallidos.<br>Por favor recarga la página e intenta nuevamente.</p>
+                </div>`;
+            document.getElementById('captchaFooter').innerHTML = '';
+        }
+
+        function verificarCaptcha() {
+            if (captchasBloqueado) return;
+            const inp = document.getElementById('captchaAnswer');
+            const val = parseInt(inp.value.trim(), 10);
+
+            if (isNaN(val)) {
+                document.getElementById('captchaErrorMsg').textContent = 'Ingresa un número válido.';
+                inp.classList.add('error');
+                setTimeout(() => inp.classList.remove('error'), 500);
+                return;
+            }
+
+            if (val === captchaRespuesta) {
+                // CORRECTO
+                captchaVerificado = true;
+                cerrarModal('captchaModal');
+                // Ejecutar el envío real del formulario
+                if (formDataPendiente) {
+                    enviarFormulario(formDataPendiente);
+                    formDataPendiente = null;
+                }
+            } else {
+                // INCORRECTO
+                captchaIntentos--;
+                inp.classList.add('error');
+                setTimeout(() => inp.classList.remove('error'), 500);
+
+                if (captchaIntentos <= 0) {
+                    bloquearCaptcha();
+                } else {
+                    document.getElementById('captchaErrorMsg').textContent =
+                        `Respuesta incorrecta. Intenta de nuevo.`;
+                    actualizarIntentosMsg();
+                    generarCaptcha();
+                }
+            }
+        }
+
+        // Permitir confirmar con Enter
+        document.addEventListener('keydown', function(e) {
+            const captchaModal = document.getElementById('captchaModal');
+            if (e.key === 'Enter' && captchaModal && captchaModal.classList.contains('active')) {
+                e.preventDefault();
+                verificarCaptcha();
+            }
+        });
+
+        // ══════════════════════════════════════
+        // FORMULARIO
+        // ══════════════════════════════════════
+
+        document.getElementById('registroForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (!captchaVerificado) {
+                // Resetear captcha y mostrarlo
+                captchaIntentos   = 3;
+                captchasBloqueado = false;
+                captchaVerificado = false;
+                // Restaurar HTML del captcha si fue bloqueado antes
+                const body = document.getElementById('captchaBody');
+                const footer = document.getElementById('captchaFooter');
+                body.innerHTML = `
+                    <p class="modal-message">Resuelve la operación para confirmar que no eres un robot.</p>
+                    <div class="captcha-box">
+                        <div class="captcha-question" id="captchaQuestion">? + ? = ?</div>
+                        <div class="captcha-input-row">
+                            <input type="number" id="captchaAnswer" placeholder="?" min="0" max="99" autocomplete="off">
+                            <button class="captcha-refresh" onclick="generarCaptcha()" title="Nueva operación" type="button">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                        <div class="captcha-error-msg" id="captchaErrorMsg"></div>
+                        <div class="captcha-attempts" id="captchaAttemptsMsg">3 intentos disponibles</div>
+                    </div>`;
+                footer.innerHTML = `
+                    <button class="btn-captcha-verify" id="btnVerifyCaptcha" onclick="verificarCaptcha()">
+                        <i class="fas fa-check-circle"></i> Verificar y Enviar
+                    </button>`;
+                generarCaptcha();
+                // Guardar referencia al form para enviar después
+                formDataPendiente = this;
+                abrirModal('captchaModal');
+            } else {
+                enviarFormulario(this);
+            }
+        });
+
+        function enviarFormulario(form) {
+            // Aquí conecta con unete-api.js — este evento lo puede capturar ese script
+            // Disparamos submit real o llamamos a la API directamente
+            const event = new Event('captchaApproved', { bubbles: true });
+            form.dispatchEvent(event);
+            // Si unete-api.js no lo intercepta, mostramos el modal de éxito:
+            // abrirModal('confirmModal');
+        }
+
+        // ══════════════════════════════════════
+        // RESTO DE LÓGICA DEL FORMULARIO
+        // ══════════════════════════════════════
+
+        function setMaxDate() {
+            const today   = new Date();
+            const maxDate = new Date(today.getFullYear() - 13, today.getMonth(), today.getDate());
+            const minDate = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
+            document.getElementById('fechaNacimiento').setAttribute('max', maxDate.toISOString().split('T')[0]);
+            document.getElementById('fechaNacimiento').setAttribute('min', minDate.toISOString().split('T')[0]);
+        }
+
+        window.addEventListener('load', () => {
+            setMaxDate();
+            abrirModal('welcomeModal');
+        });
+
+        document.getElementById('dni').addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        document.getElementById('telefono').addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        document.getElementById('motivacion').addEventListener('input', function() {
+            this.parentElement.querySelector('.char-counter').textContent = `${this.value.length}/500 caracteres`;
+        });
+
+        document.getElementById('experiencia').addEventListener('change', function() {
+            const detalle = document.getElementById('experienciaDetalle');
+            const texto   = document.getElementById('experienciaTexto');
+            if (this.checked) {
+                detalle.style.display = 'flex';
+                texto.focus();
+            } else {
+                detalle.style.display = 'none';
+                texto.value = '';
                 document.querySelector('.char-counter-exp').textContent = '0/300 caracteres';
             }
         });
 
-        // Contador de caracteres para experiencia
         document.getElementById('experienciaTexto').addEventListener('input', function() {
-            const counter = document.querySelector('.char-counter-exp');
-            counter.textContent = `${this.value.length}/300 caracteres`;
+            document.querySelector('.char-counter-exp').textContent = `${this.value.length}/300 caracteres`;
         });
 
-        // Función para calcular edad desde fecha de nacimiento
         function calcularEdad(fechaNacimiento) {
             const hoy = new Date();
-            const nacimiento = new Date(fechaNacimiento);
-            let edad = hoy.getFullYear() - nacimiento.getFullYear();
-            const mes = hoy.getMonth() - nacimiento.getMonth();
-            
-            if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
-                edad--;
-            }
-            
+            const nac = new Date(fechaNacimiento);
+            let edad  = hoy.getFullYear() - nac.getFullYear();
+            const mes = hoy.getMonth() - nac.getMonth();
+            if (mes < 0 || (mes === 0 && hoy.getDate() < nac.getDate())) edad--;
             return edad;
         }
 
-        // Función para mostrar errores (usada por unete-api.js)
         function showError(fieldId, message) {
-            const field = document.getElementById(fieldId);
-            const error = document.getElementById(`error-${fieldId}`);
-            const formGroup = field.closest('.form-group');
-            
-            if (error) {
-                error.textContent = message;
-            }
-            if (formGroup) {
-                formGroup.classList.add('error');
-            }
+            const field     = document.getElementById(fieldId);
+            const error     = document.getElementById(`error-${fieldId}`);
+            const formGroup = field ? field.closest('.form-group') : null;
+            if (error)     error.textContent = message;
+            if (formGroup) formGroup.classList.add('error');
         }
 
         function cancelarRegistro() {
@@ -664,44 +887,20 @@
             }
         }
 
-        function closeConfirmModal() {
-            document.getElementById('confirmModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-            window.location.href = '../index.html';
-        }
-
-        // Funcionalidad de búsqueda del navbar
+        // Búsqueda navbar
         const navbarSearchInput = document.getElementById('navbarSearchInput');
         const searchBtn = document.querySelector('.navbar-search .search-btn');
-
-        // Búsqueda al hacer clic en el botón
-        if (searchBtn) {
-            searchBtn.addEventListener('click', function() {
-                performSearch();
-            });
-        }
-
-        // Búsqueda al presionar Enter
-        if (navbarSearchInput) {
-            navbarSearchInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    performSearch();
-                }
-            });
-        }
+        if (searchBtn)        searchBtn.addEventListener('click', performSearch);
+        if (navbarSearchInput) navbarSearchInput.addEventListener('keypress', e => { if (e.key === 'Enter') performSearch(); });
 
         function performSearch() {
-            const searchTerm = navbarSearchInput.value.trim();
-            if (searchTerm) {
-                // Aquí puedes redirigir a una página de resultados o implementar búsqueda en el sitio
-                alert(`Buscando: "${searchTerm}"\n\nEsta funcionalidad se puede conectar a tu sistema de búsqueda.`);
-                // Ejemplo de redirección:
-                // window.location.href = `buscar.html?q=${encodeURIComponent(searchTerm)}`;
-            }
+            const term = navbarSearchInput.value.trim();
+            if (term) alert(`Buscando: "${term}"\n\nEsta funcionalidad se puede conectar a tu sistema de búsqueda.`);
         }
     </script>
+
     <script src="../not/buscar-miembros.js"></script>
-    <!-- ⚡ API DE REGISTRO - ESTE SCRIPT MANEJA EL ENVÍO AL BACKEND -->
+    <!-- API DE REGISTRO -->
     <script src="unete-api.js"></script>
     <script src="headBot.js"></script>
 </body>

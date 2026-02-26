@@ -7,12 +7,12 @@
   const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
   const css=`
   :root{--acc-primary-100:#e8dcc5;--acc-primary-500:#c5a059;--acc-primary-600:#000831;--acc-neutral-100:#f5f5f4;--acc-neutral-200:#e5e5e4;--acc-neutral-900:#1c1917}
-  #accFab{position:fixed;bottom:20px;left:20px;width:56px;height:56px;border-radius:999px;background:#000831;color:#fff;display:flex;align-items:center;justify-content:center;border:none;box-shadow:0 10px 25px rgba(0,0,0,.1),0 4px 10px rgba(0,0,0,.08);z-index:10050;cursor:grab;transition:box-shadow .2s ease;touch-action:none;user-select:none}
-  #accFab:hover{box-shadow:0 12px 30px rgba(0,0,0,.15),0 6px 12px rgba(0,0,0,.1)}
-  #accFab.dragging{cursor:grabbing;box-shadow:0 20px 50px rgba(0,0,0,.3);transform:scale(1.1);transition:box-shadow .1s,transform .1s}
+  @keyframes accFabSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  #accFab{position:fixed;bottom:20px;left:20px;width:56px;height:56px;border-radius:999px;background:#000831;color:#fff;display:flex;align-items:center;justify-content:center;border:none;box-shadow:0 10px 25px rgba(0,0,0,.1),0 4px 10px rgba(0,0,0,.08);z-index:10050;cursor:grab;transition:box-shadow .2s ease;touch-action:none;user-select:none;animation:accFabSpin 8s linear infinite}
+  #accFab:hover{box-shadow:0 12px 30px rgba(0,0,0,.15),0 6px 12px rgba(0,0,0,.1);animation:accFabSpin 1.5s linear infinite}
+  #accFab.dragging{animation:none;cursor:grabbing;box-shadow:0 20px 50px rgba(0,0,0,.3);transform:scale(1.1);transition:box-shadow .1s,transform .1s}
   #accFab.hidden{display:none}
   #accFab .ico-dog{font-size:28px;line-height:1}
-  /* Drag hint tooltip */
   #accFabHint{position:fixed;background:rgba(0,0,0,.75);color:#fff;font-size:11px;padding:4px 8px;border-radius:6px;pointer-events:none;white-space:nowrap;opacity:0;transition:opacity .3s;z-index:10049}
   #accFabHint.show{opacity:1}
   #accPanelOverlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;z-index:10040;transition:opacity .3s ease}
@@ -25,7 +25,8 @@
   #accPanel .acc-body{padding:20px;max-height:72vh;overflow:auto}
   .acc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   .acc-tile{position:relative;border:2px solid #e5e5e4;border-radius:14px;background:#f5f5f4;min-height:110px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:12px;gap:8px;font-size:13px;cursor:pointer;user-select:none;transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}
-  .acc-tile .ico{font-size:26px;line-height:1}
+  .acc-tile .ico{font-size:22px;line-height:1;color:#000831}
+  .acc-tile .ico i{font-size:22px}
   .acc-tile:hover{background:#fff;border-color:#c5a059}
   .acc-tile[aria-pressed="true"]{border:2px solid #c5a059;background:#e8dcc5;box-shadow:0 0 0 2px #c5a059 inset}
   .acc-tile[aria-pressed="true"]::after{content:"✓";position:absolute;top:8px;right:8px;width:20px;height:20px;border-radius:999px;background:#c5a059;color:#fff;font-size:14px;display:flex;align-items:center;justify-content:center;font-weight:bold}
@@ -80,13 +81,10 @@
   #accOutline a:hover{background:#e8dcc5}
   #accCursorRing{position:fixed;top:0;left:0;width:44px;height:44px;border:3px solid #c5a059;border-radius:999px;pointer-events:none;transform:translate(-100px,-100px);opacity:.0;transition:opacity .2s;z-index:10080}
   #accCursorRing.on{opacity:.7}
-  /* Reading Ruler */
   #accReadingRuler{position:fixed;left:0;right:0;height:36px;background:rgba(197,160,89,.18);border-top:2px solid rgba(197,160,89,.5);border-bottom:2px solid rgba(197,160,89,.5);pointer-events:none;z-index:10045;display:none;transform:translateY(-50%)}
   #accReadingRuler.on{display:block}
-  /* Zoom box */
   #accZoomBox{position:fixed;width:220px;height:220px;border:3px solid #c5a059;border-radius:50%;pointer-events:none;overflow:hidden;z-index:10090;display:none;box-shadow:0 8px 32px rgba(0,0,0,.25)}
   #accZoomBox.on{display:block}
-  /* Skip to content */
   #accSkipBtn{position:fixed;top:-60px;left:20px;z-index:10100;background:#000831;color:#fff;padding:12px 18px;border-radius:8px;border:none;cursor:pointer;font-size:14px;font-weight:600;transition:top .2s}
   #accSkipBtn:focus{top:20px}
   @media (max-width: 600px) {
@@ -96,13 +94,11 @@
   `;
   const defaults={contrast:null,daltonic:null,highlightLinks:false,stopAnimations:false,hideImages:false,dyslexiaMode:null,align:null,saturation:null,fontScale:100,letterSpacing:0,lineHeight:140,position:'free',voiceFeedback:false,focusMode:false,readingRuler:false,darkMode:false,zoom:false,skipContent:true};
   let settings=load();
-  // Migrate old position values
   if(settings.position==='left'||settings.position==='right') settings.position='free';
 
   function load(){try{return Object.assign({},defaults,JSON.parse(localStorage.getItem(LS_KEY)||'{}'))}catch{return {...defaults}}}
   function save(){localStorage.setItem(LS_KEY,JSON.stringify(settings))}
 
-  // FAB position persistence
   function loadFabPos(){try{return JSON.parse(localStorage.getItem(LS_POS)||'null')}catch{return null}}
   function saveFabPos(x,y){localStorage.setItem(LS_POS,JSON.stringify({x,y}))}
 
@@ -148,11 +144,9 @@
     const fab=$('#accFab');
     if(fab){fab.classList.toggle('hidden',settings.position==='hidden')}
 
-    // Reading ruler
     const ruler=$('#accReadingRuler');
     if(ruler) ruler.classList.toggle('on',settings.readingRuler);
 
-    // Skip button
     const skip=$('#accSkipBtn');
     if(skip) skip.style.display=settings.skipContent?'block':'none';
 
@@ -197,7 +191,6 @@
     document.body.insertBefore(btn,document.body.firstChild);
   }
 
-  // ── DRAG-TO-POSITION logic ──────────────────────────────────────────
   function initDraggableFab(fab){
     let isDragging=false, startX, startY, initLeft, initTop, moved=false;
 
@@ -229,34 +222,31 @@
       fab.style.bottom='auto'; fab.style.right='auto';
       e.preventDefault();
     }
-   function onEnd(e){
-  if(!isDragging) return;
-  isDragging=false;
-  fab.classList.remove('dragging');
-  fab.style.transition='box-shadow .2s ease';
-  if(moved){
-    const rect=fab.getBoundingClientRect();
-    saveFabPos(rect.left,rect.top);
-    fab._wasDragged=true;
-    e.preventDefault();
-    e.stopPropagation();
-  } else {
-    fab._wasDragged=false;
-  }
-}
+    function onEnd(e){
+      if(!isDragging) return;
+      isDragging=false;
+      fab.classList.remove('dragging');
+      fab.style.transition='box-shadow .2s ease';
+      if(moved){
+        const rect=fab.getBoundingClientRect();
+        saveFabPos(rect.left,rect.top);
+        fab._wasDragged=true;
+        e.preventDefault();
+        e.stopPropagation();
+      } else {
+        fab._wasDragged=false;
+      }
+    }
 
-    // Mouse
     fab.addEventListener('mousedown',onStart);
     window.addEventListener('mousemove',onMove,{passive:false});
     window.addEventListener('mouseup',onEnd);
-    // Touch
     fab.addEventListener('touchstart',onStart,{passive:false});
     window.addEventListener('touchmove',onMove,{passive:false});
     window.addEventListener('touchend',onEnd);
 
-    // Show hint on first load
     if(!localStorage.getItem('acc_fab_hint_shown')){
-      const hint=document.createElement('div');hint.id='accFabHint';hint.textContent='💡 Arrástrame donde quieras';document.body.appendChild(hint);
+      const hint=document.createElement('div');hint.id='accFabHint';hint.textContent='Arrastra el boton donde quieras';document.body.appendChild(hint);
       const rect=fab.getBoundingClientRect();
       hint.style.left=(rect.right+8)+'px'; hint.style.top=rect.top+'px';
       setTimeout(()=>hint.classList.add('show'),500);
@@ -269,32 +259,53 @@
     if(!$('#acc-widget-styles')){const st=document.createElement('style');st.id='acc-widget-styles';st.textContent=css;document.head.appendChild(st)}
     if(!$('#acc-svg-filters')){const svgs=`<svg style="display:none;"><filter id="protanopia"><feColorMatrix in="SourceGraphic" type="matrix" values="0.567, 0.433, 0, 0, 0, 0.558, 0.442, 0, 0, 0, 0, 0.242, 0.758, 0, 0, 0, 0, 0, 1, 0"/></filter><filter id="deuteranopia"><feColorMatrix in="SourceGraphic" type="matrix" values="0.625, 0.375, 0, 0, 0, 0.7, 0.3, 0, 0, 0, 0, 0.3, 0.7, 0, 0, 0, 0, 0, 1, 0"/></filter><filter id="tritanopia"><feColorMatrix in="SourceGraphic" type="matrix" values="0.95, 0.05, 0, 0, 0, 0, 0.433, 0.567, 0, 0, 0, 0, 0.475, 0.525, 0, 0, 0, 0, 0, 1, 0"/></filter></svg>`;document.body.insertAdjacentHTML('beforeend',svgs)}
 
-    const fab=document.createElement('button');fab.id='accFab';fab.setAttribute('aria-label','Abrir menú de accesibilidad');fab.innerHTML='<img src="IMAGENES/aguila.png" alt="Accesibilidad" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';document.body.appendChild(fab);
+    const fab=document.createElement('button');fab.id='accFab';fab.setAttribute('aria-label','Abrir menu de accesibilidad');fab.innerHTML='<img src="../IMAGENES/Cruzdevida.png" alt="Accesibilidad" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';document.body.appendChild(fab);
     initDraggableFab(fab);
 
     const overlay=document.createElement('div');overlay.id='accPanelOverlay';
     const panel=document.createElement('div');panel.id='accPanel';panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');
     panel.innerHTML=`
-      <header><h3>🦅 Menú de Accesibilidad</h3><button id="accClose" aria-label="Cerrar">✕</button></header>
+      <header>
+        <h3><i class="fas fa-universal-access" style="margin-right:8px"></i> Menu de Accesibilidad</h3>
+        <button id="accClose" aria-label="Cerrar"><i class="fas fa-times"></i></button>
+      </header>
       <div class="acc-body">
         <div class="acc-section">Opciones Visuales</div>
         <div class="acc-grid">
-          <button class="acc-tile" id="contrastLight" aria-pressed="false"><div class="ico">💡</div><div>Contraste de luz</div></button>
-          <button class="acc-tile" id="contrastSmart" aria-pressed="false"><div class="ico">🧠</div><div>Contraste Inteligente</div></button>
-          <button class="acc-tile" id="contrastDark" aria-pressed="false"><div class="ico">🌑</div><div>Modo oscuro (invertir)</div></button>
-          <button class="acc-tile" id="highlight" aria-pressed="false"><div class="ico">🔗</div><div>Resaltar enlaces</div></button>
-          <button class="acc-tile" id="noAnim" aria-pressed="false"><div class="ico">⏸️</div><div>Detener animaciones</div></button>
-          <button class="acc-tile" id="hideImg" aria-pressed="false"><div class="ico">🖼️</div><div>Ocultar Imágenes</div></button>
-          <button class="acc-tile" id="cursor" aria-pressed="false"><div class="ico">🖱️</div><div>Cursor grande</div></button>
-          <button class="acc-tile" id="focusMode" aria-pressed="false"><div class="ico">🎯</div><div>Modo enfoque</div></button>
-          <button class="acc-tile" id="readingRuler" aria-pressed="false"><div class="ico">📏</div><div>Regla de lectura</div></button>
+          <button class="acc-tile" id="contrastLight" aria-pressed="false">
+            <div class="ico"><i class="fas fa-sun"></i></div><div>Contraste de luz</div>
+          </button>
+          <button class="acc-tile" id="contrastSmart" aria-pressed="false">
+            <div class="ico"><i class="fas fa-sliders-h"></i></div><div>Contraste Inteligente</div>
+          </button>
+          <button class="acc-tile" id="contrastDark" aria-pressed="false">
+            <div class="ico"><i class="fas fa-moon"></i></div><div>Modo oscuro</div>
+          </button>
+          <button class="acc-tile" id="highlight" aria-pressed="false">
+            <div class="ico"><i class="fas fa-link"></i></div><div>Resaltar enlaces</div>
+          </button>
+          <button class="acc-tile" id="noAnim" aria-pressed="false">
+            <div class="ico"><i class="fas fa-pause-circle"></i></div><div>Detener animaciones</div>
+          </button>
+          <button class="acc-tile" id="hideImg" aria-pressed="false">
+            <div class="ico"><i class="fas fa-image"></i></div><div>Ocultar Imagenes</div>
+          </button>
+          <button class="acc-tile" id="cursor" aria-pressed="false">
+            <div class="ico"><i class="fas fa-mouse-pointer"></i></div><div>Cursor grande</div>
+          </button>
+          <button class="acc-tile" id="focusMode" aria-pressed="false">
+            <div class="ico"><i class="fas fa-crosshairs"></i></div><div>Modo enfoque</div>
+          </button>
+          <button class="acc-tile" id="readingRuler" aria-pressed="false">
+            <div class="ico"><i class="fas fa-ruler-horizontal"></i></div><div>Regla de lectura</div>
+          </button>
         </div>
 
         <div class="acc-section">Modos especiales</div>
         <div class="acc-grid">
           <div class="acc-tile" id="tile-daltonic" style="cursor:default">
-            <div class="ico">🎨</div><div>Modo daltónico</div>
-            <div class="segmented" role="group" aria-label="Modo daltónico">
+            <div class="ico"><i class="fas fa-palette"></i></div><div>Modo daltonico</div>
+            <div class="segmented" role="group" aria-label="Modo daltonico">
               <button type="button" class="seg" data-mode="protanopia">Protanopia</button>
               <button type="button" class="seg" data-mode="deuteranopia">Deuteranopia</button>
               <button type="button" class="seg" data-mode="tritanopia">Tritanopia</button>
@@ -302,7 +313,7 @@
             </div>
           </div>
           <div class="acc-tile" id="tile-dys" style="cursor:default">
-            <div class="ico">📖</div><div>Apto para dislexia</div>
+            <div class="ico"><i class="fas fa-book-open"></i></div><div>Apto para dislexia</div>
             <div class="segmented" role="group" aria-label="Modo dislexia">
               <button type="button" class="seg" data-mode="dys">OpenDyslexic</button>
               <button type="button" class="seg" data-mode="hyper">Alta legibilidad</button>
@@ -310,7 +321,7 @@
             </div>
           </div>
           <div class="acc-tile" id="tile-align" style="cursor:default">
-            <div class="ico">📝</div><div>Alinear texto</div>
+            <div class="ico"><i class="fas fa-align-left"></i></div><div>Alinear texto</div>
             <div class="segmented" role="group" aria-label="Alinear texto">
               <button type="button" class="seg" data-align="left">Izquierda</button>
               <button type="button" class="seg" data-align="center">Centrado</button>
@@ -319,8 +330,8 @@
             </div>
           </div>
           <div class="acc-tile" id="tile-saturation" style="cursor:default">
-            <div class="ico">💧</div><div>Saturación</div>
-            <div class="segmented" role="group" aria-label="Saturación">
+            <div class="ico"><i class="fas fa-tint"></i></div><div>Saturacion</div>
+            <div class="segmented" role="group" aria-label="Saturacion">
               <button type="button" class="seg" data-saturate="low">Baja</button>
               <button type="button" class="seg" data-saturate="high">Alta</button>
               <button type="button" class="seg" data-saturate="desaturate">Desaturar</button>
@@ -332,25 +343,29 @@
         <div class="acc-section">Opciones de texto y contenido</div>
         <div class="acc-grid">
           <div class="acc-tile" id="font">
-            <div class="ico">tT</div><div>Agrandar texto</div>
+            <div class="ico"><i class="fas fa-text-height"></i></div><div>Agrandar texto</div>
             <input type="range" id="rng-font" min="80" max="200" step="1"><div class="acc-note" id="val-font"></div>
           </div>
           <div class="acc-tile" id="spacing">
-            <div class="ico">↔️</div><div>Espaciado de texto</div>
+            <div class="ico"><i class="fas fa-arrows-alt-h"></i></div><div>Espaciado de texto</div>
             <input type="range" id="rng-letter" min="0" max="5" step="0.1"><div class="acc-note" id="val-letter"></div>
           </div>
           <div class="acc-tile" id="lineHeight">
-            <div class="ico">↕️</div><div id="lbl-line">Altura de la línea</div>
+            <div class="ico"><i class="fas fa-arrows-alt-v"></i></div><div id="lbl-line">Altura de la linea</div>
             <input type="range" id="rng-line" min="100" max="250" step="5"><div class="acc-note" id="val-line"></div>
           </div>
-          <button class="acc-tile" id="outline" aria-pressed="false"><div class="ico">📑</div><div>Estructura de la página</div></button>
-          <button class="acc-tile" id="skipContent" aria-pressed="false"><div class="ico">⏭️</div><div>Botón "Saltar contenido"</div></button>
+          <button class="acc-tile" id="outline" aria-pressed="false">
+            <div class="ico"><i class="fas fa-list-alt"></i></div><div>Estructura de la pagina</div>
+          </button>
+          <button class="acc-tile" id="skipContent" aria-pressed="false">
+            <div class="ico"><i class="fas fa-forward"></i></div><div>Boton "Saltar contenido"</div>
+          </button>
         </div>
 
         <div class="acc-section">Lectura y voz</div>
         <div class="acc-grid">
           <div class="acc-tile" id="tile-tts" style="grid-column:span 3; cursor:default">
-            <div class="ico">🔊</div><div>Leer página</div>
+            <div class="ico"><i class="fas fa-volume-up"></i></div><div>Leer pagina</div>
             <div class="acc-row" style="justify-content:center">
               <button class="acc-btn" id="ttsPlay">Leer</button>
               <button class="acc-btn" id="ttsPause">Pausar</button>
@@ -359,24 +374,24 @@
             </div>
           </div>
           <button class="acc-tile" id="info" aria-pressed="false" style="grid-column:span 3">
-            <div class="ico">🎙️</div><div>Narrador de acciones</div>
+            <div class="ico"><i class="fas fa-microphone"></i></div><div>Narrador de acciones</div>
           </button>
         </div>
 
-        <div class="acc-section">📍 Posición del botón</div>
-        <div class="acc-note" style="margin-bottom:8px">Arrastra el botón flotante donde quieras. También puedes usar los accesos rápidos:</div>
+        <div class="acc-section">Posicion del boton</div>
+        <div class="acc-note" style="margin-bottom:8px">Arrastra el boton flotante donde quieras. Tambien puedes usar los accesos rapidos:</div>
         <div class="acc-row" style="gap:8px;flex-wrap:wrap">
-          <button class="acc-btn" id="snapTL">↖ Superior izq.</button>
-          <button class="acc-btn" id="snapTR">↗ Superior der.</button>
-          <button class="acc-btn" id="snapBL">↙ Inferior izq.</button>
-          <button class="acc-btn" id="snapBR">↘ Inferior der.</button>
-          <button class="acc-btn" id="snapHide">🙈 Ocultar</button>
-          <button class="acc-btn" id="snapShow">👁 Mostrar</button>
+          <button class="acc-btn" id="snapTL"><i class="fas fa-arrow-up" style="transform:rotate(-45deg)"></i> Superior izq.</button>
+          <button class="acc-btn" id="snapTR"><i class="fas fa-arrow-up" style="transform:rotate(45deg)"></i> Superior der.</button>
+          <button class="acc-btn" id="snapBL"><i class="fas fa-arrow-down" style="transform:rotate(45deg)"></i> Inferior izq.</button>
+          <button class="acc-btn" id="snapBR"><i class="fas fa-arrow-down" style="transform:rotate(-45deg)"></i> Inferior der.</button>
+          <button class="acc-btn" id="snapHide"><i class="fas fa-eye-slash"></i> Ocultar</button>
+          <button class="acc-btn" id="snapShow"><i class="fas fa-eye"></i> Mostrar</button>
         </div>
 
         <div class="acc-footer">
-          <button class="acc-btn" id="accReset">🔄 Restablecer configuraciones</button>
-          <span class="acc-note">Se guardan automáticamente</span>
+          <button class="acc-btn" id="accReset"><i class="fas fa-undo" style="margin-right:6px"></i> Restablecer configuraciones</button>
+          <span class="acc-note">Se guardan automaticamente</span>
         </div>
       </div>`;
     document.body.appendChild(overlay);document.body.appendChild(panel);
@@ -385,27 +400,24 @@
     const close=()=>{overlay.classList.remove('open');panel.classList.remove('open')};
 
     fab.addEventListener('click',(e)=>{
-  if(fab._wasDragged){fab._wasDragged=false;return}
-  open();
-});
+      if(fab._wasDragged){fab._wasDragged=false;return}
+      open();
+    });
 
-// Fix para touch en móvil
-fab.addEventListener('touchend',(e)=>{
-  if(!fab._wasDragged){
-    e.preventDefault();
-    open();
-  }
-  fab._wasDragged=false;
-},{passive:false});
-    // Patch drag end to set flag
-    const origMouseup=window.onmouseup;
+    fab.addEventListener('touchend',(e)=>{
+      if(!fab._wasDragged){
+        e.preventDefault();
+        open();
+      }
+      fab._wasDragged=false;
+    },{passive:false});
+
     fab.addEventListener('mousedown',()=>{fab._wasDragged=false});
     window.addEventListener('mousemove',()=>{if(fab.classList.contains('dragging')) fab._wasDragged=true},{passive:true});
 
     overlay.addEventListener('click',close);$('#accClose').addEventListener('click',close);
     document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&(e.key==='u'||e.key==='U')){e.preventDefault();open()}if(e.key==='Escape')close()});
 
-    // Snap buttons
     function snapFab(x,y){
       fab.style.left=x+'px'; fab.style.top=y+'px';
       fab.style.bottom='auto'; fab.style.right='auto';
@@ -418,27 +430,27 @@ fab.addEventListener('touchend',(e)=>{
     $('#snapTR').addEventListener('click',()=>snapFab(window.innerWidth-76,20));
     $('#snapBL').addEventListener('click',()=>snapFab(20,window.innerHeight-76));
     $('#snapBR').addEventListener('click',()=>snapFab(window.innerWidth-76,window.innerHeight-76));
-    $('#snapHide').addEventListener('click',()=>{settings.position='hidden';apply();speak('Botón oculto. Presiona Ctrl+U para reabrir el menú.')});
-    $('#snapShow').addEventListener('click',()=>{settings.position='free';fab.classList.remove('hidden');apply();speak('Botón visible')});
+    $('#snapHide').addEventListener('click',()=>{settings.position='hidden';apply();speak('Boton oculto. Presiona Ctrl+U para reabrir el menu.')});
+    $('#snapShow').addEventListener('click',()=>{settings.position='free';fab.classList.remove('hidden');apply();speak('Boton visible')});
 
     const f=$('#rng-font'),fv=$('#val-font');
     const ls=$('#rng-letter'),lsv=$('#val-letter');
     const ln=$('#rng-line'),lnv=$('#val-line'),lblLine=$('#lbl-line');
 
-    f.addEventListener('input',()=>{settings.fontScale=+f.value;fv.textContent=settings.fontScale+'%';apply();speak('Tamaño de fuente '+settings.fontScale+' por ciento')});
-    ls.addEventListener('input',()=>{settings.letterSpacing=+ls.value;lsv.textContent=settings.letterSpacing+' px';apply();speak('Espaciado de texto '+settings.letterSpacing+' píxeles')});
-    ln.addEventListener('input',()=>{settings.lineHeight=+ln.value;const x=(settings.lineHeight/100).toFixed(2)+'x';lnv.textContent=settings.lineHeight+'%';lblLine.textContent='Altura de la línea ('+x+')';apply();speak('Altura de línea '+x)});
+    f.addEventListener('input',()=>{settings.fontScale=+f.value;fv.textContent=settings.fontScale+'%';apply();speak('Tamano de fuente '+settings.fontScale+' por ciento')});
+    ls.addEventListener('input',()=>{settings.letterSpacing=+ls.value;lsv.textContent=settings.letterSpacing+' px';apply();speak('Espaciado de texto '+settings.letterSpacing+' pixeles')});
+    ln.addEventListener('input',()=>{settings.lineHeight=+ln.value;const x=(settings.lineHeight/100).toFixed(2)+'x';lnv.textContent=settings.lineHeight+'%';lblLine.textContent='Altura de la linea ('+x+')';apply();speak('Altura de linea '+x)});
 
     $('#contrastLight').addEventListener('click',()=>{settings.contrast=settings.contrast==='light'?null:'light';syncTiles();apply();speak('Contraste de luz '+(settings.contrast?'activado':'desactivado'))});
     $('#contrastSmart').addEventListener('click',()=>{settings.contrast=settings.contrast==='smart'?null:'smart';syncTiles();apply();speak('Contraste inteligente '+(settings.contrast?'activado':'desactivado'))});
     $('#contrastDark').addEventListener('click',()=>{settings.contrast=settings.contrast==='dark'?null:'dark';syncTiles();apply();speak('Modo oscuro '+(settings.contrast?'activado':'desactivado'))});
     $('#highlight').addEventListener('click',()=>{settings.highlightLinks=!settings.highlightLinks;syncTiles();apply();speak('Resaltar enlaces '+(settings.highlightLinks?'activado':'desactivado'))});
     $('#noAnim').addEventListener('click',()=>{settings.stopAnimations=!settings.stopAnimations;syncTiles();apply();speak('Detener animaciones '+(settings.stopAnimations?'activado':'desactivado'))});
-    $('#hideImg').addEventListener('click',()=>{settings.hideImages=!settings.hideImages;syncTiles();apply();speak('Ocultar imágenes '+(settings.hideImages?'activado':'desactivado'))});
+    $('#hideImg').addEventListener('click',()=>{settings.hideImages=!settings.hideImages;syncTiles();apply();speak('Ocultar imagenes '+(settings.hideImages?'activado':'desactivado'))});
     $('#cursor').addEventListener('click',()=>{const ring=$('#accCursorRing');if(!ring) ensureRing();$('#accCursorRing').classList.toggle('on');syncTile('#cursor',$('#accCursorRing').classList.contains('on'));speak('Cursor destacado '+($('#accCursorRing').classList.contains('on')?'activado':'desactivado'))});
     $('#focusMode').addEventListener('click',()=>{settings.focusMode=!settings.focusMode;syncTiles();apply();speak('Modo enfoque '+(settings.focusMode?'activado':'desactivado'))});
     $('#readingRuler').addEventListener('click',()=>{settings.readingRuler=!settings.readingRuler;syncTiles();apply();speak('Regla de lectura '+(settings.readingRuler?'activada':'desactivada'))});
-    $('#skipContent').addEventListener('click',()=>{settings.skipContent=!settings.skipContent;syncTiles();apply();speak('Botón saltar contenido '+(settings.skipContent?'activado':'desactivado'))});
+    $('#skipContent').addEventListener('click',()=>{settings.skipContent=!settings.skipContent;syncTiles();apply();speak('Boton saltar contenido '+(settings.skipContent?'activado':'desactivado'))});
 
     $$('#tile-dys .seg').forEach(btn=>{btn.addEventListener('click', () => {
       const mode = btn.getAttribute('data-mode');
@@ -449,24 +461,24 @@ fab.addEventListener('touchend',(e)=>{
     $$('#tile-daltonic .seg').forEach(btn=>{btn.addEventListener('click', () => {
       const mode = btn.getAttribute('data-mode');
       settings.daltonic = (mode === 'off' || settings.daltonic === mode) ? null : mode;
-      speak(`Modo daltónico ${settings.daltonic||'desactivado'}`);
+      speak(`Modo daltonico ${settings.daltonic||'desactivado'}`);
       syncTiles(); apply();
     })});
     $$('#tile-align .seg').forEach(btn=>{btn.addEventListener('click', () => {
       const align = btn.getAttribute('data-align');
       settings.align = (align === 'off' || settings.align === align) ? null : align;
-      speak(`Alineación ${settings.align||'desactivada'}`);
+      speak(`Alineacion ${settings.align||'desactivada'}`);
       syncTiles(); apply();
     })});
     $$('#tile-saturation .seg').forEach(btn=>{btn.addEventListener('click', () => {
       const saturate = btn.getAttribute('data-saturate');
       settings.saturation = (saturate === 'off' || settings.saturation === saturate) ? null : saturate;
-      speak(`Saturación ${settings.saturation||'desactivada'}`);
+      speak(`Saturacion ${settings.saturation||'desactivada'}`);
       syncTiles(); apply();
     })});
 
     $('#info').addEventListener('click',()=>{settings.voiceFeedback=!settings.voiceFeedback;syncTiles();save();speak('Narrador de acciones '+(settings.voiceFeedback?'activado':'desactivado'))});
-    $('#outline').addEventListener('click',()=>{showOutline();speak('Estructura de la página abierta')});
+    $('#outline').addEventListener('click',()=>{showOutline();speak('Estructura de la pagina abierta')});
     $('#ttsPlay').addEventListener('click',ttsReadAll);
     $('#ttsPause').addEventListener('click',ttsPause);
     $('#ttsResume').addEventListener('click',ttsResume);
@@ -505,7 +517,7 @@ fab.addEventListener('touchend',(e)=>{
     function syncSliders(){
       f.value=settings.fontScale;fv.textContent=settings.fontScale+'%';
       ls.value=settings.letterSpacing;lsv.textContent=settings.letterSpacing+' px';
-      ln.value=settings.lineHeight;lnv.textContent=settings.lineHeight+'%';lblLine.textContent='Altura de la línea ('+(settings.lineHeight/100).toFixed(2)+'x)';
+      ln.value=settings.lineHeight;lnv.textContent=settings.lineHeight+'%';lblLine.textContent='Altura de la linea ('+(settings.lineHeight/100).toFixed(2)+'x)';
       if(settings.dyslexiaMode==='dys'){ls.min=1.2;ln.min=170}
       else if(settings.dyslexiaMode==='hyper'){ls.min=0.6;ln.min=160}
       else{ls.min=0;ln.min=100}
