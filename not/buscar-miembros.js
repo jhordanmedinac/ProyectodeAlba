@@ -6,7 +6,7 @@
     'use strict';
     
     // ⚙️ Configuración del API — montado en main.py como /api/miembros
-    const API_BASE_URL = 'http://localhost:8000/api/miembros';
+    const API_BASE_URL = 'https://paramedicosdelperu.org/api/miembros';
     
     // Elementos del DOM
     let searchInput = null;

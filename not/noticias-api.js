@@ -1,8 +1,8 @@
 // ============================================
 // CONFIGURACIÓN DEL API
 // ============================================
-const API_BASE_URL = 'http://localhost:8000/api/noticias';
-const FOTO_BASE_URL = 'http://localhost:8000/api/noticias/foto';
+const API_BASE_URL = 'https://paramedicosdelperu.org/api/noticias';
+const FOTO_BASE_URL = 'https://paramedicosdelperu.org/api/noticias/foto';
 
 // ============================================
 // FUNCIONES PARA CONSUMIR EL BACKEND
@@ -123,7 +123,7 @@ async function buscarPublicaciones(termino) {
  */
 async function obtenerProximosEventos(limite = 3) {
     try {
-        const response = await fetch(`http://localhost:8000/api/cursos/eventos/proximos?limite=${limite}`);
+        const response = await fetch(`https://paramedicosdelperu.org/api/cursos/eventos/proximos?limite=${limite}`);
         
         if (!response.ok) {
             throw new Error(`Error HTTP: ${response.status}`);

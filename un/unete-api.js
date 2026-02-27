@@ -5,7 +5,7 @@
 // CONFIGURACIÓN DE LA API
 // =============================================
 const API_CONFIG = {
-    baseURL: 'http://localhost:8000',
+    baseURL: 'https://paramedicosdelperu.org',
     endpoints: {
         registrar: '/api/registro/registrar'
     }
