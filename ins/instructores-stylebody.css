@@ -59,6 +59,7 @@
     position: relative;
     z-index: 2;
     padding: 0 20px;
+    margin-top: 60px; /* Aumenta este número para bajar más el texto */
 }
 
 .hero-title {
@@ -341,6 +342,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
+    align-items: start; /* 🔥 CLAVE: cards toman solo el alto de su contenido */
 }
 
 .instructor-card {
@@ -352,6 +354,9 @@
     display: flex;
     flex-direction: column;
     border: 2px solid #c5a059;
+    height: auto !important;          /* 🔥 sin altura forzada */
+    min-height: unset !important;     /* 🔥 elimina min-height */
+    align-self: start !important;     /* 🔥 no se estira en el grid */
 }
 
 .instructor-card:hover {
@@ -1097,6 +1102,7 @@
 /* Delays sidebar */
 .sidebar-box.reveal:nth-child(1) { transition-delay: 0.1s; }
 .sidebar-box.reveal:nth-child(2) { transition-delay: 0.3s; }
+
 /* ============================================
    NUEVAS SECCIONES EN CARDS DE INSTRUCTORES
    ============================================ */
@@ -1585,7 +1591,6 @@
    MEJORAS VISUALES ADICIONALES
    ============================================ */
 
-/* Hover effect en las cards */
 .instructor-card:hover .card-experience {
     background: linear-gradient(135deg, #e9ecef, #dee2e6);
     transform: translateX(5px);
@@ -1596,89 +1601,31 @@
     transform: translateX(5px);
 }
 
-/* Animación suave para el modal */
 .bio-modal.show {
     display: block;
 }
 
-/* Loading state para el botón */
 .btn-bio:active {
     transform: translateY(0);
     box-shadow: 0 4px 15px rgba(0, 9, 60, 0.2);
 }
+
 /* ============================================
-   🔥 FIX PARA CARDS DINÁMICAS - NO TOCAR ARRIBA
+   🔥 FIX CARDS - SIN MIN-HEIGHT, SIN STRETCH
    ============================================ */
 
-/* Asegurar que las cards dinámicas se vean */
-.instructors-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-}
-
-.instructor-card {
-    display: flex !important;
-    flex-direction: column !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-.card-photo img {
-    display: block !important;
-    width: 100% !important;
-    height: 100% !important;
-}
-
-.card-body {
-    display: flex !important;
-    flex-direction: column !important;
-}
-
-
-/* 🔥 FIX PARA CONTENEDOR - Las cards se salen */
 .instructors-section {
     width: 100% !important;
     max-width: 100% !important;
     overflow: visible !important;
-}
-
-.instructors-grid {
-    width: 100% !important;
-    max-width: 100% !important;
     box-sizing: border-box !important;
 }
 
-.instructor-card {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-}
-
-/* Asegurar que las imágenes no se salgan */
-.card-photo {
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow: hidden !important;
-}
-
-
-/* ============================================
-   🔥 FIX FINAL PARA CARDS - RESPONSIVE Y CONTENEDOR
-   ============================================ */
-
-/* Asegurar que el contenedor azul contenga todo */
 .content-layout {
     overflow: visible !important;
     box-sizing: border-box !important;
 }
 
-.instructors-section {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-}
-
-/* Grid con buen espaciado */
 .instructors-grid {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
@@ -1688,9 +1635,9 @@
     box-sizing: border-box !important;
     padding: 0 !important;
     margin: 0 !important;
+    align-items: start !important; /* 🔥 no estira las cards */
 }
 
-/* Cards bien contenidas */
 .instructor-card {
     display: flex !important;
     flex-direction: column !important;
@@ -1700,12 +1647,15 @@
     max-width: 100% !important;
     box-sizing: border-box !important;
     margin: 0 !important;
+    height: auto !important;        /* 🔥 altura según contenido */
+    min-height: unset !important;   /* 🔥 elimina min-height forzado */
+    align-self: start !important;   /* 🔥 no se estira en la fila */
 }
 
-/* Imágenes responsivas */
 .card-photo {
     width: 100% !important;
     max-width: 100% !important;
+    overflow: hidden !important;
     box-sizing: border-box !important;
 }
 
@@ -1727,7 +1677,6 @@
    RESPONSIVE - MOBILE FIRST
    ============================================ */
 
-/* Tablets grandes y laptops pequeñas (max-width: 1200px) */
 @media (max-width: 1200px) {
     .instructors-grid {
         grid-template-columns: repeat(2, 1fr) !important;
@@ -1741,7 +1690,6 @@
     }
 }
 
-/* Tablets (max-width: 968px) */
 @media (max-width: 968px) {
     .content-layout {
         grid-template-columns: 1fr !important;
@@ -1773,15 +1721,16 @@
     }
 }
 
-/* Móviles grandes (max-width: 640px) */
 @media (max-width: 640px) {
     .instructors-grid {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 15px !important;
     }
-    
+
+    /* 🔥 SIN min-height en móvil */
     .instructor-card {
-        min-height: 380px !important;
+        min-height: unset !important;
+        height: auto !important;
     }
     
     .card-photo {
@@ -1830,15 +1779,16 @@
     }
 }
 
-/* Móviles pequeños (max-width: 480px) */
 @media (max-width: 480px) {
     .instructors-grid {
         grid-template-columns: 1fr !important;
         gap: 20px !important;
     }
-    
+
+    /* 🔥 SIN min-height - la card toma su alto natural */
     .instructor-card {
-        min-height: 450px !important;
+        min-height: unset !important;
+        height: auto !important;
     }
     
     .card-photo {
@@ -1869,7 +1819,6 @@
     }
 }
 
-/* Móviles muy pequeños (max-width: 360px) */
 @media (max-width: 360px) {
     .card-name {
         font-size: 15px !important;
@@ -1889,4 +1838,11 @@
         padding: 10px 14px !important;
         font-size: 13px !important;
     }
+}
+.instructor-card {
+    transform: translateY(-8px);
+}
+
+.instructor-card:hover {
+    transform: translateY(-16px);
 }
