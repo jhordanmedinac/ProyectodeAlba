@@ -1,0 +1,484 @@
+/* ============================================
+   ESTILOS MEJORADOS PARA MODALES DE CURSOS
+   Diseño responsive y moderno
+   ============================================ */
+
+/* 🎨 MODAL DE CURSOS - CONTAINER */
+#modalNuevoCurso .modal-container,
+#modalEditarCurso .modal-container {
+    max-width: 900px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 9, 60, 0.25);
+    animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* 🎨 HEADER DEL MODAL */
+#modalNuevoCurso .modal-header,
+#modalEditarCurso .modal-header {
+    background: linear-gradient(135deg, #00093C 0%, #001a66 100%);
+    padding: 24px 32px;
+    border-radius: 16px 16px 0 0;
+    border-bottom: 3px solid #FDB750;
+    position: relative;
+    overflow: hidden;
+}
+
+#modalNuevoCurso .modal-header::before,
+#modalEditarCurso .modal-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(253, 183, 80, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+#modalNuevoCurso .modal-header h3,
+#modalEditarCurso .modal-header h3 {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    letter-spacing: 0.3px;
+}
+
+#modalNuevoCurso .modal-header h3 i,
+#modalEditarCurso .modal-header h3 i {
+    color: #FDB750;
+    font-size: 24px;
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+#modalNuevoCurso .modal-close,
+#modalEditarCurso .modal-close {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#modalNuevoCurso .modal-close:hover,
+#modalEditarCurso .modal-close:hover {
+    background: rgba(253, 183, 80, 0.2);
+    border-color: #FDB750;
+    transform: rotate(90deg);
+}
+
+/* 🎨 BODY DEL MODAL */
+#modalNuevoCurso .modal-body,
+#modalEditarCurso .modal-body {
+    padding: 32px;
+    max-height: calc(85vh - 180px);
+    overflow-y: auto;
+    background: #ffffff;
+}
+
+/* Scrollbar personalizado */
+#modalNuevoCurso .modal-body::-webkit-scrollbar,
+#modalEditarCurso .modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+#modalNuevoCurso .modal-body::-webkit-scrollbar-track,
+#modalEditarCurso .modal-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#modalNuevoCurso .modal-body::-webkit-scrollbar-thumb,
+#modalEditarCurso .modal-body::-webkit-scrollbar-thumb {
+    background: #00093C;
+    border-radius: 10px;
+}
+
+#modalNuevoCurso .modal-body::-webkit-scrollbar-thumb:hover,
+#modalEditarCurso .modal-body::-webkit-scrollbar-thumb:hover {
+    background: #FDB750;
+}
+
+/* 🎨 FORM GROUPS */
+#modalNuevoCurso .form-group,
+#modalEditarCurso .form-group {
+    margin-bottom: 24px;
+}
+
+#modalNuevoCurso .form-group label,
+#modalEditarCurso .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #00093C;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+}
+
+#modalNuevoCurso .form-group label .required,
+#modalEditarCurso .form-group label .required {
+    color: #dc3545;
+    margin-left: 4px;
+    font-size: 16px;
+}
+
+#modalNuevoCurso .form-group input,
+#modalNuevoCurso .form-group select,
+#modalNuevoCurso .form-group textarea,
+#modalEditarCurso .form-group input,
+#modalEditarCurso .form-group select,
+#modalEditarCurso .form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #333;
+    background: #ffffff;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+#modalNuevoCurso .form-group input:focus,
+#modalNuevoCurso .form-group select:focus,
+#modalNuevoCurso .form-group textarea:focus,
+#modalEditarCurso .form-group input:focus,
+#modalEditarCurso .form-group select:focus,
+#modalEditarCurso .form-group textarea:focus {
+    outline: none;
+    border-color: #00093C;
+    box-shadow: 0 0 0 4px rgba(0, 9, 60, 0.1);
+    background: #f8f9fa;
+}
+
+#modalNuevoCurso .form-group input::placeholder,
+#modalNuevoCurso .form-group textarea::placeholder,
+#modalEditarCurso .form-group input::placeholder,
+#modalEditarCurso .form-group textarea::placeholder {
+    color: #999;
+}
+
+#modalNuevoCurso .form-group small,
+#modalEditarCurso .form-group small {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #666;
+    font-style: italic;
+}
+
+/* 🎨 FORM ROW */
+#modalNuevoCurso .form-row,
+#modalEditarCurso .form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 0;
+}
+
+/* 🎨 SELECT MEJORADO */
+#modalNuevoCurso .form-group select,
+#modalEditarCurso .form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300093C' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+    appearance: none;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+/* 🎨 TEXTAREA */
+#modalNuevoCurso .form-group textarea,
+#modalEditarCurso .form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+    line-height: 1.6;
+}
+
+/* 🎨 FOOTER DEL MODAL */
+#modalNuevoCurso .modal-footer,
+#modalEditarCurso .modal-footer {
+    padding: 24px 32px;
+    border-top: 2px solid #f0f0f0;
+    background: #fafafa;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    border-radius: 0 0 16px 16px;
+}
+
+#modalNuevoCurso .modal-footer .btn-secondary,
+#modalEditarCurso .modal-footer .btn-secondary {
+    padding: 12px 24px;
+    background: #ffffff;
+    color: #333;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#modalNuevoCurso .modal-footer .btn-secondary:hover,
+#modalEditarCurso .modal-footer .btn-secondary:hover {
+    background: #f8f9fa;
+    border-color: #00093C;
+    color: #00093C;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#modalNuevoCurso .modal-footer .btn-primary,
+#modalEditarCurso .modal-footer .btn-primary {
+    padding: 12px 28px;
+    background: linear-gradient(135deg, #00093C 0%, #001a66 100%);
+    color: #ffffff;
+    border: 2px solid #00093C;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+#modalNuevoCurso .modal-footer .btn-primary::before,
+#modalEditarCurso .modal-footer .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(253, 183, 80, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+#modalNuevoCurso .modal-footer .btn-primary:hover::before,
+#modalEditarCurso .modal-footer .btn-primary:hover::before {
+    left: 100%;
+}
+
+#modalNuevoCurso .modal-footer .btn-primary:hover,
+#modalEditarCurso .modal-footer .btn-primary:hover {
+    background: linear-gradient(135deg, #FDB750 0%, #ffa500 100%);
+    border-color: #FDB750;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(253, 183, 80, 0.4);
+}
+
+#modalNuevoCurso .modal-footer .btn-primary i,
+#modalEditarCurso .modal-footer .btn-primary i {
+    font-size: 16px;
+}
+
+/* 🎨 ESTADOS DE INPUTS (VALIDACIÓN VISUAL) */
+#modalNuevoCurso .form-group input:invalid:not(:placeholder-shown),
+#modalNuevoCurso .form-group select:invalid,
+#modalEditarCurso .form-group input:invalid:not(:placeholder-shown),
+#modalEditarCurso .form-group select:invalid {
+    border-color: #dc3545;
+}
+
+#modalNuevoCurso .form-group input:valid:not(:placeholder-shown),
+#modalEditarCurso .form-group input:valid:not(:placeholder-shown) {
+    border-color: #28a745;
+}
+
+/* 🎨 GRUPOS ESPECIALES (Dirección y Enlace) */
+#groupDireccion, #groupEnlace,
+#groupEditDireccion, #groupEditEnlace {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px dashed #ddd;
+    transition: all 0.3s ease;
+}
+
+#groupDireccion:hover, #groupEnlace:hover,
+#groupEditDireccion:hover, #groupEditEnlace:hover {
+    background: #ffffff;
+    border-color: #00093C;
+    box-shadow: 0 4px 12px rgba(0, 9, 60, 0.1);
+}
+
+/* ============================================
+   📱 RESPONSIVE DESIGN
+   ============================================ */
+
+/* 💻 Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+    #modalNuevoCurso .modal-container,
+    #modalEditarCurso .modal-container {
+        max-width: 95%;
+    }
+
+    #modalNuevoCurso .modal-body,
+    #modalEditarCurso .modal-body {
+        padding: 24px;
+    }
+
+    #modalNuevoCurso .form-row,
+    #modalEditarCurso .form-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+/* 📱 Mobile (hasta 768px) */
+@media (max-width: 768px) {
+    #modalNuevoCurso .modal-container,
+    #modalEditarCurso .modal-container {
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        max-height: 100vh;
+        animation: modalSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes modalSlideUp {
+        from {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    #modalNuevoCurso .modal-header,
+    #modalEditarCurso .modal-header {
+        padding: 20px;
+        border-radius: 0;
+    }
+
+    #modalNuevoCurso .modal-header h3,
+    #modalEditarCurso .modal-header h3 {
+        font-size: 18px;
+    }
+
+    #modalNuevoCurso .modal-body,
+    #modalEditarCurso .modal-body {
+        padding: 20px;
+        max-height: calc(100vh - 160px);
+    }
+
+    #modalNuevoCurso .form-group,
+    #modalEditarCurso .form-group {
+        margin-bottom: 20px;
+    }
+
+    #modalNuevoCurso .form-group label,
+    #modalEditarCurso .form-group label {
+        font-size: 13px;
+    }
+
+    #modalNuevoCurso .form-group input,
+    #modalNuevoCurso .form-group select,
+    #modalNuevoCurso .form-group textarea,
+    #modalEditarCurso .form-group input,
+    #modalEditarCurso .form-group select,
+    #modalEditarCurso .form-group textarea {
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+
+    #modalNuevoCurso .modal-footer,
+    #modalEditarCurso .modal-footer {
+        padding: 16px 20px;
+        flex-direction: column-reverse;
+        gap: 10px;
+    }
+
+    #modalNuevoCurso .modal-footer .btn-secondary,
+    #modalNuevoCurso .modal-footer .btn-primary,
+    #modalEditarCurso .modal-footer .btn-secondary,
+    #modalEditarCurso .modal-footer .btn-primary {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 20px;
+        font-size: 15px;
+    }
+
+    #groupDireccion, #groupEnlace,
+    #groupEditDireccion, #groupEditEnlace {
+        padding: 16px;
+    }
+}
+
+/* 📱 Mobile pequeño (hasta 480px) */
+@media (max-width: 480px) {
+    #modalNuevoCurso .modal-header h3,
+    #modalEditarCurso .modal-header h3 {
+        font-size: 16px;
+        gap: 8px;
+    }
+
+    #modalNuevoCurso .modal-header h3 i,
+    #modalEditarCurso .modal-header h3 i {
+        font-size: 20px;
+    }
+
+    #modalNuevoCurso .modal-body,
+    #modalEditarCurso .modal-body {
+        padding: 16px;
+    }
+
+    #modalNuevoCurso .form-group,
+    #modalEditarCurso .form-group {
+        margin-bottom: 16px;
+    }
+}
+
+/* 🎨 ANIMACIONES ADICIONALES */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#modalNuevoCurso.active .modal-overlay,
+#modalEditarCurso.active .modal-overlay {
+    animation: fadeIn 0.3s ease;
+}
+
+/* 🎨 MODO OSCURO (opcional - para futuro) */
+@media (prefers-color-scheme: dark) {
+    /* Aquí puedes agregar estilos para modo oscuro si lo necesitas */
+}
