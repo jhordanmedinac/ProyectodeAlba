@@ -194,7 +194,7 @@
                 </div>
 
                 <div class="prot-img-container">
-                    <img src="/IMAGENES/LOGO.png" alt="Logo" id="protLogo">
+                    <img src="../IMAGENES/LOGO.png" alt="Logo" id="protLogo">
                 </div>
 
                 <div class="prot-title">Acceso No Autorizado</div>
