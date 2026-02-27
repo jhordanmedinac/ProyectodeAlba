@@ -1,6 +1,11 @@
 (function(){
   if(window.AccessibilityWidget) return;
   const LS_KEY='acc_settings_v1_9';
+// 🔥 Siempre mostrar el botón al recargar
+try{
+  const s=JSON.parse(localStorage.getItem(LS_KEY)||'{}');
+  if(s.position==='hidden'){s.position='free';localStorage.setItem(LS_KEY,JSON.stringify(s));}
+}catch{}
   const LS_POS='acc_fab_pos_v1';
   const $=(s,r=document)=>r.querySelector(s);
   const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
@@ -94,7 +99,9 @@
   `;
   const defaults={contrast:null,daltonic:null,highlightLinks:false,stopAnimations:false,hideImages:false,dyslexiaMode:null,align:null,saturation:null,fontScale:100,letterSpacing:0,lineHeight:140,position:'free',voiceFeedback:false,focusMode:false,readingRuler:false,darkMode:false,zoom:false,skipContent:true};
   let settings=load();
-  if(settings.position==='left'||settings.position==='right') settings.position='free';
+if(settings.position==='left'||settings.position==='right') settings.position='free';
+if(settings.position==='hidden') settings.position='free';
+save();
 
   function load(){try{return Object.assign({},defaults,JSON.parse(localStorage.getItem(LS_KEY)||'{}'))}catch{return {...defaults}}}
   function save(){localStorage.setItem(LS_KEY,JSON.stringify(settings))}
@@ -142,7 +149,15 @@
     html.style.setProperty('--acc-line-height',line?(line/100).toFixed(2):'normal');
 
     const fab=$('#accFab');
-    if(fab){fab.classList.toggle('hidden',settings.position==='hidden')}
+    if(fab){
+      // 🔥 Solo ocultar si fue ocultado en ESTA sesión, no al recargar
+      const hiddenThisSession = sessionStorage.getItem('acc_hidden_session') === '1';
+      fab.classList.toggle('hidden', settings.position==='hidden' && hiddenThisSession);
+      if(!hiddenThisSession && settings.position==='hidden'){
+        settings.position='free';
+        save();
+      }
+    }
 
     const ruler=$('#accReadingRuler');
     if(ruler) ruler.classList.toggle('on',settings.readingRuler);
@@ -430,8 +445,22 @@
     $('#snapTR').addEventListener('click',()=>snapFab(window.innerWidth-76,20));
     $('#snapBL').addEventListener('click',()=>snapFab(20,window.innerHeight-76));
     $('#snapBR').addEventListener('click',()=>snapFab(window.innerWidth-76,window.innerHeight-76));
-    $('#snapHide').addEventListener('click',()=>{settings.position='hidden';apply();speak('Boton oculto. Presiona Ctrl+U para reabrir el menu.')});
-    $('#snapShow').addEventListener('click',()=>{settings.position='free';fab.classList.remove('hidden');apply();speak('Boton visible')});
+
+    // 🔥 Al ocultar, guarda en sessionStorage (se borra al recargar)
+    $('#snapHide').addEventListener('click',()=>{
+      settings.position='hidden';
+      sessionStorage.setItem('acc_hidden_session','1');
+      apply();
+      speak('Boton oculto. Presiona Ctrl+U para reabrir el menu.');
+    });
+
+    $('#snapShow').addEventListener('click',()=>{
+      settings.position='free';
+      sessionStorage.removeItem('acc_hidden_session');
+      fab.classList.remove('hidden');
+      apply();
+      speak('Boton visible');
+    });
 
     const f=$('#rng-font'),fv=$('#val-font');
     const ls=$('#rng-letter'),lsv=$('#val-letter');
@@ -487,6 +516,7 @@
 
     $('#accReset').addEventListener('click',()=>{
       settings={...defaults};
+      sessionStorage.removeItem('acc_hidden_session');
       localStorage.removeItem(LS_POS);
       fab.style.left='20px'; fab.style.top=''; fab.style.bottom='20px'; fab.style.right='auto';
       syncAll();apply();speak('Configuraciones restablecidas');
