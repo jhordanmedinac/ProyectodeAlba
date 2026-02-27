@@ -1,7 +1,7 @@
 // ============================================
 // CONFIGURACIÓN DE LA API
 // ============================================
-const API_BASE_URL = 'https://paramedicosdelperu.org/api'; // Cambia localhost por tu dominio en producción
+const API_BASE_URL = 'https://paramedicosdelperu.org/api';
 
 // ============================================
 // CARGAR CURSOS DESDE LA API
