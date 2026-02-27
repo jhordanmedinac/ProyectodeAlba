@@ -118,10 +118,7 @@ function mostrarModalExito(resultado) {
             <p><strong>ID de Postulante:</strong> #${resultado.id_postulante}</p>
         </div>
         <p class="success-message">${resultado.mensaje}</p>
-        <p class="info-message">
-            <i class="fas fa-info-circle"></i>
-            Recibirás un correo de confirmación en <strong>${resultado.email}</strong>
-        </p>
+        
     `;
 
     modal.classList.add('active');
