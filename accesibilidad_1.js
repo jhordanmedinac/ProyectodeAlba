@@ -274,7 +274,7 @@ save();
     if(!$('#acc-widget-styles')){const st=document.createElement('style');st.id='acc-widget-styles';st.textContent=css;document.head.appendChild(st)}
     if(!$('#acc-svg-filters')){const svgs=`<svg style="display:none;"><filter id="protanopia"><feColorMatrix in="SourceGraphic" type="matrix" values="0.567, 0.433, 0, 0, 0, 0.558, 0.442, 0, 0, 0, 0, 0.242, 0.758, 0, 0, 0, 0, 0, 1, 0"/></filter><filter id="deuteranopia"><feColorMatrix in="SourceGraphic" type="matrix" values="0.625, 0.375, 0, 0, 0, 0.7, 0.3, 0, 0, 0, 0, 0.3, 0.7, 0, 0, 0, 0, 0, 1, 0"/></filter><filter id="tritanopia"><feColorMatrix in="SourceGraphic" type="matrix" values="0.95, 0.05, 0, 0, 0, 0, 0.433, 0.567, 0, 0, 0, 0, 0.475, 0.525, 0, 0, 0, 0, 0, 1, 0"/></filter></svg>`;document.body.insertAdjacentHTML('beforeend',svgs)}
 
-    const fab=document.createElement('button');fab.id='accFab';fab.setAttribute('aria-label','Abrir menu de accesibilidad');fab.innerHTML='<img src="../IMAGENES/Cruzdevida.png" alt="Accesibilidad" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';document.body.appendChild(fab);
+    const fab=document.createElement('button');fab.id='accFab';fab.setAttribute('aria-label','Abrir menu de accesibilidad');fab.innerHTML='<img src="IMAGENES/Cruzdevida.png" alt="Accesibilidad" style="width:100%;height:100%;border-radius:50%;object-fit:cover;">';document.body.appendChild(fab);
     initDraggableFab(fab);
 
     const overlay=document.createElement('div');overlay.id='accPanelOverlay';
