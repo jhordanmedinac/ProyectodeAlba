@@ -2035,7 +2035,7 @@ div, section, article, header, footer, nav {
     display: flex;
     align-items: center;
     margin: 0 15px;
-    transform: translateX(-25px); /* Ajusta el valor según cuánto quieras moverla */
+    
 }
 
 .navbar-search input {
