@@ -35,8 +35,9 @@
     background-attachment: fixed;
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    padding-top: 50px;
     margin: 0;
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
@@ -635,6 +636,8 @@
 .newsletter-widget {
     background: linear-gradient(135deg, var(--navy) 0%, #001a5c 100%);
     color: white;
+    position: relative;
+    top: -15px;
 }
 
 .newsletter-widget .widget-title {
