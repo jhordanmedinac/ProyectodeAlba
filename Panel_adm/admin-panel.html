@@ -1,0 +1,2794 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrativo - CGPVP</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="icons/Insignia.png">
+    <link rel="shortcut icon" type="image/png" href="icons/Insignia.png">
+    <link rel="apple-touch-icon" href="icons/Insignia.png">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="stylesheet" href="modal-cursos-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- Pantalla de Carga -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-container">
+            <div class="loading-circles">
+                <div class="circle circle-1"></div>
+                <div class="circle circle-2"></div>
+                <div class="circle circle-3"></div>
+            </div>
+            <div class="loading-logo">
+                <img src="icons/Insignia.png" alt="Logo CGPVP">
+            </div>
+        </div>
+        <div class="loading-text">Cargando Panel Administrativo...</div>
+    </div>
+
+    <aside class="admin-sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <img src="icons/Insignia.png" alt="Logo CGPVP">
+            </div>
+            <h3>Panel Admin</h3>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#usuarios" class="nav-item" data-section="usuarios">
+                <i class="fas fa-users"></i>
+                <span>Gestión de Usuarios</span>
+            </a>
+
+
+
+            <a href="#instructores" class="nav-item" data-section="instructores">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Instructores</span>
+            </a>
+            <a href="#cursos" class="nav-item" data-section="cursos">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Cursos</span>
+            </a>
+            <a href="#eventos" class="nav-item" data-section="eventos">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Eventos y Talleres</span>
+            </a>
+            <a href="#noticias" class="nav-item" data-section="noticias">
+                <i class="fas fa-newspaper"></i>
+                <span>Noticias</span>
+            </a>
+            <a href="#reportes" class="nav-item" data-section="reportes">
+                <i class="fas fa-file-alt"></i>
+                <span>Reportes</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="admin-profile">
+                <div class="profile-avatar" onclick="openProfileModal()" style="cursor: pointer;">
+                    <img id="sidebarAdminFoto" src="" alt="Admin" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                </div>
+                <div class="profile-info">
+                    <h4 id="sidebarAdminNombre">Cargando...</h4>
+                    <p id="sidebarAdminRol"></p>
+                </div>
+            </div>
+            <button class="btn-logout" onclick="openLogoutModal()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Cerrar Sesión</span>
+            </button>
+        </div>
+    </aside>
+
+    
+    <main class="admin-main">
+        
+        <header class="admin-topbar">
+            <div class="topbar-left">
+                <button class="btn-menu-mobile" id="menuMobile">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Dashboard</h1>
+            </div>
+            <div class="topbar-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar...">
+                </div>
+                <button class="btn-notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="admin-avatar" onclick="openProfileModal()" style="cursor: pointer;">
+                    <img id="topbarAdminFoto" src="" alt="Admin" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                </div>
+            </div>
+        </header>
+
+        
+        <section class="content-section active" id="dashboard">
+            <div class="section-header">
+                <h2>Dashboard General</h2>
+                <div class="header-actions">
+                    <select class="select-period">
+                        <option value="hoy">Hoy</option>
+                        <option value="semana">Esta Semana</option>
+                        <option value="mes" selected>Este Mes</option>
+                        <option value="año">Este Año</option>
+                    </select>
+                    <button class="btn-refresh">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+            </div>
+
+            
+            <div class="container-fluid px-0">
+                <div class="row g-4">
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="kpi-card">
+                            <div class="kpi-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <div class="kpi-value">0</div>
+                                <h3>Total Inscritos</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="kpi-card">
+                            <div class="kpi-icon">
+                                <i class="fas fa-user-clock"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <div class="kpi-value">0</div>
+                                <h3>Aspirantes</h3>
+                                <p class="kpi-subtitle">En espera de entrevista</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="kpi-card">
+                            <div class="kpi-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <div class="kpi-value">0</div>
+                                <h3>Alumnos</h3>
+                                <p class="kpi-subtitle">BIRED: 0 | EMGRA: 0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <div class="kpi-card">
+                            <div class="kpi-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <div class="kpi-value">0</div>
+                                <h3>Rescatistas</h3>
+                                <p class="kpi-subtitle">Activos en servicio</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gráficos -->
+                <div class="row g-4 mt-3">
+                    <div class="col-lg-6">
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>Distribución por Rango</h3>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chartMiembrosRango" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>Estado General de Miembros</h3>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chartMiembrosEstado" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-3">
+                    <div class="col-lg-6">
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>Postulantes por Mes</h3>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chartPostulantesMes" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>Rango de Edades</h3>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chartEdadesMiembros" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4 mt-3">
+                    <div class="col-lg-6">
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>Distribución por Departamento</h3>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chartMiembrosDepartamento" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>Ocupación de Cursos</h3>
+                            </div>
+                            <div class="chart-body">
+                                <canvas id="chartOcupacionCursos" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actividad Reciente -->
+                <div class="row g-4 mt-3">
+                    <div class="col-12">
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>Actividad Reciente</h3>
+                                <button class="btn-secondary btn-sm" onclick="cargarActividadReciente()">
+                                    <i class="fas fa-sync-alt"></i> Actualizar
+                                </button>
+                            </div>
+                            <div class="chart-body">
+                                <div id="actividadReciente" style="max-height: 500px; overflow-y: auto;">
+                                    <!-- Se cargará dinámicamente -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: Gestión de Usuarios -->
+        <section class="content-section" id="usuarios">
+            <div class="section-header">
+                <h2>Gestión de Usuarios</h2>
+                <div class="header-actions">
+                    <button class="btn-primary" id="btnAgregarUsuario" onclick="abrirModalAgregarUsuario()">
+                        <i class="fas fa-user-plus"></i>
+                        Agregar Usuario
+                    </button>
+                    <button class="btn-secondary" onclick="exportarCSV()">
+                        <i class="fas fa-file-export"></i>
+                        Exportar
+                    </button>
+                </div>
+            </div>
+
+            <div class="filters-bar">
+                <div class="filter-group">
+                    <div class="filter-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Buscar por nombre, DNI o correo...">
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <select class="filter-select" id="filterRango">
+                        <option value="">Todos los Roles</option>
+                        <option value="Aspirante">Aspirante</option>
+                        <option value="Alumno">Alumno</option>
+                        <option value="Rescatista">Rescatista</option>
+                    </select>
+
+                    <select class="filter-select" id="filterEstado">
+                        <option value="">Todos los Estados</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Suspendido">Suspendido</option>
+                        <option value="Baja">Baja</option>
+                    </select>
+
+                    <select class="filter-select" id="filterDepartamento">
+                        <option value="">Todos los Departamentos</option>
+                        <option value="Lima">Lima</option>
+                        <option value="Arequipa">Arequipa</option>
+                        <option value="Cusco">Cusco</option>
+                        <option value="La Libertad">La Libertad</option>
+                        <option value="Piura">Piura</option>
+                    </select>
+
+                    <select class="filter-select" id="filterOrden">
+                        <option value="recientes">Más recientes</option>
+                        <option value="antiguos">Más antiguos</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <button class="btn-secondary" onclick="exportarCSV()">
+                        <i class="fas fa-file-export"></i>
+                        Exportar CSV
+                    </button>
+                </div>
+            </div>
+
+            <div class="data-table-container">
+                <div class="table-wrapper">
+                    <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox">
+                            </th>
+                            <th>Nombre</th>
+                            <th>DNI</th>
+                            <th>Rol</th>
+                            <th>Provincia</th>
+                            <th>Estado</th>
+                            <th>Fecha Ingreso</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- Los datos se cargarán dinámicamente desde la API -->
+                    </tbody>
+                </table>
+                </div>
+            </div>
+
+            <div class="table-pagination" id="paginacion">
+                <div class="pagination-info">
+                    Cargando datos...
+                </div>
+                <div class="pagination-controls">
+                    <!-- Se generará dinámicamente -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: Aspirantes -->
+
+
+        <!-- SECCIÓN: Instructores -->
+        <section class="content-section" id="instructores">
+            <div class="section-header">
+                <h2>Gestión de Instructores</h2>
+                <div class="header-actions">
+                    <button class="btn-primary" onclick="showAddInstructorModal()"><i class="fas fa-plus"></i> Nuevo Instructor</button>
+                </div>
+            </div>
+            <div class="filters-bar">
+                <div class="filter-group">
+                    <div class="filter-search"><i class="fas fa-search"></i><input type="text" placeholder="Buscar instructor..."></div>
+                </div>
+            </div>
+            <div class="events-grid"></div>
+            <div class="table-pagination">
+                <div class="pagination-info">Mostrando 0 instructores</div>
+                <div class="pagination-controls"></div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: Cursos -->
+        <section class="content-section" id="cursos">
+            <div class="section-header">
+                <h2>Gestión de Cursos</h2>
+                <div class="header-actions">
+                    <button class="btn-primary" onclick="abrirModalNuevoCurso()">
+                        <i class="fas fa-plus"></i> Nuevo Curso
+                    </button>
+                </div>
+            </div>
+
+            <div class="filters-bar">
+                <div class="filter-group">
+                    <div class="filter-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="cursoBusqueda" placeholder="Buscar curso...">
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <select class="filter-select" id="cursoCategoria">
+                        <option value="">Todas las Categorías</option>
+                        <option value="Básico">Básico</option>
+                        <option value="Intermedio">Intermedio</option>
+                        <option value="Avanzado">Avanzado</option>
+                        <option value="Especializado">Especializado</option>
+                    </select>
+
+                    <select class="filter-select" id="cursoModalidad">
+                        <option value="">Todas las Modalidades</option>
+                        <option value="Presencial">Presencial</option>
+                        <option value="Virtual">Virtual</option>
+                        <option value="Semipresencial">Semipresencial</option>
+                    </select>
+
+                    <select class="filter-select" id="cursoEstado">
+                        <option value="">Todos los Estados</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Programado">Programado</option>
+                        <option value="Finalizado">Finalizado</option>
+                        <option value="Cancelado">Cancelado</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <button class="btn-secondary" id="btnFiltrarCursos">
+                        <i class="fas fa-filter"></i> Filtrar
+                    </button>
+                    <button class="btn-secondary" id="btnLimpiarFiltrosCursos">
+                        <i class="fas fa-times"></i> Limpiar
+                    </button>
+                </div>
+            </div>
+
+            <div class="data-table-container">
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Curso</th>
+                                <th>Duración</th>
+                                <th>Modalidad</th>
+                                <th>Instructor</th>
+                                <th>Estado</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Los datos se cargarán dinámicamente desde la API -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="pagination-container">
+                <div class="pagination-info">Cargando datos...</div>
+                <div class="pagination-controls"></div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: Eventos y Talleres -->
+        <section class="content-section" id="eventos">
+            <div class="section-header">
+                <h2>Eventos y Talleres</h2>
+                <div class="header-actions">
+                    <button class="btn-primary" onclick="showAddEventModal()">
+                        <i class="fas fa-plus"></i>
+                        Nuevo Evento
+                    </button>
+                </div>
+            </div>
+
+            <div class="filters-bar">
+                <div class="filter-group">
+                    <div class="filter-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Buscar evento...">
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <select class="filter-select">
+                        <option value="">Todos los Tipos</option>
+                        <option value="capacitacion">Capacitación</option>
+                        <option value="taller">Taller</option>
+                        <option value="simulacro">Simulacro</option>
+                        <option value="conferencia">Conferencia</option>
+                    </select>
+
+                    <select class="filter-select">
+                        <option value="">Todos los Estados</option>
+                        <option value="programado">Programado</option>
+                        <option value="en-curso">En Curso</option>
+                        <option value="finalizado">Finalizado</option>
+                        <option value="cancelado">Cancelado</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-header">
+                        <span class="event-type">Capacitación</span>
+                        <span class="event-status status-programado">Programado</span>
+                    </div>
+                    <h3>Primeros Auxilios Avanzados</h3>
+                    <div class="event-details">
+                        <div class="event-detail">
+                            <i class="fas fa-calendar"></i>
+                            <span>15 de Febrero, 2025</span>
+                        </div>
+                        <div class="event-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>09:00 - 17:00</span>
+                        </div>
+                        <div class="event-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Sede Lima Centro</span>
+                        </div>
+                        <div class="event-detail">
+                            <i class="fas fa-user"></i>
+                            <span>Instructor: Dr. González</span>
+                        </div>
+                        <div class="event-detail">
+                            <i class="fas fa-users"></i>
+                            <span>25/30 inscritos</span>
+                        </div>
+                    </div>
+                    <div class="event-actions">
+                        <button class="btn-small btn-primary">
+                            <i class="fas fa-eye"></i>
+                            Ver Detalles
+                        </button>
+                        <button class="btn-small btn-secondary">
+                            <i class="fas fa-edit"></i>
+                            Editar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-header">
+                        <span class="event-type">Simulacro</span>
+                        <span class="event-status status-en-curso">En Curso</span>
+                    </div>
+                    <h3>Simulacro de Rescate en Montaña</h3>
+                    <div class="event-details">
+                        <div class="event-detail">
+                            <i class="fas fa-calendar"></i>
+                            <span>05 de Febrero, 2025</span>
+                        </div>
+                        <div class="event-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>08:00 - 16:00</span>
+                        </div>
+                        <div class="event-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Zona Montañosa - Huarochirí</span>
+                        </div>
+                        <div class="event-detail">
+                            <i class="fas fa-user"></i>
+                            <span>Coordinador: Cmte. Ramírez</span>
+                        </div>
+                        <div class="event-detail">
+                            <i class="fas fa-users"></i>
+                            <span>18/20 participantes</span>
+                        </div>
+                    </div>
+                    <div class="event-actions">
+                        <button class="btn-small btn-primary">
+                            <i class="fas fa-eye"></i>
+                            Ver Detalles
+                        </button>
+                        <button class="btn-small btn-secondary">
+                            <i class="fas fa-edit"></i>
+                            Editar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-header">
+                        <span class="event-type">Taller</span>
+                        <span class="event-status status-programado">Programado</span>
+                    </div>
+                    <h3>Manejo de Equipos de Comunicación</h3>
+                    <div class="event-details">
+                        <div class="event-detail">
+                            <i class="fas fa-calendar"></i>
+                            <span>20 de Febrero, 2025</span>
+                        </div>
+                        <div class="event-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>14:00 - 18:00</span>
+                        </div>
+                        <div class="event-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Sede Callao</span>
+                        </div>
+                        <div class="event-detail">
+                            <i class="fas fa-user"></i>
+                            <span>Instructor: Tte. Vega</span>
+                        </div>
+                        <div class="event-detail">
+                            <i class="fas fa-users"></i>
+                            <span>12/15 inscritos</span>
+                        </div>
+                    </div>
+                    <div class="event-actions">
+                        <button class="btn-small btn-primary">
+                            <i class="fas fa-eye"></i>
+                            Ver Detalles
+                        </button>
+                        <button class="btn-small btn-secondary">
+                            <i class="fas fa-edit"></i>
+                            Editar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-pagination">
+                <div class="pagination-info">
+                    Mostrando 3 de 45 eventos
+                </div>
+                <div class="pagination-controls">
+                    <button class="btn-pagination" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="btn-pagination active">1</button>
+                    <button class="btn-pagination">2</button>
+                    <button class="btn-pagination">3</button>
+                    <button class="btn-pagination">...</button>
+                    <button class="btn-pagination">5</button>
+                    <button class="btn-pagination">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: Noticias -->
+        <section class="content-section" id="noticias">
+            <div class="section-header">
+                <h2>Gestión de Noticias</h2>
+                <div class="header-actions">
+                    <button class="btn-primary" onclick="showAddNewsModal()">
+                        <i class="fas fa-plus"></i>
+                        Nueva Noticia
+                    </button>
+                </div>
+            </div>
+
+            <div class="filters-bar">
+                <div class="filter-group">
+                    <div class="filter-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Buscar noticia..." id="searchNoticias">
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <select class="filter-select" id="filterFechasNoticias">
+                        <option value="">Todas las Fechas</option>
+                        <option value="hoy">Hoy</option>
+                        <option value="semana">Esta Semana</option>
+                        <option value="mes">Este Mes</option>
+                        <option value="anterior">Anteriores</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="news-grid">
+                <!-- Las noticias se cargarán dinámicamente desde noticias-api.js -->
+            </div>
+
+            <div class="table-pagination">
+                <div class="pagination-info">
+                    <!-- Se actualizará dinámicamente desde noticias-api.js -->
+                </div>
+                <div class="pagination-controls">
+                    <!-- Se actualizará dinámicamente desde noticias-api.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: Reportes -->
+        <section class="content-section" id="reportes">
+            <div class="section-header">
+                <h2>Reportes y Estadísticas</h2>
+                <div class="header-actions">
+                    <button class="btn-primary">
+                        <i class="fas fa-download"></i>
+                        Generar Reporte
+                    </button>
+                </div>
+            </div>
+
+            <div class="reports-grid">
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Reporte de Inscripciones</h3>
+                    <p>Análisis detallado de aspirantes por mes y sede</p>
+                    <button class="btn-secondary btn-full">
+                        <i class="fas fa-file-pdf"></i>
+                        Generar PDF
+                    </button>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Progresión de Alumnos</h3>
+                    <p>Seguimiento de BIRED a EMGRA y promociones</p>
+                    <button class="btn-secondary btn-full">
+                        <i class="fas fa-file-pdf"></i>
+                        Generar PDF
+                    </button>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3>Capacitaciones Completadas</h3>
+                    <p>Estadísticas de cursos y certificaciones</p>
+                    <button class="btn-secondary btn-full">
+                        <i class="fas fa-file-excel"></i>
+                        Generar Excel
+                    </button>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Rescatistas Activos</h3>
+                    <p>Personal disponible por especialidad</p>
+                    <button class="btn-secondary btn-full">
+                        <i class="fas fa-file-pdf"></i>
+                        Generar PDF
+                    </button>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Asistencia a Eventos</h3>
+                    <p>Participación en talleres y capacitaciones</p>
+                    <button class="btn-secondary btn-full">
+                        <i class="fas fa-file-excel"></i>
+                        Generar Excel
+                    </button>
+                </div>
+
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Distribución por Sedes</h3>
+                    <p>Personal asignado a cada sede</p>
+                    <button class="btn-secondary btn-full">
+                        <i class="fas fa-file-pdf"></i>
+                        Generar PDF
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL: Agregar Evento -->
+    <div class="modal-overlay" id="addEventModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Crear Nuevo Evento</h3>
+                <button class="modal-close" onclick="closeModal('addEventModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="modal-form">
+                    <div class="form-group">
+                        <label>Tipo de Evento <span class="required">*</span></label>
+                        <select required>
+                            <option value="">Seleccionar...</option>
+                            <option value="capacitacion">Capacitación</option>
+                            <option value="taller">Taller</option>
+                            <option value="simulacro">Simulacro</option>
+                            <option value="conferencia">Conferencia</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Título del Evento <span class="required">*</span></label>
+                        <input type="text" placeholder="Ej: Primeros Auxilios Avanzados" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <textarea rows="3" placeholder="Descripción breve del evento..."></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Fecha <span class="required">*</span></label>
+                            <input type="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Hora Inicio <span class="required">*</span></label>
+                            <input type="time" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Hora Fin <span class="required">*</span></label>
+                            <input type="time" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Instructor <span class="required">*</span></label>
+                            <input type="text" placeholder="Nombre del instructor" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Capacidad Máxima</label>
+                            <input type="number" placeholder="30" min="1">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ubicación / Enlace</label>
+                        <input type="text" placeholder="Dirección o enlace de la reunión">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secondary" onclick="closeModal('addEventModal')">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i>
+                            Crear Evento
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Perfil del Administrador -->
+    <div class="modal-overlay" id="profileModal">
+        <div class="modal-container modal-small">
+            <div class="modal-header">
+                <h3>Perfil del Administrador</h3>
+                <button class="modal-close" onclick="restoreOriginalPhoto(); closeModal('profileModal');">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="modal-form" id="profileForm">
+                    <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 25px;">
+                        <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin-bottom: 15px; border: 4px solid #0066cc;">
+                            <img id="profilePreview" src="" alt="Admin" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <label for="photoUpload" class="btn-secondary" style="cursor: pointer; margin-bottom: 5px;">
+                            <i class="fas fa-camera"></i>
+                            Cambiar Foto
+                        </label>
+                        <input type="file" id="photoUpload" accept="image/*" style="display: none;" onchange="previewPhoto(event)">
+                        <small style="color: #999; font-size: 12px;">JPG, PNG o JPEG (máx. 2MB)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nombre Completo <span class="required">*</span></label>
+                        <input type="text" id="perfilNombreCompleto" value="" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Rango</label>
+                        <input type="text" id="perfilRango" value="" readonly style="background: #f5f5f5;">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Correo Electrónico</label>
+                        <input type="email" id="perfilEmail" value="" readonly style="background: #f5f5f5;">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <input type="tel" id="perfilTelefono" placeholder="+51 999 999 999">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Cargo</label>
+                        <input type="text" id="perfilCargo" value="" readonly style="background: #f5f5f5;">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secondary" onclick="restoreOriginalPhoto(); closeModal('profileModal');">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i>
+                            Guardar Cambios
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL: Cambiar Estado de Usuario -->
+    <div class="modal-overlay" id="changeStatusModal">
+        <div class="modal-container modal-small">
+            <div class="modal-header">
+                <h3>Cambiar Rol/Estado de Usuario</h3>
+                <button class="modal-close" onclick="closeModal('changeStatusModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="modal-form">
+                    <div class="user-preview">
+                        <div class="user-avatar">JP</div>
+                        <div>
+                            <h4>Juan Pérez</h4>
+                            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="29435c484707594c5b4c53694a4e595f590744404507594c">[email&#160;protected]</a></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Rol Actual</label>
+                        <span class="role-badge role-aspirante">Aspirante</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Nuevo Rol <span class="required">*</span></label>
+                        <select required id="nuevoRol" onchange="toggleNivelField()">
+                            <option value="">Seleccionar...</option>
+                            <option value="aspirante">Aspirante</option>
+                            <option value="alumno">Alumno</option>
+                            <option value="rescatista">Rescatista</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="nivelField" style="display: none;">
+                        <label>Nivel de Alumno <span class="required">*</span></label>
+                        <select id="nivelAlumno">
+                            <option value="">Seleccionar...</option>
+                            <option value="bired">BIRED</option>
+                            <option value="emgra">EMGRA</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Estado <span class="required">*</span></label>
+                        <select required>
+                            <option value="">Seleccionar...</option>
+                            <option value="activo">Activo</option>
+                            <option value="suspendido">Suspendido</option>
+                            <option value="baja">Baja</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Motivo del Cambio</label>
+                        <textarea placeholder="Escribir el motivo..."></textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secondary" onclick="closeModal('changeStatusModal')">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i>
+                            Guardar Cambios
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Agregar/Editar Noticia -->
+    <div class="modal-overlay" id="newsModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="newsModalTitle">Nueva Noticia</h3>
+                <button class="modal-close" onclick="closeModal('newsModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="modal-form" id="newsForm">
+                    <div class="form-group">
+                        <label>Imagen de la Noticia</label>
+                        <input type="file" 
+                               id="newsImageFile" 
+                               accept="image/*"
+                               onchange="previewNewsImageFromFile(this)"
+                               style="display: block; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer;">
+                        <small style="color: #666; display: block; margin-top: 5px;">
+                            Sube una imagen (JPG, PNG, WEBP — opcional)
+                        </small>
+                        <div class="image-preview" id="newsImagePreview" style="display: none; margin-top: 10px; max-width: 300px; position: relative;">
+                            <img id="newsImagePreviewImg" 
+                                 src="" 
+                                 alt="Preview" 
+                                 style="width: 100%; border-radius: 8px; border: 2px solid #e0e0e0;">
+                            <button type="button" onclick="clearNewsImage()" 
+                                    style="position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,0.5); border: none; color: white; border-radius: 50%; width: 26px; height: 26px; cursor: pointer; font-size: 14px; line-height: 1;">✕</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Descripción <span class="required">*</span></label>
+                        <textarea id="newsDescription" rows="6" placeholder="Escribe una descripción completa de la noticia..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Fecha de Publicación <span class="required">*</span></label>
+                        <input type="date" id="newsDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" id="newsDestacada" style="width: 20px; height: 20px; cursor: pointer;">
+                            <span>Marcar como noticia destacada</span>
+                        </label>
+                        <small style="color: #666; display: block; margin-top: 5px;">Las noticias destacadas aparecerán en la sección principal</small>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secondary" onclick="closeModal('newsModal')">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i>
+                            <span id="newsSaveBtn">Publicar Noticia</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Ver Noticia Completa -->
+    <div class="modal-overlay" id="viewNewsModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Noticia Completa</h3>
+                <button class="modal-close" onclick="closeModal('viewNewsModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="news-full-view">
+                    <img id="viewNewsImage" src="" alt="Noticia" class="news-full-image">
+                    <div class="news-full-meta">
+                        <span class="news-full-date">
+                            <i class="fas fa-calendar"></i>
+                            <span id="viewNewsDate"></span>
+                        </span>
+                    </div>
+                    <div id="viewNewsDescription" class="news-full-description"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Editar Noticia -->
+    <div class="modal-overlay" id="editNewsModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Editar Noticia</h3>
+                <button class="modal-close" onclick="closeModal('editNewsModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="modal-form" id="editNewsForm" onsubmit="return false;">
+                    <div class="form-group">
+                        <label>Imagen de la Noticia</label>
+                        <div id="editNewsCurrentImage" style="margin-bottom: 10px; display: none;">
+                            <small style="color: #666;">Imagen actual:</small>
+                            <div style="position: relative; display: inline-block; margin-top: 5px;">
+                                <img id="editNewsImagePreviewImg" 
+                                     src="" 
+                                     alt="Imagen actual" 
+                                     style="width: 200px; height: 120px; object-fit: cover; border-radius: 8px; border: 2px solid #e0e0e0; display: block;">
+                            </div>
+                        </div>
+                        <input type="file" 
+                               id="editNewsImageFile" 
+                               accept="image/*"
+                               onchange="previewEditNewsImageFromFile(this)"
+                               style="display: block; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer;">
+                        <small style="color: #666; display: block; margin-top: 5px;">
+                            Sube una nueva imagen para reemplazar la actual (opcional)
+                        </small>
+                        <div class="image-preview" id="editNewsImagePreview" style="display: none; margin-top: 10px; max-width: 300px; position: relative;">
+                            <img id="editNewsNewPreviewImg" 
+                                 src="" 
+                                 alt="Nueva imagen" 
+                                 style="width: 100%; border-radius: 8px; border: 2px solid #00093C;">
+                            <button type="button" onclick="clearEditNewsImage()" 
+                                    style="position: absolute; top: 6px; right: 6px; background: rgba(0,0,0,0.5); border: none; color: white; border-radius: 50%; width: 26px; height: 26px; cursor: pointer; font-size: 14px; line-height: 1;">✕</button>
+                            <small style="color: #00093C; display: block; margin-top: 4px;">← Nueva imagen seleccionada</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Descripción <span class="required">*</span></label>
+                        <textarea id="editNewsDescription" rows="6" placeholder="Escribe una descripción completa de la noticia..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Fecha de Publicación <span class="required">*</span></label>
+                        <input type="date" id="editNewsDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" id="editNewsDestacada" style="width: 20px; height: 20px; cursor: pointer;">
+                            <span>Marcar como noticia destacada</span>
+                        </label>
+                        <small style="color: #666; display: block; margin-top: 5px;">Las noticias destacadas aparecerán en la sección principal</small>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secondary" onclick="closeModal('editNewsModal')">
+                            Cancelar
+                        </button>
+                        <button type="button" class="btn-primary" id="btnGuardarEdicionNoticia">
+                            <i class="fas fa-save"></i>
+                            Actualizar Noticia
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>>
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="news-full-view">
+                    <img id="viewNewsImage" src="" alt="Noticia" class="news-full-image">
+                    <div class="news-full-meta">
+                        <span class="news-full-date">
+                            <i class="fas fa-calendar"></i>
+                            <span id="viewNewsDate"></span>
+                        </span>
+                    </div>
+                    <div id="viewNewsDescription" class="news-full-description"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Confirmar Cierre de Sesión -->
+    <div class="modal-overlay" id="logoutModal">
+        <div class="modal-container modal-small">
+            <div class="modal-header">
+                <h3>Cerrar Sesión</h3>
+                <button class="modal-close" onclick="closeModal('logoutModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="logout-modal-content">
+                    <div class="logout-icon-wrapper">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </div>
+                    <h4 class="logout-title">¿Estás seguro?</h4>
+                    <p class="logout-message">¿Deseas cerrar sesión y salir del panel administrativo?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeModal('logoutModal')">
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn-primary" onclick="confirmLogout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Sí, Cerrar Sesión
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Eliminar Miembro Físicamente -->
+    <!-- MODAL: Eliminar Miembro -->
+    <style>
+        /* ── Delete Modal responsive ── */
+        #deleteUserModal .modal-container {
+            width: 90%;
+            max-width: 500px;
+        }
+        #deleteUserModal .modal-header {
+            background: linear-gradient(135deg, #000033 0%, #001159 100%) !important;
+            padding: 18px 24px;
+            border-radius: 12px 12px 0 0;
+        }
+        #deleteUserModal .modal-header h3 {
+            color: #ffffff !important;
+            font-size: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        #deleteUserModal .del-icon-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            background: rgba(253,183,80,0.15);
+            border: 2px solid #FDB750;
+            color: #FDB750;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+        #deleteUserModal .modal-close,
+        #deleteUserModal .modal-close i,
+        #deleteUserModal .modal-close svg {
+            color: #000000 !important;
+            fill: #000000 !important;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+            flex-shrink: 0;
+        }
+        #deleteUserModal .modal-close:hover,
+        #deleteUserModal .modal-close:hover i { opacity: 1; }
+        #deleteUserModal .modal-body {
+            padding: 28px 28px 16px;
+        }
+        #deleteUserModal .del-avatar {
+            width: 72px; height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fde8e8, #fbd5d5);
+            border: 3px solid #e74c3c;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        #deleteUserModal .del-avatar i { font-size: 28px; color: #e74c3c; }
+        #deleteUserModal .del-title {
+            color: #000033;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        #deleteUserModal .del-subtitle {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 0;
+        }
+        #deleteUserModal .del-info-card {
+            background: linear-gradient(135deg, #f8f9fb, #eef1f7);
+            border: 1px solid #dde3f0;
+            border-left: 4px solid #000033;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin: 16px 0;
+            text-align: left;
+        }
+        #deleteUserModal .del-info-card p {
+            margin: 5px 0;
+            font-size: 13.5px;
+            color: #333;
+            display: flex;
+            gap: 8px;
+        }
+        #deleteUserModal .del-info-card strong {
+            color: #000033;
+            min-width: 60px;
+            flex-shrink: 0;
+        }
+        #deleteUserModal .del-warning-box {
+            background: #fff8ec;
+            border: 1px solid #FDB750;
+            border-radius: 8px;
+            padding: 11px 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        #deleteUserModal .del-warning-box i {
+            color: #FDB750;
+            font-size: 16px;
+            margin-top: 1px;
+            flex-shrink: 0;
+        }
+        #deleteUserModal .del-warning-box p {
+            color: #7a5200;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.4;
+        }
+        #deleteUserModal .del-note {
+            font-size: 12.5px;
+            color: #888;
+            margin: 8px 0 0;
+        }
+        #deleteUserModal .modal-footer {
+            padding: 16px 24px;
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+        #btnConfirmDelete {
+            padding: 11px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            box-shadow: 0 4px 14px rgba(231,76,60,0.35);
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        #btnConfirmDelete:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(231,76,60,0.45);
+        }
+        #btnConfirmDelete:disabled {
+            opacity: 0.7;
+            transform: none;
+            cursor: not-allowed;
+        }
+        /* ── Responsive móvil ── */
+        @media (max-width: 575px) {
+            #deleteUserModal .modal-container {
+                width: 95%;
+                margin: 10px;
+            }
+            #deleteUserModal .modal-header { padding: 14px 16px; }
+            #deleteUserModal .modal-header h3 { font-size: 0.88rem; gap: 8px; }
+            #deleteUserModal .del-icon-badge { width: 26px; height: 26px; font-size: 11px; }
+            #deleteUserModal .modal-body { padding: 20px 16px 12px; }
+            #deleteUserModal .del-avatar { width: 60px; height: 60px; }
+            #deleteUserModal .del-avatar i { font-size: 22px; }
+            #deleteUserModal .del-title { font-size: 0.92rem; }
+            #deleteUserModal .modal-footer {
+                flex-direction: column-reverse;
+                padding: 14px 16px;
+            }
+            #deleteUserModal .modal-footer .btn-secondary,
+            #btnConfirmDelete {
+                width: 100%;
+                justify-content: center;
+                font-size: 13px;
+                padding: 12px 16px;
+            }
+        }
+        @media (max-width: 400px) {
+            #deleteUserModal .modal-header h3 { font-size: 0.82rem; }
+        }
+    </style>
+
+    <div class="modal-overlay" id="deleteUserModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>
+                    <span class="del-icon-badge"><i class="fas fa-trash-alt"></i></span>
+                    Eliminar Miembro Permanentemente
+                </h3>
+                <button class="modal-close" onclick="closeModal('deleteUserModal')" style="color:#000000 !important;background:rgba(255,255,255,0.85);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;">
+                    <i class="fas fa-times" style="color:#000000 !important;"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-message">
+                    <!-- Contenido insertado dinámicamente desde JS -->
+                    <div style="text-align:center;">
+                        <div class="del-avatar">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3 class="del-title">⚠️ ADVERTENCIA: Eliminación Permanente</h3>
+                        <p class="del-subtitle">Estás a punto de eliminar permanentemente este registro de la base de datos.</p>
+                        <div class="del-warning-box" style="margin-top:16px;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <p>Esta acción NO SE PUEDE DESHACER.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="closeModal('deleteUserModal')">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+                <button type="button" id="btnConfirmDelete" onclick="eliminarMiembroFisico()">
+                    <i class="fas fa-trash-alt"></i> Eliminar Permanentemente
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Eliminar Evento -->
+    <style>
+        /* ── Delete Evento Modal ── */
+        #deleteEventoModal .modal-container  { width: 90%; max-width: 480px; }
+        #deleteNoticiaModal .modal-container { width: 90%; max-width: 480px; }
+
+        #deleteEventoModal .modal-header,
+        #deleteNoticiaModal .modal-header {
+            background: linear-gradient(135deg, #000033 0%, #001159 100%) !important;
+            padding: 18px 24px; border-radius: 12px 12px 0 0;
+        }
+        #deleteEventoModal .modal-header h3,
+        #deleteNoticiaModal .modal-header h3 {
+            color: #ffffff !important; font-size: 1rem; font-weight: 700;
+            display: flex; align-items: center; gap: 10px; flex: 1;
+        }
+        .del-ev-icon-badge, .del-noti-icon-badge {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 30px; height: 30px; border-radius: 50%;
+            background: rgba(253,183,80,0.15); border: 2px solid #FDB750;
+            color: #FDB750; font-size: 13px; flex-shrink: 0;
+        }
+        #deleteEventoModal .modal-close,  #deleteEventoModal .modal-close i,
+        #deleteNoticiaModal .modal-close, #deleteNoticiaModal .modal-close i {
+            color: #000000 !important;
+        }
+        #deleteEventoModal .modal-close,
+        #deleteNoticiaModal .modal-close {
+            background: rgba(255,255,255,0.88) !important; border-radius: 50%;
+            width: 32px; height: 32px; display: flex; align-items: center;
+            justify-content: center; flex-shrink: 0; border: none; cursor: pointer;
+            opacity: 0.9; transition: opacity 0.2s;
+        }
+        #deleteEventoModal .modal-close:hover,
+        #deleteNoticiaModal .modal-close:hover { opacity: 1; background: #ffffff !important; }
+
+        /* Cuerpo compartido */
+        #deleteEventoModal .modal-body,
+        #deleteNoticiaModal .modal-body { padding: 24px 28px 14px; }
+
+        .del-evento-avatar, .del-noticia-avatar {
+            width: 72px; height: 72px; border-radius: 50%;
+            background: linear-gradient(135deg, #fde8e8, #fbd5d5);
+            border: 3px solid #e74c3c;
+            display: inline-flex; align-items: center; justify-content: center;
+            margin-bottom: 14px;
+        }
+        .del-evento-avatar i, .del-noticia-avatar i { font-size: 28px; color: #e74c3c; }
+
+        .del-evento-title, .del-noticia-title {
+            color: #000033; font-weight: 700; font-size: 1rem; margin-bottom: 6px;
+        }
+        .del-evento-subtitle, .del-noticia-subtitle { font-size: 14px; color: #555; margin-bottom: 0; }
+
+        .del-evento-info-card, .del-noticia-info-card {
+            background: linear-gradient(135deg, #f8f9fb, #eef1f7);
+            border: 1px solid #dde3f0; border-left: 4px solid #000033;
+            border-radius: 10px; padding: 14px 18px; margin: 14px 0; text-align: left;
+        }
+        .del-evento-info-card p, .del-noticia-info-card p {
+            margin: 5px 0; font-size: 13.5px; color: #333; display: flex; gap: 8px;
+        }
+        .del-evento-info-card strong, .del-noticia-info-card strong {
+            color: #000033; min-width: 75px; flex-shrink: 0;
+        }
+        .del-evento-warning-box, .del-noticia-warning-box {
+            background: #fff8ec; border: 1px solid #FDB750; border-radius: 8px;
+            padding: 11px 15px; display: flex; align-items: flex-start; gap: 10px; margin-bottom: 4px;
+        }
+        .del-evento-warning-box i, .del-noticia-warning-box i {
+            color: #FDB750; font-size: 16px; margin-top: 1px; flex-shrink: 0;
+        }
+        .del-evento-warning-box p, .del-noticia-warning-box p {
+            color: #7a5200; font-size: 13px; font-weight: 600; margin: 0; line-height: 1.4;
+        }
+
+        #deleteEventoModal .modal-footer,
+        #deleteNoticiaModal .modal-footer {
+            padding: 16px 24px; display: flex; gap: 12px; justify-content: flex-end;
+        }
+        #btnConfirmDeleteEvento, #btnConfirmDeleteNoticia {
+            padding: 11px 20px; border: none; border-radius: 10px; font-size: 14px;
+            font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b); color: white;
+            box-shadow: 0 4px 14px rgba(231,76,60,0.35); transition: all 0.3s; white-space: nowrap;
+        }
+        #btnConfirmDeleteEvento:hover, #btnConfirmDeleteNoticia:hover {
+            transform: translateY(-2px); box-shadow: 0 6px 18px rgba(231,76,60,0.45);
+        }
+        #btnConfirmDeleteEvento:disabled, #btnConfirmDeleteNoticia:disabled {
+            opacity: 0.7; transform: none; cursor: not-allowed;
+        }
+        @media (max-width: 575px) {
+            #deleteEventoModal .modal-container,
+            #deleteNoticiaModal .modal-container { width: 95%; }
+            #deleteEventoModal .modal-header,
+            #deleteNoticiaModal .modal-header { padding: 14px 16px; }
+            #deleteEventoModal .modal-header h3,
+            #deleteNoticiaModal .modal-header h3 { font-size: 0.88rem; }
+            #deleteEventoModal .modal-body,
+            #deleteNoticiaModal .modal-body { padding: 20px 16px 12px; }
+            #deleteEventoModal .modal-footer,
+            #deleteNoticiaModal .modal-footer { flex-direction: column-reverse; padding: 14px 16px; }
+            #deleteEventoModal .modal-footer .btn-secondary,
+            #deleteNoticiaModal .modal-footer .btn-secondary,
+            #btnConfirmDeleteEvento, #btnConfirmDeleteNoticia {
+                width: 100%; justify-content: center; font-size: 13px;
+            }
+        }
+    </style>
+
+    <div class="modal-overlay" id="deleteEventoModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>
+                    <span class="del-ev-icon-badge"><i class="fas fa-calendar-alt"></i></span>
+                    Eliminar Evento
+                </h3>
+                <button class="modal-close" type="button" onclick="closeModal('deleteEventoModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="del-evento-message">
+                    <div style="text-align:center;">
+                        <div class="del-evento-avatar"><i class="fas fa-calendar-alt"></i></div>
+                        <h3 class="del-evento-title">¿Eliminar este evento?</h3>
+                        <div class="del-evento-warning-box" style="margin-top:14px;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <p>Esta acción no se puede deshacer.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="closeModal('deleteEventoModal')">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+                <button type="button" id="btnConfirmDeleteEvento" onclick="confirmarEliminarEvento()">
+                    <i class="fas fa-trash-alt"></i> Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Eliminar Noticia -->
+    <div class="modal-overlay" id="deleteNoticiaModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>
+                    <span class="del-noti-icon-badge"><i class="fas fa-newspaper"></i></span>
+                    Eliminar Noticia
+                </h3>
+                <button class="modal-close" type="button" onclick="closeModal('deleteNoticiaModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="del-noticia-message">
+                    <div style="text-align:center;">
+                        <div class="del-noticia-avatar"><i class="fas fa-newspaper"></i></div>
+                        <h3 class="del-noticia-title">¿Eliminar esta noticia?</h3>
+                        <div class="del-noticia-warning-box" style="margin-top:14px;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <p>Esta acción no se puede deshacer.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="closeModal('deleteNoticiaModal')">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+                <button type="button" id="btnConfirmDeleteNoticia" onclick="confirmarEliminarNoticia()">
+                    <i class="fas fa-trash-alt"></i> Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Eliminar Instructor -->
+    <style>
+        /* ── Delete Instructor Modal ── */
+        #deleteInstructorModal .modal-container {
+            width: 90%;
+            max-width: 480px;
+        }
+        #deleteInstructorModal .modal-header {
+            background: linear-gradient(135deg, #000033 0%, #001159 100%) !important;
+            padding: 18px 24px;
+            border-radius: 12px 12px 0 0;
+        }
+        #deleteInstructorModal .modal-header h3 {
+            color: #ffffff !important;
+            font-size: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+        #deleteInstructorModal .del-inst-icon-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            background: rgba(253,183,80,0.15);
+            border: 2px solid #FDB750;
+            color: #FDB750;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+        #deleteInstructorModal .modal-close,
+        #deleteInstructorModal .modal-close i {
+            color: #000000 !important;
+            opacity: 0.75;
+            transition: opacity 0.2s;
+        }
+        #deleteInstructorModal .modal-close {
+            background: rgba(255,255,255,0.85);
+            border-radius: 50%;
+            width: 32px; height: 32px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        #deleteInstructorModal .modal-close:hover,
+        #deleteInstructorModal .modal-close:hover i { opacity: 1; }
+        #deleteInstructorModal .modal-body { padding: 24px 28px 14px; }
+        #deleteInstructorModal .del-inst-avatar {
+            width: 72px; height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fde8e8, #fbd5d5);
+            border: 3px solid #e74c3c;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+        #deleteInstructorModal .del-inst-avatar i { font-size: 26px; color: #e74c3c; }
+        #deleteInstructorModal .del-inst-title {
+            color: #000033;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+        #deleteInstructorModal .del-inst-subtitle {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 0;
+        }
+        #deleteInstructorModal .del-inst-info-card {
+            background: linear-gradient(135deg, #f8f9fb, #eef1f7);
+            border: 1px solid #dde3f0;
+            border-left: 4px solid #000033;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin: 14px 0;
+            text-align: left;
+        }
+        #deleteInstructorModal .del-inst-info-card p {
+            margin: 5px 0;
+            font-size: 13.5px;
+            color: #333;
+            display: flex;
+            gap: 8px;
+        }
+        #deleteInstructorModal .del-inst-info-card strong {
+            color: #000033;
+            min-width: 90px;
+            flex-shrink: 0;
+        }
+        #deleteInstructorModal .del-inst-warning-box {
+            background: #fff8ec;
+            border: 1px solid #FDB750;
+            border-radius: 8px;
+            padding: 11px 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+        #deleteInstructorModal .del-inst-warning-box i {
+            color: #FDB750;
+            font-size: 16px;
+            margin-top: 1px;
+            flex-shrink: 0;
+        }
+        #deleteInstructorModal .del-inst-warning-box p {
+            color: #7a5200;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.4;
+        }
+        #deleteInstructorModal .modal-footer {
+            padding: 16px 24px;
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+        #btnConfirmDeleteInstructor {
+            padding: 11px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            box-shadow: 0 4px 14px rgba(231,76,60,0.35);
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        #btnConfirmDeleteInstructor:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(231,76,60,0.45);
+        }
+        #btnConfirmDeleteInstructor:disabled {
+            opacity: 0.7; transform: none; cursor: not-allowed;
+        }
+        /* Responsive móvil */
+        @media (max-width: 575px) {
+            #deleteInstructorModal .modal-container { width: 95%; }
+            #deleteInstructorModal .modal-header { padding: 14px 16px; }
+            #deleteInstructorModal .modal-header h3 { font-size: 0.88rem; }
+            #deleteInstructorModal .modal-body { padding: 20px 16px 12px; }
+            #deleteInstructorModal .modal-footer {
+                flex-direction: column-reverse;
+                padding: 14px 16px;
+            }
+            #deleteInstructorModal .modal-footer .btn-secondary,
+            #btnConfirmDeleteInstructor {
+                width: 100%;
+                justify-content: center;
+                font-size: 13px;
+            }
+        }
+    </style>
+
+    <div class="modal-overlay" id="deleteInstructorModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>
+                    <span class="del-inst-icon-badge"><i class="fas fa-user-times"></i></span>
+                    Eliminar Instructor
+                </h3>
+                <button class="modal-close" onclick="closeModal('deleteInstructorModal')" style="color:#000000 !important;background:rgba(255,255,255,0.85);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;">
+                    <i class="fas fa-times" style="color:#000000 !important;"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="del-inst-message">
+                    <!-- Contenido dinámico desde JS -->
+                    <div style="text-align:center;">
+                        <div class="del-inst-avatar">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3 class="del-inst-title">¿Eliminar este instructor?</h3>
+                        <div class="del-inst-warning-box" style="margin-top:14px;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <p>Esta acción no se puede deshacer.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="closeModal('deleteInstructorModal')">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+                <button type="button" id="btnConfirmDeleteInstructor" onclick="confirmarEliminarInstructorAPI()">
+                    <i class="fas fa-trash-alt"></i> Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Editar Miembro -->
+    <div class="modal-overlay" id="editUserModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Editar Miembro</h3>
+                <button class="modal-close" onclick="closeModal('editUserModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="modal-form" id="editUserForm" onsubmit="return false;">
+                    <input type="hidden" id="editIdMiembro">
+                    <div id="editUserAlert" style="display:none; margin-bottom:12px;
+                        padding:10px 14px; border-radius:6px; font-size:14px;"></div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nombre <span class="required">*</span></label>
+                            <input type="text" id="editNombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Apellido <span class="required">*</span></label>
+                            <input type="text" id="editApellido" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>DNI <span class="required">*</span></label>
+                            <input type="text" id="editDni" maxlength="8" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="editEmail">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Teléfono</label>
+                            <input type="text" id="editTelefono" maxlength="9" pattern="[0-9]{9}">
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha Nacimiento</label>
+                            <input type="date" id="editFechaNac">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Género <span class="required">*</span></label>
+                            <select id="editGenero" required>
+                                <option value="">Selecciona...</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Rol <span class="required">*</span></label>
+                            <select id="editRol" required>
+                                <option value="Aspirante">Aspirante</option>
+                                <option value="Alumno - BIRED">Alumno - BIRED</option>
+                                <option value="Alumno - EMGRA">Alumno - EMGRA</option>
+                                <option value="Rescatista">Rescatista</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jefatura <span class="required">*</span></label>
+                        <input type="text" id="editJefatura" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Estado <span class="required">*</span></label>
+                            <select id="editEstado" required>
+                                <option value="Activo">Activo</option>
+                                <option value="Suspendido">Suspendido</option>
+                                <option value="Baja">Baja</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Profesión</label>
+                            <select id="editProfesion">
+                                <option value="">Selecciona...</option>
+                                <option value="Médico">Médico</option>
+                                <option value="Médico Cirujano">Médico Cirujano</option>
+                                <option value="Enfermero/a">Enfermero/a</option>
+                                <option value="Técnico en Enfermería">Técnico en Enfermería</option>
+                                <option value="Paramédico">Paramédico</option>
+                                <option value="Odontólogo">Odontólogo</option>
+                                <option value="Psicólogo">Psicólogo</option>
+                                <option value="Biólogo">Biólogo</option>
+                                <option value="Farmacéutico">Farmacéutico</option>
+                                <option value="Nutricionista">Nutricionista</option>
+                                <option value="Fisioterapeuta">Fisioterapeuta</option>
+                                <option value="Ingeniero Civil">Ingeniero Civil</option>
+                                <option value="Ingeniero de Sistemas">Ingeniero de Sistemas</option>
+                                <option value="Ingeniero Industrial">Ingeniero Industrial</option>
+                                <option value="Ingeniero Electrónico">Ingeniero Electrónico</option>
+                                <option value="Ingeniero Mecánico">Ingeniero Mecánico</option>
+                                <option value="Ingeniero Ambiental">Ingeniero Ambiental</option>
+                                <option value="Ingeniero Agrónomo">Ingeniero Agrónomo</option>
+                                <option value="Arquitecto">Arquitecto</option>
+                                <option value="Abogado">Abogado</option>
+                                <option value="Contador">Contador</option>
+                                <option value="Administrador">Administrador</option>
+                                <option value="Economista">Economista</option>
+                                <option value="Periodista">Periodista</option>
+                                <option value="Comunicador Social">Comunicador Social</option>
+                                <option value="Sociólogo">Sociólogo</option>
+                                <option value="Trabajador Social">Trabajador Social</option>
+                                <option value="Docente">Docente</option>
+                                <option value="Profesor">Profesor</option>
+                                <option value="Técnico en Computación">Técnico en Computación</option>
+                                <option value="Técnico en Mecánica">Técnico en Mecánica</option>
+                                <option value="Técnico en Electrónica">Técnico en Electrónica</option>
+                                <option value="Técnico en Construcción">Técnico en Construcción</option>
+                                <option value="Técnico en Emergencias">Técnico en Emergencias</option>
+                                <option value="Bombero">Bombero</option>
+                                <option value="Policía">Policía</option>
+                                <option value="Militar">Militar</option>
+                                <option value="Rescatista">Rescatista</option>
+                                <option value="Estudiante">Estudiante</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Departamento</label>
+                            <select id="editDepartamento">
+                                <option value="">Selecciona...</option>
+                                <option value="Amazonas">Amazonas</option>
+                                <option value="Áncash">Áncash</option>
+                                <option value="Apurímac">Apurímac</option>
+                                <option value="Arequipa">Arequipa</option>
+                                <option value="Ayacucho">Ayacucho</option>
+                                <option value="Cajamarca">Cajamarca</option>
+                                <option value="Callao">Callao</option>
+                                <option value="Cusco">Cusco</option>
+                                <option value="Huancavelica">Huancavelica</option>
+                                <option value="Huánuco">Huánuco</option>
+                                <option value="Ica">Ica</option>
+                                <option value="Junín">Junín</option>
+                                <option value="La Libertad">La Libertad</option>
+                                <option value="Lambayeque">Lambayeque</option>
+                                <option value="Lima">Lima</option>
+                                <option value="Loreto">Loreto</option>
+                                <option value="Madre de Dios">Madre de Dios</option>
+                                <option value="Moquegua">Moquegua</option>
+                                <option value="Pasco">Pasco</option>
+                                <option value="Piura">Piura</option>
+                                <option value="Puno">Puno</option>
+                                <option value="San Martín">San Martín</option>
+                                <option value="Tacna">Tacna</option>
+                                <option value="Tumbes">Tumbes</option>
+                                <option value="Ucayali">Ucayali</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Distrito</label>
+                            <input type="text" id="editDistrito" placeholder="Ej: Miraflores">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Dirección</label>
+                        <input type="text" id="editDireccion" placeholder="Ej: Av. Lima 123">
+                    </div>
+
+                    <div class="modal-footer" style="padding:16px 0 0 0; margin-top:8px;">
+                        <button type="button" class="btn-secondary" onclick="closeModal('editUserModal')">Cancelar</button>
+                        <button type="button" class="btn-primary" id="btnGuardarEdicion" onclick="guardarEdicionMiembro()">
+                            <i class="fas fa-save"></i> Guardar Cambios
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Confirmar descarte de formulario -->
+    <div class="modal-overlay" id="discardUserModal">
+        <div class="modal-container modal-small">
+            <div class="modal-header">
+                <h3>Deshacer cambios</h3>
+                <button class="modal-close" onclick="closeModal('discardUserModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="logout-modal-content">
+                    <div class="logout-icon-wrapper">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h4 class="logout-title">¿Descartar cambios?</h4>
+                    <p class="logout-message">Tienes información ingresada en el formulario. Si sales ahora, se perderán los datos.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeModal('discardUserModal')">
+                        No, continuar
+                    </button>
+                    <button type="button" class="btn-primary" onclick="descartarYCerrar()">
+                        <i class="fas fa-trash-alt"></i>
+                        Sí, descartar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Agregar Usuario -->
+    <div class="modal-overlay" id="addUserModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Agregar Usuario</h3>
+                <button class="modal-close" onclick="intentarCerrarModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="modal-form" id="addUserForm" onsubmit="return false;">
+                    <div id="addUserAlert" style="display:none; margin-bottom:12px;
+                        padding:10px 14px; border-radius:6px; font-size:14px;"></div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nombre <span class="required">*</span></label>
+                            <input type="text" id="addNombre" placeholder="Ej: Juan Carlos" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Apellido <span class="required">*</span></label>
+                            <input type="text" id="addApellido" placeholder="Ej: Pérez López" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>DNI <span class="required">*</span></label>
+                            <input type="text" id="addDni" placeholder="12345678" maxlength="8" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email <span class="required">*</span></label>
+                            <input type="email" id="addEmail" placeholder="correo@ejemplo.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Teléfono</label>
+                            <input type="text" id="addTelefono" placeholder="987654321" maxlength="9" pattern="[0-9]{9}" title="9 dígitos numéricos">
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha Nacimiento</label>
+                            <input type="date" id="addFechaNac">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Género <span class="required">*</span></label>
+                            <select id="addGenero" required>
+                                <option value="">Selecciona...</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Rol <span class="required">*</span></label>
+                            <select id="addRol" required>
+                                <option value="Aspirante">Aspirante</option>
+                                <option value="Alumno - BIRED">Alumno - BIRED</option>
+                                <option value="Alumno - EMGRA">Alumno - EMGRA</option>
+                                <option value="Rescatista">Rescatista</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Jefatura <span class="required">*</span></label>
+                        <input type="text" id="addJefatura" placeholder="Ej: Jefatura Lima Norte" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Estado</label>
+                            <select id="addEstado">
+                                <option value="Activo">Activo</option>
+                                <option value="Suspendido">Suspendido</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Profesión</label>
+                            <select id="addProfesion">
+                                <option value="">Selecciona...</option>
+                                <option value="Médico">Médico</option>
+                                <option value="Médico Cirujano">Médico Cirujano</option>
+                                <option value="Enfermero/a">Enfermero/a</option>
+                                <option value="Técnico en Enfermería">Técnico en Enfermería</option>
+                                <option value="Paramédico">Paramédico</option>
+                                <option value="Odontólogo">Odontólogo</option>
+                                <option value="Psicólogo">Psicólogo</option>
+                                <option value="Biólogo">Biólogo</option>
+                                <option value="Farmacéutico">Farmacéutico</option>
+                                <option value="Nutricionista">Nutricionista</option>
+                                <option value="Fisioterapeuta">Fisioterapeuta</option>
+                                <option value="Ingeniero Civil">Ingeniero Civil</option>
+                                <option value="Ingeniero de Sistemas">Ingeniero de Sistemas</option>
+                                <option value="Ingeniero Industrial">Ingeniero Industrial</option>
+                                <option value="Ingeniero Electrónico">Ingeniero Electrónico</option>
+                                <option value="Ingeniero Mecánico">Ingeniero Mecánico</option>
+                                <option value="Ingeniero Ambiental">Ingeniero Ambiental</option>
+                                <option value="Ingeniero Agrónomo">Ingeniero Agrónomo</option>
+                                <option value="Arquitecto">Arquitecto</option>
+                                <option value="Abogado">Abogado</option>
+                                <option value="Contador">Contador</option>
+                                <option value="Administrador">Administrador</option>
+                                <option value="Economista">Economista</option>
+                                <option value="Periodista">Periodista</option>
+                                <option value="Comunicador Social">Comunicador Social</option>
+                                <option value="Sociólogo">Sociólogo</option>
+                                <option value="Trabajador Social">Trabajador Social</option>
+                                <option value="Docente">Docente</option>
+                                <option value="Profesor">Profesor</option>
+                                <option value="Técnico en Computación">Técnico en Computación</option>
+                                <option value="Técnico en Mecánica">Técnico en Mecánica</option>
+                                <option value="Técnico en Electrónica">Técnico en Electrónica</option>
+                                <option value="Técnico en Construcción">Técnico en Construcción</option>
+                                <option value="Técnico en Emergencias">Técnico en Emergencias</option>
+                                <option value="Bombero">Bombero</option>
+                                <option value="Policía">Policía</option>
+                                <option value="Militar">Militar</option>
+                                <option value="Rescatista">Rescatista</option>
+                                <option value="Estudiante">Estudiante</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Departamento</label>
+                        <select id="addDepartamento">
+                            <option value="">Selecciona un departamento</option>
+                            <option value="Amazonas">Amazonas</option>
+                            <option value="Áncash">Áncash</option>
+                            <option value="Apurímac">Apurímac</option>
+                            <option value="Arequipa">Arequipa</option>
+                            <option value="Ayacucho">Ayacucho</option>
+                            <option value="Cajamarca">Cajamarca</option>
+                            <option value="Callao">Callao</option>
+                            <option value="Cusco">Cusco</option>
+                            <option value="Huancavelica">Huancavelica</option>
+                            <option value="Huánuco">Huánuco</option>
+                            <option value="Ica">Ica</option>
+                            <option value="Junín">Junín</option>
+                            <option value="La Libertad">La Libertad</option>
+                            <option value="Lambayeque">Lambayeque</option>
+                            <option value="Lima">Lima</option>
+                            <option value="Loreto">Loreto</option>
+                            <option value="Madre de Dios">Madre de Dios</option>
+                            <option value="Moquegua">Moquegua</option>
+                            <option value="Pasco">Pasco</option>
+                            <option value="Piura">Piura</option>
+                            <option value="Puno">Puno</option>
+                            <option value="San Martín">San Martín</option>
+                            <option value="Tacna">Tacna</option>
+                            <option value="Tumbes">Tumbes</option>
+                            <option value="Ucayali">Ucayali</option>
+                        </select>
+                    </div>
+                    <hr style="margin:20px 0;border-color:#eee;">
+                    <h4 style="color:#00093C;margin-bottom:12px;">
+                        <i class="fas fa-camera" style="color:#FDB750;margin-right:8px;"></i>
+                        Foto de Perfil <span style="font-size:12px;font-weight:400;color:#888;">(opcional)</span>
+                    </h4>
+                    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+                        <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;border:3px solid #0066cc;flex-shrink:0;">
+                            <img id="addFotoPreview"
+                                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Crect width='90' height='90' fill='%23e0e0e0' rx='45'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dy='.1em' font-size='38' fill='%23aaa'%3E%F0%9F%91%A4%3C/text%3E%3C/svg%3E"
+                                alt="Preview foto"
+                                style="width:100%;height:100%;object-fit:cover;">
+                        </div>
+                        <div>
+                            <label class="btn-secondary" style="cursor:pointer;font-size:13px;margin:0 0 6px 0;display:inline-block;">
+                                <i class="fas fa-upload"></i> Elegir foto
+                                <input type="file" id="addInputFoto"
+                                    accept="image/jpeg,image/png,image/webp"
+                                    style="display:none;"
+                                    onchange="handleAddFotoPreview(this)">
+                            </label>
+                            <small style="display:block;color:#999;">JPG, PNG o WEBP · máx. 2 MB</small>
+                        </div>
+                    </div>
+
+                    <!-- Cursos y Certificaciones -->
+                    <hr style="margin:20px 0;border-color:#eee;">
+                    <h4 style="color:#00093C;margin-bottom:8px;">
+                        <i class="fas fa-graduation-cap" style="color:#FDB750;margin-right:8px;"></i>
+                        Cursos y Certificaciones <span style="font-size:12px;font-weight:400;color:#888;">(opcional)</span>
+                    </h4>
+                    <small style="color:#888;display:block;margin-bottom:10px;">
+                        Separadas por coma. Ej: BLS, ACLS, Primeros Auxilios
+                    </small>
+                    <div class="form-group" style="margin:0;">
+                        <input type="text"
+                            id="addInputCerts"
+                            placeholder="Ej: BLS, ACLS, Enfermería de Emergencias"
+                            style="width:100%;">
+                    </div>
+                    <!-- Footer DENTRO del form-body para que sea visible al hacer scroll -->
+                    <div class="modal-footer" style="padding: 16px 0 0 0; margin-top: 8px;">
+                        <button type="button" class="btn-secondary" onclick="intentarCerrarModal()">Cancelar</button>
+                        <button type="button" class="btn-primary" id="btnGuardarUsuario" onclick="guardarNuevoUsuario()">
+                            <i class="fas fa-save"></i> Guardar
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Nuevo Curso -->
+    <!-- MODAL: Eliminar Curso -->
+    <style>
+        /* ── Delete Curso Modal ── */
+        #deleteCursoModal .modal-container { width: 90%; max-width: 480px; }
+        #deleteCursoModal .modal-header {
+            background: linear-gradient(135deg, #000033 0%, #001159 100%) !important;
+            padding: 18px 24px;
+            border-radius: 12px 12px 0 0;
+        }
+        #deleteCursoModal .modal-header h3 {
+            color: #ffffff !important;
+            font-size: 1rem; font-weight: 700;
+            display: flex; align-items: center; gap: 10px; flex: 1;
+        }
+        #deleteCursoModal .del-curso-icon-badge {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 30px; height: 30px; border-radius: 50%;
+            background: rgba(253,183,80,0.15); border: 2px solid #FDB750;
+            color: #FDB750; font-size: 13px; flex-shrink: 0;
+        }
+        #deleteCursoModal .modal-close,
+        #deleteCursoModal .modal-close i { color: #000000 !important; }
+        #deleteCursoModal .modal-close {
+            background: rgba(255,255,255,0.88) !important; border-radius: 50%;
+            width: 32px; height: 32px; display: flex; align-items: center;
+            justify-content: center; flex-shrink: 0; border: none; cursor: pointer;
+            opacity: 0.9; transition: opacity 0.2s;
+        }
+        #deleteCursoModal .modal-close:hover { opacity: 1; background: #ffffff !important; }
+        #deleteCursoModal .modal-body { padding: 24px 28px 14px; }
+        #deleteCursoModal .del-curso-avatar {
+            width: 72px; height: 72px; border-radius: 50%;
+            background: linear-gradient(135deg, #fde8e8, #fbd5d5);
+            border: 3px solid #e74c3c;
+            display: inline-flex; align-items: center; justify-content: center;
+            margin-bottom: 14px;
+        }
+        #deleteCursoModal .del-curso-avatar i { font-size: 28px; color: #e74c3c; }
+        #deleteCursoModal .del-curso-title {
+            color: #000033; font-weight: 700; font-size: 1rem; margin-bottom: 6px;
+        }
+        #deleteCursoModal .del-curso-subtitle { font-size: 14px; color: #555; margin-bottom: 0; }
+        #deleteCursoModal .del-curso-info-card {
+            background: linear-gradient(135deg, #f8f9fb, #eef1f7);
+            border: 1px solid #dde3f0; border-left: 4px solid #000033;
+            border-radius: 10px; padding: 14px 18px; margin: 14px 0; text-align: left;
+        }
+        #deleteCursoModal .del-curso-info-card p {
+            margin: 5px 0; font-size: 13.5px; color: #333; display: flex; gap: 8px;
+        }
+        #deleteCursoModal .del-curso-info-card strong {
+            color: #000033; min-width: 80px; flex-shrink: 0;
+        }
+        #deleteCursoModal .del-curso-warning-box {
+            background: #fff8ec; border: 1px solid #FDB750; border-radius: 8px;
+            padding: 11px 15px; display: flex; align-items: flex-start; gap: 10px; margin-bottom: 4px;
+        }
+        #deleteCursoModal .del-curso-warning-box i { color: #FDB750; font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+        #deleteCursoModal .del-curso-warning-box p {
+            color: #7a5200; font-size: 13px; font-weight: 600; margin: 0; line-height: 1.4;
+        }
+        #deleteCursoModal .modal-footer { padding: 16px 24px; display: flex; gap: 12px; justify-content: flex-end; }
+        #btnConfirmDeleteCurso {
+            padding: 11px 20px; border: none; border-radius: 10px; font-size: 14px;
+            font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b); color: white;
+            box-shadow: 0 4px 14px rgba(231,76,60,0.35); transition: all 0.3s; white-space: nowrap;
+        }
+        #btnConfirmDeleteCurso:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(231,76,60,0.45); }
+        #btnConfirmDeleteCurso:disabled { opacity: 0.7; transform: none; cursor: not-allowed; }
+        @media (max-width: 575px) {
+            #deleteCursoModal .modal-container { width: 95%; }
+            #deleteCursoModal .modal-header { padding: 14px 16px; }
+            #deleteCursoModal .modal-header h3 { font-size: 0.88rem; }
+            #deleteCursoModal .modal-body { padding: 20px 16px 12px; }
+            #deleteCursoModal .modal-footer { flex-direction: column-reverse; padding: 14px 16px; }
+            #deleteCursoModal .modal-footer .btn-secondary,
+            #btnConfirmDeleteCurso { width: 100%; justify-content: center; font-size: 13px; }
+        }
+    </style>
+
+    <div class="modal-overlay" id="deleteCursoModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>
+                    <span class="del-curso-icon-badge"><i class="fas fa-graduation-cap"></i></span>
+                    Eliminar Curso
+                </h3>
+                <button class="modal-close" type="button" onclick="closeModal('deleteCursoModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="del-curso-message">
+                    <div style="text-align:center;">
+                        <div class="del-curso-avatar"><i class="fas fa-graduation-cap"></i></div>
+                        <h3 class="del-curso-title">¿Eliminar este curso?</h3>
+                        <div class="del-curso-warning-box" style="margin-top:14px;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <p>Esta acción no se puede deshacer.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="closeModal('deleteCursoModal')">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+                <button type="button" id="btnConfirmDeleteCurso" onclick="confirmarEliminarCursoDefinitivo()">
+                    <i class="fas fa-trash-alt"></i> Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Nuevo Curso -->
+    <style>
+        /* ── Nuevo / Editar Curso Modal ── */
+        #modalNuevoCurso .modal-container,
+        #modalEditarCurso .modal-container {
+            width: 92%;
+            max-width: 700px;
+        }
+        #modalNuevoCurso .modal-header,
+        #modalEditarCurso .modal-header {
+            background: linear-gradient(135deg, #000033 0%, #001159 100%) !important;
+            padding: 18px 24px;
+            border-radius: 12px 12px 0 0;
+        }
+        #modalNuevoCurso .modal-header h3,
+        #modalEditarCurso .modal-header h3 {
+            color: #ffffff !important;
+            font-size: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+        #modalNuevoCurso .modal-header h3 .curso-icon-badge,
+        #modalEditarCurso .modal-header h3 .curso-icon-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            background: rgba(253,183,80,0.15);
+            border: 2px solid #FDB750;
+            color: #FDB750;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+        #modalNuevoCurso .modal-close,
+        #modalNuevoCurso .modal-close i,
+        #modalEditarCurso .modal-close,
+        #modalEditarCurso .modal-close i {
+            color: #000000 !important;
+        }
+        #modalNuevoCurso .modal-close,
+        #modalEditarCurso .modal-close {
+            background: rgba(255,255,255,0.88) !important;
+            border-radius: 50%;
+            width: 32px; height: 32px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            opacity: 0.9;
+            transition: opacity 0.2s, background 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        #modalNuevoCurso .modal-close:hover,
+        #modalEditarCurso .modal-close:hover {
+            opacity: 1;
+            background: #ffffff !important;
+        }
+        /* Responsive móvil para modales de curso */
+        @media (max-width: 767px) {
+            #modalNuevoCurso .modal-container,
+            #modalEditarCurso .modal-container { width: 96%; }
+            #modalNuevoCurso .modal-header,
+            #modalEditarCurso .modal-header { padding: 14px 16px; }
+            #modalNuevoCurso .modal-header h3,
+            #modalEditarCurso .modal-header h3 { font-size: 0.9rem; }
+            #modalNuevoCurso .modal-body,
+            #modalEditarCurso .modal-body { padding: 16px; }
+            #modalNuevoCurso .form-row,
+            #modalEditarCurso .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            #modalNuevoCurso .modal-footer,
+            #modalEditarCurso .modal-footer {
+                flex-direction: column-reverse;
+                padding: 14px 16px;
+                gap: 10px;
+            }
+            #modalNuevoCurso .modal-footer .btn-primary,
+            #modalNuevoCurso .modal-footer .btn-secondary,
+            #modalEditarCurso .modal-footer .btn-primary,
+            #modalEditarCurso .modal-footer .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        @media (max-width: 400px) {
+            #modalNuevoCurso .modal-header h3,
+            #modalEditarCurso .modal-header h3 { font-size: 0.82rem; }
+        }
+    </style>
+
+    <div class="modal-overlay" id="modalNuevoCurso">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>
+                    <span class="curso-icon-badge"><i class="fas fa-graduation-cap"></i></span>
+                    Nuevo Curso
+                </h3>
+                <button class="modal-close" type="button" onclick="closeModal('modalNuevoCurso')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formNuevoCurso">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Título del Curso <span class="required">*</span></label>
+                            <input type="text" id="nuevoCursoTitulo" placeholder="Ej: Primeros Auxilios Básicos" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Duración</label>
+                            <input type="text" id="nuevoCursoDuracion" placeholder="Ej: 40 horas">
+                        </div>
+                        <div class="form-group">
+                            <label>Modalidad <span class="required">*</span></label>
+                            <select id="nuevoCursoModalidad" required>
+                                <option value="Presencial">Presencial</option>
+                                <option value="Virtual">Virtual</option>
+                                <option value="Semipresencial">Semipresencial</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Instructor</label>
+                            <select id="nuevoCursoInstructor">
+                                <option value="">Sin asignar</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <textarea id="nuevoCursoDescripcion" rows="3" placeholder="Descripción del curso..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Requisitos</label>
+                        <textarea id="nuevoCursoRequisitos" rows="2" placeholder="Requisitos para el curso..."></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group" id="groupDireccion">
+                            <label>Dirección <span class="required" id="requiredDireccion">*</span></label>
+                            <input type="text" id="nuevoCursoDireccion" placeholder="Ej: Av. Arequipa 1234, Lima">
+                            <small style="color:#666;">Para cursos presenciales</small>
+                        </div>
+                        <div class="form-group" id="groupEnlace">
+                            <label>Enlace del Curso <span class="required" id="requiredEnlace">*</span></label>
+                            <input type="url" id="nuevoCursoEnlace" placeholder="https://zoom.us/j/123456789">
+                            <small style="color:#666;">Para cursos virtuales/semipresenciales</small>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Fecha Inicio</label>
+                            <input type="date" id="nuevoCursoFechaInicio">
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha Fin</label>
+                            <input type="date" id="nuevoCursoFechaFin">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" type="button" onclick="closeModal('modalNuevoCurso')">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+                <button class="btn-primary" type="button" onclick="guardarNuevoCurso()">
+                    <i class="fas fa-save"></i> Guardar Curso
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Editar Curso -->
+    <div class="modal-overlay" id="modalEditarCurso">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>
+                    <span class="curso-icon-badge"><i class="fas fa-edit"></i></span>
+                    Editar Curso
+                </h3>
+                <button class="modal-close" type="button" onclick="closeModal('modalEditarCurso')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formEditarCurso">
+                    <input type="hidden" id="editCursoId">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Título del Curso <span class="required">*</span></label>
+                            <input type="text" id="editCursoTitulo" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Duración</label>
+                            <input type="text" id="editCursoDuracion">
+                        </div>
+                        <div class="form-group">
+                            <label>Modalidad <span class="required">*</span></label>
+                            <select id="editCursoModalidad" required>
+                                <option value="Presencial">Presencial</option>
+                                <option value="Virtual">Virtual</option>
+                                <option value="Semipresencial">Semipresencial</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Instructor</label>
+                            <select id="editCursoInstructor">
+                                <option value="">Sin asignar</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <textarea id="editCursoDescripcion" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Requisitos</label>
+                        <textarea id="editCursoRequisitos" rows="2"></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group" id="groupEditDireccion">
+                            <label>Dirección <span class="required" id="requiredEditDireccion">*</span></label>
+                            <input type="text" id="editCursoDireccion" placeholder="Ej: Av. Arequipa 1234, Lima">
+                            <small style="color: #666;">Para cursos presenciales</small>
+                        </div>
+                        <div class="form-group" id="groupEditEnlace">
+                            <label>Enlace del Curso <span class="required" id="requiredEditEnlace">*</span></label>
+                            <input type="url" id="editCursoEnlace" placeholder="https://zoom.us/j/123456789">
+                            <small style="color: #666;">Para cursos virtuales/semipresenciales</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Estado <span class="required">*</span></label>
+                            <select id="editCursoEstado" required>
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                                <option value="Finalizado">Finalizado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Fecha Inicio</label>
+                            <input type="date" id="editCursoFechaInicio">
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha Fin</label>
+                            <input type="date" id="editCursoFechaFin">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('modalEditarCurso')">Cancelar</button>
+                <button class="btn-primary" onclick="actualizarCurso()">
+                    <i class="fas fa-save"></i> Actualizar Curso
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="admin-script.js"></script>
+    <script src="gestionusuarios-api.js"></script>
+    <script src="dashboard-api.js"></script>
+    <script src="instructores-api.js"></script>
+    <script src="cursos-api.js"></script>
+    <script src="eventos-api.js"></script>
+    <script src="noticias-api.js"></script>
+    <script src="admin-perfil-api.js"></script>
+    <script>
+    // ============================================
+    // 🔥 CARGAR DATOS DEL ADMIN DESDE LOCALSTORAGE
+    // Sin valores hardcodeados. Todo viene de la BD.
+    // ============================================
+    function cargarDatosAdmin() {
+        const adminDataRaw = localStorage.getItem('admin_data');
+        if (!adminDataRaw) {
+            window.location.href = 'index.html';
+            return;
+        }
+
+        const admin = JSON.parse(adminDataRaw);
+
+        // Nombre en sidebar
+        const nombreEl = document.getElementById('sidebarAdminNombre');
+        if (nombreEl) nombreEl.textContent = admin.nombre_completo || admin.username || 'Admin';
+
+        // Rol en sidebar
+        const rolEl = document.getElementById('sidebarAdminRol');
+        if (rolEl) rolEl.textContent = admin.rol || 'Administrador';
+
+        // 🔥 Foto: solo desde la BD. Si no tiene → avatar con iniciales
+        const nombre = admin.nombre_completo || admin.username || 'A';
+        const iniciales = nombre.split(' ').slice(0, 2).map(n => n[0]?.toUpperCase() || '').join('');
+        const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><rect width="120" height="120" fill="#0066cc" rx="60"/><text x="50%" y="55%" text-anchor="middle" dy=".1em" font-size="48" fill="white" font-family="Inter,sans-serif" font-weight="600">${iniciales}</text></svg>`;
+        const placeholder = `data:image/svg+xml;base64,${btoa(unescape(encodeURIComponent(svg)))}`;
+        const fotoSrc = admin.foto_perfil || placeholder;
+
+        const sidebarFoto = document.getElementById('sidebarAdminFoto');
+        const topbarFoto  = document.getElementById('topbarAdminFoto');
+        const previewFoto = document.getElementById('profilePreview');
+
+        if (sidebarFoto) sidebarFoto.src = fotoSrc;
+        if (topbarFoto)  topbarFoto.src  = fotoSrc;
+        if (previewFoto) previewFoto.src  = fotoSrc;
+
+        // Guardar foto original para restaurar al cancelar
+        window.originalPhoto = fotoSrc;
+    }
+
+    document.addEventListener('DOMContentLoaded', cargarDatosAdmin);
+
+    // Función para mostrar/ocultar dirección y enlace según modalidad
+    function toggleCamposModalidad() {
+        const modalidad = document.getElementById('nuevoCursoModalidad')?.value;
+        const groupDireccion = document.getElementById('groupDireccion');
+        const groupEnlace = document.getElementById('groupEnlace');
+        const requiredDireccion = document.getElementById('requiredDireccion');
+        const requiredEnlace = document.getElementById('requiredEnlace');
+        const inputDireccion = document.getElementById('nuevoCursoDireccion');
+        const inputEnlace = document.getElementById('nuevoCursoEnlace');
+        
+        if (!modalidad) return;
+        
+        if (modalidad === 'Presencial') {
+            // Mostrar dirección, ocultar enlace
+            if (groupDireccion) groupDireccion.style.display = 'block';
+            if (groupEnlace) groupEnlace.style.display = 'none';
+            if (requiredDireccion) requiredDireccion.style.display = 'inline';
+            if (requiredEnlace) requiredEnlace.style.display = 'none';
+            if (inputDireccion) inputDireccion.required = true;
+            if (inputEnlace) {
+                inputEnlace.required = false;
+                inputEnlace.value = '';
+            }
+        } else if (modalidad === 'Virtual' || modalidad === 'Semipresencial') {
+            // Mostrar enlace, ocultar dirección
+            if (groupDireccion) groupDireccion.style.display = 'none';
+            if (groupEnlace) groupEnlace.style.display = 'block';
+            if (requiredDireccion) requiredDireccion.style.display = 'none';
+            if (requiredEnlace) requiredEnlace.style.display = 'inline';
+            if (inputEnlace) inputEnlace.required = true;
+            if (inputDireccion) {
+                inputDireccion.required = false;
+                inputDireccion.value = '';
+            }
+        }
+    }
+
+    // 🔥 NUEVO: Función para el modal de EDITAR
+    function toggleCamposModalidadEdit() {
+        const modalidad = document.getElementById('editCursoModalidad')?.value;
+        const groupDireccion = document.getElementById('groupEditDireccion');
+        const groupEnlace = document.getElementById('groupEditEnlace');
+        const requiredDireccion = document.getElementById('requiredEditDireccion');
+        const requiredEnlace = document.getElementById('requiredEditEnlace');
+        const inputDireccion = document.getElementById('editCursoDireccion');
+        const inputEnlace = document.getElementById('editCursoEnlace');
+        
+        if (!modalidad) return;
+        
+        if (modalidad === 'Presencial') {
+            // Mostrar dirección, ocultar enlace
+            if (groupDireccion) groupDireccion.style.display = 'block';
+            if (groupEnlace) groupEnlace.style.display = 'none';
+            if (requiredDireccion) requiredDireccion.style.display = 'inline';
+            if (requiredEnlace) requiredEnlace.style.display = 'none';
+            if (inputDireccion) inputDireccion.required = true;
+            if (inputEnlace) {
+                inputEnlace.required = false;
+            }
+        } else if (modalidad === 'Virtual' || modalidad === 'Semipresencial') {
+            // Mostrar enlace, ocultar dirección
+            if (groupDireccion) groupDireccion.style.display = 'none';
+            if (groupEnlace) groupEnlace.style.display = 'block';
+            if (requiredDireccion) requiredDireccion.style.display = 'none';
+            if (requiredEnlace) requiredEnlace.style.display = 'inline';
+            if (inputEnlace) inputEnlace.required = true;
+            if (inputDireccion) {
+                inputDireccion.required = false;
+            }
+        }
+    }
+
+    // Ejecutar cuando cambie la modalidad
+    document.addEventListener('DOMContentLoaded', function() {
+        // Para modal NUEVO
+        const selectModalidad = document.getElementById('nuevoCursoModalidad');
+        if (selectModalidad) {
+            selectModalidad.addEventListener('change', toggleCamposModalidad);
+            // Ejecutar al inicio también
+            toggleCamposModalidad();
+        }
+
+        // 🔥 NUEVO: Para modal EDITAR
+        const selectModalidadEdit = document.getElementById('editCursoModalidad');
+        if (selectModalidadEdit) {
+            selectModalidadEdit.addEventListener('change', toggleCamposModalidadEdit);
+        }
+    });
+
+    // También ejecutar cuando se abra el modal
+    const originalAbrirModal = window.abrirModalNuevoCurso;
+    window.abrirModalNuevoCurso = async function() {
+        await originalAbrirModal();
+        // Esperar a que el modal esté completamente abierto
+        setTimeout(toggleCamposModalidad, 100);
+    };
+    </script>
+</body>
+</html>

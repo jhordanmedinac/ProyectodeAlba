@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="icon" type="image/png" href="icons/Insignia.png">
+    <link rel="shortcut icon" type="image/png" href="icons/Insignia.png">
+    <link rel="apple-touch-icon" href="icons/Insignia.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Cuerpo General de Paramédicos del Perú</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- 🔥 IMPORTAR API CLIENT 🔥 -->
+    <script src="api-client.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #000033;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Círculo con degradado */
+        .gradient-circle {
+            position: absolute;
+            bottom: -200px;
+            left: -200px;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom, #000033 0%, #3BFFFC 100%);
+            z-index: 1;
+            opacity: 0;
+            animation: fadeInCircle 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeInCircle {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Lado izquierdo */
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 60px;
+        }
+
+        .header {
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: slideDown 0.8s ease-out 0.2s forwards;
+        }
+
+        @keyframes slideDown {
+            to {
+                opacity: 1;
+                transform: translateY(0) translateX(-50%);
+            }
+        }
+
+        @media (min-width: 901px) {
+            @keyframes slideDown {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        }
+
+        .header-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .header-text {
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .welcome-text {
+            max-width: 500px;
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideInLeft 1s ease-out 0.4s forwards;
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .welcome-text h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .welcome-text p {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 500;
+            color: #34E1E5;
+        }
+
+        /* Lado derecho - Formulario */
+        .right-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px 50px;
+            width: 100%;
+            max-width: 520px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .login-card h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1a2e;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            animation: rotateIn 1s ease-out 1s;
+        }
+
+        @keyframes rotateIn {
+            from {
+                transform: rotate(-180deg) scale(0);
+            }
+            to {
+                transform: rotate(0) scale(1);
+            }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .form-group:nth-child(1) {
+            animation: slideInRight 0.6s ease-out 1.2s forwards;
+        }
+
+        .form-group:nth-child(2) {
+            animation: slideInRight 0.6s ease-out 1.4s forwards;
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .form-group label {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #34E1E5;
+            box-shadow: 0 0 0 3px rgba(52, 225, 229, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #aaa;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .password-toggle svg {
+            width: 20px;
+            height: 20px;
+            stroke: #666;
+        }
+
+        .password-toggle:hover svg {
+            stroke: #333;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s;
+            background-color: #1a1a2e;
+            color: white;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* 🆕 ESTILOS PARA ALERTAS */
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .alert.show {
+            display: block;
+            animation: slideInDown 0.3s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Spinner de carga */
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #34E1E5;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ─── Paso 2FA ─────────────────────────────────────────────── */
+        .step {
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+        .step.hidden {
+            display: none;
+        }
+
+        /* Cajas OTP */
+        .otp-wrapper {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 24px 0 28px;
+        }
+        .otp-box {
+            width: 48px;
+            height: 56px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 22px;
+            font-weight: 700;
+            text-align: center;
+            color: #1a1a2e;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.25s, box-shadow 0.25s;
+            outline: none;
+        }
+        .otp-box:focus {
+            border-color: #34E1E5;
+            box-shadow: 0 0 0 3px rgba(52,225,229,0.15);
+        }
+        .otp-box.filled {
+            border-color: #1a1a2e;
+            background: #f8f9ff;
+        }
+
+        /* Info email */
+        .otp-hint {
+            font-size: 13px;
+            color: #777;
+            text-align: center;
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+        .otp-hint strong {
+            color: #1a1a2e;
+        }
+
+        /* Timer expiración */
+        .otp-expiry {
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 4px;
+        }
+        .otp-expiry strong {
+            color: #1a1a2e;
+            font-variant-numeric: tabular-nums;
+        }
+        .otp-expiry.urgente {
+            color: #c0392b;
+        }
+        .otp-expiry.urgente strong {
+            color: #c0392b;
+        }
+
+        /* Timer / reenviar */
+        .otp-resend {
+            text-align: center;
+            font-size: 13px;
+            color: #aaa;
+            margin-top: 16px;
+        }
+        .otp-resend button {
+            background: none;
+            border: none;
+            color: #34b8ba;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            padding: 0;
+            text-decoration: underline;
+        }
+        .otp-resend button:disabled {
+            color: #aaa;
+            text-decoration: none;
+            cursor: default;
+        }
+
+        /* Botón volver */
+        .btn-back {
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin: 0 auto 16px;
+            padding: 0;
+        }
+        .btn-back:hover { color: #333; }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .left-section {
+                padding: 100px 30px 30px;
+                min-height: 20vh;
+            }
+
+            .header {
+                left: 50%;
+                transform: translateX(-50%) translateY(-20px);
+            }
+
+            .welcome-text h1 {
+                font-size: 32px;
+            }
+
+            .welcome-text p {
+                font-size: 18px;
+            }
+
+            .gradient-circle {
+                width: 450px;
+                height: 450px;
+                bottom: -180px;
+                left: -180px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .left-section {
+                padding: 90px 30px 25px;
+                min-height: 18vh;
+            }
+
+            .login-card {
+                padding: 30px 25px;
+                border-radius: 16px;
+            }
+
+            .login-card h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Círculo degradado -->
+    <div class="gradient-circle"></div>
+
+    <div class="container">
+        <!-- Sección izquierda -->
+        <div class="left-section">
+            <div class="header">
+                <img src="icons/Insignia.png" alt="Logo" class="header-logo">
+                <div class="header-text">
+                    Cuerpo General de Paramédicos<br>
+                    Voluntarios del Perú
+                </div>
+            </div>
+
+            <div class="welcome-text">
+                <h1>¡Bienvenido al panel admin del Cuerpo General Paramédicos del Perú!</h1>
+                <p>Gestiona la información</p>
+            </div>
+        </div>
+
+        <!-- Sección derecha - Formulario -->
+        <div class="right-section">
+            <div class="login-card">
+
+                <!-- ══════════════════════════════════════ -->
+                <!-- PASO 1: Email + Password               -->
+                <!-- ══════════════════════════════════════ -->
+                <div id="step1" class="step">
+                    <h2>Inicia Sesión</h2>
+                    
+                    <div class="logo-container">
+                        <img src="icons/Insignia.png" alt="Logo Paramédicos" class="logo">
+                    </div>
+
+                    <div id="alert" class="alert"></div>
+
+                    <form id="loginForm" onsubmit="handleLogin(event)">
+                        <div class="form-group">
+                            <label for="email">Correo</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                placeholder="Ingresa tu correo..."
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Contraseña</label>
+                            <div class="password-container">
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    placeholder="Ingresa tu contraseña..."
+                                    required
+                                >
+                                <button type="button" class="password-toggle" onclick="togglePassword()">
+                                    <i data-lucide="eye" id="icon-eye"></i>
+                                    <i data-lucide="eye-off" id="icon-eye-off" style="display: none;"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="btnLogin">
+                            Acceder
+                        </button>
+                    </form>
+                </div>
+
+                <!-- ══════════════════════════════════════ -->
+                <!-- PASO 2: Código OTP                     -->
+                <!-- ══════════════════════════════════════ -->
+                <div id="step2" class="step hidden">
+                    <h2>Verificación</h2>
+
+                    <div class="logo-container">
+                        <img src="icons/Insignia.png" alt="Logo Paramédicos" class="logo">
+                    </div>
+
+                    <div id="alertOTP" class="alert"></div>
+
+                    <p class="otp-hint">
+                        Ingresa el código de 6 dígitos que enviamos a<br>
+                        <strong id="otpEmailHint"></strong>
+                    </p>
+
+                    <form id="otpForm" onsubmit="handleOTP(event)">
+                        <div class="otp-wrapper">
+                            <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+                            <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+                            <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+                            <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+                            <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+                            <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="btnVerify">
+                            Verificar código
+                        </button>
+                    </form>
+
+                    <!-- Timer expiración (5 min) -->
+                    <div class="otp-expiry" id="expiryBlock">
+                        <i data-lucide="clock" style="width:13px;height:13px;vertical-align:-2px;"></i>
+                        El código expira en <strong id="expiryCount">5:00</strong>
+                    </div>
+
+                    <!-- Timer reenvío (2 min) -->
+                    <div class="otp-resend">
+                        <span id="timerText">Reenviar en <strong id="timerCount">2:00</strong></span>
+                        <button id="btnResend" onclick="handleResend()" disabled style="display:none;">
+                            Reenviar código
+                        </button>
+                    </div>
+
+                    <button class="btn-back" onclick="volverAlLogin()">
+                        <i data-lucide="arrow-left" style="width:14px;height:14px;"></i>
+                        Volver al inicio
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ─── Anti-bucle ──────────────────────────────────────────────────────────
+        const lastLoginAttempt = sessionStorage.getItem('lastLoginAttempt');
+        const now = Date.now();
+        if (lastLoginAttempt && (now - parseInt(lastLoginAttempt)) < 3000) {
+            localStorage.removeItem('admin_data');
+            localStorage.removeItem('admin_token');
+            sessionStorage.removeItem('lastLoginAttempt');
+        }
+        sessionStorage.setItem('lastLoginAttempt', now.toString());
+
+        // ─── Estado global ───────────────────────────────────────────────────────
+        let _adminId   = null;   // se rellena tras el paso 1 exitoso
+        let _timerInterval = null;
+
+        // ─── Init ────────────────────────────────────────────────────────────────
+        lucide.createIcons();
+
+        // Redirigir si ya hay sesión activa
+        window.addEventListener('DOMContentLoaded', () => {
+            const adminData  = localStorage.getItem('admin_data');
+            const adminToken = localStorage.getItem('admin_token');
+            if (adminData && adminToken) {
+                try {
+                    if (JSON.parse(adminData).admin_id) {
+                        window.location.href = 'admin-panel.html';
+                        return;
+                    }
+                } catch { 
+                    localStorage.removeItem('admin_data');
+                    localStorage.removeItem('admin_token');
+                }
+            }
+            initOTPBoxes();
+        });
+
+        // ─── Helpers de alerta ───────────────────────────────────────────────────
+        function showAlert(message, type = 'error', id = 'alert') {
+            const el = document.getElementById(id);
+            el.className = `alert alert-${type} show`;
+            el.textContent = message;
+            setTimeout(() => el.classList.remove('show'), 5000);
+        }
+
+        // ─── Toggle password ─────────────────────────────────────────────────────
+        function togglePassword() {
+            const input    = document.getElementById('password');
+            const iconEye  = document.getElementById('icon-eye');
+            const iconOff  = document.getElementById('icon-eye-off');
+            if (input.type === 'password') {
+                input.type = 'text';
+                iconEye.style.display = 'none';
+                iconOff.style.display = 'block';
+            } else {
+                input.type = 'password';
+                iconEye.style.display = 'block';
+                iconOff.style.display = 'none';
+            }
+        }
+
+        // ════════════════════════════════════════════════════════════════════════
+        // PASO 1: Login (email + password)
+        // ════════════════════════════════════════════════════════════════════════
+        async function handleLogin(event) {
+            event.preventDefault();
+
+            const email    = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const btn      = document.getElementById('btnLogin');
+
+            if (!email || !password) {
+                showAlert('Por favor completa todos los campos', 'error');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Validando...';
+
+            try {
+                const response = await window.API.Admin.login(email, password);
+
+                if (response.success && response.requires2FA) {
+                    // ✅ Guardar admin_id y mostrar el paso 2
+                    _adminId = response.admin_id;
+                    mostrarPaso2(email);
+                } else if (response.success) {
+                    // Login directo sin 2FA (legacy)
+                    showAlert('¡Login exitoso! Redirigiendo...', 'success');
+                    setTimeout(() => window.location.href = 'admin-panel.html', 1000);
+                } else {
+                    showAlert(response.message || 'Credenciales incorrectas', 'error');
+                    btn.disabled = false;
+                    btn.textContent = 'Acceder';
+                }
+            } catch (error) {
+                showAlert('Error al conectar con el servidor.', 'error');
+                btn.disabled = false;
+                btn.textContent = 'Acceder';
+            }
+        }
+
+        // ════════════════════════════════════════════════════════════════════════
+        // PASO 2: Verificar OTP
+        // ════════════════════════════════════════════════════════════════════════
+        async function handleOTP(event) {
+            event.preventDefault();
+
+            const boxes  = document.querySelectorAll('.otp-box');
+            const codigo = Array.from(boxes).map(b => b.value).join('');
+
+            if (codigo.length < 6) {
+                showAlert('Ingresa los 6 dígitos del código', 'error', 'alertOTP');
+                return;
+            }
+
+            const btn = document.getElementById('btnVerify');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Verificando...';
+
+            try {
+                const response = await window.API.Admin.verifyOTP(_adminId, codigo);
+
+                if (response.success) {
+                    showAlert('¡Acceso concedido! Redirigiendo...', 'success', 'alertOTP');
+                    setTimeout(() => window.location.href = 'admin-panel.html', 1000);
+                } else {
+                    showAlert(response.message || 'Código inválido o expirado', 'error', 'alertOTP');
+                    // Limpiar cajas y enfocar la primera
+                    boxes.forEach(b => { b.value = ''; b.classList.remove('filled'); });
+                    boxes[0].focus();
+                    btn.disabled = false;
+                    btn.textContent = 'Verificar código';
+                }
+            } catch (error) {
+                showAlert('Error al verificar el código', 'error', 'alertOTP');
+                btn.disabled = false;
+                btn.textContent = 'Verificar código';
+            }
+        }
+
+        // ─── Reenviar código ─────────────────────────────────────────────────────
+        async function handleResend() {
+            const email    = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            const btnResend = document.getElementById('btnResend');
+            btnResend.disabled = true;
+            btnResend.textContent = 'Enviando...';
+
+            try {
+                const response = await window.API.Admin.login(email, password);
+                if (response.success && response.requires2FA) {
+                    _adminId = response.admin_id;
+                    showAlert('Código reenviado a tu correo', 'success', 'alertOTP');
+                    iniciarTimer();
+                } else {
+                    showAlert('No se pudo reenviar el código', 'error', 'alertOTP');
+                    btnResend.disabled = false;
+                    btnResend.textContent = 'Reenviar código';
+                }
+            } catch {
+                showAlert('Error al reenviar el código', 'error', 'alertOTP');
+                btnResend.disabled = false;
+                btnResend.textContent = 'Reenviar código';
+            }
+        }
+
+        // ─── Mostrar paso 2 ──────────────────────────────────────────────────────
+        function mostrarPaso2(email) {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
+            // Mostrar email ofuscado: a***@dominio.com
+            const [user, domain] = email.split('@');
+            const hint = user.slice(0, 2) + '***@' + domain;
+            document.getElementById('otpEmailHint').textContent = hint;
+            iniciarTimer();
+            // Enfocar la primera caja
+            setTimeout(() => document.querySelectorAll('.otp-box')[0].focus(), 100);
+        }
+
+        // ─── Volver al paso 1 ────────────────────────────────────────────────────
+        function volverAlLogin() {
+            clearInterval(_timerInterval);
+            _adminId = null;
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step1').classList.remove('hidden');
+            // Reset botón login
+            const btn = document.getElementById('btnLogin');
+            btn.disabled = false;
+            btn.textContent = 'Acceder';
+            // Limpiar cajas OTP
+            document.querySelectorAll('.otp-box').forEach(b => { b.value = ''; b.classList.remove('filled'); });
+        }
+
+        // ─── Timers: expiración (5 min) + reenvío (2 min) ───────────────────────
+        function iniciarTimer() {
+            clearInterval(_timerInterval);
+
+            const expiryBlock = document.getElementById('expiryBlock');
+            const expiryCount = document.getElementById('expiryCount');
+            const timerText   = document.getElementById('timerText');
+            const timerCount  = document.getElementById('timerCount');
+            const btnResend   = document.getElementById('btnResend');
+
+            let segsExpiry = 5 * 60;   // 5 minutos → expiración real
+            let segsResend = 2 * 60;   // 2 minutos → cooldown reenvío
+
+            // Estado inicial
+            expiryBlock.classList.remove('urgente');
+            timerText.style.display  = 'inline';
+            btnResend.style.display  = 'none';
+            btnResend.disabled       = true;
+
+            function fmt(s) {
+                const m = Math.floor(s / 60);
+                const sec = s % 60;
+                return `${m}:${String(sec).padStart(2, '0')}`;
+            }
+
+            expiryCount.textContent = fmt(segsExpiry);
+            timerCount.textContent  = fmt(segsResend);
+
+            _timerInterval = setInterval(() => {
+                // ── Countdown expiración ──
+                if (segsExpiry > 0) {
+                    segsExpiry--;
+                    expiryCount.textContent = fmt(segsExpiry);
+                    // Último minuto → alerta roja
+                    if (segsExpiry <= 60) expiryBlock.classList.add('urgente');
+                    // Llegó a 0 → código vencido
+                    if (segsExpiry === 0) {
+                        clearInterval(_timerInterval);
+                        showAlert('El código expiró. Inicia sesión de nuevo.', 'error', 'alertOTP');
+                        setTimeout(volverAlLogin, 2500);
+                        return;
+                    }
+                }
+
+                // ── Countdown reenvío ──
+                if (segsResend > 0) {
+                    segsResend--;
+                    timerCount.textContent = fmt(segsResend);
+                    if (segsResend === 0) {
+                        timerText.style.display = 'none';
+                        btnResend.style.display = 'inline';
+                        btnResend.disabled      = false;
+                        btnResend.textContent   = 'Reenviar código';
+                    }
+                }
+            }, 1000);
+        }
+        function initOTPBoxes() {
+            const boxes = document.querySelectorAll('.otp-box');
+            boxes.forEach((box, idx) => {
+                box.addEventListener('input', () => {
+                    // Solo dígitos
+                    box.value = box.value.replace(/\D/g, '').slice(-1);
+                    box.classList.toggle('filled', box.value !== '');
+                    // Auto-avanzar
+                    if (box.value && idx < boxes.length - 1) boxes[idx + 1].focus();
+                    const codigo = Array.from(boxes).map(b => b.value).join('');
+                    if (codigo.length === 6) document.getElementById('otpForm').requestSubmit();
+                });
+
+                box.addEventListener('keydown', (e) => {
+                    if (e.key === 'Backspace' && !box.value && idx > 0) {
+                        boxes[idx - 1].focus();
+                        boxes[idx - 1].value = '';
+                        boxes[idx - 1].classList.remove('filled');
+                    }
+                });
+                box.addEventListener('paste', (e) => {
+                    e.preventDefault();
+                    const pasted = (e.clipboardData || window.clipboardData)
+                        .getData('text').replace(/\D/g, '').slice(0, 6);
+                    pasted.split('').forEach((char, i) => {
+                        if (boxes[i]) {
+                            boxes[i].value = char;
+                            boxes[i].classList.add('filled');
+                        }
+                    });
+                    const next = Math.min(pasted.length, boxes.length - 1);
+                    boxes[next].focus();
+                    if (pasted.length === 6) document.getElementById('otpForm').requestSubmit();
+                });
+            });
+        }
+    </script>
+</body>
+</html>
