@@ -843,3 +843,17 @@
         font-size: 14px;
     }
 }
+.footer-allies-title {
+            width: 100%;
+            text-align: center;
+            color: #c5a059;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0 0 16px 0;
+            padding: 0;
+            opacity: 0.95;
+            grid-column: 1 / -1;
+            display: block;
+        }

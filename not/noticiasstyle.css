@@ -447,13 +447,19 @@ div, section, article, header, footer, nav {
 /* Responsive para los logos */
 @media (max-width: 768px) {
     .footer-partners-logos {
-        gap: 20px;
-        padding: 0;
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 25px !important;
+        justify-items: center;
+        align-items: center;
+        padding: 10px 0;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .partner-logo {
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
     }
 }
 

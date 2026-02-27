@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="../not/buscar-miembros.css">
     <link rel="stylesheet" href="../not/navbar-responsive-sin-cambiar-html.css">
     <script src="../accesibilidad.js" defer></script>
-    <script src="../f2.js" defer></script> 
+    <script src="../f2.js" defer></script>  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="icon" href="../IMAGENES/LOGO.png" type="image/png">
+    <link rel="icon" href="../IMAGENES/LOGO.png" type="image/png">    
 </head>
 <body>
 
@@ -91,53 +91,60 @@
             <!-- Grid de Cursos -->
             <div class="courses-section">
                 
-                <!-- Curso Más Próximo -->
-                <article class="course-featured reveal reveal-scale">
-                    <div class="featured-image">
-                        <i class="fas fa-hand-holding-medical"></i>
-                    </div>
-                    <div class="featured-content">
-                        <h2 class="featured-title">Primeros Auxilios Básicos</h2>
-                        <div class="featured-info-grid">
-                            <div class="info-item">
-                                <i class="fas fa-tag"></i>
-                                <div>
-                                    <span class="info-label">Categoría</span>
-                                    <span class="info-value">Nivel Básico</span>
-                                </div>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-clock"></i>
-                                <div>
-                                    <span class="info-label">Duración</span>
-                                    <span class="info-value">40 Horas</span>
-                                </div>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-chalkboard-teacher"></i>
-                                <div>
-                                    <span class="info-label">Modalidad</span>
-                                    <span class="info-value">Presencial</span>
-                                </div>
-                            </div>
-                            <div class="info-item">
-                                <i class="fas fa-calendar-alt"></i>
-                                <div>
-                                    <span class="info-label">Fecha</span>
-                                    <span class="info-value">10 Ene - 28 Feb 2025</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="featured-footer">
-                            <button class="btn-featured" id="btn-curso-destacado">
-                                Ver Detalles <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </article>
+                <!-- Anuncio - Únete a nuestros cursos -->
+<article class="course-featured reveal reveal-scale" style="background: linear-gradient(135deg, #00093C 0%, #001159 100%); border: 3px solid #c5a059; min-height: 280px;">
+    <div class="featured-image" style="background: transparent; padding: 20px;">
+        <i class="fas fa-graduation-cap" style="font-size: 100px; color: #c5a059;"></i>
+    </div>
+    <div class="featured-content" style="justify-content: center;">
+        <h2 class="featured-title" style="color: #c5a059; font-size: 28px; text-transform: uppercase; letter-spacing: 2px;">
+            ¡Únete a Nuestros Cursos!
+        </h2>
+        <p style="color: rgba(255,255,255,0.9); font-size: 16px; line-height: 1.7; margin-bottom: 25px;">
+            Capacítate con los mejores profesionales en atención prehospitalaria. 
+            Contamos con modalidades <strong style="color: #c5a059;">presencial</strong> y 
+            <strong style="color: #c5a059;">virtual</strong> para adaptarnos a tu disponibilidad.
+        </p>
+        <div class="featured-info-grid">
+            <div class="info-item" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(197,160,89,0.3);">
+                <i class="fas fa-users" style="color: #c5a059;"></i>
+                <div>
+                    <span class="info-label" style="color: rgba(255,255,255,0.6);">Modalidad</span>
+                    <span class="info-value" style="color: white;">Presencial</span>
+                </div>
+            </div>
+            <div class="info-item" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(197,160,89,0.3);">
+                <i class="fas fa-laptop" style="color: #c5a059;"></i>
+                <div>
+                    <span class="info-label" style="color: rgba(255,255,255,0.6);">Modalidad</span>
+                    <span class="info-value" style="color: white;">Virtual</span>
+                </div>
+            </div>
+            <div class="info-item" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(197,160,89,0.3);">
+                <i class="fas fa-certificate" style="color: #c5a059;"></i>
+                <div>
+                    <span class="info-label" style="color: rgba(255,255,255,0.6);">Certificación</span>
+                    <span class="info-value" style="color: white;">Acreditada</span>
+                </div>
+            </div>
+            <div class="info-item" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(197,160,89,0.3);">
+                <i class="fas fa-coins" style="color: #c5a059;"></i>
+                <div>
+                    <span class="info-label" style="color: rgba(255,255,255,0.6);">Precio</span>
+                    <span class="info-value" style="color: white;">Gratuito</span>
+                </div>
+            </div>
+        </div>
+        <div class="featured-footer" style="border-top: 1px solid rgba(197,160,89,0.3);">
+    <a href="#cursos-lista" class="btn-featured" style="background: linear-gradient(135deg, #c5a059, #d4b06a); color: #00093C; text-decoration: none;">
+        Ver Cursos <i class="fas fa-chevron-down"></i>
+    </a>
+</div>
+    </div>
+</article>
 
                 <!-- Grid de Cursos Regulares -->
-                <div class="courses-grid">
+                <div class="courses-grid" id="cursos-lista">
                     <!-- Los cursos se cargarán dinámicamente desde la API -->
                     <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
                         <i class="fas fa-spinner fa-spin" style="font-size: 48px; color: #c5a059;"></i>
@@ -232,6 +239,10 @@
      <!-- FOOTER MEJORADO CON LOGOS CIRCULARES -->
     <footer class="main-footer">
         <div class="footer-content">
+            <!-- TÍTULO ALIADOS -->
+            <p class="footer-allies-title">
+                <i class="fas fa-globe" style="margin-right:8px;"></i>Principales Aliados Internacionales
+            </p>
             <!-- Logos circulares superiores -->
             <div class="footer-partners-logos">
                 <a href="https://americancollegefire.org/" target="_blank" class="partner-logo" aria-label="Socio 1">

@@ -12,10 +12,9 @@ try{
   const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
   const css=`
   :root{--acc-primary-100:#e8dcc5;--acc-primary-500:#c5a059;--acc-primary-600:#000831;--acc-neutral-100:#f5f5f4;--acc-neutral-200:#e5e5e4;--acc-neutral-900:#1c1917}
-  @keyframes accFabSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-  #accFab{position:fixed;bottom:20px;left:20px;width:56px;height:56px;border-radius:999px;background:#000831;color:#fff;display:flex;align-items:center;justify-content:center;border:none;box-shadow:0 10px 25px rgba(0,0,0,.1),0 4px 10px rgba(0,0,0,.08);z-index:10050;cursor:grab;transition:box-shadow .2s ease;touch-action:none;user-select:none;animation:accFabSpin 8s linear infinite}
-  #accFab:hover{box-shadow:0 12px 30px rgba(0,0,0,.15),0 6px 12px rgba(0,0,0,.1);animation:accFabSpin 1.5s linear infinite}
-  #accFab.dragging{animation:none;cursor:grabbing;box-shadow:0 20px 50px rgba(0,0,0,.3);transform:scale(1.1);transition:box-shadow .1s,transform .1s}
+  #accFab{position:fixed;bottom:20px;left:20px;width:56px;height:56px;border-radius:999px;background:#000831;color:#fff;display:flex;align-items:center;justify-content:center;border:none;box-shadow:0 10px 25px rgba(0,0,0,.1),0 4px 10px rgba(0,0,0,.08);z-index:10050;cursor:grab;transition:box-shadow .2s ease;touch-action:none;user-select:none;}
+  #accFab:hover{box-shadow:0 12px 30px rgba(0,0,0,.15),0 6px 12px rgba(0,0,0,.1);}
+  #accFab.dragging{cursor:grabbing;box-shadow:0 20px 50px rgba(0,0,0,.3);transform:scale(1.1);transition:box-shadow .1s,transform .1s}
   #accFab.hidden{display:none}
   #accFab .ico-dog{font-size:28px;line-height:1}
   #accFabHint{position:fixed;background:rgba(0,0,0,.75);color:#fff;font-size:11px;padding:4px 8px;border-radius:6px;pointer-events:none;white-space:nowrap;opacity:0;transition:opacity .3s;z-index:10049}

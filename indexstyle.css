@@ -171,7 +171,7 @@ div, section, article, header, footer, nav {
    LOGOS HERO BANNER - 7 LOGOS SEPARADOS
    ============================================ */
 .hero-logos-container {
-    margin-top: 199px;
+    margin-top: 230px;
     margin-left: -50px;
     margin-right: auto;
     max-width: 1100px;
@@ -2037,6 +2037,18 @@ div, section, article, header, footer, nav {
     margin: 0 15px;
     
 }
+.footer-allies-title {
+    width: 100%;
+    text-align: center;
+    color: #c5a059;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    opacity: 0.95;
+    grid-column: 1 / -1;  /* ← esto hace que ocupe todas las columnas del grid */
+}
 
 .navbar-search input {
     width: 200px;
@@ -2385,8 +2397,8 @@ div, section, article, header, footer, nav {
     }
 
     .partner-logo {
-        width: 65px;
-        height: 65px;
+        width: 60px;
+        height: 60px;
     }
 
     .footer-section.footer-about {

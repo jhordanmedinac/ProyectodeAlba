@@ -13,6 +13,7 @@
     <script src="../f2.js" defer></script>  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="../IMAGENES/LOGO.png" type="image/png">
+    
 </head>
 <body>
 
@@ -97,7 +98,6 @@
                     <!-- Columna derecha: Imagen -->
                     <div class="columna-imagen">
                         <div class="caja-imagen-grande fade-in-element fade-delay-3">
-                            <!-- COLOCA AQUÍ TU IMAGEN 1 -->
                             <img src="../IMAGENES/rescate.jpg" alt="CGPVP en acción">
                         </div>
                     </div>
@@ -144,7 +144,6 @@
                     <!-- Columna derecha: Imagen grande -->
                     <div class="columna-imagen">
                         <div class="caja-imagen-grande fade-in-element fade-delay-3">
-                            <!-- COLOCA AQUÍ TU IMAGEN 2 -->
                             <img src="../IMAGENES/ayuda.jpg" alt="Alianzas CGPVP">
                         </div>
                     </div>
@@ -365,8 +364,8 @@
                         <div class="stat-icon">
                             <i class="fas fa-users"></i>
                         </div>
-                        <div class="stat-number" data-target="5000">0</div>
-                        <p class="stat-label">Paramédicos Graduados</p>
+                        <div class="stat-number" data-target="1200">0</div>
+                        <p class="stat-label">Ciudadanos firmados en las brigadas de rescate, USAR y demás certificaciones</p>
                     </div>
 
                     <div class="stat-card fade-in-element fade-delay-2">
@@ -398,9 +397,15 @@
 
     </main>
 
-    <!-- FOOTER MEJORADO CON LOGOS CIRCULARES -->
+    <!-- FOOTER -->
     <footer class="main-footer">
         <div class="footer-content">
+
+            <!-- TÍTULO ALIADOS -->
+            <p class="footer-allies-title">
+                <i class="fas fa-globe" style="margin-right:8px;"></i>Principales Aliados Internacionales
+            </p>
+
             <!-- Logos circulares superiores -->
             <div class="footer-partners-logos">
                 <a href="https://americancollegefire.org/" target="_blank" class="partner-logo" aria-label="Socio 1">
@@ -426,17 +431,16 @@
             <div class="footer-section footer-about">
                 <h4>CONOCE SOBRE NUESTRAS REDES SOCIALES</h4>                
                 <div class="footer-social">
-                <a href="https://www.facebook.com/paramedicos.pe" target="_blank" aria-label="Facebook">
-                 <i class="fab fa-facebook-f"></i>
-                </a>
-                 <a href="https://www.linkedin.com/in/param%C3%A9dicos-del-per%C3%BA-324795203/" target="_blank" aria-label="LinkedIn">
-                   <i class="fab fa-linkedin-in"></i>
-                   </a>
-                     <a href="https://www.tiktok.com/@paramedicos.pe/video/7371679537878404358" target="_blank" aria-label="TikTok">
-                    <i class="fab fa-tiktok"></i>
-               </a>
-          </div>
-
+                    <a href="https://www.facebook.com/paramedicos.pe" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/param%C3%A9dicos-del-per%C3%BA-324795203/" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@paramedicos.pe/video/7371679537878404358" target="_blank" aria-label="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
                 <p class="footer-copyright">
                     Cuerpo General de Paramédicos Voluntarios del Perú © 2025.<br>
                     Todos los derechos reservados                                                           
@@ -465,8 +469,9 @@
                     <li><a href="Nosotros.html#vision">Visión</a></li>
                     <li><a href="Nosotros.html#organigrama">Organización</a></li>
                 </ul>
-            </div> 
-             <div class="footer-section">
+            </div>
+
+            <div class="footer-section">
                 <h4>Conoce más sobre nuestros cursos</h4>
                 <ul>
                     <li><a href="../cur/Cursos.html">Cursos</a></li>
@@ -476,6 +481,7 @@
                 </ul>
             </div>              
             
+        </div>
     </footer>   
 
     <!-- Modal Misión -->
@@ -521,7 +527,6 @@
     </div>
 
     <script>
-        // Función para scroll suave al contenido
         function scrollToContent() {
             const nosotrosSection = document.getElementById('nosotros');
             nosotrosSection.scrollIntoView({ 
@@ -530,7 +535,6 @@
             });
         }
 
-        // Modal functions
         function openModal(modalId) {
             document.getElementById(modalId).style.display = 'block';
             document.body.style.overflow = 'hidden';
@@ -541,7 +545,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Close modal when clicking outside
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) {
                 event.target.style.display = 'none';
@@ -549,7 +552,6 @@
             }
         }
 
-        // Close modal with Escape key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 const modals = document.querySelectorAll('.modal');
@@ -562,7 +564,6 @@
             }
         });
 
-        // Counter Animation
         function animateCounter(element) {
             const target = parseInt(element.getAttribute('data-target'));
             const duration = 2000;
@@ -580,7 +581,6 @@
             }, 16);
         }
 
-        // Intersection Observer for stats
         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -596,25 +596,18 @@
             statsObserver.observe(statsSection);
         }
 
-        // ============================================
-        // ANIMACIONES DE SCROLL PARA ELEMENTOS
-        // ============================================
-        
-        // Intersection Observer para animaciones de aparición
         const fadeInObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    // Opcional: dejar de observar después de animar
                     fadeInObserver.unobserve(entry.target);
                 }
             });
         }, {
-            threshold: 0.15, // El elemento debe ser 15% visible para activar la animación
-            rootMargin: '0px 0px -50px 0px' // Activa un poco antes de que sea totalmente visible
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
         });
 
-        // Aplicar observer a todos los elementos con la clase fade-in-element
         document.addEventListener('DOMContentLoaded', function() {
             const fadeElements = document.querySelectorAll('.fade-in-element');
             fadeElements.forEach(element => {

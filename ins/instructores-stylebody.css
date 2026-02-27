@@ -1022,13 +1022,19 @@
 /* Responsive para los logos */
 @media (max-width: 768px) {
     .footer-partners-logos {
-        gap: 20px;
-        padding: 0;
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 25px !important;
+        justify-items: center;
+        align-items: center;
+        padding: 10px 0;
+        width: 100%;
+        box-sizing: border-box;
     }
     
     .partner-logo {
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
     }
 }
 
@@ -1846,3 +1852,17 @@
 .instructor-card:hover {
     transform: translateY(-16px);
 }
+.footer-allies-title {
+            width: 100%;
+            text-align: center;
+            color: #c5a059;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0 0 16px 0;
+            padding: 0;
+            opacity: 0.95;
+            grid-column: 1 / -1;
+            display: block;
+        }
