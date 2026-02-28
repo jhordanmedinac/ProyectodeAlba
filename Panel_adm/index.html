@@ -5,527 +5,18 @@
     <link rel="shortcut icon" type="image/png" href="icons/Insignia.png">
     <link rel="apple-touch-icon" href="icons/Insignia.png">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Login - Cuerpo General de Paramédicos del Perú</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    
+
     <!-- 🔥 IMPORTAR API CLIENT 🔥 -->
     <script src="api-client.js"></script>
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            min-height: 100vh;
-            background-color: #000033;
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Círculo con degradado */
-        .gradient-circle {
-            position: absolute;
-            bottom: -200px;
-            left: -200px;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: linear-gradient(to bottom, #000033 0%, #3BFFFC 100%);
-            z-index: 1;
-            opacity: 0;
-            animation: fadeInCircle 1.5s ease-out forwards;
-        }
-
-        @keyframes fadeInCircle {
-            to {
-                opacity: 1;
-            }
-        }
-
-        .container {
-            display: flex;
-            width: 100%;
-            min-height: 100vh;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Lado izquierdo */
-        .left-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 40px 60px;
-        }
-
-        .header {
-            position: absolute;
-            top: 30px;
-            left: 40px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: slideDown 0.8s ease-out 0.2s forwards;
-        }
-
-        @keyframes slideDown {
-            to {
-                opacity: 1;
-                transform: translateY(0) translateX(-50%);
-            }
-        }
-
-        @media (min-width: 901px) {
-            @keyframes slideDown {
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-        }
-
-        .header-logo {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .header-text {
-            color: white;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 1.4;
-        }
-
-        .welcome-text {
-            max-width: 500px;
-            opacity: 0;
-            transform: translateX(-30px);
-            animation: slideInLeft 1s ease-out 0.4s forwards;
-        }
-
-        @keyframes slideInLeft {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .welcome-text h1 {
-            font-family: 'Inter', sans-serif;
-            font-size: 48px;
-            font-weight: 700;
-            color: white;
-            line-height: 1.2;
-            margin-bottom: 15px;
-        }
-
-        .welcome-text p {
-            font-family: 'Inter', sans-serif;
-            font-size: 24px;
-            font-weight: 500;
-            color: #34E1E5;
-        }
-
-        /* Lado derecho - Formulario */
-        .right-section {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-        }
-
-        .login-card {
-            background: white;
-            border-radius: 20px;
-            padding: 50px 50px;
-            width: 100%;
-            max-width: 520px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            opacity: 0;
-            transform: translateY(30px) scale(0.95);
-            animation: fadeInUp 1s ease-out 0.6s forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .login-card h2 {
-            font-family: 'Inter', sans-serif;
-            font-size: 32px;
-            font-weight: 700;
-            color: #1a1a2e;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-            opacity: 0;
-            animation: fadeIn 0.8s ease-out 1s forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        .logo {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-            animation: rotateIn 1s ease-out 1s;
-        }
-
-        @keyframes rotateIn {
-            from {
-                transform: rotate(-180deg) scale(0);
-            }
-            to {
-                transform: rotate(0) scale(1);
-            }
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            opacity: 0;
-            transform: translateX(-20px);
-        }
-
-        .form-group:nth-child(1) {
-            animation: slideInRight 0.6s ease-out 1.2s forwards;
-        }
-
-        .form-group:nth-child(2) {
-            animation: slideInRight 0.6s ease-out 1.4s forwards;
-        }
-
-        @keyframes slideInRight {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .form-group label {
-            display: block;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            color: #333;
-            margin-bottom: 8px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 14px 16px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #34E1E5;
-            box-shadow: 0 0 0 3px rgba(52, 225, 229, 0.1);
-        }
-
-        .form-group input::placeholder {
-            color: #aaa;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .password-container {
-            position: relative;
-        }
-
-        .password-toggle {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #666;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-        }
-
-        .password-toggle svg {
-            width: 20px;
-            height: 20px;
-            stroke: #666;
-        }
-
-        .password-toggle:hover svg {
-            stroke: #333;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 8px;
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s;
-            background-color: #1a1a2e;
-            color: white;
-            margin-top: 10px;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        /* 🆕 ESTILOS PARA ALERTAS */
-        .alert {
-            padding: 12px 16px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 14px;
-            display: none;
-        }
-
-        .alert.show {
-            display: block;
-            animation: slideInDown 0.3s ease-out;
-        }
-
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .alert-success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .alert-error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        /* Spinner de carga */
-        .spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #34E1E5;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-            margin-right: 8px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* ─── Paso 2FA ─────────────────────────────────────────────── */
-        .step {
-            transition: opacity 0.35s ease, transform 0.35s ease;
-        }
-        .step.hidden {
-            display: none;
-        }
-
-        /* Cajas OTP */
-        .otp-wrapper {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin: 24px 0 28px;
-        }
-        .otp-box {
-            width: 48px;
-            height: 56px;
-            border: 1.5px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 22px;
-            font-weight: 700;
-            text-align: center;
-            color: #1a1a2e;
-            font-family: 'Inter', sans-serif;
-            transition: border-color 0.25s, box-shadow 0.25s;
-            outline: none;
-        }
-        .otp-box:focus {
-            border-color: #34E1E5;
-            box-shadow: 0 0 0 3px rgba(52,225,229,0.15);
-        }
-        .otp-box.filled {
-            border-color: #1a1a2e;
-            background: #f8f9ff;
-        }
-
-        /* Info email */
-        .otp-hint {
-            font-size: 13px;
-            color: #777;
-            text-align: center;
-            margin-bottom: 6px;
-            line-height: 1.5;
-        }
-        .otp-hint strong {
-            color: #1a1a2e;
-        }
-
-        /* Timer expiración */
-        .otp-expiry {
-            text-align: center;
-            font-size: 12px;
-            color: #888;
-            margin-bottom: 4px;
-        }
-        .otp-expiry strong {
-            color: #1a1a2e;
-            font-variant-numeric: tabular-nums;
-        }
-        .otp-expiry.urgente {
-            color: #c0392b;
-        }
-        .otp-expiry.urgente strong {
-            color: #c0392b;
-        }
-
-        /* Timer / reenviar */
-        .otp-resend {
-            text-align: center;
-            font-size: 13px;
-            color: #aaa;
-            margin-top: 16px;
-        }
-        .otp-resend button {
-            background: none;
-            border: none;
-            color: #34b8ba;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            padding: 0;
-            text-decoration: underline;
-        }
-        .otp-resend button:disabled {
-            color: #aaa;
-            text-decoration: none;
-            cursor: default;
-        }
-
-        /* Botón volver */
-        .btn-back {
-            background: none;
-            border: none;
-            color: #888;
-            font-size: 13px;
-            font-family: 'Inter', sans-serif;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin: 0 auto 16px;
-            padding: 0;
-        }
-        .btn-back:hover { color: #333; }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .container {
-                flex-direction: column;
-            }
-
-            .left-section {
-                padding: 100px 30px 30px;
-                min-height: 20vh;
-            }
-
-            .header {
-                left: 50%;
-                transform: translateX(-50%) translateY(-20px);
-            }
-
-            .welcome-text h1 {
-                font-size: 32px;
-            }
-
-            .welcome-text p {
-                font-size: 18px;
-            }
-
-            .gradient-circle {
-                width: 450px;
-                height: 450px;
-                bottom: -180px;
-                left: -180px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .left-section {
-                padding: 90px 30px 25px;
-                min-height: 18vh;
-            }
-
-            .login-card {
-                padding: 30px 25px;
-                border-radius: 16px;
-            }
-
-            .login-card h2 {
-                font-size: 24px;
-            }
-        }
-    </style>
+    <!-- Estilos externos -->
+    <link rel="stylesheet" href="login-style.css">
 </head>
 <body>
     <!-- Círculo degradado -->
@@ -557,7 +48,7 @@
                 <!-- ══════════════════════════════════════ -->
                 <div id="step1" class="step">
                     <h2>Inicia Sesión</h2>
-                    
+
                     <div class="logo-container">
                         <img src="icons/Insignia.png" alt="Logo Paramédicos" class="logo">
                     </div>
@@ -567,10 +58,11 @@
                     <form id="loginForm" onsubmit="handleLogin(event)">
                         <div class="form-group">
                             <label for="email">Correo</label>
-                            <input 
-                                type="email" 
-                                id="email" 
+                            <input
+                                type="email"
+                                id="email"
                                 placeholder="Ingresa tu correo..."
+                                autocomplete="email"
                                 required
                             >
                         </div>
@@ -578,13 +70,14 @@
                         <div class="form-group">
                             <label for="password">Contraseña</label>
                             <div class="password-container">
-                                <input 
-                                    type="password" 
-                                    id="password" 
+                                <input
+                                    type="password"
+                                    id="password"
                                     placeholder="Ingresa tu contraseña..."
+                                    autocomplete="current-password"
                                     required
                                 >
-                                <button type="button" class="password-toggle" onclick="togglePassword()">
+                                <button type="button" class="password-toggle" onclick="togglePassword()" aria-label="Mostrar/ocultar contraseña">
                                     <i data-lucide="eye" id="icon-eye"></i>
                                     <i data-lucide="eye-off" id="icon-eye-off" style="display: none;"></i>
                                 </button>
@@ -616,7 +109,7 @@
 
                     <form id="otpForm" onsubmit="handleOTP(event)">
                         <div class="otp-wrapper">
-                            <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+                            <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="one-time-code">
                             <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
                             <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
                             <input class="otp-box" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
@@ -665,13 +158,12 @@
         sessionStorage.setItem('lastLoginAttempt', now.toString());
 
         // ─── Estado global ───────────────────────────────────────────────────────
-        let _adminId   = null;   // se rellena tras el paso 1 exitoso
+        let _adminId   = null;
         let _timerInterval = null;
 
         // ─── Init ────────────────────────────────────────────────────────────────
         lucide.createIcons();
 
-        // Redirigir si ya hay sesión activa
         window.addEventListener('DOMContentLoaded', () => {
             const adminData  = localStorage.getItem('admin_data');
             const adminToken = localStorage.getItem('admin_token');
@@ -681,7 +173,7 @@
                         window.location.href = 'admin-panel.html';
                         return;
                     }
-                } catch { 
+                } catch {
                     localStorage.removeItem('admin_data');
                     localStorage.removeItem('admin_token');
                 }
@@ -699,9 +191,9 @@
 
         // ─── Toggle password ─────────────────────────────────────────────────────
         function togglePassword() {
-            const input    = document.getElementById('password');
-            const iconEye  = document.getElementById('icon-eye');
-            const iconOff  = document.getElementById('icon-eye-off');
+            const input   = document.getElementById('password');
+            const iconEye = document.getElementById('icon-eye');
+            const iconOff = document.getElementById('icon-eye-off');
             if (input.type === 'password') {
                 input.type = 'text';
                 iconEye.style.display = 'none';
@@ -735,11 +227,9 @@
                 const response = await window.API.Admin.login(email, password);
 
                 if (response.success && response.requires2FA) {
-                    // ✅ Guardar admin_id y mostrar el paso 2
                     _adminId = response.admin_id;
                     mostrarPaso2(email);
                 } else if (response.success) {
-                    // Login directo sin 2FA (legacy)
                     showAlert('¡Login exitoso! Redirigiendo...', 'success');
                     setTimeout(() => window.location.href = 'admin-panel.html', 1000);
                 } else {
@@ -780,7 +270,6 @@
                     setTimeout(() => window.location.href = 'admin-panel.html', 1000);
                 } else {
                     showAlert(response.message || 'Código inválido o expirado', 'error', 'alertOTP');
-                    // Limpiar cajas y enfocar la primera
                     boxes.forEach(b => { b.value = ''; b.classList.remove('filled'); });
                     boxes[0].focus();
                     btn.disabled = false;
@@ -797,8 +286,8 @@
         async function handleResend() {
             const email    = document.getElementById('email').value.trim();
             const password = document.getElementById('password').value;
-
             const btnResend = document.getElementById('btnResend');
+
             btnResend.disabled = true;
             btnResend.textContent = 'Enviando...';
 
@@ -824,12 +313,10 @@
         function mostrarPaso2(email) {
             document.getElementById('step1').classList.add('hidden');
             document.getElementById('step2').classList.remove('hidden');
-            // Mostrar email ofuscado: a***@dominio.com
             const [user, domain] = email.split('@');
             const hint = user.slice(0, 2) + '***@' + domain;
             document.getElementById('otpEmailHint').textContent = hint;
             iniciarTimer();
-            // Enfocar la primera caja
             setTimeout(() => document.querySelectorAll('.otp-box')[0].focus(), 100);
         }
 
@@ -839,11 +326,9 @@
             _adminId = null;
             document.getElementById('step2').classList.add('hidden');
             document.getElementById('step1').classList.remove('hidden');
-            // Reset botón login
             const btn = document.getElementById('btnLogin');
             btn.disabled = false;
             btn.textContent = 'Acceder';
-            // Limpiar cajas OTP
             document.querySelectorAll('.otp-box').forEach(b => { b.value = ''; b.classList.remove('filled'); });
         }
 
@@ -857,10 +342,9 @@
             const timerCount  = document.getElementById('timerCount');
             const btnResend   = document.getElementById('btnResend');
 
-            let segsExpiry = 5 * 60;   // 5 minutos → expiración real
-            let segsResend = 2 * 60;   // 2 minutos → cooldown reenvío
+            let segsExpiry = 5 * 60;
+            let segsResend = 2 * 60;
 
-            // Estado inicial
             expiryBlock.classList.remove('urgente');
             timerText.style.display  = 'inline';
             btnResend.style.display  = 'none';
@@ -876,13 +360,10 @@
             timerCount.textContent  = fmt(segsResend);
 
             _timerInterval = setInterval(() => {
-                // ── Countdown expiración ──
                 if (segsExpiry > 0) {
                     segsExpiry--;
                     expiryCount.textContent = fmt(segsExpiry);
-                    // Último minuto → alerta roja
                     if (segsExpiry <= 60) expiryBlock.classList.add('urgente');
-                    // Llegó a 0 → código vencido
                     if (segsExpiry === 0) {
                         clearInterval(_timerInterval);
                         showAlert('El código expiró. Inicia sesión de nuevo.', 'error', 'alertOTP');
@@ -891,7 +372,6 @@
                     }
                 }
 
-                // ── Countdown reenvío ──
                 if (segsResend > 0) {
                     segsResend--;
                     timerCount.textContent = fmt(segsResend);
@@ -904,14 +384,14 @@
                 }
             }, 1000);
         }
+
+        // ─── Init OTP Boxes ──────────────────────────────────────────────────────
         function initOTPBoxes() {
             const boxes = document.querySelectorAll('.otp-box');
             boxes.forEach((box, idx) => {
                 box.addEventListener('input', () => {
-                    // Solo dígitos
                     box.value = box.value.replace(/\D/g, '').slice(-1);
                     box.classList.toggle('filled', box.value !== '');
-                    // Auto-avanzar
                     if (box.value && idx < boxes.length - 1) boxes[idx + 1].focus();
                     const codigo = Array.from(boxes).map(b => b.value).join('');
                     if (codigo.length === 6) document.getElementById('otpForm').requestSubmit();
@@ -924,6 +404,7 @@
                         boxes[idx - 1].classList.remove('filled');
                     }
                 });
+
                 box.addEventListener('paste', (e) => {
                     e.preventDefault();
                     const pasted = (e.clipboardData || window.clipboardData)
