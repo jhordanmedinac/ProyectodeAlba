@@ -3,7 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Únete - CGPVP</title>
+
+    <!-- SEO y datos estructurados para Google -->
+    <title>Únete | Postúlate al Cuerpo General de Paramédicos Voluntarios del Perú - CGPVP</title>
+    <meta name="description" content="Forma parte del equipo de paramédicos más profesional del Perú. Completa el formulario de postulación y únete al CGPVP como voluntario.">
+    <meta property="og:title" content="Únete | Cuerpo General de Paramédicos Voluntarios del Perú - CGPVP">
+    <meta property="og:description" content="Forma parte del equipo de paramédicos más profesional del Perú. Postúlate como voluntario al CGPVP.">
+    <meta property="og:url" content="https://paramedicosdelperu.org/un/Unete.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NGO",
+      "name": "Cuerpo General de Paramédicos del Perú",
+      "alternateName": "CGPVP",
+      "url": "https://paramedicosdelperu.org",
+      "logo": "https://paramedicosdelperu.org/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+51-929285669",
+        "contactType": "emergency service",
+        "areaServed": "PE",
+        "availableLanguage": "Spanish"
+      },
+      "description": "Asociación sin fines de lucro dedicada a la formación y capacitación de personal voluntario para atención de emergencias y rescate en el Perú.",
+      "sameAs": [
+        "https://www.facebook.com/paramedicos.pe",
+        "https://www.tiktok.com/@paramedicos.pe/video/7371679537878404358",
+        "https://www.linkedin.com/in/param%C3%A9dicos-del-per%C3%BA-324795203/"
+      ]
+    }
+    </script>
+    <!-- Fin SEO -->
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="unetestyle.css">
     <link rel="stylesheet" href="unete-stylebody.css">
@@ -548,7 +580,7 @@
                     </a>
                 </div>
                 <p class="footer-copyright">
-                    Cuerpo General de Paramédicos Voluntarios del Perú © 2025.<br>
+                    Cuerpo General de Paramédicos Voluntarios del Perú © 2026.<br>
                     Todos los derechos reservados
                 </p>
                 <p class="footer-copyright">
@@ -612,42 +644,32 @@
     </div>
 
     <script>
-        // ══════════════════════════════════════
-        // SISTEMA DE MODALES UNIFICADO
-        // ══════════════════════════════════════
-
-        // Abre cualquier modal por ID
         function abrirModal(id, e) {
             if (e) e.preventDefault();
             document.getElementById(id).classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        // Cierra cualquier modal por ID
         function cerrarModal(id) {
             document.getElementById(id).classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        // Cierra modal al hacer clic en el overlay (fuera del contenido)
         document.addEventListener('click', function(e) {
             const modales = ['welcomeModal','confirmModal','modalTerminos','modalPrivacidad','captchaModal'];
             modales.forEach(id => {
                 const modal = document.getElementById(id);
                 if (modal && e.target === modal && modal.classList.contains('active')) {
-                    // No cerrar captcha si está bloqueado
                     if (id === 'captchaModal' && captchasBloqueado) return;
                     cerrarModal(id);
                 }
             });
         });
 
-        // Evitar que el clic dentro del contenedor cierre el modal
         document.querySelectorAll('.modal-container').forEach(container => {
             container.addEventListener('click', e => e.stopPropagation());
         });
 
-        // Atajos de teclado para cerrar modales
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 ['modalTerminos','modalPrivacidad','captchaModal','confirmModal'].forEach(id => {
@@ -657,7 +679,6 @@
             }
         });
 
-        // Mantener retrocompatibilidad
         function acceptModal()          { cerrarModal('welcomeModal'); }
         function abrirModalTerminos(e)  { abrirModal('modalTerminos', e); }
         function cerrarModalTerminos()  { cerrarModal('modalTerminos'); }
@@ -669,15 +690,11 @@
             window.location.href = '../index.html';
         }
 
-        // ══════════════════════════════════════
-        // CAPTCHA MATEMÁTICO — 3 INTENTOS
-        // ══════════════════════════════════════
-
         let captchaRespuesta  = 0;
         let captchaIntentos   = 3;
         let captchasBloqueado = false;
         let captchaVerificado = false;
-        let formDataPendiente = null; // guarda el submit hasta que pase captcha
+        let formDataPendiente = null;
 
         const operadores = ['+', '-', 'x'];
 
@@ -740,16 +757,13 @@
             }
 
             if (val === captchaRespuesta) {
-                // CORRECTO
                 captchaVerificado = true;
                 cerrarModal('captchaModal');
-                // Ejecutar el envío real del formulario
                 if (formDataPendiente) {
                     enviarFormulario(formDataPendiente);
                     formDataPendiente = null;
                 }
             } else {
-                // INCORRECTO
                 captchaIntentos--;
                 inp.classList.add('error');
                 setTimeout(() => inp.classList.remove('error'), 500);
@@ -757,15 +771,13 @@
                 if (captchaIntentos <= 0) {
                     bloquearCaptcha();
                 } else {
-                    document.getElementById('captchaErrorMsg').textContent =
-                        `Respuesta incorrecta. Intenta de nuevo.`;
+                    document.getElementById('captchaErrorMsg').textContent = `Respuesta incorrecta. Intenta de nuevo.`;
                     actualizarIntentosMsg();
                     generarCaptcha();
                 }
             }
         }
 
-        // Permitir confirmar con Enter
         document.addEventListener('keydown', function(e) {
             const captchaModal = document.getElementById('captchaModal');
             if (e.key === 'Enter' && captchaModal && captchaModal.classList.contains('active')) {
@@ -774,18 +786,12 @@
             }
         });
 
-        // ══════════════════════════════════════
-        // FORMULARIO
-        // ══════════════════════════════════════
-
         document.getElementById('registroForm').addEventListener('submit', function(e) {
             e.preventDefault();
             if (!captchaVerificado) {
-                // Resetear captcha y mostrarlo
                 captchaIntentos   = 3;
                 captchasBloqueado = false;
                 captchaVerificado = false;
-                // Restaurar HTML del captcha si fue bloqueado antes
                 const body = document.getElementById('captchaBody');
                 const footer = document.getElementById('captchaFooter');
                 body.innerHTML = `
@@ -806,7 +812,6 @@
                         <i class="fas fa-check-circle"></i> Verificar y Enviar
                     </button>`;
                 generarCaptcha();
-                // Guardar referencia al form para enviar después
                 formDataPendiente = this;
                 abrirModal('captchaModal');
             } else {
@@ -815,17 +820,9 @@
         });
 
         function enviarFormulario(form) {
-            // Aquí conecta con unete-api.js — este evento lo puede capturar ese script
-            // Disparamos submit real o llamamos a la API directamente
             const event = new Event('captchaApproved', { bubbles: true });
             form.dispatchEvent(event);
-            // Si unete-api.js no lo intercepta, mostramos el modal de éxito:
-            // abrirModal('confirmModal');
         }
-
-        // ══════════════════════════════════════
-        // RESTO DE LÓGICA DEL FORMULARIO
-        // ══════════════════════════════════════
 
         function setMaxDate() {
             const today   = new Date();
@@ -892,7 +889,6 @@
             }
         }
 
-        // Búsqueda navbar
         const navbarSearchInput = document.getElementById('navbarSearchInput');
         const searchBtn = document.querySelector('.navbar-search .search-btn');
         if (searchBtn)        searchBtn.addEventListener('click', performSearch);
