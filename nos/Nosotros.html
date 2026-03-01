@@ -614,14 +614,14 @@
         }
 
         const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const statNumbers = entry.target.querySelectorAll('.stat-number');
-                    statNumbers.forEach(num => animateCounter(num));
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const statNumbers = entry.target.querySelectorAll('.stat-number');
+            statNumbers.forEach(num => animateCounter(num));
+            statsObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
 
         const statsSection = document.querySelector('.estadisticas-section');
         if (statsSection) {
