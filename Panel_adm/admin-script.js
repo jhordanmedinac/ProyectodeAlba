@@ -143,49 +143,62 @@ function initSidebar() {
     const sb = document.querySelector('.admin-sidebar');
     const mm = document.getElementById('menuMobile');
     const st = document.getElementById('sidebarToggle');
-    
+
+    // Crear overlay si no existe
+    let overlay = document.getElementById('sidebarOverlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'sidebar-overlay';
+        overlay.id = 'sidebarOverlay';
+        document.body.appendChild(overlay);
+    }
+
+    function openSidebar() {
+        sb.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeSidebar() {
+        sb.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
     // Toggle menú móvil
     if (mm) {
         mm.addEventListener('click', (e) => {
             e.stopPropagation();
-            sb.classList.toggle('show');
+            sb.classList.contains('active') ? closeSidebar() : openSidebar();
         });
     }
-    
+
+    // Cerrar al hacer clic en el overlay
+    overlay.addEventListener('click', closeSidebar);
+
     // Toggle colapsar sidebar en desktop
     if (st) {
         st.addEventListener('click', () => {
             sb.classList.toggle('collapsed');
         });
     }
-    
-    // Cerrar sidebar al hacer clic fuera en móvil
-    document.addEventListener('click', function(e) {
-        if (window.innerWidth <= 991 && 
-            sb.classList.contains('show') &&
-            !sb.contains(e.target) && 
-            mm && !mm.contains(e.target)) {
-            sb.classList.remove('show');
-        }
-    });
-    
+
     // Cerrar sidebar al cambiar de sección en móvil
     const navItems = document.querySelectorAll('.nav-item');
     navItems.forEach(item => {
         item.addEventListener('click', () => {
-            if (window.innerWidth <= 991) {
-                sb.classList.remove('show');
+            if (window.innerWidth <= 1024) {
+                closeSidebar();
             }
         });
     });
-    
+
     // Manejar resize de ventana
     let resizeTimer;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
-            if (window.innerWidth > 991) {
-                sb.classList.remove('show');
+            if (window.innerWidth > 1024) {
+                closeSidebar();
             }
         }, 250);
     });
