@@ -134,10 +134,7 @@ GO
 CREATE TABLE instructores (
     id INT IDENTITY(1,1) PRIMARY KEY,
     nombre_completo NVARCHAR(150) NOT NULL,
-    especialidad NVARCHAR(100) NOT NULL CHECK (especialidad IN (
-        'Emergencias M�dicas', 'Rescate', 'Trauma', 'Soporte Vital', 
-        'Comunicaciones', 'Materiales Peligrosos', 'B�squeda y Salvamento', 'Otros'
-    )),
+    especialidad NVARCHAR(100) NOT NULL,
     rango NVARCHAR(50) NULL,
     experiencia_anios INT DEFAULT 0,
     certificaciones NVARCHAR(500) NULL,

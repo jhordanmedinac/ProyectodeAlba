@@ -707,86 +707,94 @@
         <section class="content-section" id="reportes">
             <div class="section-header">
                 <h2>Reportes y Estadísticas</h2>
-                <div class="header-actions">
-                    <button class="btn-primary">
-                        <i class="fas fa-download"></i>
-                        Generar Reporte
-                    </button>
-                </div>
             </div>
 
             <div class="reports-grid">
+
+                <!-- CARD 1: Miembros por Estado -->
                 <div class="report-card">
                     <div class="report-icon">
-                        <i class="fas fa-chart-bar"></i>
+                        <i class="fas fa-users"></i>
                     </div>
-                    <h3>Reporte de Inscripciones</h3>
-                    <p>Análisis detallado de aspirantes por mes y sede</p>
-                    <button class="btn-secondary btn-full">
-                        <i class="fas fa-file-pdf"></i>
-                        Generar PDF
-                    </button>
+                    <h3>Miembros por Estado</h3>
+                    <p>Distribución de miembros entre Activo, Suspendido y Baja</p>
+                    <div class="report-card-actions">
+                        <button class="btn-secondary btn-full" onclick="generarReporteMiembrosEstado('pdf')">
+                            <i class="fas fa-file-pdf"></i>
+                            Generar PDF
+                        </button>
+                        <button class="btn-secondary btn-full" onclick="generarReporteMiembrosEstado('excel')">
+                            <i class="fas fa-file-excel"></i>
+                            Generar Excel
+                        </button>
+                    </div>
                 </div>
 
+                <!-- CARD 2: Postulantes por Período -->
                 <div class="report-card">
                     <div class="report-icon">
-                        <i class="fas fa-graduation-cap"></i>
+                        <i class="fas fa-user-clock"></i>
                     </div>
-                    <h3>Progresión de Alumnos</h3>
-                    <p>Seguimiento de BIRED a EMGRA y promociones</p>
-                    <button class="btn-secondary btn-full">
-                        <i class="fas fa-file-pdf"></i>
-                        Generar PDF
-                    </button>
+                    <h3>Postulantes por Período</h3>
+                    <p>Cantidad de postulantes registrados filtrando por día, mes o año</p>
+                    <div class="report-filter-row">
+                        <select class="filter-select-sm" id="reportPeriodoTipo">
+                            <option value="dia">Por Día</option>
+                            <option value="mes" selected>Por Mes</option>
+                            <option value="anio">Por Año</option>
+                        </select>
+                        <input type="date" class="filter-input-sm" id="reportPeriodoFecha" value="">
+                    </div>
+                    <div class="report-card-actions">
+                        <button class="btn-secondary btn-full" onclick="generarReportePostulantesPeriodo('pdf')">
+                            <i class="fas fa-file-pdf"></i>
+                            Generar PDF
+                        </button>
+                        <button class="btn-secondary btn-full" onclick="generarReportePostulantesPeriodo('excel')">
+                            <i class="fas fa-file-excel"></i>
+                            Generar Excel
+                        </button>
+                    </div>
                 </div>
 
-                <div class="report-card">
-                    <div class="report-icon">
-                        <i class="fas fa-clipboard-check"></i>
-                    </div>
-                    <h3>Capacitaciones Completadas</h3>
-                    <p>Estadísticas de cursos y certificaciones</p>
-                    <button class="btn-secondary btn-full">
-                        <i class="fas fa-file-excel"></i>
-                        Generar Excel
-                    </button>
-                </div>
-
-                <div class="report-card">
-                    <div class="report-icon">
-                        <i class="fas fa-user-shield"></i>
-                    </div>
-                    <h3>Rescatistas Activos</h3>
-                    <p>Personal disponible por especialidad</p>
-                    <button class="btn-secondary btn-full">
-                        <i class="fas fa-file-pdf"></i>
-                        Generar PDF
-                    </button>
-                </div>
-
-                <div class="report-card">
-                    <div class="report-icon">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <h3>Asistencia a Eventos</h3>
-                    <p>Participación en talleres y capacitaciones</p>
-                    <button class="btn-secondary btn-full">
-                        <i class="fas fa-file-excel"></i>
-                        Generar Excel
-                    </button>
-                </div>
-
+                <!-- CARD 3: Postulantes por Departamento -->
                 <div class="report-card">
                     <div class="report-icon">
                         <i class="fas fa-map-marked-alt"></i>
                     </div>
-                    <h3>Distribución por Sedes</h3>
-                    <p>Personal asignado a cada sede</p>
-                    <button class="btn-secondary btn-full">
-                        <i class="fas fa-file-pdf"></i>
-                        Generar PDF
-                    </button>
+                    <h3>Postulantes por Departamento</h3>
+                    <p>Distribución geográfica de postulantes a nivel nacional</p>
+                    <div class="report-card-actions">
+                        <button class="btn-secondary btn-full" onclick="generarReportePostulantesDepartamento('pdf')">
+                            <i class="fas fa-file-pdf"></i>
+                            Generar PDF
+                        </button>
+                        <button class="btn-secondary btn-full" onclick="generarReportePostulantesDepartamento('excel')">
+                            <i class="fas fa-file-excel"></i>
+                            Generar Excel
+                        </button>
+                    </div>
                 </div>
+
+                <!-- CARD 4: Postulantes por Profesión -->
+                <div class="report-card">
+                    <div class="report-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Postulantes por Profesión</h3>
+                    <p>Ranking de profesiones más frecuentes entre los postulantes</p>
+                    <div class="report-card-actions">
+                        <button class="btn-secondary btn-full" onclick="generarReportePostulantesProfesion('pdf')">
+                            <i class="fas fa-file-pdf"></i>
+                            Generar PDF
+                        </button>
+                        <button class="btn-secondary btn-full" onclick="generarReportePostulantesProfesion('excel')">
+                            <i class="fas fa-file-excel"></i>
+                            Generar Excel
+                        </button>
+                    </div>
+                </div>
+
             </div>
         </section>
     </main>
@@ -2625,6 +2633,137 @@
     <script src="eventos-api.js"></script>
     <script src="noticias-api.js"></script>
     <script src="admin-perfil-api.js"></script>
+
+    <!-- ── Estilos extra: cards de reportes ── -->
+    <style>
+        /* Grid de 2 columnas en desktop, 1 en móvil */
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            padding: 4px 2px;
+        }
+
+        .report-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 28px 24px 22px;
+            border: 1px solid #e8edf5;
+            box-shadow: 0 2px 10px rgba(0,0,51,0.06);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: box-shadow 0.25s, transform 0.25s;
+        }
+        .report-card:hover {
+            box-shadow: 0 6px 24px rgba(0,0,51,0.12);
+            transform: translateY(-3px);
+        }
+
+        .report-card .report-icon {
+            width: 52px; height: 52px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #000033, #0055cc);
+            display: flex; align-items: center; justify-content: center;
+            color: #FDB750;
+            font-size: 22px;
+            margin-bottom: 4px;
+            flex-shrink: 0;
+        }
+
+        .report-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #000033;
+            margin: 0;
+        }
+
+        .report-card p {
+            font-size: 13px;
+            color: #666;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Fila filtro período */
+        .report-filter-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 4px;
+        }
+        .filter-select-sm {
+            flex: 1;
+            padding: 7px 10px;
+            border: 1px solid #dde3f0;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #333;
+            background: #f8f9fb;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .filter-select-sm:focus { border-color: #0055cc; }
+
+        .filter-input-sm {
+            flex: 1;
+            padding: 7px 10px;
+            border: 1px solid #dde3f0;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #333;
+            background: #f8f9fb;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .filter-input-sm:focus { border-color: #0055cc; }
+
+        /* Botones apilados al fondo */
+        .report-card-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: auto;
+            padding-top: 10px;
+        }
+        .report-card-actions .btn-full {
+            width: 100%;
+            justify-content: center;
+            padding: 10px;
+            font-size: 13px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        /* PDF → tono rojo suave */
+        .report-card-actions .btn-full:first-child {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            color: #fff;
+            border: none;
+        }
+        .report-card-actions .btn-full:first-child:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px);
+        }
+        /* Excel → tono verde suave */
+        .report-card-actions .btn-full:last-child {
+            background: linear-gradient(135deg, #1e7e34, #28a745);
+            color: #fff;
+            border: none;
+        }
+        .report-card-actions .btn-full:last-child:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 600px) {
+            .reports-grid { grid-template-columns: 1fr; }
+            .report-filter-row { flex-direction: column; }
+        }
+    </style>
+
     <script>
     // ============================================
     // 🔥 CARGAR DATOS DEL ADMIN DESDE LOCALSTORAGE
@@ -2681,7 +2820,6 @@
         if (!modalidad) return;
         
         if (modalidad === 'Presencial') {
-            // Mostrar dirección, ocultar enlace
             if (groupDireccion) groupDireccion.style.display = 'block';
             if (groupEnlace) groupEnlace.style.display = 'none';
             if (requiredDireccion) requiredDireccion.style.display = 'inline';
@@ -2692,7 +2830,6 @@
                 inputEnlace.value = '';
             }
         } else if (modalidad === 'Virtual' || modalidad === 'Semipresencial') {
-            // Mostrar enlace, ocultar dirección
             if (groupDireccion) groupDireccion.style.display = 'none';
             if (groupEnlace) groupEnlace.style.display = 'block';
             if (requiredDireccion) requiredDireccion.style.display = 'none';
@@ -2705,7 +2842,6 @@
         }
     }
 
-    // 🔥 NUEVO: Función para el modal de EDITAR
     function toggleCamposModalidadEdit() {
         const modalidad = document.getElementById('editCursoModalidad')?.value;
         const groupDireccion = document.getElementById('groupEditDireccion');
@@ -2718,7 +2854,6 @@
         if (!modalidad) return;
         
         if (modalidad === 'Presencial') {
-            // Mostrar dirección, ocultar enlace
             if (groupDireccion) groupDireccion.style.display = 'block';
             if (groupEnlace) groupEnlace.style.display = 'none';
             if (requiredDireccion) requiredDireccion.style.display = 'inline';
@@ -2728,7 +2863,6 @@
                 inputEnlace.required = false;
             }
         } else if (modalidad === 'Virtual' || modalidad === 'Semipresencial') {
-            // Mostrar enlace, ocultar dirección
             if (groupDireccion) groupDireccion.style.display = 'none';
             if (groupEnlace) groupEnlace.style.display = 'block';
             if (requiredDireccion) requiredDireccion.style.display = 'none';
@@ -2740,30 +2874,89 @@
         }
     }
 
-    // Ejecutar cuando cambie la modalidad
     document.addEventListener('DOMContentLoaded', function() {
-        // Para modal NUEVO
         const selectModalidad = document.getElementById('nuevoCursoModalidad');
         if (selectModalidad) {
             selectModalidad.addEventListener('change', toggleCamposModalidad);
-            // Ejecutar al inicio también
             toggleCamposModalidad();
         }
 
-        // 🔥 NUEVO: Para modal EDITAR
         const selectModalidadEdit = document.getElementById('editCursoModalidad');
         if (selectModalidadEdit) {
             selectModalidadEdit.addEventListener('change', toggleCamposModalidadEdit);
         }
     });
 
-    // También ejecutar cuando se abra el modal
     const originalAbrirModal = window.abrirModalNuevoCurso;
     window.abrirModalNuevoCurso = async function() {
         await originalAbrirModal();
-        // Esperar a que el modal esté completamente abierto
         setTimeout(toggleCamposModalidad, 100);
     };
+
+    // ============================================
+    // REPORTES - Funciones (conectar a reportes-api.js)
+    // ============================================
+
+    // Ajusta el input fecha según el tipo de período seleccionado
+    document.addEventListener('DOMContentLoaded', function() {
+        const tipoPeriodo = document.getElementById('reportPeriodoTipo');
+        const inputFecha  = document.getElementById('reportPeriodoFecha');
+        if (!tipoPeriodo || !inputFecha) return;
+
+        function actualizarInputFecha() {
+            const hoy = new Date();
+            if (tipoPeriodo.value === 'dia') {
+                inputFecha.type = 'date';
+                inputFecha.value = hoy.toISOString().slice(0, 10);
+            } else if (tipoPeriodo.value === 'mes') {
+                inputFecha.type = 'month';
+                inputFecha.value = hoy.toISOString().slice(0, 7);
+            } else {
+                inputFecha.type = 'number';
+                inputFecha.min  = '2000';
+                inputFecha.max  = hoy.getFullYear();
+                inputFecha.value = hoy.getFullYear();
+            }
+        }
+
+        tipoPeriodo.addEventListener('change', actualizarInputFecha);
+        actualizarInputFecha(); // inicializar al cargar
+    });
+
+    function generarReporteMiembrosEstado(formato) {
+        if (typeof window.reporteMiembrosEstado === 'function') {
+            window.reporteMiembrosEstado(formato);
+        } else {
+            console.warn('reportes-api.js aún no cargado');
+        }
+    }
+
+    function generarReportePostulantesPeriodo(formato) {
+        const tipo  = document.getElementById('reportPeriodoTipo')?.value;
+        const fecha = document.getElementById('reportPeriodoFecha')?.value;
+        if (!fecha) { alert('Selecciona una fecha primero.'); return; }
+        if (typeof window.reportePostulantesPeriodo === 'function') {
+            window.reportePostulantesPeriodo(tipo, fecha, formato);
+        } else {
+            console.warn('reportes-api.js aún no cargado');
+        }
+    }
+
+    function generarReportePostulantesDepartamento(formato) {
+        if (typeof window.reportePostulantesDepartamento === 'function') {
+            window.reportePostulantesDepartamento(formato);
+        } else {
+            console.warn('reportes-api.js aún no cargado');
+        }
+    }
+
+    function generarReportePostulantesProfesion(formato) {
+        if (typeof window.reportePostulantesProfesion === 'function') {
+            window.reportePostulantesProfesion(formato);
+        } else {
+            console.warn('reportes-api.js aún no cargado');
+        }
+    }
     </script>
 </body>
 </html>
