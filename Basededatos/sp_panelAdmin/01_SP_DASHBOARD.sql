@@ -195,47 +195,38 @@ END
 GO
 
 -- ------------------------------------------------------------
--- 1. KPI: CONTEO POR RANGO (Aspirantes, Alumnos, Rescatistas)
+-- 1. KPI: CONTEO POR RANGO
 -- ------------------------------------------------------------
 CREATE OR ALTER PROCEDURE SP_DS_KPI_POR_RANGO
 AS
 BEGIN
     SET NOCOUNT ON;
-    
-    -- Contar por cada rango (con los nombres exactos)
     SELECT
-        (SELECT COUNT(*) FROM miembros WHERE rango = 'Aspirante') AS total_aspirantes,
-        (SELECT COUNT(*) FROM miembros WHERE rango IN ('Alumno - BIRED', 'Alumno - EMGRA')) AS total_alumnos,
-        (SELECT COUNT(*) FROM miembros WHERE rango = 'Alumno - BIRED') AS alumnos_bired,
-        (SELECT COUNT(*) FROM miembros WHERE rango = 'Alumno - EMGRA') AS alumnos_emgra,
-        (SELECT COUNT(*) FROM miembros WHERE rango = 'Rescatista' AND estado = 'Activo') AS total_rescatistas,
-        (SELECT COUNT(*) FROM miembros) AS total_inscritos;
+        (SELECT COUNT(*) FROM miembros)                                              AS total_miembros,
+        (SELECT COUNT(*) FROM miembros WHERE rango = 'Director General')             AS total_director_general,
+        (SELECT COUNT(*) FROM miembros WHERE rango = 'EMGRA')                        AS total_emgra,
+        (SELECT COUNT(*) FROM miembros WHERE rango = 'Instructor')                   AS total_instructores_rango,
+        (SELECT COUNT(*) FROM miembros WHERE rango = 'BIRED')                        AS total_bired,
+        (SELECT COUNT(*) FROM miembros WHERE rango = 'Alumno')                       AS total_alumnos,
+        (SELECT COUNT(*) FROM miembros WHERE rango = 'Aspirante')                    AS total_aspirantes;
 END
 GO
 
 -- ------------------------------------------------------------
--- 2. KPI: RESUMEN AGRUPADO POR RANGO (para las cards)
--- Devuelve solo lo necesario para las 3 cards principales
+-- 2. KPI: RESUMEN AGRUPADO POR RANGO (para las cards del dashboard)
 -- ------------------------------------------------------------
 CREATE OR ALTER PROCEDURE SP_DS_RESUMEN_RANGOS
 AS
 BEGIN
     SET NOCOUNT ON;
-    
-    -- Conteos por rango (con los nombres exactos de la BD)
     SELECT
-        SUM(CASE WHEN rango = 'Aspirante' THEN 1 ELSE 0 END) AS aspirantes,
-        
-        -- Total de alumnos (ambos niveles)
-        SUM(CASE WHEN rango IN ('Alumno - BIRED', 'Alumno - EMGRA') THEN 1 ELSE 0 END) AS alumnos,
-        
-        -- Desglose por nivel
-        SUM(CASE WHEN rango = 'Alumno - BIRED' THEN 1 ELSE 0 END) AS alumnos_bired,
-        SUM(CASE WHEN rango = 'Alumno - EMGRA' THEN 1 ELSE 0 END) AS alumnos_emgra,
-        
-        SUM(CASE WHEN rango = 'Rescatista' AND estado = 'Activo' THEN 1 ELSE 0 END) AS rescatistas,
-        
-        COUNT(*) AS total_inscritos
+        COUNT(*)                                                                     AS total_miembros,
+        SUM(CASE WHEN rango = 'Director General' THEN 1 ELSE 0 END)                 AS director_general,
+        SUM(CASE WHEN rango = 'EMGRA'            THEN 1 ELSE 0 END)                 AS emgra,
+        SUM(CASE WHEN rango = 'Instructor'       THEN 1 ELSE 0 END)                 AS instructor,
+        SUM(CASE WHEN rango = 'BIRED'            THEN 1 ELSE 0 END)                 AS bired,
+        SUM(CASE WHEN rango = 'Alumno'           THEN 1 ELSE 0 END)                 AS alumno,
+        SUM(CASE WHEN rango = 'Aspirante'        THEN 1 ELSE 0 END)                 AS aspirante
     FROM miembros;
 END
 GO

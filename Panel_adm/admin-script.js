@@ -678,8 +678,16 @@ function generarReporte() {
 // 11. MODALES & UTILIDADES (sin cambios)
 // ============================================
 function initModals() {
-    document.querySelectorAll('.modal-close').forEach(b => b.addEventListener('click', function() { closeModal(this.closest('.modal-overlay').id); }));
-    document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', function(e) { if (e.target === this) closeModal(this.id); }));
+    const MODALES_CON_PROTECCION = ['addUserModal','editUserModal','discardUserModal','discardEditModal'];
+    document.querySelectorAll('.modal-close').forEach(b => {
+        const overlayId = b.closest('.modal-overlay')?.id;
+        if (MODALES_CON_PROTECCION.includes(overlayId)) return;
+        b.addEventListener('click', function() { closeModal(overlayId); });
+    });
+    document.querySelectorAll('.modal-overlay').forEach(o => {
+        if (MODALES_CON_PROTECCION.includes(o.id)) return;
+        o.addEventListener('click', function(e) { if (e.target === this) closeModal(this.id); });
+    });
 }
 function openModal(id) { const m = document.getElementById(id); if (m) { m.classList.add('active'); document.body.style.overflow = 'hidden'; } }
 function showModal(id) { openModal(id); }

@@ -150,7 +150,7 @@
                         <div class="modal-qr-section">
                             <div class="modal-qr-title">
                                 <i class="fas fa-user-circle"></i>
-                                Foto del Miembro
+                                Foto del Integrante
                             </div>
                             <div class="modal-qr-container" id="modalBigPhotoContainer">
                                 <!-- Se rellena dinámicamente -->
@@ -411,11 +411,16 @@
         const certificaciones = formatearCertificaciones(m.cursos_certificaciones);
         const estado       = (m.estado       || 'activo').toLowerCase();
         const foto         = m.foto_perfil   || null;
-        const fechaIngreso = m.fecha_ingreso
-            ? new Date(m.fecha_ingreso).toLocaleDateString('es-PE')
+            // SQL Server envia fechas sin sufijo Z.
+        // Aniadir 'Z' fuerza interpretacion UTC y la conversion
+        // a hora local de Peru (UTC-5) queda correcta.
+        const toUTC = s => s ? new Date(s.endsWith('Z') ? s : s + 'Z') : null;
+
+        const fechaIngreso = toUTC(m.fecha_ingreso)
+            ? toUTC(m.fecha_ingreso).toLocaleDateString('es-PE')
             : 'No registrada';
-        const fechaUpdate  = m.fecha_ultimo_cambio
-            ? new Date(m.fecha_ultimo_cambio).toLocaleString('es-PE')
+        const fechaUpdate  = toUTC(m.fecha_ultimo_cambio)
+            ? toUTC(m.fecha_ultimo_cambio).toLocaleString('es-PE')
             : '-';
         
         // -- Logo institucional en el header (siempre fijo) --

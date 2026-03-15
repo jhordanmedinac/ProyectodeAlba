@@ -87,8 +87,8 @@ CREATE TABLE miembros (
     profesion NVARCHAR(100) NULL,
     
     -- Datos de la credencial
-    legajo NVARCHAR(20) NOT NULL UNIQUE,  -- N�mero de legajo (ej: 12345)
-    rango NVARCHAR(50) NOT NULL,  -- T�CNICO PARAM�DICO, INSTRUCTOR, etc.
+    legajo NVARCHAR(20) NOT NULL UNIQUE,
+    rango NVARCHAR(50) NOT NULL, 
     jefatura NVARCHAR(100) NOT NULL,  -- BRIGADA DE EMERGENCIAS - LIMA, etc.
     foto_perfil NVARCHAR(MAX) NULL,  -- URL o base64 de la foto
     codigo_qr NVARCHAR(MAX) NULL,  -- Datos o URL del QR

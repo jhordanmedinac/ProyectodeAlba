@@ -494,8 +494,10 @@ function mostrarModalEditar(miembro) {
     document.getElementById("editDni").value        = miembro.dni      || "";
     document.getElementById("editEmail").value      = miembro.email    || "";
     document.getElementById("editTelefono").value   = miembro.telefono || "";
-    document.getElementById("editFechaNac").value   = miembro.fecha_nacimiento
+    document.getElementById("editFechaNac").value      = miembro.fecha_nacimiento
         ? miembro.fecha_nacimiento.split("T")[0] : "";
+    document.getElementById("editFechaIngreso").value  = miembro.fecha_ingreso
+        ? miembro.fecha_ingreso.split("T")[0] : "";
     document.getElementById("editJefatura").value  = miembro.jefatura  || "";
     document.getElementById("editDireccion").value = miembro.direccion || "";
     document.getElementById("editDistrito").value  = miembro.distrito  || "";
@@ -519,6 +521,13 @@ function mostrarModalEditar(miembro) {
     _inyectarSeccionCursos(miembro.id, miembro.cursos_certificaciones);
 
     openModal("editUserModal");
+
+    // Guardar valores originales y proteger click-afuera
+    setTimeout(() => {
+        _guardarValoresOriginales();
+        const overlay = document.getElementById("editUserModal");
+        if (overlay) overlay.onclick = e => { if (e.target === overlay) intentarCerrarModalEditar(); };
+    }, 50);
 }
 
 // ── Sección Foto ──────────────────────────────────────────────────
@@ -684,7 +693,8 @@ async function guardarEdicionMiembro() {
     const dni       = document.getElementById("editDni")?.value.trim();
     const email     = document.getElementById("editEmail")?.value.trim();
     const telefono  = document.getElementById("editTelefono")?.value.trim();
-    const fechaNac  = document.getElementById("editFechaNac")?.value;
+    const fechaNac      = document.getElementById("editFechaNac")?.value;
+    const fechaIngreso  = document.getElementById("editFechaIngreso")?.value;
     const genero    = document.getElementById("editGenero")?.value;
     const rango     = document.getElementById("editRol")?.value;
     const jefatura  = document.getElementById("editJefatura")?.value.trim();
@@ -718,6 +728,7 @@ async function guardarEdicionMiembro() {
                 direccion:        direccion || null,
                 profesion:        profesion || null,
                 rango, jefatura, estado,
+                fecha_ingreso:    fechaIngreso || null,
                 admin_id: 1,
             }),
         });
@@ -809,6 +820,46 @@ function formularioTieneDatos() {
     });
 }
 
+// ── Protección click-afuera para modal EDITAR ─────────────────────
+const CAMPOS_FORM_EDITAR = [
+    "editNombre", "editApellido", "editDni", "editEmail",
+    "editTelefono", "editFechaNac", "editFechaIngreso", "editJefatura"
+];
+
+let _valoresOriginalesEditar = {};
+
+function _guardarValoresOriginales() {
+    CAMPOS_FORM_EDITAR.forEach(id => {
+        const el = document.getElementById(id);
+        _valoresOriginalesEditar[id] = el ? el.value.trim() : "";
+    });
+    ["editGenero", "editRol", "editEstado", "editProfesion", "editDepartamento"].forEach(id => {
+        const el = document.getElementById(id);
+        _valoresOriginalesEditar[id] = el ? el.value : "";
+    });
+}
+
+function editFormularioTieneCambios() {
+    const todosLosCampos = [...CAMPOS_FORM_EDITAR, "editGenero", "editRol", "editEstado", "editProfesion", "editDepartamento"];
+    return todosLosCampos.some(id => {
+        const el = document.getElementById(id);
+        if (!el) return false;
+        return el.value.trim() !== (_valoresOriginalesEditar[id] ?? "").trim();
+    });
+}
+
+function intentarCerrarModalEditar() {
+    editFormularioTieneCambios()
+        ? openModal("discardEditModal")
+        : closeModal("editUserModal");
+}
+
+function descartarYCerrarEditar() {
+    _valoresOriginalesEditar = {};
+    closeModal("discardEditModal");
+    closeModal("editUserModal");
+}
+
 function abrirModalAgregarUsuario() {
     const form = document.getElementById("addUserForm");
     if (form) form.reset();
@@ -848,7 +899,8 @@ async function guardarNuevoUsuario() {
     const dni          = document.getElementById("addDni")?.value.trim();
     const email        = document.getElementById("addEmail")?.value.trim();
     const telefono     = document.getElementById("addTelefono")?.value.trim();
-    const fechaNac     = document.getElementById("addFechaNac")?.value;
+    const fechaNac          = document.getElementById("addFechaNac")?.value;
+    const fechaIngreso      = document.getElementById("addFechaIngreso")?.value;
     const genero       = document.getElementById("addGenero")?.value;
     const jefatura     = document.getElementById("addJefatura")?.value.trim();
     const rango        = document.getElementById("addRol")?.value;
@@ -892,6 +944,7 @@ async function guardarNuevoUsuario() {
                 profesion:        profesion     || null,
                 rango:            rango         || "Aspirante",
                 estado:           estado        || "Activo",
+                fecha_ingreso:    fechaIngreso  || null,
                 admin_id: 1,
             }),
         });

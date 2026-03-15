@@ -66,68 +66,31 @@ async function cargarKPIs() {
     try {
         const response = await fetch(`${DASHBOARD_API}/`);
         const result = await response.json();
-        
-        console.log("📦 KPIs recibidos del endpoint principal:", result);
-        
+
+        console.log("📦 KPIs recibidos:", result);
+
         if (result.status === "SUCCESS" && result.data) {
             const kpis = result.data;
-            
-            // Obtener todas las KPI cards
-            const kpiCards = document.querySelectorAll('.kpi-card');
-            console.log("📊 KPI Cards encontradas:", kpiCards.length);
-            
-            // Total de Inscritos (primera card - índice 0)
-            if (kpis.total_inscritos !== undefined && kpiCards[0]) {
-                const valorElement = kpiCards[0].querySelector('.kpi-value');
-                if (valorElement) {
-                    const valorActual = parseInt(valorElement.textContent.replace(/,/g, '')) || 0;
-                    animarContador(valorElement, valorActual, parseInt(kpis.total_inscritos) || 0, 1000);
-                    console.log("✅ Total Inscritos actualizado:", kpis.total_inscritos);
-                }
-            }
-            
-            // Aspirantes (segunda card - índice 1)
-            if (kpis.aspirantes !== undefined && kpiCards[1]) {
-                const valorElement = kpiCards[1].querySelector('.kpi-value');
-                if (valorElement) {
-                    const valorActual = parseInt(valorElement.textContent.replace(/,/g, '')) || 0;
-                    animarContador(valorElement, valorActual, parseInt(kpis.aspirantes) || 0, 1000);
-                    console.log("✅ Aspirantes actualizado:", kpis.aspirantes);
-                }
-            }
-            
-            // Alumnos (tercera card - índice 2)
-            if (kpis.alumnos !== undefined && kpiCards[2]) {
-                const valorElement = kpiCards[2].querySelector('.kpi-value');
-                if (valorElement) {
-                    const valorActual = parseInt(valorElement.textContent.replace(/,/g, '')) || 0;
-                    animarContador(valorElement, valorActual, parseInt(kpis.alumnos) || 0, 1000);
-                    console.log("✅ Alumnos actualizado:", kpis.alumnos);
-                }
-                
-                // Actualizar subtítulo de alumnos con desglose
-                const subtituloAlumnos = kpiCards[2].querySelector('.kpi-subtitle');
-                if (subtituloAlumnos && kpis.alumnos_bired !== undefined && kpis.alumnos_emgra !== undefined) {
-                    subtituloAlumnos.textContent = `BIRED: ${kpis.alumnos_bired || 0} | EMGRA: ${kpis.alumnos_emgra || 0}`;
-                    console.log("✅ Desglose alumnos actualizado: BIRED:", kpis.alumnos_bired, "EMGRA:", kpis.alumnos_emgra);
-                }
-            }
-            
-            // Rescatistas (cuarta card - índice 3)
-            if (kpis.rescatistas !== undefined && kpiCards[3]) {
-                const valorElement = kpiCards[3].querySelector('.kpi-value');
-                if (valorElement) {
-                    const valorActual = parseInt(valorElement.textContent.replace(/,/g, '')) || 0;
-                    animarContador(valorElement, valorActual, parseInt(kpis.rescatistas) || 0, 1000);
-                    console.log("✅ Rescatistas actualizado:", kpis.rescatistas);
-                }
-            }
-            
-            // Otros KPIs generales si existen
-            if (kpis.total_instructores !== undefined) actualizarKPIGeneral('instructores', kpis.total_instructores);
-            if (kpis.total_cursos       !== undefined) actualizarKPIGeneral('cursos',       kpis.total_cursos);
-            if (kpis.total_eventos      !== undefined) actualizarKPIGeneral('eventos',      kpis.total_eventos);
-            if (kpis.total_publicaciones !== undefined) actualizarKPIGeneral('publicaciones', kpis.total_publicaciones);
+
+            // Mapa campo_SP → id del elemento en el HTML
+            const mapa = {
+                total_miembros:   'kpi-val-total',
+                director_general: 'kpi-val-director',
+                emgra:            'kpi-val-emgra',
+                instructor:       'kpi-val-instructor',
+                bired:            'kpi-val-bired',
+                alumno:           'kpi-val-alumno',
+                aspirante:        'kpi-val-aspirante',
+            };
+
+            Object.entries(mapa).forEach(([campo, elementoId]) => {
+                if (kpis[campo] === undefined) return;
+                const el = document.getElementById(elementoId);
+                if (!el) return;
+                const actual = parseInt(el.textContent.replace(/,/g, '')) || 0;
+                animarContador(el, actual, parseInt(kpis[campo]) || 0, 1000);
+                console.log(`✅ ${campo}:`, kpis[campo]);
+            });
         }
     } catch (error) {
         console.error("❌ Error cargando KPIs:", error);
@@ -545,24 +508,3 @@ if (typeof showToast === 'undefined') {
     }
     if (!document.getElementById('toastS')) { const s = document.createElement('style'); s.id='toastS'; s.textContent='@keyframes slideInR{from{opacity:0;transform:translateX(100px);}to{opacity:1;transform:translateX(0);}}'; document.head.appendChild(s); }
 }
-
-// ══════════════════════════════════════════════════════════════════
-// LOG DE DEBUGGING
-// ══════════════════════════════════════════════════════════════════
-console.log(`
-╔══════════════════════════════════════════════════════════════╗
-║        🔥 DASHBOARD API CARGADO CORRECTAMENTE 🔥            ║
-╠══════════════════════════════════════════════════════════════╣
-║  API Base: ${DASHBOARD_API}
-║                                                              ║
-║  Endpoints consumidos:                                       ║
-║  • /               → KPIs principales                       ║
-║  • /graficos/miembros-rango                                  ║
-║  • /graficos/miembros-estado                                 ║
-║  • /graficos/postulantes-mes                                 ║
-║  • /graficos/miembros-departamento                           ║
-║  • /graficos/edades-miembros                                 ║
-║  • /graficos/ocupacion-cursos                                ║
-║  • /actividad-reciente                                       ║
-╚══════════════════════════════════════════════════════════════╝
-`);

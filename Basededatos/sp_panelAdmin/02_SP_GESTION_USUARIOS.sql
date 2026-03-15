@@ -125,7 +125,8 @@ BEGIN
         m.estado, m.cursos_certificaciones,
         m.fecha_ingreso, m.fecha_ultimo_cambio,
         DATEDIFF(YEAR,m.fecha_ingreso,GETDATE()) AS anios_en_cuerpo,
-        au.nombre_completo AS modificado_por_nombre
+        au.nombre_completo AS modificado_por_nombre,
+        CASE WHEN m.foto_perfil IS NOT NULL AND m.foto_perfil <> '' THEN 1 ELSE 0 END AS tiene_foto
     FROM miembros m
     LEFT JOIN admin_users au ON au.id = m.modificado_por
     WHERE
@@ -361,6 +362,7 @@ CREATE OR ALTER PROCEDURE SP_GU_CREAR_MIEMBRO
     @rango            NVARCHAR(50)   = 'Aspirante',
     @jefatura         NVARCHAR(100)  = '',
     @estado           NVARCHAR(20)   = 'Activo',
+    @fecha_ingreso    DATETIME2      = NULL,   -- NULL = usa fecha actual
     @admin_id         INT
 AS
 BEGIN
@@ -403,7 +405,7 @@ BEGIN
             @email, @telefono, @fecha_nacimiento, @genero,
             @departamento, @distrito, @direccion, @profesion,
             @legajo, @rango, @jefatura, @estado,
-            SYSUTCDATETIME(), SYSUTCDATETIME(),
+            ISNULL(@fecha_ingreso, SYSUTCDATETIME()), SYSUTCDATETIME(),
             @admin_id, @admin_id
         );
 
@@ -452,6 +454,7 @@ CREATE OR ALTER PROCEDURE SP_GU_EDITAR_MIEMBRO
     @rango            NVARCHAR(50),
     @jefatura         NVARCHAR(100),
     @estado           NVARCHAR(20),
+    @fecha_ingreso    DATETIME2      = NULL,   -- NULL = no modifica la fecha existente
     @admin_id         INT
 AS
 BEGIN
@@ -504,6 +507,7 @@ BEGIN
             rango               = @rango,
             jefatura            = @jefatura,
             estado              = @estado,
+            fecha_ingreso       = ISNULL(@fecha_ingreso, fecha_ingreso),
             fecha_ultimo_cambio = SYSUTCDATETIME(),
             modificado_por      = @admin_id
         WHERE id = @id_miembro;
