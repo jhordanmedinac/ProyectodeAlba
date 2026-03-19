@@ -194,7 +194,7 @@
                 </div>
 
                 <div class="prot-img-container">
-                    <img src="IMAGENES/LOGO.png" alt="Logo" id="protLogo">
+                    <img src="../IMAGENES/LOGO.png" alt="Logo" id="protLogo">
                 </div>
 
                 <div class="prot-title">Acceso No Autorizado</div>
@@ -293,25 +293,30 @@
         }
 
         function initDevToolsDetection() {
-            let devToolsOpen = false;
-            const threshold  = 160;
-            function detectDevTools() {
-                if ((window.outerHeight - window.innerHeight) > threshold ||
-                    (window.outerWidth  - window.innerWidth)  > threshold) {
-                    if (!devToolsOpen) {
-                        devToolsOpen = true;
-                        showProtectionPopup();
-                        console.clear();
-                        console.log("%c SISTEMA PROTEGIDO", "color:#cc0000;font-size:22px;font-weight:bold;font-family:monospace;");
-                        console.log("%c Acceso no autorizado detectado. Esta actividad ha sido registrada.", "color:#999;font-size:13px;font-family:monospace;");
-                        console.log("%c [ ERR-403-SEC ] Cierre las herramientas de desarrollador.", "color:#666;font-size:12px;font-family:monospace;");
-                    }
-                } else {
-                    devToolsOpen = false;
-                }
+    let devToolsOpen = false;
+    const threshold  = 160;
+    
+    // En móvil no existe F12/DevTools, se omite la detección
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobile) return;
+
+    function detectDevTools() {
+        if ((window.outerHeight - window.innerHeight) > threshold ||
+            (window.outerWidth  - window.innerWidth)  > threshold) {
+            if (!devToolsOpen) {
+                devToolsOpen = true;
+                showProtectionPopup();
+                console.clear();
+                console.log("%c SISTEMA PROTEGIDO", "color:#cc0000;font-size:22px;font-weight:bold;font-family:monospace;");
+                console.log("%c Acceso no autorizado detectado. Esta actividad ha sido registrada.", "color:#999;font-size:13px;font-family:monospace;");
+                console.log("%c [ ERR-403-SEC ] Cierre las herramientas de desarrollador.", "color:#666;font-size:12px;font-family:monospace;");
             }
-            setInterval(detectDevTools, 100);
+        } else {
+            devToolsOpen = false;
         }
+    }
+    setInterval(detectDevTools, 100);
+}
 
         function initConsoleProtection() {}
 
